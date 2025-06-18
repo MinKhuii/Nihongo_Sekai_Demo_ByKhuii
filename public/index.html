@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nihongo Sekai - Japanese Learning Platform</title>
+    <meta
+      name="description"
+      content="Master Japanese through immersive conversations, cultural insights, and personalized learning paths with native speakers."
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎌</text></svg>"
+    />
+  </head>
+  <body>
+    <!-- Navigation Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="nav-brand">
+            <a href="index.html" class="brand-link">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">
+                <span class="brand-nihongo">Nihongo</span>
+                <span class="brand-sekai">Sekai</span>
+              </span>
+            </a>
+          </div>
+
+          <div class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+              <li><a href="index.html" class="nav-link active">Home</a></li>
+              <li><a href="courses.html" class="nav-link">Courses</a></li>
+              <li><a href="classrooms.html" class="nav-link">Classrooms</a></li>
+              <li><a href="teachers.html" class="nav-link">Teachers</a></li>
+              <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+          </div>
+
+          <div class="nav-actions">
+            <a href="login.html" class="btn btn-outline">Sign In</a>
+            <a href="signup.html" class="btn btn-primary">Get Started</a>
+          </div>
+
+          <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="container">
+          <div class="hero-content">
+            <div class="hero-text">
+              <h1 class="hero-title">
+                Master Japanese with
+                <span class="highlight">Native Speakers</span>
+              </h1>
+              <p class="hero-subtitle">
+                Join our immersive learning community and discover the beauty of
+                Japanese language and culture through personalized courses and
+                live conversations.
+              </p>
+              <div class="hero-actions">
+                <a href="courses.html" class="btn btn-primary btn-large">
+                  <svg
+                    class="icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polygon points="10,8 16,12 10,16" />
+                  </svg>
+                  Start Learning Today
+                </a>
+                <a href="about.html" class="btn btn-outline btn-large"
+                  >Learn More</a
+                >
+              </div>
+
+              <!-- Stats -->
+              <div class="hero-stats">
+                <div class="stat-item">
+                  <div class="stat-number">10,000+</div>
+                  <div class="stat-label">Students</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-number">150+</div>
+                  <div class="stat-label">Courses</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-number">50+</div>
+                  <div class="stat-label">Teachers</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-number">95%</div>
+                  <div class="stat-label">Success Rate</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-image">
+              <img
+                src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=600&h=400&fit=crop"
+                alt="Japanese Learning"
+                class="hero-img"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Courses Section -->
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Featured Courses</h2>
+            <p class="section-subtitle">
+              Start your Japanese journey with our most popular courses
+            </p>
+          </div>
+
+          <div class="courses-grid" id="featuredCourses">
+            <!-- Courses will be loaded dynamically -->
+          </div>
+
+          <div class="section-footer">
+            <a href="courses.html" class="btn btn-primary">
+              View All Courses
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12,5 19,12 12,19" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Popular Classrooms Section -->
+      <section class="section section-gray">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Live Classrooms</h2>
+            <p class="section-subtitle">
+              Practice with native speakers in real-time conversations
+            </p>
+          </div>
+
+          <div class="classrooms-grid" id="popularClassrooms">
+            <!-- Classrooms will be loaded dynamically -->
+          </div>
+
+          <div class="section-footer">
+            <a href="classrooms.html" class="btn btn-primary">
+              Join a Classroom
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="m22 21-3-3m0 0-3-3m3 3 3 3m-3-3 3-3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Why Choose Nihongo Sekai?</h2>
+            <p class="section-subtitle">
+              Experience the most effective way to learn Japanese
+            </p>
+          </div>
+
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="m22 21-3-3" />
+                </svg>
+              </div>
+              <h3 class="feature-title">Native Speakers</h3>
+              <p class="feature-description">
+                Learn from certified Japanese teachers and native speakers who
+                understand the nuances of the language.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                </svg>
+              </div>
+              <h3 class="feature-title">Interactive Courses</h3>
+              <p class="feature-description">
+                Engage with multimedia content, interactive exercises, and
+                real-world scenarios designed for effective learning.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 6v6l4 2" />
+                </svg>
+              </div>
+              <h3 class="feature-title">Flexible Schedule</h3>
+              <p class="feature-description">
+                Study at your own pace with 24/7 access to courses and join live
+                sessions at convenient times.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="cta-section">
+        <div class="container">
+          <div class="cta-content">
+            <h2 class="cta-title">Ready to Start Your Japanese Journey?</h2>
+            <p class="cta-subtitle">
+              Join thousands of students who have successfully learned Japanese
+              with us
+            </p>
+            <div class="cta-actions">
+              <a href="signup.html" class="btn btn-white btn-large"
+                >Get Started Free</a
+              >
+              <a href="courses.html" class="btn btn-outline-white btn-large"
+                >Browse Courses</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <div class="footer-brand">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">Nihongo Sekai</span>
+            </div>
+            <p class="footer-description">
+              Master Japanese through immersive conversations, cultural
+              insights, and personalized learning paths with native speakers.
+            </p>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                  />
+                </svg>
+              </a>
+              <a href="#" class="social-link" aria-label="Twitter">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
+                  />
+                </svg>
+              </a>
+              <a href="#" class="social-link" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.611-3.197-1.559-.748-.948-1.197-2.25-1.197-3.654 0-1.404.449-2.706 1.197-3.654.749-.948 1.9-1.559 3.197-1.559s2.448.611 3.197 1.559c.748.948 1.197 2.25 1.197 3.654 0 1.404-.449 2.706-1.197 3.654-.749.948-1.9 1.559-3.197 1.559zm7.718 0c-1.297 0-2.448-.611-3.197-1.559-.748-.948-1.197-2.25-1.197-3.654 0-1.404.449-2.706 1.197-3.654.749-.948 1.9-1.559 3.197-1.559s2.448.611 3.197 1.559c.748.948 1.197 2.25 1.197 3.654 0 1.404-.449 2.706-1.197 3.654-.749.948-1.9 1.559-3.197 1.559z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-section">
+            <h4 class="footer-title">Learning</h4>
+            <ul class="footer-links">
+              <li><a href="courses.html">Courses</a></li>
+              <li><a href="classrooms.html">Classrooms</a></li>
+              <li><a href="teachers.html">Teachers</a></li>
+              <li><a href="pricing.html">Pricing</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4 class="footer-title">Support</h4>
+            <ul class="footer-links">
+              <li><a href="help.html">Help Center</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+              <li><a href="community.html">Community</a></li>
+              <li><a href="blog.html">Blog</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4 class="footer-title">Company</h4>
+            <ul class="footer-links">
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="press.html">Press</a></li>
+              <li><a href="partners.html">Partners</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="copyright">© 2024 Nihongo Sekai. All rights reserved.</p>
+          <div class="footer-bottom-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="cookies.html">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Loading Indicator -->
+    <div id="loadingIndicator" class="loading-indicator">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Loading...</div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+      // Initialize homepage
+      document.addEventListener("DOMContentLoaded", function () {
+        initializeNavigation();
+        loadFeaturedCourses();
+        loadPopularClassrooms();
+        initializeAnimations();
+      });
+
+      // Load featured courses
+      async function loadFeaturedCourses() {
+        try {
+          showLoading();
+          const response = await fetchAPI("/api/courses/featured");
+          const courses = response.success
+            ? response.data
+            : mockFeaturedCourses;
+
+          const container = document.getElementById("featuredCourses");
+          container.innerHTML = courses
+            .slice(0, 3)
+            .map((course) => createCourseCard(course))
+            .join("");
+        } catch (error) {
+          console.error("Error loading featured courses:", error);
+          showToast("Failed to load courses", "error");
+        } finally {
+          hideLoading();
+        }
+      }
+
+      // Load popular classrooms
+      async function loadPopularClassrooms() {
+        try {
+          const response = await fetchAPI(
+            "/api/classrooms?popular=true&limit=2",
+          );
+          const classrooms = response.success
+            ? response.data
+            : mockPopularClassrooms;
+
+          const container = document.getElementById("popularClassrooms");
+          container.innerHTML = classrooms
+            .map((classroom) => createClassroomCard(classroom))
+            .join("");
+        } catch (error) {
+          console.error("Error loading classrooms:", error);
+          showToast("Failed to load classrooms", "error");
+        }
+      }
+
+      // Mock data fallback
+      const mockFeaturedCourses = [
+        {
+          courseId: 1,
+          name: "Japanese for Beginners: Hiragana & Katakana",
+          description:
+            "Master the fundamentals of Japanese writing systems with interactive exercises and cultural context.",
+          coverImageUrl:
+            "https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=400&h=250&fit=crop",
+          tuition: 49.99,
+          evaluationPoint: 4.7,
+          level: "Beginner",
+          studentsCount: 1247,
+          duration: 20,
+        },
+        {
+          courseId: 2,
+          name: "Conversational Japanese: Daily Life",
+          description:
+            "Learn practical Japanese for everyday situations and social interactions.",
+          coverImageUrl:
+            "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=400&h=250&fit=crop",
+          tuition: 79.99,
+          evaluationPoint: 4.8,
+          level: "Elementary",
+          studentsCount: 892,
+          duration: 35,
+        },
+        {
+          courseId: 3,
+          name: "Business Japanese: Professional Communication",
+          description:
+            "Advanced course for professionals working with Japanese companies.",
+          coverImageUrl:
+            "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=400&h=250&fit=crop",
+          tuition: 129.99,
+          evaluationPoint: 4.9,
+          level: "Advanced",
+          studentsCount: 456,
+          duration: 50,
+        },
+      ];
+
+      const mockPopularClassrooms = [
+        {
+          classroomId: 1,
+          title: "Morning Conversation Practice",
+          description:
+            "Join our morning conversation circle to practice speaking Japanese.",
+          thumbnail:
+            "https://images.unsplash.com/photo-1491975474562-1f4e30bc9468?w=400&h=300&fit=crop",
+          currentStudents: 5,
+          maxStudents: 8,
+          schedule: "Mon, Wed, Fri 9:00 AM JST",
+          partner: {
+            name: "Yuki Tanaka",
+            avatarUrl: "https://api.dicebear.com/7.x/avataaars/svg?seed=Yuki",
+          },
+        },
+        {
+          classroomId: 2,
+          title: "JLPT Study Group",
+          description: "Intensive study sessions focused on JLPT preparation.",
+          thumbnail:
+            "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop",
+          currentStudents: 7,
+          maxStudents: 10,
+          schedule: "Tue, Thu 7:00 PM JST",
+          partner: {
+            name: "Hiroshi Sato",
+            avatarUrl:
+              "https://api.dicebear.com/7.x/avataaars/svg?seed=Hiroshi",
+          },
+        },
+      ];
+
+      // Initialize scroll animations
+      function initializeAnimations() {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate-in");
+            }
+          });
+        }, observerOptions);
+
+        document
+          .querySelectorAll(".section, .hero, .feature-card")
+          .forEach((el) => {
+            observer.observe(el);
+          });
+      }
+    </script>
+  </body>
+</html>

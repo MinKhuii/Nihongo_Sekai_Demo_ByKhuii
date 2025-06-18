@@ -1,0 +1,1189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Partners - Nihongo Sekai</title>
+    <meta
+      name="description"
+      content="Partner with Nihongo Sekai to expand Japanese language education. Explore partnership opportunities, benefits, and our current partner network."
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎌</text></svg>"
+    />
+  </head>
+  <body>
+    <!-- Navigation Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="nav-brand">
+            <a href="index.html" class="brand-link">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">
+                <span class="brand-nihongo">Nihongo</span>
+                <span class="brand-sekai">Sekai</span>
+              </span>
+            </a>
+          </div>
+
+          <div class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+              <li><a href="index.html" class="nav-link">Home</a></li>
+              <li><a href="courses.html" class="nav-link">Courses</a></li>
+              <li><a href="classrooms.html" class="nav-link">Classrooms</a></li>
+              <li><a href="teachers.html" class="nav-link">Teachers</a></li>
+              <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+          </div>
+
+          <div class="nav-actions">
+            <a href="login.html" class="btn btn-outline">Sign In</a>
+            <a href="signup.html" class="btn btn-primary">Get Started</a>
+          </div>
+
+          <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Section -->
+      <section class="partners-hero">
+        <div class="container">
+          <div class="hero-content">
+            <h1 class="hero-title">
+              Partner with Us to
+              <span class="text-gradient">Bridge Cultures</span>
+            </h1>
+            <p class="hero-description">
+              Join our network of educational institutions, businesses, and
+              cultural organizations to expand access to Japanese language
+              learning worldwide. Together, we can build bridges between
+              cultures and create meaningful connections.
+            </p>
+            <div class="hero-actions">
+              <button class="btn btn-primary" onclick="showPartnershipForm()">
+                Become a Partner
+              </button>
+              <a href="#partnership-types" class="btn btn-outline"
+                >Explore Partnerships</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Partnership Types -->
+      <section class="partnership-types-section" id="partnership-types">
+        <div class="container">
+          <h2 class="section-title">Partnership Opportunities</h2>
+          <div class="partnership-grid">
+            <div class="partnership-card">
+              <div class="partnership-icon">🏫</div>
+              <h3 class="partnership-title">Educational Institutions</h3>
+              <p class="partnership-description">
+                Partner with universities, schools, and educational
+                organizations to integrate Japanese language learning into
+                curricula and offer student discounts.
+              </p>
+              <div class="partnership-benefits">
+                <h4>Benefits:</h4>
+                <ul>
+                  <li>Bulk licensing discounts</li>
+                  <li>Custom curriculum development</li>
+                  <li>Teacher training programs</li>
+                  <li>Student progress tracking</li>
+                </ul>
+              </div>
+              <button
+                class="btn btn-outline"
+                onclick="inquirePartnership('education')"
+              >
+                Learn More
+              </button>
+            </div>
+
+            <div class="partnership-card">
+              <div class="partnership-icon">🏢</div>
+              <h3 class="partnership-title">Corporate Training</h3>
+              <p class="partnership-description">
+                Provide Japanese language training for businesses working with
+                Japanese companies or expanding into the Japanese market.
+              </p>
+              <div class="partnership-benefits">
+                <h4>Benefits:</h4>
+                <ul>
+                  <li>Business-focused curriculum</li>
+                  <li>Flexible scheduling</li>
+                  <li>Corporate reporting tools</li>
+                  <li>Cultural training modules</li>
+                </ul>
+              </div>
+              <button
+                class="btn btn-outline"
+                onclick="inquirePartnership('corporate')"
+              >
+                Learn More
+              </button>
+            </div>
+
+            <div class="partnership-card">
+              <div class="partnership-icon">🌍</div>
+              <h3 class="partnership-title">Cultural Organizations</h3>
+              <p class="partnership-description">
+                Collaborate with cultural centers, museums, and Japan-related
+                organizations to promote Japanese culture through language
+                learning.
+              </p>
+              <div class="partnership-benefits">
+                <h4>Benefits:</h4>
+                <ul>
+                  <li>Cultural content integration</li>
+                  <li>Event partnerships</li>
+                  <li>Cross-promotion opportunities</li>
+                  <li>Community outreach programs</li>
+                </ul>
+              </div>
+              <button
+                class="btn btn-outline"
+                onclick="inquirePartnership('cultural')"
+              >
+                Learn More
+              </button>
+            </div>
+
+            <div class="partnership-card">
+              <div class="partnership-icon">💻</div>
+              <h3 class="partnership-title">Technology Partners</h3>
+              <p class="partnership-description">
+                Integrate with learning management systems, educational
+                platforms, and technology solutions to enhance the learning
+                experience.
+              </p>
+              <div class="partnership-benefits">
+                <h4>Benefits:</h4>
+                <ul>
+                  <li>API integration support</li>
+                  <li>Technical documentation</li>
+                  <li>Co-marketing opportunities</li>
+                  <li>Revenue sharing programs</li>
+                </ul>
+              </div>
+              <button
+                class="btn btn-outline"
+                onclick="inquirePartnership('technology')"
+              >
+                Learn More
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Current Partners -->
+      <section class="current-partners-section">
+        <div class="container">
+          <h2 class="section-title">Our Trusted Partners</h2>
+          <div class="partners-showcase">
+            <div class="partner-category">
+              <h3 class="category-title">Educational Institutions</h3>
+              <div class="partner-logos">
+                <div class="partner-logo">
+                  <div class="logo-placeholder">
+                    <span>Tokyo University</span>
+                  </div>
+                </div>
+                <div class="partner-logo">
+                  <div class="logo-placeholder">
+                    <span>Waseda University</span>
+                  </div>
+                </div>
+                <div class="partner-logo">
+                  <div class="logo-placeholder">
+                    <span>Berkeley Japanese Studies</span>
+                  </div>
+                </div>
+                <div class="partner-logo">
+                  <div class="logo-placeholder">
+                    <span>Oxford Oriental Institute</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="partner-category">
+              <h3 class="category-title">Cultural Organizations</h3>
+              <div class="partner-logos">
+                <div class="partner-logo">
+                  <div class="logo-placeholder">
+                    <span>Japan Foundation</span>
+                  </div>
+                </div>
+                <div class="partner-logo">
+                  <div class="logo-placeholder">
+                    <span>Japanese Cultural Centers</span>
+                  </div>
+                </div>
+                <div class="partner-logo">
+                  <div class="logo-placeholder">
+                    <span>Asia Society</span>
+                  </div>
+                </div>
+                <div class="partner-logo">
+                  <div class="logo-placeholder">
+                    <span>International Exchange Program</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="partner-category">
+              <h3 class="category-title">Corporate Partners</h3>
+              <div class="partner-logos">
+                <div class="partner-logo">
+                  <div class="logo-placeholder">
+                    <span>Toyota Global</span>
+                  </div>
+                </div>
+                <div class="partner-logo">
+                  <div class="logo-placeholder">
+                    <span>Sony International</span>
+                  </div>
+                </div>
+                <div class="partner-logo">
+                  <div class="logo-placeholder">
+                    <span>Mitsubishi Corp</span>
+                  </div>
+                </div>
+                <div class="partner-logo">
+                  <div class="logo-placeholder">
+                    <span>JETRO</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Partnership Benefits -->
+      <section class="benefits-section">
+        <div class="container">
+          <div class="benefits-content">
+            <div class="benefits-text">
+              <h2 class="section-title">Why Partner with Nihongo Sekai?</h2>
+              <p class="benefits-description">
+                Our partnerships go beyond simple integration. We work closely
+                with our partners to create meaningful, long-term relationships
+                that benefit learners, organizations, and the broader Japanese
+                learning community.
+              </p>
+
+              <div class="benefit-items">
+                <div class="benefit-item">
+                  <div class="benefit-icon">📈</div>
+                  <div class="benefit-content">
+                    <h4>Proven Results</h4>
+                    <p>
+                      95% student success rate and 50,000+ satisfied learners
+                      worldwide demonstrate our effectiveness.
+                    </p>
+                  </div>
+                </div>
+                <div class="benefit-item">
+                  <div class="benefit-icon">🤝</div>
+                  <div class="benefit-content">
+                    <h4>Collaborative Approach</h4>
+                    <p>
+                      We work closely with partners to customize solutions that
+                      meet specific needs and goals.
+                    </p>
+                  </div>
+                </div>
+                <div class="benefit-item">
+                  <div class="benefit-icon">🌟</div>
+                  <div class="benefit-content">
+                    <h4>Quality Content</h4>
+                    <p>
+                      Curriculum developed by native speakers and education
+                      experts ensures authentic learning experiences.
+                    </p>
+                  </div>
+                </div>
+                <div class="benefit-item">
+                  <div class="benefit-icon">🔧</div>
+                  <div class="benefit-content">
+                    <h4>Technical Support</h4>
+                    <p>
+                      Dedicated integration support and ongoing technical
+                      assistance for seamless implementation.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="benefits-image">
+              <img
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=600&fit=crop"
+                alt="Partnership Benefits"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Success Stories -->
+      <section class="success-stories-section">
+        <div class="container">
+          <h2 class="section-title">Partnership Success Stories</h2>
+          <div class="stories-grid">
+            <div class="story-card">
+              <div class="story-header">
+                <div class="story-logo">
+                  <div class="logo-placeholder small">TU</div>
+                </div>
+                <div class="story-info">
+                  <h3 class="story-partner">Tokyo University</h3>
+                  <div class="story-type">Educational Partnership</div>
+                </div>
+              </div>
+              <p class="story-content">
+                "Partnering with Nihongo Sekai has revolutionized our Japanese
+                language program. Student engagement increased by 300% and
+                completion rates improved to 92%. The cultural immersion
+                elements are particularly valuable for our international
+                students."
+              </p>
+              <div class="story-metrics">
+                <div class="metric">
+                  <div class="metric-number">3,000+</div>
+                  <div class="metric-label">Students Enrolled</div>
+                </div>
+                <div class="metric">
+                  <div class="metric-number">92%</div>
+                  <div class="metric-label">Completion Rate</div>
+                </div>
+              </div>
+              <div class="story-author">
+                <strong>Dr. Tanaka Hiroshi</strong> - Dean of International
+                Studies
+              </div>
+            </div>
+
+            <div class="story-card">
+              <div class="story-header">
+                <div class="story-logo">
+                  <div class="logo-placeholder small">TG</div>
+                </div>
+                <div class="story-info">
+                  <h3 class="story-partner">Global Tech Corp</h3>
+                  <div class="story-type">Corporate Training</div>
+                </div>
+              </div>
+              <p class="story-content">
+                "Our expansion into the Japanese market required effective
+                language training for our team. Nihongo Sekai's business-focused
+                curriculum and flexible scheduling made it possible for our
+                employees to learn while maintaining their work
+                responsibilities."
+              </p>
+              <div class="story-metrics">
+                <div class="metric">
+                  <div class="metric-number">500+</div>
+                  <div class="metric-label">Employees Trained</div>
+                </div>
+                <div class="metric">
+                  <div class="metric-number">40%</div>
+                  <div class="metric-label">Revenue Increase</div>
+                </div>
+              </div>
+              <div class="story-author">
+                <strong>Sarah Johnson</strong> - VP of International Operations
+              </div>
+            </div>
+
+            <div class="story-card">
+              <div class="story-header">
+                <div class="story-logo">
+                  <div class="logo-placeholder small">JF</div>
+                </div>
+                <div class="story-info">
+                  <h3 class="story-partner">Japan Foundation</h3>
+                  <div class="story-type">Cultural Partnership</div>
+                </div>
+              </div>
+              <p class="story-content">
+                "The partnership with Nihongo Sekai aligns perfectly with our
+                mission to promote Japanese culture globally. Their platform
+                beautifully integrates language learning with cultural
+                understanding, reaching audiences we couldn't reach alone."
+              </p>
+              <div class="story-metrics">
+                <div class="metric">
+                  <div class="metric-number">25,000+</div>
+                  <div class="metric-label">Cultural Participants</div>
+                </div>
+                <div class="metric">
+                  <div class="metric-number">50+</div>
+                  <div class="metric-label">Cultural Events</div>
+                </div>
+              </div>
+              <div class="story-author">
+                <strong>Yamamoto Keiko</strong> - Director of International
+                Programs
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Partnership Process -->
+      <section class="process-section">
+        <div class="container">
+          <h2 class="section-title">Partnership Process</h2>
+          <div class="process-timeline">
+            <div class="process-step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h3 class="step-title">Initial Consultation</h3>
+                <p class="step-description">
+                  We discuss your organization's needs, goals, and how our
+                  platform can support your objectives.
+                </p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h3 class="step-title">Proposal Development</h3>
+                <p class="step-description">
+                  Our team creates a customized partnership proposal with
+                  pricing, implementation timeline, and support details.
+                </p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h3 class="step-title">Pilot Program</h3>
+                <p class="step-description">
+                  Start with a small-scale pilot to test integration and gather
+                  feedback before full implementation.
+                </p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <h3 class="step-title">Full Implementation</h3>
+                <p class="step-description">
+                  Roll out the complete solution with ongoing support, training,
+                  and regular check-ins for optimization.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section class="partner-contact-section">
+        <div class="container">
+          <div class="contact-content">
+            <h2 class="section-title">Ready to Partner with Us?</h2>
+            <p class="contact-description">
+              Let's discuss how we can work together to expand access to
+              Japanese language education and create meaningful cultural
+              connections.
+            </p>
+
+            <div class="contact-form-container">
+              <form class="partnership-form" id="partnershipForm">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label for="organizationName" class="form-label"
+                      >Organization Name *</label
+                    >
+                    <input
+                      type="text"
+                      id="organizationName"
+                      name="organizationName"
+                      class="form-input"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="contactName" class="form-label"
+                      >Contact Name *</label
+                    >
+                    <input
+                      type="text"
+                      id="contactName"
+                      name="contactName"
+                      class="form-input"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label for="email" class="form-label"
+                      >Email Address *</label
+                    >
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      class="form-input"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      class="form-input"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="partnershipType" class="form-label"
+                    >Partnership Type *</label
+                  >
+                  <select
+                    id="partnershipType"
+                    name="partnershipType"
+                    class="form-select"
+                    required
+                  >
+                    <option value="">Select partnership type</option>
+                    <option value="education">Educational Institution</option>
+                    <option value="corporate">Corporate Training</option>
+                    <option value="cultural">Cultural Organization</option>
+                    <option value="technology">Technology Partner</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="organizationSize" class="form-label"
+                    >Organization Size</label
+                  >
+                  <select
+                    id="organizationSize"
+                    name="organizationSize"
+                    class="form-select"
+                  >
+                    <option value="">Select size</option>
+                    <option value="small">1-50 people</option>
+                    <option value="medium">51-500 people</option>
+                    <option value="large">501-5000 people</option>
+                    <option value="enterprise">5000+ people</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="message" class="form-label"
+                    >Tell us about your partnership goals *</label
+                  >
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="5"
+                    class="form-textarea"
+                    placeholder="Describe your organization's goals, target audience, and how you envision the partnership working..."
+                    required
+                  ></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-large">
+                  Submit Partnership Inquiry
+                </button>
+              </form>
+            </div>
+
+            <div class="contact-info">
+              <div class="contact-method">
+                <h3>Direct Contact</h3>
+                <p><strong>Email:</strong> partnerships@nihongosekai.com</p>
+                <p><strong>Phone:</strong> +1 (555) 123-4569</p>
+                <p><strong>Response Time:</strong> Within 24 hours</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <div class="footer-brand">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">Nihongo Sekai</span>
+            </div>
+            <p class="footer-description">
+              Master Japanese through immersive conversations, cultural
+              insights, and personalized learning paths with native speakers.
+            </p>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                  />
+                </svg>
+              </a>
+              <a href="#" class="social-link" aria-label="Twitter">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
+                  />
+                </svg>
+              </a>
+              <a href="#" class="social-link" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.611-3.197-1.559-.748-.948-1.197-2.25-1.197-3.654 0-1.404.449-2.706 1.197-3.654.749-.948 1.9-1.559 3.197-1.559s2.448.611 3.197 1.559c.748.948 1.197 2.25 1.197 3.654 0 1.404-.449 2.706-1.197 3.654-.749.948-1.9 1.559-3.197 1.559zm7.718 0c-1.297 0-2.448-.611-3.197-1.559-.748-.948-1.197-2.25-1.197-3.654 0-1.404.449-2.706 1.197-3.654.749-.948 1.9-1.559 3.197-1.559s2.448.611 3.197 1.559c.748.948 1.197 2.25 1.197 3.654 0 1.404-.449 2.706-1.197 3.654-.749.948-1.9 1.559-3.197 1.559z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-section">
+            <h4 class="footer-title">Learning</h4>
+            <ul class="footer-links">
+              <li><a href="courses.html">Courses</a></li>
+              <li><a href="classrooms.html">Classrooms</a></li>
+              <li><a href="teachers.html">Teachers</a></li>
+              <li><a href="pricing.html">Pricing</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4 class="footer-title">Support</h4>
+            <ul class="footer-links">
+              <li><a href="help.html">Help Center</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+              <li><a href="community.html">Community</a></li>
+              <li><a href="blog.html">Blog</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4 class="footer-title">Company</h4>
+            <ul class="footer-links">
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="press.html">Press</a></li>
+              <li><a href="partners.html">Partners</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="copyright">© 2024 Nihongo Sekai. All rights reserved.</p>
+          <div class="footer-bottom-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="cookies.html">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        initializeNavigation();
+        initializePartnershipForm();
+      });
+
+      function initializePartnershipForm() {
+        const form = document.getElementById("partnershipForm");
+        form.addEventListener("submit", handlePartnershipSubmission);
+      }
+
+      function showPartnershipForm() {
+        document
+          .querySelector(".partner-contact-section")
+          .scrollIntoView({ behavior: "smooth" });
+      }
+
+      function inquirePartnership(type) {
+        const select = document.getElementById("partnershipType");
+        select.value = type;
+        showPartnershipForm();
+      }
+
+      async function handlePartnershipSubmission(e) {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+          showLoading();
+
+          // Simulate API call
+          await new Promise((resolve) => setTimeout(resolve, 1500));
+
+          showToast(
+            "Partnership inquiry submitted successfully! We'll contact you within 24 hours.",
+            "success",
+          );
+          e.target.reset();
+        } catch (error) {
+          showToast("Failed to submit inquiry. Please try again.", "error");
+        } finally {
+          hideLoading();
+        }
+      }
+    </script>
+
+    <style>
+      /* Partners page specific styles */
+      .partners-hero {
+        background: linear-gradient(
+          135deg,
+          var(--color-primary-50) 0%,
+          var(--color-secondary-50) 100%
+        );
+        padding: var(--spacing-3xl) 0;
+        text-align: center;
+      }
+
+      .hero-title {
+        font-size: 3rem;
+        line-height: 1.2;
+        margin-bottom: var(--spacing-lg);
+        color: var(--color-gray-900);
+      }
+
+      .text-gradient {
+        background: linear-gradient(
+          135deg,
+          var(--color-primary) 0%,
+          var(--color-secondary) 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero-description {
+        font-size: 1.25rem;
+        line-height: 1.8;
+        color: var(--color-gray-600);
+        margin-bottom: var(--spacing-2xl);
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: var(--spacing-md);
+        justify-content: center;
+      }
+
+      .partnership-types-section {
+        padding: var(--spacing-3xl) 0;
+        background: var(--color-white);
+      }
+
+      .partnership-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: var(--spacing-2xl);
+        margin-top: var(--spacing-2xl);
+      }
+
+      .partnership-card {
+        background: var(--color-gray-50);
+        padding: var(--spacing-2xl);
+        border-radius: var(--radius-lg);
+        transition: transform var(--transition-normal);
+      }
+
+      .partnership-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .partnership-icon {
+        font-size: 3rem;
+        margin-bottom: var(--spacing-lg);
+      }
+
+      .partnership-title {
+        font-size: 1.5rem;
+        margin-bottom: var(--spacing-md);
+        color: var(--color-gray-900);
+      }
+
+      .partnership-description {
+        color: var(--color-gray-600);
+        line-height: 1.6;
+        margin-bottom: var(--spacing-lg);
+      }
+
+      .partnership-benefits {
+        margin-bottom: var(--spacing-lg);
+      }
+
+      .partnership-benefits h4 {
+        color: var(--color-gray-900);
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .partnership-benefits ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .partnership-benefits li {
+        color: var(--color-gray-600);
+        padding: var(--spacing-xs) 0;
+        position: relative;
+        padding-left: var(--spacing-md);
+      }
+
+      .partnership-benefits li:before {
+        content: "✓";
+        color: var(--color-primary);
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+      }
+
+      .current-partners-section {
+        padding: var(--spacing-3xl) 0;
+        background: var(--color-gray-50);
+      }
+
+      .partners-showcase {
+        margin-top: var(--spacing-2xl);
+      }
+
+      .partner-category {
+        margin-bottom: var(--spacing-3xl);
+      }
+
+      .category-title {
+        font-size: 1.25rem;
+        margin-bottom: var(--spacing-lg);
+        color: var(--color-gray-900);
+        text-align: center;
+      }
+
+      .partner-logos {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--spacing-lg);
+      }
+
+      .partner-logo {
+        background: var(--color-white);
+        padding: var(--spacing-lg);
+        border-radius: var(--radius-md);
+        text-align: center;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .logo-placeholder {
+        color: var(--color-gray-600);
+        font-weight: 500;
+        padding: var(--spacing-md);
+        border: 2px dashed var(--color-gray-300);
+        border-radius: var(--radius-md);
+      }
+
+      .logo-placeholder.small {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        background: var(--color-primary-100);
+        color: var(--color-primary);
+        border: none;
+        border-radius: 50%;
+      }
+
+      .benefits-section {
+        padding: var(--spacing-3xl) 0;
+        background: var(--color-white);
+      }
+
+      .benefits-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: var(--spacing-3xl);
+        align-items: center;
+      }
+
+      .benefits-description {
+        font-size: 1.125rem;
+        line-height: 1.8;
+        color: var(--color-gray-600);
+        margin-bottom: var(--spacing-2xl);
+      }
+
+      .benefit-items {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+      }
+
+      .benefit-item {
+        display: flex;
+        gap: var(--spacing-md);
+        align-items: flex-start;
+      }
+
+      .benefit-icon {
+        font-size: 1.5rem;
+        margin-top: var(--spacing-xs);
+      }
+
+      .benefit-content h4 {
+        font-size: 1.125rem;
+        margin-bottom: var(--spacing-xs);
+        color: var(--color-gray-900);
+      }
+
+      .benefit-content p {
+        color: var(--color-gray-600);
+        line-height: 1.6;
+      }
+
+      .benefits-image img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .success-stories-section {
+        padding: var(--spacing-3xl) 0;
+        background: var(--color-gray-50);
+      }
+
+      .stories-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: var(--spacing-2xl);
+        margin-top: var(--spacing-2xl);
+      }
+
+      .story-card {
+        background: var(--color-white);
+        padding: var(--spacing-2xl);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+      }
+
+      .story-header {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+      }
+
+      .story-partner {
+        font-size: 1.25rem;
+        margin-bottom: var(--spacing-xs);
+        color: var(--color-gray-900);
+      }
+
+      .story-type {
+        font-size: 0.875rem;
+        color: var(--color-primary);
+        font-weight: 500;
+      }
+
+      .story-content {
+        color: var(--color-gray-700);
+        line-height: 1.6;
+        margin-bottom: var(--spacing-lg);
+        font-style: italic;
+      }
+
+      .story-metrics {
+        display: flex;
+        gap: var(--spacing-xl);
+        margin-bottom: var(--spacing-lg);
+      }
+
+      .metric {
+        text-align: center;
+      }
+
+      .metric-number {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--color-primary);
+        display: block;
+      }
+
+      .metric-label {
+        font-size: 0.875rem;
+        color: var(--color-gray-600);
+      }
+
+      .story-author {
+        color: var(--color-gray-600);
+        font-size: 0.875rem;
+      }
+
+      .process-section {
+        padding: var(--spacing-3xl) 0;
+        background: var(--color-white);
+      }
+
+      .process-timeline {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xl);
+        margin-top: var(--spacing-2xl);
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .process-step {
+        display: flex;
+        gap: var(--spacing-lg);
+        align-items: flex-start;
+      }
+
+      .step-number {
+        background: var(--color-primary);
+        color: var(--color-white);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        flex-shrink: 0;
+      }
+
+      .step-title {
+        font-size: 1.125rem;
+        margin-bottom: var(--spacing-xs);
+        color: var(--color-gray-900);
+      }
+
+      .step-description {
+        color: var(--color-gray-600);
+        line-height: 1.6;
+      }
+
+      .partner-contact-section {
+        padding: var(--spacing-3xl) 0;
+        background: var(--color-gray-50);
+      }
+
+      .contact-description {
+        text-align: center;
+        font-size: 1.125rem;
+        color: var(--color-gray-600);
+        margin-bottom: var(--spacing-2xl);
+      }
+
+      .contact-form-container {
+        max-width: 800px;
+        margin: 0 auto var(--spacing-2xl);
+        background: var(--color-white);
+        padding: var(--spacing-2xl);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-lg);
+      }
+
+      .contact-info {
+        text-align: center;
+        background: var(--color-white);
+        padding: var(--spacing-xl);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .contact-method h3 {
+        color: var(--color-gray-900);
+        margin-bottom: var(--spacing-md);
+      }
+
+      .contact-method p {
+        color: var(--color-gray-600);
+        margin-bottom: var(--spacing-xs);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2rem;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .benefits-content {
+          grid-template-columns: 1fr;
+          gap: var(--spacing-2xl);
+        }
+
+        .partnership-grid,
+        .stories-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .story-metrics {
+          justify-content: center;
+        }
+      }
+    </style>
+  </body>
+</html>

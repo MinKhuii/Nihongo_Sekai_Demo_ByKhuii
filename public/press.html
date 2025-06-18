@@ -1,0 +1,1038 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Press - Nihongo Sekai</title>
+    <meta
+      name="description"
+      content="Press resources for Nihongo Sekai. Download media kit, press releases, company information, and high-resolution assets for media coverage."
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎌</text></svg>"
+    />
+  </head>
+  <body>
+    <!-- Navigation Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="nav-brand">
+            <a href="index.html" class="brand-link">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">
+                <span class="brand-nihongo">Nihongo</span>
+                <span class="brand-sekai">Sekai</span>
+              </span>
+            </a>
+          </div>
+
+          <div class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+              <li><a href="index.html" class="nav-link">Home</a></li>
+              <li><a href="courses.html" class="nav-link">Courses</a></li>
+              <li><a href="classrooms.html" class="nav-link">Classrooms</a></li>
+              <li><a href="teachers.html" class="nav-link">Teachers</a></li>
+              <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+          </div>
+
+          <div class="nav-actions">
+            <a href="login.html" class="btn btn-outline">Sign In</a>
+            <a href="signup.html" class="btn btn-primary">Get Started</a>
+          </div>
+
+          <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Section -->
+      <section class="press-hero">
+        <div class="container">
+          <div class="hero-content">
+            <h1 class="hero-title">Press & Media</h1>
+            <p class="hero-description">
+              Resources for journalists, bloggers, and media professionals
+              covering Nihongo Sekai. Download our media kit, access
+              high-resolution assets, and get the latest company information.
+            </p>
+            <div class="hero-actions">
+              <button class="btn btn-primary" onclick="downloadMediaKit()">
+                Download Media Kit
+              </button>
+              <a href="contact.html" class="btn btn-outline"
+                >Contact Press Team</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quick Facts -->
+      <section class="facts-section">
+        <div class="container">
+          <h2 class="section-title">Company at a Glance</h2>
+          <div class="facts-grid">
+            <div class="fact-card">
+              <div class="fact-number">50,000+</div>
+              <div class="fact-label">Students Worldwide</div>
+            </div>
+            <div class="fact-card">
+              <div class="fact-number">200+</div>
+              <div class="fact-label">Expert Teachers</div>
+            </div>
+            <div class="fact-card">
+              <div class="fact-number">2018</div>
+              <div class="fact-label">Founded in Tokyo</div>
+            </div>
+            <div class="fact-card">
+              <div class="fact-number">120+</div>
+              <div class="fact-label">Countries Served</div>
+            </div>
+            <div class="fact-card">
+              <div class="fact-number">95%</div>
+              <div class="fact-label">Student Success Rate</div>
+            </div>
+            <div class="fact-card">
+              <div class="fact-number">$15M</div>
+              <div class="fact-label">Series A Funding</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recent News -->
+      <section class="news-section">
+        <div class="container">
+          <h2 class="section-title">Recent Press Releases</h2>
+          <div class="news-grid">
+            <article class="news-item featured">
+              <div class="news-date">March 15, 2024</div>
+              <h3 class="news-title">
+                Nihongo Sekai Announces $15M Series A Funding Round
+              </h3>
+              <p class="news-excerpt">
+                Leading EdTech company Nihongo Sekai raises Series A funding to
+                expand AI-powered Japanese learning platform globally, with
+                investment from prominent VCs in Japan and Silicon Valley.
+              </p>
+              <div class="news-tags">
+                <span class="news-tag">Funding</span>
+                <span class="news-tag">Growth</span>
+              </div>
+              <button
+                class="btn btn-outline"
+                onclick="readPressRelease('series-a')"
+              >
+                Read Full Release
+              </button>
+            </article>
+
+            <article class="news-item">
+              <div class="news-date">February 28, 2024</div>
+              <h3 class="news-title">
+                Partnership with Japan Foundation for Cultural Exchange Program
+              </h3>
+              <p class="news-excerpt">
+                Nihongo Sekai partners with Japan Foundation to launch
+                comprehensive cultural exchange program connecting international
+                students with Japanese culture.
+              </p>
+              <div class="news-tags">
+                <span class="news-tag">Partnership</span>
+                <span class="news-tag">Culture</span>
+              </div>
+              <button
+                class="btn btn-outline"
+                onclick="readPressRelease('japan-foundation')"
+              >
+                Read More
+              </button>
+            </article>
+
+            <article class="news-item">
+              <div class="news-date">January 20, 2024</div>
+              <h3 class="news-title">
+                Nihongo Sekai Wins 'Best Language Learning Platform' Award
+              </h3>
+              <p class="news-excerpt">
+                Platform recognized for innovation in cultural immersion and
+                personalized learning at the 2024 EdTech Excellence Awards in
+                San Francisco.
+              </p>
+              <div class="news-tags">
+                <span class="news-tag">Award</span>
+                <span class="news-tag">Recognition</span>
+              </div>
+              <button
+                class="btn btn-outline"
+                onclick="readPressRelease('edtech-award')"
+              >
+                Read More
+              </button>
+            </article>
+
+            <article class="news-item">
+              <div class="news-date">December 10, 2023</div>
+              <h3 class="news-title">50,000 Students Milestone Reached</h3>
+              <p class="news-excerpt">
+                Nihongo Sekai celebrates reaching 50,000 active students
+                worldwide, demonstrating strong global demand for quality
+                Japanese language education.
+              </p>
+              <div class="news-tags">
+                <span class="news-tag">Milestone</span>
+                <span class="news-tag">Growth</span>
+              </div>
+              <button
+                class="btn btn-outline"
+                onclick="readPressRelease('50k-milestone')"
+              >
+                Read More
+              </button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Media Assets -->
+      <section class="assets-section">
+        <div class="container">
+          <h2 class="section-title">Media Assets</h2>
+          <div class="assets-grid">
+            <div class="asset-category">
+              <h3 class="asset-title">Logos & Branding</h3>
+              <div class="asset-items">
+                <div class="asset-item">
+                  <div class="asset-preview logo-preview">
+                    <span class="brand-icon">日</span>
+                    <span class="brand-text">Nihongo Sekai</span>
+                  </div>
+                  <div class="asset-info">
+                    <div class="asset-name">Primary Logo</div>
+                    <div class="asset-formats">PNG, SVG, EPS</div>
+                  </div>
+                  <button
+                    class="btn btn-sm btn-outline"
+                    onclick="downloadAsset('logo-primary')"
+                  >
+                    Download
+                  </button>
+                </div>
+                <div class="asset-item">
+                  <div class="asset-preview logo-preview dark">
+                    <span class="brand-icon">日</span>
+                    <span class="brand-text">Nihongo Sekai</span>
+                  </div>
+                  <div class="asset-info">
+                    <div class="asset-name">Dark Logo</div>
+                    <div class="asset-formats">PNG, SVG, EPS</div>
+                  </div>
+                  <button
+                    class="btn btn-sm btn-outline"
+                    onclick="downloadAsset('logo-dark')"
+                  >
+                    Download
+                  </button>
+                </div>
+                <div class="asset-item">
+                  <div class="asset-preview icon-preview">
+                    <span class="brand-icon">日</span>
+                  </div>
+                  <div class="asset-info">
+                    <div class="asset-name">Icon Only</div>
+                    <div class="asset-formats">PNG, SVG, ICO</div>
+                  </div>
+                  <button
+                    class="btn btn-sm btn-outline"
+                    onclick="downloadAsset('icon-only')"
+                  >
+                    Download
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="asset-category">
+              <h3 class="asset-title">Product Screenshots</h3>
+              <div class="asset-items">
+                <div class="asset-item">
+                  <div class="asset-preview screenshot-preview">
+                    <img
+                      src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=300&h=200&fit=crop"
+                      alt="Dashboard"
+                    />
+                  </div>
+                  <div class="asset-info">
+                    <div class="asset-name">Student Dashboard</div>
+                    <div class="asset-formats">High-res PNG, JPG</div>
+                  </div>
+                  <button
+                    class="btn btn-sm btn-outline"
+                    onclick="downloadAsset('dashboard')"
+                  >
+                    Download
+                  </button>
+                </div>
+                <div class="asset-item">
+                  <div class="asset-preview screenshot-preview">
+                    <img
+                      src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=300&h=200&fit=crop"
+                      alt="Classroom"
+                    />
+                  </div>
+                  <div class="asset-info">
+                    <div class="asset-name">Live Classroom</div>
+                    <div class="asset-formats">High-res PNG, JPG</div>
+                  </div>
+                  <button
+                    class="btn btn-sm btn-outline"
+                    onclick="downloadAsset('classroom')"
+                  >
+                    Download
+                  </button>
+                </div>
+                <div class="asset-item">
+                  <div class="asset-preview screenshot-preview">
+                    <img
+                      src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=300&h=200&fit=crop"
+                      alt="Mobile App"
+                    />
+                  </div>
+                  <div class="asset-info">
+                    <div class="asset-name">Mobile App</div>
+                    <div class="asset-formats">High-res PNG, JPG</div>
+                  </div>
+                  <button
+                    class="btn btn-sm btn-outline"
+                    onclick="downloadAsset('mobile-app')"
+                  >
+                    Download
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="asset-category">
+              <h3 class="asset-title">Team Photos</h3>
+              <div class="asset-items">
+                <div class="asset-item">
+                  <div class="asset-preview photo-preview">
+                    <img
+                      src="https://api.dicebear.com/7.x/avataaars/svg?seed=HiroshiTanaka&backgroundColor=b6e3f4&clothesType=BlazerShirt"
+                      alt="Hiroshi Tanaka"
+                    />
+                  </div>
+                  <div class="asset-info">
+                    <div class="asset-name">Hiroshi Tanaka, CEO</div>
+                    <div class="asset-formats">High-res JPG</div>
+                  </div>
+                  <button
+                    class="btn btn-sm btn-outline"
+                    onclick="downloadAsset('ceo-photo')"
+                  >
+                    Download
+                  </button>
+                </div>
+                <div class="asset-item">
+                  <div class="asset-preview photo-preview">
+                    <img
+                      src="https://api.dicebear.com/7.x/avataaars/svg?seed=SarahKim&backgroundColor=ffd93d&clothesType=BlazerShirt"
+                      alt="Sarah Kim"
+                    />
+                  </div>
+                  <div class="asset-info">
+                    <div class="asset-name">Sarah Kim, CPO</div>
+                    <div class="asset-formats">High-res JPG</div>
+                  </div>
+                  <button
+                    class="btn btn-sm btn-outline"
+                    onclick="downloadAsset('cpo-photo')"
+                  >
+                    Download
+                  </button>
+                </div>
+                <div class="asset-item">
+                  <div class="asset-preview photo-preview">
+                    <img
+                      src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=200&h=200&fit=crop&crop=face"
+                      alt="Team Photo"
+                    />
+                  </div>
+                  <div class="asset-info">
+                    <div class="asset-name">Team Photo</div>
+                    <div class="asset-formats">High-res JPG</div>
+                  </div>
+                  <button
+                    class="btn btn-sm btn-outline"
+                    onclick="downloadAsset('team-photo')"
+                  >
+                    Download
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Press Coverage -->
+      <section class="coverage-section">
+        <div class="container">
+          <h2 class="section-title">Press Coverage</h2>
+          <div class="coverage-grid">
+            <div class="coverage-item">
+              <div class="coverage-source">TechCrunch</div>
+              <h3 class="coverage-headline">
+                "Nihongo Sekai is revolutionizing Japanese language learning
+                with AI"
+              </h3>
+              <div class="coverage-date">March 2024</div>
+              <a href="#" class="coverage-link">Read Article →</a>
+            </div>
+            <div class="coverage-item">
+              <div class="coverage-source">The Japan Times</div>
+              <h3 class="coverage-headline">
+                "EdTech startup bridges cultural gap through language education"
+              </h3>
+              <div class="coverage-date">February 2024</div>
+              <a href="#" class="coverage-link">Read Article →</a>
+            </div>
+            <div class="coverage-item">
+              <div class="coverage-source">EdTech Magazine</div>
+              <h3 class="coverage-headline">
+                "The future of language learning is cultural immersion"
+              </h3>
+              <div class="coverage-date">January 2024</div>
+              <a href="#" class="coverage-link">Read Article →</a>
+            </div>
+            <div class="coverage-item">
+              <div class="coverage-source">Nikkei Asia</div>
+              <h3 class="coverage-headline">
+                "Japanese language demand surges globally as startup scales"
+              </h3>
+              <div class="coverage-date">December 2023</div>
+              <a href="#" class="coverage-link">Read Article →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Executive Bios -->
+      <section class="bios-section">
+        <div class="container">
+          <h2 class="section-title">Executive Team</h2>
+          <div class="bios-grid">
+            <div class="bio-card">
+              <div class="bio-photo">
+                <img
+                  src="https://api.dicebear.com/7.x/avataaars/svg?seed=HiroshiTanaka&backgroundColor=b6e3f4&clothesType=BlazerShirt"
+                  alt="Hiroshi Tanaka"
+                />
+              </div>
+              <div class="bio-content">
+                <h3 class="bio-name">Hiroshi Tanaka</h3>
+                <div class="bio-title">Co-Founder & CEO</div>
+                <p class="bio-description">
+                  Former professor at Tokyo University with 15+ years in
+                  language education. Expert in Japanese pedagogy and cultural
+                  studies. Holds PhD in Applied Linguistics from Waseda
+                  University. Published researcher on Japanese language
+                  acquisition.
+                </p>
+                <div class="bio-contact">
+                  <a href="mailto:hiroshi@nihongosekai.com"
+                    >hiroshi@nihongosekai.com</a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="bio-card">
+              <div class="bio-photo">
+                <img
+                  src="https://api.dicebear.com/7.x/avataaars/svg?seed=SarahKim&backgroundColor=ffd93d&clothesType=BlazerShirt"
+                  alt="Sarah Kim"
+                />
+              </div>
+              <div class="bio-content">
+                <h3 class="bio-name">Sarah Kim</h3>
+                <div class="bio-title">Co-Founder & Chief Product Officer</div>
+                <p class="bio-description">
+                  EdTech innovator with passion for cross-cultural education.
+                  Previously led product teams at major language learning
+                  platforms. Stanford MBA, former Google product manager. Speaks
+                  fluent Japanese and Korean.
+                </p>
+                <div class="bio-contact">
+                  <a href="mailto:sarah@nihongosekai.com"
+                    >sarah@nihongosekai.com</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Information -->
+      <section class="press-contact-section">
+        <div class="container">
+          <div class="contact-content">
+            <h2 class="section-title">Press Inquiries</h2>
+            <p class="contact-description">
+              For press inquiries, interview requests, or additional
+              information, please contact our media relations team.
+            </p>
+
+            <div class="contact-cards">
+              <div class="contact-card">
+                <h3 class="contact-name">Media Relations</h3>
+                <div class="contact-details">
+                  <div class="contact-item">
+                    <strong>Email:</strong> press@nihongosekai.com
+                  </div>
+                  <div class="contact-item">
+                    <strong>Phone:</strong> +1 (555) 123-4567
+                  </div>
+                  <div class="contact-item">
+                    <strong>Response Time:</strong> Within 24 hours
+                  </div>
+                </div>
+              </div>
+
+              <div class="contact-card">
+                <h3 class="contact-name">Partnership Inquiries</h3>
+                <div class="contact-details">
+                  <div class="contact-item">
+                    <strong>Email:</strong> partnerships@nihongosekai.com
+                  </div>
+                  <div class="contact-item">
+                    <strong>Phone:</strong> +1 (555) 123-4568
+                  </div>
+                  <div class="contact-item">
+                    <strong>Focus:</strong> Strategic partnerships and
+                    collaborations
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <div class="footer-brand">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">Nihongo Sekai</span>
+            </div>
+            <p class="footer-description">
+              Master Japanese through immersive conversations, cultural
+              insights, and personalized learning paths with native speakers.
+            </p>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                  />
+                </svg>
+              </a>
+              <a href="#" class="social-link" aria-label="Twitter">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
+                  />
+                </svg>
+              </a>
+              <a href="#" class="social-link" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.611-3.197-1.559-.748-.948-1.197-2.25-1.197-3.654 0-1.404.449-2.706 1.197-3.654.749-.948 1.9-1.559 3.197-1.559s2.448.611 3.197 1.559c.748.948 1.197 2.25 1.197 3.654 0 1.404-.449 2.706-1.197 3.654-.749.948-1.9 1.559-3.197 1.559zm7.718 0c-1.297 0-2.448-.611-3.197-1.559-.748-.948-1.197-2.25-1.197-3.654 0-1.404.449-2.706 1.197-3.654.749-.948 1.9-1.559 3.197-1.559s2.448.611 3.197 1.559c.748.948 1.197 2.25 1.197 3.654 0 1.404-.449 2.706-1.197 3.654-.749.948-1.9 1.559-3.197 1.559z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-section">
+            <h4 class="footer-title">Learning</h4>
+            <ul class="footer-links">
+              <li><a href="courses.html">Courses</a></li>
+              <li><a href="classrooms.html">Classrooms</a></li>
+              <li><a href="teachers.html">Teachers</a></li>
+              <li><a href="pricing.html">Pricing</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4 class="footer-title">Support</h4>
+            <ul class="footer-links">
+              <li><a href="help.html">Help Center</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+              <li><a href="community.html">Community</a></li>
+              <li><a href="blog.html">Blog</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4 class="footer-title">Company</h4>
+            <ul class="footer-links">
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="press.html">Press</a></li>
+              <li><a href="partners.html">Partners</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="copyright">© 2024 Nihongo Sekai. All rights reserved.</p>
+          <div class="footer-bottom-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="cookies.html">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        initializeNavigation();
+      });
+
+      function downloadMediaKit() {
+        showToast(
+          "Media kit download started. Check your downloads folder.",
+          "success",
+        );
+      }
+
+      function downloadAsset(assetType) {
+        showToast(`${assetType} asset download started.`, "success");
+      }
+
+      function readPressRelease(releaseId) {
+        showToast(`Opening press release: ${releaseId}`, "info");
+      }
+    </script>
+
+    <style>
+      /* Press page specific styles */
+      .press-hero {
+        background: linear-gradient(
+          135deg,
+          var(--color-primary-50) 0%,
+          var(--color-secondary-50) 100%
+        );
+        padding: var(--spacing-3xl) 0;
+        text-align: center;
+      }
+
+      .hero-title {
+        font-size: 3rem;
+        line-height: 1.2;
+        margin-bottom: var(--spacing-lg);
+        color: var(--color-gray-900);
+      }
+
+      .hero-description {
+        font-size: 1.25rem;
+        line-height: 1.8;
+        color: var(--color-gray-600);
+        margin-bottom: var(--spacing-2xl);
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: var(--spacing-md);
+        justify-content: center;
+      }
+
+      .facts-section {
+        padding: var(--spacing-3xl) 0;
+        background: var(--color-white);
+      }
+
+      .facts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--spacing-xl);
+        margin-top: var(--spacing-2xl);
+      }
+
+      .fact-card {
+        text-align: center;
+        background: var(--color-gray-50);
+        padding: var(--spacing-xl);
+        border-radius: var(--radius-lg);
+      }
+
+      .fact-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--color-primary);
+        display: block;
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .fact-label {
+        color: var(--color-gray-600);
+        font-weight: 500;
+      }
+
+      .news-section {
+        padding: var(--spacing-3xl) 0;
+        background: var(--color-gray-50);
+      }
+
+      .news-grid {
+        display: grid;
+        gap: var(--spacing-2xl);
+        margin-top: var(--spacing-2xl);
+      }
+
+      .news-item {
+        background: var(--color-white);
+        padding: var(--spacing-2xl);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+      }
+
+      .news-item.featured {
+        border-left: 4px solid var(--color-primary);
+      }
+
+      .news-date {
+        color: var(--color-gray-500);
+        font-size: 0.875rem;
+        margin-bottom: var(--spacing-md);
+      }
+
+      .news-title {
+        font-size: 1.25rem;
+        line-height: 1.4;
+        margin-bottom: var(--spacing-md);
+        color: var(--color-gray-900);
+      }
+
+      .news-excerpt {
+        color: var(--color-gray-600);
+        line-height: 1.6;
+        margin-bottom: var(--spacing-lg);
+      }
+
+      .news-tags {
+        display: flex;
+        gap: var(--spacing-sm);
+        margin-bottom: var(--spacing-lg);
+      }
+
+      .news-tag {
+        background: var(--color-primary-100);
+        color: var(--color-primary);
+        padding: var(--spacing-xs) var(--spacing-sm);
+        border-radius: var(--radius-sm);
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+
+      .assets-section {
+        padding: var(--spacing-3xl) 0;
+        background: var(--color-white);
+      }
+
+      .assets-grid {
+        display: grid;
+        gap: var(--spacing-3xl);
+        margin-top: var(--spacing-2xl);
+      }
+
+      .asset-category {
+        background: var(--color-gray-50);
+        padding: var(--spacing-2xl);
+        border-radius: var(--radius-lg);
+      }
+
+      .asset-title {
+        font-size: 1.25rem;
+        margin-bottom: var(--spacing-lg);
+        color: var(--color-gray-900);
+      }
+
+      .asset-items {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--spacing-lg);
+      }
+
+      .asset-item {
+        background: var(--color-white);
+        padding: var(--spacing-lg);
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-md);
+      }
+
+      .asset-preview {
+        width: 80px;
+        height: 60px;
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .logo-preview {
+        background: var(--color-white);
+        border: 1px solid var(--color-gray-200);
+        font-size: 0.75rem;
+      }
+
+      .logo-preview.dark {
+        background: var(--color-gray-900);
+        color: var(--color-white);
+      }
+
+      .icon-preview {
+        background: var(--color-primary-100);
+        color: var(--color-primary);
+        font-size: 1.5rem;
+      }
+
+      .screenshot-preview,
+      .photo-preview {
+        overflow: hidden;
+      }
+
+      .screenshot-preview img,
+      .photo-preview img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .asset-info {
+        flex: 1;
+      }
+
+      .asset-name {
+        font-weight: 600;
+        color: var(--color-gray-900);
+        margin-bottom: var(--spacing-xs);
+      }
+
+      .asset-formats {
+        font-size: 0.875rem;
+        color: var(--color-gray-500);
+      }
+
+      .coverage-section {
+        padding: var(--spacing-3xl) 0;
+        background: var(--color-gray-50);
+      }
+
+      .coverage-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--spacing-xl);
+        margin-top: var(--spacing-2xl);
+      }
+
+      .coverage-item {
+        background: var(--color-white);
+        padding: var(--spacing-xl);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .coverage-source {
+        font-weight: 600;
+        color: var(--color-primary);
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .coverage-headline {
+        font-size: 1.125rem;
+        line-height: 1.4;
+        margin-bottom: var(--spacing-md);
+        color: var(--color-gray-900);
+      }
+
+      .coverage-date {
+        font-size: 0.875rem;
+        color: var(--color-gray-500);
+        margin-bottom: var(--spacing-md);
+      }
+
+      .coverage-link {
+        color: var(--color-primary);
+        font-weight: 500;
+        text-decoration: none;
+      }
+
+      .coverage-link:hover {
+        text-decoration: underline;
+      }
+
+      .bios-section {
+        padding: var(--spacing-3xl) 0;
+        background: var(--color-white);
+      }
+
+      .bios-grid {
+        display: grid;
+        gap: var(--spacing-2xl);
+        margin-top: var(--spacing-2xl);
+      }
+
+      .bio-card {
+        display: grid;
+        grid-template-columns: 150px 1fr;
+        gap: var(--spacing-xl);
+        background: var(--color-gray-50);
+        padding: var(--spacing-2xl);
+        border-radius: var(--radius-lg);
+      }
+
+      .bio-photo {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      .bio-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .bio-name {
+        font-size: 1.5rem;
+        margin-bottom: var(--spacing-xs);
+        color: var(--color-gray-900);
+      }
+
+      .bio-title {
+        color: var(--color-primary);
+        font-weight: 600;
+        margin-bottom: var(--spacing-md);
+      }
+
+      .bio-description {
+        color: var(--color-gray-600);
+        line-height: 1.6;
+        margin-bottom: var(--spacing-md);
+      }
+
+      .bio-contact a {
+        color: var(--color-primary);
+        text-decoration: none;
+      }
+
+      .bio-contact a:hover {
+        text-decoration: underline;
+      }
+
+      .press-contact-section {
+        padding: var(--spacing-3xl) 0;
+        background: var(--color-gray-50);
+      }
+
+      .contact-description {
+        text-align: center;
+        font-size: 1.125rem;
+        color: var(--color-gray-600);
+        margin-bottom: var(--spacing-2xl);
+      }
+
+      .contact-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--spacing-2xl);
+        margin-top: var(--spacing-2xl);
+      }
+
+      .contact-card {
+        background: var(--color-white);
+        padding: var(--spacing-2xl);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+      }
+
+      .contact-name {
+        font-size: 1.25rem;
+        margin-bottom: var(--spacing-lg);
+        color: var(--color-gray-900);
+      }
+
+      .contact-item {
+        margin-bottom: var(--spacing-md);
+        color: var(--color-gray-600);
+      }
+
+      .contact-item strong {
+        color: var(--color-gray-900);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2rem;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .bio-card {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .bio-photo {
+          margin: 0 auto;
+        }
+
+        .asset-item {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+  </body>
+</html>

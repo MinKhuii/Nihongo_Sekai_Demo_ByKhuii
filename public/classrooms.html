@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live Classrooms - Nihongo Sekai</title>
+    <meta
+      name="description"
+      content="Join live Japanese conversation classes with native speakers. Practice speaking in small groups and improve your fluency through real-time interaction."
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎌</text></svg>"
+    />
+  </head>
+  <body>
+    <!-- Navigation Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="nav-brand">
+            <a href="index.html" class="brand-link">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">
+                <span class="brand-nihongo">Nihongo</span>
+                <span class="brand-sekai">Sekai</span>
+              </span>
+            </a>
+          </div>
+
+          <div class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+              <li><a href="index.html" class="nav-link">Home</a></li>
+              <li><a href="courses.html" class="nav-link">Courses</a></li>
+              <li>
+                <a href="classrooms.html" class="nav-link active">Classrooms</a>
+              </li>
+              <li><a href="teachers.html" class="nav-link">Teachers</a></li>
+              <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+          </div>
+
+          <div class="nav-actions">
+            <a href="login.html" class="btn btn-outline">Sign In</a>
+            <a href="signup.html" class="btn btn-primary">Get Started</a>
+          </div>
+
+          <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Page Header -->
+      <section class="page-header">
+        <div class="container">
+          <h1 class="page-title">Live Japanese Classrooms</h1>
+          <p class="page-subtitle">
+            Practice speaking with native teachers and fellow learners in
+            real-time
+          </p>
+        </div>
+      </section>
+
+      <!-- Classrooms Section -->
+      <section class="classrooms-section">
+        <div class="container">
+          <div class="classrooms-header">
+            <div class="results-info">
+              <span id="classroomsCount">Loading classrooms...</span>
+            </div>
+            <div class="filters">
+              <select id="languageFilter" class="filter-select">
+                <option value="">All Languages</option>
+                <option value="japanese">Japanese</option>
+                <option value="english">English Support</option>
+              </select>
+              <select id="timeFilter" class="filter-select">
+                <option value="">All Times</option>
+                <option value="morning">Morning (JST)</option>
+                <option value="afternoon">Afternoon (JST)</option>
+                <option value="evening">Evening (JST)</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="classroomsGrid" class="classrooms-grid">
+            <!-- Classrooms will be loaded dynamically -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <div class="footer-brand">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">Nihongo Sekai</span>
+            </div>
+            <p class="footer-description">
+              Master Japanese through immersive conversations, cultural
+              insights, and personalized learning paths with native speakers.
+            </p>
+          </div>
+
+          <div class="footer-section">
+            <h4 class="footer-title">Learning</h4>
+            <ul class="footer-links">
+              <li><a href="courses.html">Courses</a></li>
+              <li><a href="classrooms.html">Classrooms</a></li>
+              <li><a href="teachers.html">Teachers</a></li>
+              <li><a href="pricing.html">Pricing</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4 class="footer-title">Support</h4>
+            <ul class="footer-links">
+              <li><a href="help.html">Help Center</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+              <li><a href="community.html">Community</a></li>
+              <li><a href="blog.html">Blog</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4 class="footer-title">Company</h4>
+            <ul class="footer-links">
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="press.html">Press</a></li>
+              <li><a href="partners.html">Partners</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="copyright">© 2024 Nihongo Sekai. All rights reserved.</p>
+          <div class="footer-bottom-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="cookies.html">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Loading Indicator -->
+    <div id="loadingIndicator" class="loading-indicator">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Loading classrooms...</div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+      // Classrooms page functionality
+      let allClassrooms = [];
+      let filteredClassrooms = [];
+
+      document.addEventListener("DOMContentLoaded", function () {
+        initializeNavigation();
+        loadClassrooms();
+        initializeFilters();
+      });
+
+      function initializeFilters() {
+        const languageFilter = document.getElementById("languageFilter");
+        const timeFilter = document.getElementById("timeFilter");
+
+        [languageFilter, timeFilter].forEach((filter) => {
+          filter.addEventListener("change", applyFilters);
+        });
+      }
+
+      async function loadClassrooms() {
+        try {
+          showLoading();
+          const response = await NihongoSekai.fetchAPI("/api/classrooms");
+
+          if (response.success) {
+            allClassrooms = response.data;
+          } else {
+            allClassrooms = mockClassrooms;
+          }
+
+          filteredClassrooms = [...allClassrooms];
+          renderClassrooms();
+          updateClassroomsCount();
+        } catch (error) {
+          console.error("Error loading classrooms:", error);
+          allClassrooms = mockClassrooms;
+          filteredClassrooms = [...allClassrooms];
+          renderClassrooms();
+          updateClassroomsCount();
+          NihongoSekai.showToast("Using offline classroom data", "warning");
+        } finally {
+          hideLoading();
+        }
+      }
+
+      function applyFilters() {
+        const language = document.getElementById("languageFilter").value;
+        const time = document.getElementById("timeFilter").value;
+
+        filteredClassrooms = allClassrooms.filter((classroom) => {
+          const matchesLanguage = !language || classroom.language === language;
+          const matchesTime =
+            !time || checkTimeFilter(classroom.schedule, time);
+          return matchesLanguage && matchesTime;
+        });
+
+        renderClassrooms();
+        updateClassroomsCount();
+      }
+
+      function checkTimeFilter(schedule, filter) {
+        // Simple time filtering based on schedule text
+        const scheduleText = schedule.toLowerCase();
+        switch (filter) {
+          case "morning":
+            return scheduleText.includes("am") || scheduleText.includes("9:00");
+          case "afternoon":
+            return scheduleText.includes("pm") || scheduleText.includes("2:00");
+          case "evening":
+            return scheduleText.includes("pm") || scheduleText.includes("7:00");
+          default:
+            return true;
+        }
+      }
+
+      function renderClassrooms() {
+        const container = document.getElementById("classroomsGrid");
+        container.innerHTML = filteredClassrooms
+          .map((classroom) => NihongoSekai.createClassroomCard(classroom))
+          .join("");
+
+        initializeAnimations();
+      }
+
+      function updateClassroomsCount() {
+        const count = filteredClassrooms.length;
+        const total = allClassrooms.length;
+        const text =
+          count === total
+            ? `${count} classrooms available`
+            : `${count} of ${total} classrooms`;
+        document.getElementById("classroomsCount").textContent = text;
+      }
+
+      // Mock classroom data
+      const mockClassrooms = [
+        {
+          classroomId: 1,
+          title: "Morning Conversation Practice",
+          description:
+            "Join our morning conversation circle to practice speaking Japanese in a supportive environment. Perfect for beginners to intermediate learners.",
+          thumbnail:
+            "https://images.unsplash.com/photo-1491975474562-1f4e30bc9468?w=400&h=300&fit=crop",
+          currentStudents: 5,
+          maxStudents: 8,
+          schedule: "Mon, Wed, Fri 9:00 AM JST",
+          language: "japanese",
+          partner: {
+            name: "Yuki Tanaka",
+            avatarUrl:
+              "https://api.dicebear.com/7.x/avataaars/svg?seed=Yuki Tanaka",
+          },
+        },
+        {
+          classroomId: 2,
+          title: "JLPT Study Group",
+          description:
+            "Intensive study sessions focused on JLPT preparation. We cover grammar, vocabulary, and practice tests together.",
+          thumbnail:
+            "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop",
+          currentStudents: 7,
+          maxStudents: 10,
+          schedule: "Tue, Thu 7:00 PM JST",
+          language: "japanese",
+          partner: {
+            name: "Hiroshi Sato",
+            avatarUrl:
+              "https://api.dicebear.com/7.x/avataaars/svg?seed=Hiroshi Sato",
+          },
+        },
+        {
+          classroomId: 3,
+          title: "Business Japanese Workshop",
+          description:
+            "Advanced workshop for professionals. Practice business presentations, meetings, and formal communication in Japanese.",
+          thumbnail:
+            "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop",
+          currentStudents: 4,
+          maxStudents: 6,
+          schedule: "Sat 2:00 PM JST",
+          language: "japanese",
+          partner: {
+            name: "Yuki Tanaka",
+            avatarUrl:
+              "https://api.dicebear.com/7.x/avataaars/svg?seed=Yuki Tanaka",
+          },
+        },
+        {
+          classroomId: 4,
+          title: "Anime Japanese Club",
+          description:
+            "Learn Japanese through popular anime and manga. Understand casual speech, slang, and cultural references.",
+          thumbnail:
+            "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
+          currentStudents: 9,
+          maxStudents: 12,
+          schedule: "Sun 4:00 PM JST",
+          language: "japanese",
+          partner: {
+            name: "Takeshi Morimoto",
+            avatarUrl:
+              "https://api.dicebear.com/7.x/avataaars/svg?seed=Takeshi",
+          },
+        },
+      ];
+    </script>
+
+    <style>
+      .classrooms-section {
+        padding: var(--spacing-3xl) 0;
+      }
+
+      .classrooms-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--spacing-xl);
+        flex-wrap: wrap;
+        gap: var(--spacing-md);
+      }
+
+      .filters {
+        display: flex;
+        gap: var(--spacing-md);
+      }
+
+      @media (max-width: 768px) {
+        .classrooms-header {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .filters {
+          justify-content: space-between;
+        }
+      }
+    </style>
+  </body>
+</html>

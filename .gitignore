@@ -1,0 +1,41 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Development files (no longer needed)
+node_modules/
+dist/
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Remove these React/TypeScript files
+src/
+tsconfig.json
+tsconfig.*.json
+vite.config.ts
+postcss.config.js
+tailwind.config.ts
+components.json
+
+# Keep only the public folder
+!public/

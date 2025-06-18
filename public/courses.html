@@ -1,0 +1,1003 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Japanese Courses - Nihongo Sekai</title>
+    <meta
+      name="description"
+      content="Explore our comprehensive Japanese language courses. From beginner to advanced, find the perfect course for your learning journey."
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AZ8hJJ6CzEWBmq8wJnKnHsJE4BQBY7-8XpFdxHpQ_bnGJf5xMYcNgKMQJV8rCp7JoQGXGnKKzV9KJ9qN&currency=USD"></script>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎌</text></svg>"
+    />
+  </head>
+  <body class="courses-page">
+    <!-- Navigation Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="nav-brand">
+            <a href="index.html" class="brand-link">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">
+                <span class="brand-nihongo">Nihongo</span>
+                <span class="brand-sekai">Sekai</span>
+              </span>
+            </a>
+          </div>
+
+          <div class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+              <li><a href="index.html" class="nav-link">Home</a></li>
+              <li>
+                <a href="courses.html" class="nav-link active">Courses</a>
+              </li>
+              <li><a href="classrooms.html" class="nav-link">Classrooms</a></li>
+              <li><a href="teachers.html" class="nav-link">Teachers</a></li>
+              <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+          </div>
+
+          <div class="nav-actions">
+            <a href="login.html" class="btn btn-outline">Sign In</a>
+            <a href="register.html" class="btn btn-primary">Get Started</a>
+          </div>
+
+          <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Enhanced Hero Section -->
+      <section class="courses-hero">
+        <div class="container">
+          <div class="courses-hero-content">
+            <h1 class="courses-page-title">Master Japanese Language</h1>
+            <p class="courses-page-subtitle">
+              Discover our comprehensive collection of Japanese courses designed
+              by experts. From complete beginners to advanced learners, find
+              your perfect learning path with our structured curriculum.
+            </p>
+            <div class="courses-stats">
+              <div class="courses-stat">
+                <div class="courses-stat-number">12+</div>
+                <div class="courses-stat-label">Expert Courses</div>
+              </div>
+              <div class="courses-stat">
+                <div class="courses-stat-number">5,000+</div>
+                <div class="courses-stat-label">Active Students</div>
+              </div>
+              <div class="courses-stat">
+                <div class="courses-stat-number">4.9</div>
+                <div class="courses-stat-label">Average Rating</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Revolutionary Search & Filter Section -->
+      <section class="modern-search-section">
+        <div class="hero-search-container">
+          <!-- Hero Search Bar -->
+          <div class="hero-search-bar">
+            <svg
+              class="hero-search-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input
+              type="text"
+              id="courseSearch"
+              placeholder="Search Japanese courses..."
+              class="hero-search-input"
+            />
+          </div>
+
+          <!-- Modern Filter Chips -->
+          <div class="filter-chips-container">
+            <div class="filter-chip" data-filter="category">
+              <span>Category</span>
+              <select id="categoryFilter">
+                <option value="">All Categories</option>
+                <option value="grammar">Grammar</option>
+                <option value="vocabulary">Vocabulary</option>
+                <option value="conversation">Conversation</option>
+                <option value="reading">Reading</option>
+                <option value="writing">Writing</option>
+                <option value="culture">Culture</option>
+                <option value="business">Business</option>
+                <option value="jlpt">JLPT</option>
+              </select>
+            </div>
+
+            <div class="filter-chip" data-filter="level">
+              <span>Level</span>
+              <select id="levelFilter">
+                <option value="">All Levels</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Elementary">Elementary</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+              </select>
+            </div>
+
+            <div class="filter-chip" data-filter="price">
+              <span>Price Range</span>
+              <select id="priceFilter">
+                <option value="">All Prices</option>
+                <option value="0-50">Under $50</option>
+                <option value="50-100">$50 - $100</option>
+                <option value="100-150">$100 - $150</option>
+                <option value="150+">$150+</option>
+              </select>
+            </div>
+
+            <div class="filter-chip" data-filter="sort">
+              <span>Sort By</span>
+              <select id="sortFilter">
+                <option value="popular">Most Popular</option>
+                <option value="rating">Highest Rated</option>
+                <option value="newest">Newest</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+              </select>
+            </div>
+
+            <button class="clear-all-btn" id="clearFilters">Clear All</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Enhanced Courses Main Section -->
+      <section class="courses-main">
+        <div class="courses-container">
+          <!-- Modern Toolbar -->
+          <div class="courses-toolbar">
+            <div class="results-summary">
+              <span id="resultsCount">Loading courses...</span>
+            </div>
+
+            <div class="view-toggle">
+              <button
+                class="view-toggle-btn active"
+                data-view="grid"
+                title="Grid View"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <rect x="3" y="3" width="7" height="7" />
+                  <rect x="14" y="3" width="7" height="7" />
+                  <rect x="14" y="14" width="7" height="7" />
+                  <rect x="3" y="14" width="7" height="7" />
+                </svg>
+                <span>Grid</span>
+              </button>
+              <button
+                class="view-toggle-btn"
+                data-view="list"
+                title="List View"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <line x1="8" y1="6" x2="21" y2="6" />
+                  <line x1="8" y1="12" x2="21" y2="12" />
+                  <line x1="8" y1="18" x2="21" y2="18" />
+                  <line x1="3" y1="6" x2="3.01" y2="6" />
+                  <line x1="3" y1="12" x2="3.01" y2="12" />
+                  <line x1="3" y1="18" x2="3.01" y2="18" />
+                </svg>
+                <span>List</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Course Cards Container -->
+          <div class="courses-grid-container">
+            <div class="courses-grid" id="coursesGrid">
+              <!-- Courses will be loaded dynamically -->
+            </div>
+            <div class="courses-list" id="coursesList" style="display: none">
+              <!-- List view courses will be loaded here -->
+            </div>
+          </div>
+
+          <!-- Enhanced Pagination -->
+          <div
+            class="pagination-wrapper"
+            id="paginationWrapper"
+            style="margin-top: 4rem; text-align: center"
+          >
+            <div
+              class="pagination"
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: 1rem;
+                background: white;
+                padding: 1rem 2rem;
+                border-radius: 1rem;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+              "
+            >
+              <button
+                class="pagination-btn"
+                id="prevPage"
+                disabled
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                  padding: 0.75rem 1.5rem;
+                  border: 2px solid #e5e7eb;
+                  background: white;
+                  border-radius: 0.5rem;
+                  color: #6b7280;
+                  font-weight: 500;
+                  cursor: pointer;
+                  transition: all 0.15s;
+                "
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  style="width: 16px; height: 16px"
+                >
+                  <polyline points="15,18 9,12 15,6" />
+                </svg>
+                Previous
+              </button>
+
+              <div
+                class="pagination-pages"
+                id="paginationPages"
+                style="display: flex; gap: 0.5rem"
+              >
+                <!-- Page numbers will be generated dynamically -->
+              </div>
+
+              <button
+                class="pagination-btn"
+                id="nextPage"
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                  padding: 0.75rem 1.5rem;
+                  border: 2px solid #dc2626;
+                  background: #dc2626;
+                  border-radius: 0.5rem;
+                  color: white;
+                  font-weight: 500;
+                  cursor: pointer;
+                  transition: all 0.15s;
+                "
+              >
+                Next
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  style="width: 16px; height: 16px"
+                >
+                  <polyline points="9,18 15,12 9,6" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Sticky Buy Bar -->
+    <div class="sticky-buy-bar" id="stickyBuyBar">
+      <div class="sticky-buy-content">
+        <div class="sticky-course-info">
+          <h4 id="stickyCourseTitle">Course Title</h4>
+          <div class="sticky-course-meta">
+            <span id="stickyCourseLevel">Level</span> •
+            <span id="stickyCourseDuration">Duration</span>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 2rem">
+          <div class="sticky-course-price" id="stickyCoursePrice">$99</div>
+          <button
+            class="course-enroll-btn"
+            style="width: auto; margin: 0; padding: 1rem 2rem"
+          >
+            Enroll Now
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <div class="footer-brand">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">
+                <span class="brand-nihongo">Nihongo</span>
+                <span class="brand-sekai">Sekai</span>
+              </span>
+            </div>
+            <p class="footer-description">
+              Master Japanese with confidence through our comprehensive learning
+              platform designed for global learners.
+            </p>
+            <div class="footer-social">
+              <a href="#" class="social-link" aria-label="Facebook">📘</a>
+              <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+              <a href="#" class="social-link" aria-label="Instagram">📷</a>
+              <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
+            </div>
+          </div>
+
+          <div class="footer-section">
+            <h3 class="footer-title">Learn</h3>
+            <ul class="footer-links">
+              <li><a href="courses.html">Courses</a></li>
+              <li><a href="classrooms.html">Live Classes</a></li>
+              <li><a href="teachers.html">Teachers</a></li>
+              <li><a href="pricing.html">Pricing</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3 class="footer-title">Company</h3>
+            <ul class="footer-links">
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="press.html">Press</a></li>
+              <li><a href="partners.html">Partners</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3 class="footer-title">Support</h3>
+            <ul class="footer-links">
+              <li><a href="help.html">Help Center</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+              <li><a href="community.html">Community</a></li>
+              <li><a href="blog.html">Blog</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3 class="footer-title">Legal</h3>
+            <ul class="footer-links">
+              <li><a href="privacy.html">Privacy Policy</a></li>
+              <li><a href="terms.html">Terms of Service</a></li>
+              <li><a href="cookie-policy.html">Cookie Policy</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-bottom-content">
+            <p class="footer-copyright">
+              © 2024 Nihongo Sekai. All rights reserved.
+            </p>
+            <div class="footer-bottom-links">
+              <a href="privacy.html">Privacy</a>
+              <a href="terms.html">Terms</a>
+              <a href="cookie-policy.html">Cookies</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Enhanced Scripts -->
+    <script src="script.js"></script>
+    <script>
+      // Enhanced Courses Page Functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        // Mock course data (admin-created courses)
+        const courses = [
+          {
+            id: 1,
+            title: "Complete Japanese for Beginners",
+            description:
+              "Start your Japanese journey with hiragana, katakana, and basic grammar concepts.",
+            image:
+              "https://images.unsplash.com/photo-1528164344705-47542687000d?w=400&h=300&fit=crop",
+            level: "Beginner",
+            category: "grammar",
+            price: 49,
+            duration: "8 weeks",
+            students: 1205,
+            rating: 4.8,
+            lessons: 24,
+            overview:
+              "This comprehensive beginner course covers all the fundamentals of Japanese language learning. You'll master hiragana and katakana writing systems, learn essential vocabulary, and understand basic grammar patterns that form the foundation of Japanese communication.",
+            curriculum: [
+              {
+                title: "Introduction to Japanese",
+                lessons: 3,
+                duration: "45 min",
+              },
+              { title: "Hiragana Mastery", lessons: 4, duration: "60 min" },
+              { title: "Katakana Mastery", lessons: 4, duration: "60 min" },
+              {
+                title: "Basic Grammar Patterns",
+                lessons: 6,
+                duration: "75 min",
+              },
+              { title: "Essential Vocabulary", lessons: 4, duration: "45 min" },
+              {
+                title: "Practical Conversations",
+                lessons: 3,
+                duration: "90 min",
+              },
+            ],
+          },
+          {
+            id: 2,
+            title: "Japanese Grammar Mastery",
+            description:
+              "Deep dive into Japanese grammar structures and patterns for intermediate learners.",
+            image:
+              "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop",
+            level: "Intermediate",
+            category: "grammar",
+            price: 89,
+            duration: "12 weeks",
+            students: 856,
+            rating: 4.9,
+            lessons: 36,
+            overview:
+              "Master complex Japanese grammar patterns and structures. This course focuses on intermediate to advanced grammar concepts that will elevate your Japanese proficiency significantly.",
+            curriculum: [
+              { title: "Complex Verb Forms", lessons: 6, duration: "60 min" },
+              {
+                title: "Conditional Expressions",
+                lessons: 5,
+                duration: "75 min",
+              },
+              { title: "Honorific Language", lessons: 8, duration: "90 min" },
+              { title: "Advanced Particles", lessons: 7, duration: "60 min" },
+              { title: "Literary Expressions", lessons: 6, duration: "45 min" },
+              { title: "Grammar in Context", lessons: 4, duration: "120 min" },
+            ],
+          },
+          {
+            id: 3,
+            title: "Business Japanese Essentials",
+            description:
+              "Professional Japanese for workplace communication and business contexts.",
+            image:
+              "https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=300&fit=crop",
+            level: "Advanced",
+            category: "business",
+            price: 129,
+            duration: "10 weeks",
+            students: 423,
+            rating: 4.7,
+            lessons: 30,
+            overview:
+              "Learn professional Japanese communication skills essential for business environments. Cover meeting protocols, email etiquette, presentation skills, and formal language usage.",
+            curriculum: [
+              { title: "Business Etiquette", lessons: 4, duration: "60 min" },
+              { title: "Meeting Language", lessons: 6, duration: "75 min" },
+              { title: "Email Communication", lessons: 5, duration: "45 min" },
+              { title: "Presentation Skills", lessons: 6, duration: "90 min" },
+              {
+                title: "Negotiation Techniques",
+                lessons: 5,
+                duration: "75 min",
+              },
+              {
+                title: "Cultural Business Practices",
+                lessons: 4,
+                duration: "60 min",
+              },
+            ],
+          },
+          {
+            id: 4,
+            title: "JLPT N5 Preparation",
+            description:
+              "Complete preparation course for the Japanese Language Proficiency Test N5 level.",
+            image:
+              "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop",
+            level: "Beginner",
+            category: "jlpt",
+            price: 79,
+            duration: "16 weeks",
+            students: 2103,
+            rating: 4.9,
+            lessons: 48,
+            overview:
+              "Comprehensive JLPT N5 preparation with practice tests, vocabulary drills, and exam strategies. Covers all areas tested in the official examination.",
+            curriculum: [
+              { title: "N5 Vocabulary", lessons: 12, duration: "45 min" },
+              { title: "N5 Grammar", lessons: 15, duration: "60 min" },
+              {
+                title: "Reading Comprehension",
+                lessons: 8,
+                duration: "75 min",
+              },
+              { title: "Listening Practice", lessons: 8, duration: "60 min" },
+              { title: "Mock Examinations", lessons: 3, duration: "180 min" },
+              { title: "Test Strategies", lessons: 2, duration: "90 min" },
+            ],
+          },
+          {
+            id: 5,
+            title: "Japanese Conversation Practice",
+            description:
+              "Improve your speaking skills with practical conversation scenarios and role-plays.",
+            image:
+              "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=400&h=300&fit=crop",
+            level: "Intermediate",
+            category: "conversation",
+            price: 69,
+            duration: "8 weeks",
+            students: 734,
+            rating: 4.6,
+            lessons: 24,
+            overview:
+              "Focus on practical conversation skills through interactive exercises, role-playing, and real-world scenarios. Perfect for building confidence in spoken Japanese.",
+            curriculum: [
+              { title: "Daily Conversations", lessons: 6, duration: "60 min" },
+              { title: "Travel Scenarios", lessons: 4, duration: "75 min" },
+              { title: "Shopping & Dining", lessons: 4, duration: "60 min" },
+              { title: "Work Conversations", lessons: 4, duration: "90 min" },
+              { title: "Social Interactions", lessons: 4, duration: "60 min" },
+              {
+                title: "Pronunciation Practice",
+                lessons: 2,
+                duration: "45 min",
+              },
+            ],
+          },
+          {
+            id: 6,
+            title: "Kanji Mastery Course",
+            description:
+              "Systematic approach to learning and remembering Japanese kanji characters.",
+            image:
+              "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop",
+            level: "Elementary",
+            category: "writing",
+            price: 59,
+            duration: "20 weeks",
+            students: 1567,
+            rating: 4.8,
+            lessons: 60,
+            overview:
+              "Master kanji characters through systematic learning methods, mnemonics, and practice exercises. Learn 500+ essential kanji with proper stroke order and usage.",
+            curriculum: [
+              { title: "Basic Kanji (1-100)", lessons: 15, duration: "45 min" },
+              {
+                title: "Intermediate Kanji (101-300)",
+                lessons: 20,
+                duration: "60 min",
+              },
+              {
+                title: "Advanced Kanji (301-500)",
+                lessons: 15,
+                duration: "75 min",
+              },
+              { title: "Kanji Combinations", lessons: 6, duration: "60 min" },
+              { title: "Reading Practice", lessons: 3, duration: "90 min" },
+              { title: "Writing Exercises", lessons: 1, duration: "120 min" },
+            ],
+          },
+        ];
+
+        let currentView = "grid";
+        let filteredCourses = [...courses];
+        let currentPage = 1;
+        const coursesPerPage = 6;
+
+        // Initialize page
+        initializePage();
+
+        function initializePage() {
+          renderCourses();
+          setupEventListeners();
+          updateResultsCount();
+          setupPagination();
+        }
+
+        function setupEventListeners() {
+          // Search functionality
+          document
+            .getElementById("courseSearch")
+            .addEventListener("input", handleSearch);
+
+          // Filter functionality
+          document
+            .getElementById("categoryFilter")
+            .addEventListener("change", handleFilters);
+          document
+            .getElementById("levelFilter")
+            .addEventListener("change", handleFilters);
+          document
+            .getElementById("priceFilter")
+            .addEventListener("change", handleFilters);
+          document
+            .getElementById("sortFilter")
+            .addEventListener("change", handleFilters);
+
+          // Clear filters
+          document
+            .getElementById("clearFilters")
+            .addEventListener("click", clearAllFilters);
+
+          // View toggle
+          document.querySelectorAll(".view-toggle-btn").forEach((btn) => {
+            btn.addEventListener("click", handleViewToggle);
+          });
+
+          // Update filter chip states
+          document.querySelectorAll(".filter-chip select").forEach((select) => {
+            select.addEventListener("change", updateFilterChipState);
+          });
+        }
+
+        function handleSearch(e) {
+          const searchTerm = e.target.value.toLowerCase();
+          filteredCourses = courses.filter(
+            (course) =>
+              course.title.toLowerCase().includes(searchTerm) ||
+              course.description.toLowerCase().includes(searchTerm) ||
+              course.category.toLowerCase().includes(searchTerm),
+          );
+          applyFiltersAndSort();
+          currentPage = 1;
+          renderCourses();
+          updateResultsCount();
+          setupPagination();
+        }
+
+        function handleFilters() {
+          applyFiltersAndSort();
+          currentPage = 1;
+          renderCourses();
+          updateResultsCount();
+          setupPagination();
+          updateClearButton();
+        }
+
+        function applyFiltersAndSort() {
+          const category = document.getElementById("categoryFilter").value;
+          const level = document.getElementById("levelFilter").value;
+          const priceRange = document.getElementById("priceFilter").value;
+          const sortBy = document.getElementById("sortFilter").value;
+
+          // Apply filters
+          filteredCourses = courses.filter((course) => {
+            const matchesSearch =
+              !document.getElementById("courseSearch").value ||
+              course.title
+                .toLowerCase()
+                .includes(
+                  document.getElementById("courseSearch").value.toLowerCase(),
+                ) ||
+              course.description
+                .toLowerCase()
+                .includes(
+                  document.getElementById("courseSearch").value.toLowerCase(),
+                );
+
+            const matchesCategory = !category || course.category === category;
+            const matchesLevel = !level || course.level === level;
+
+            let matchesPrice = true;
+            if (priceRange) {
+              const [min, max] = priceRange
+                .split("-")
+                .map((p) => (p === "+" ? Infinity : parseInt(p)));
+              matchesPrice =
+                course.price >= min &&
+                (max === undefined || course.price <= max);
+            }
+
+            return (
+              matchesSearch && matchesCategory && matchesLevel && matchesPrice
+            );
+          });
+
+          // Apply sorting
+          switch (sortBy) {
+            case "rating":
+              filteredCourses.sort((a, b) => b.rating - a.rating);
+              break;
+            case "newest":
+              filteredCourses.sort((a, b) => b.id - a.id);
+              break;
+            case "price-low":
+              filteredCourses.sort((a, b) => a.price - b.price);
+              break;
+            case "price-high":
+              filteredCourses.sort((a, b) => b.price - a.price);
+              break;
+            default: // popular
+              filteredCourses.sort((a, b) => b.students - a.students);
+          }
+        }
+
+        function clearAllFilters() {
+          document.getElementById("courseSearch").value = "";
+          document.getElementById("categoryFilter").value = "";
+          document.getElementById("levelFilter").value = "";
+          document.getElementById("priceFilter").value = "";
+          document.getElementById("sortFilter").value = "popular";
+
+          filteredCourses = [...courses];
+          applyFiltersAndSort();
+          currentPage = 1;
+          renderCourses();
+          updateResultsCount();
+          setupPagination();
+          updateClearButton();
+          updateFilterChipStates();
+        }
+
+        function updateFilterChipState(e) {
+          const chip = e.target.closest(".filter-chip");
+          if (e.target.value) {
+            chip.classList.add("active");
+          } else {
+            chip.classList.remove("active");
+          }
+          updateClearButton();
+        }
+
+        function updateFilterChipStates() {
+          document.querySelectorAll(".filter-chip").forEach((chip) => {
+            const select = chip.querySelector("select");
+            if (select.value) {
+              chip.classList.add("active");
+            } else {
+              chip.classList.remove("active");
+            }
+          });
+        }
+
+        function updateClearButton() {
+          const hasActiveFilters =
+            document.getElementById("courseSearch").value ||
+            document.getElementById("categoryFilter").value ||
+            document.getElementById("levelFilter").value ||
+            document.getElementById("priceFilter").value ||
+            document.getElementById("sortFilter").value !== "popular";
+
+          const clearBtn = document.getElementById("clearFilters");
+          if (hasActiveFilters) {
+            clearBtn.classList.add("visible");
+          } else {
+            clearBtn.classList.remove("visible");
+          }
+        }
+
+        function handleViewToggle(e) {
+          const newView = e.currentTarget.dataset.view;
+          if (newView === currentView) return;
+
+          // Update button states
+          document
+            .querySelectorAll(".view-toggle-btn")
+            .forEach((btn) => btn.classList.remove("active"));
+          e.currentTarget.classList.add("active");
+
+          currentView = newView;
+          renderCourses();
+        }
+
+        function renderCourses() {
+          const startIndex = (currentPage - 1) * coursesPerPage;
+          const endIndex = startIndex + coursesPerPage;
+          const coursesToShow = filteredCourses.slice(startIndex, endIndex);
+
+          if (currentView === "grid") {
+            renderGridView(coursesToShow);
+          } else {
+            renderListView(coursesToShow);
+          }
+        }
+
+        function renderGridView(coursesToShow) {
+          const gridContainer = document.getElementById("coursesGrid");
+          const listContainer = document.getElementById("coursesList");
+
+          gridContainer.style.display = "grid";
+          listContainer.style.display = "none";
+
+          gridContainer.innerHTML = coursesToShow
+            .map(
+              (course) => `
+            <div class="course-card" data-course-id="${course.id}">
+              <div class="course-card-image">
+                <img src="${course.image}" alt="${course.title}" loading="lazy">
+                <div class="course-price-badge">$${course.price}</div>
+                <div class="course-level-badge">${course.level}</div>
+              </div>
+              <div class="course-card-content">
+                <h3 class="course-card-title">${course.title}</h3>
+                <p class="course-card-description">${course.description}</p>
+                <div class="course-card-meta">
+                  <div class="course-meta-item">
+                    <span>📚 ${course.lessons} lessons</span>
+                  </div>
+                  <div class="course-meta-item">
+                    <span>👥 ${course.students.toLocaleString()}</span>
+                  </div>
+                  <div class="course-rating">
+                    <div class="course-stars">${generateStars(course.rating)}</div>
+                    <span>${course.rating}</span>
+                  </div>
+                </div>
+                <div class="course-card-actions">
+                  <a href="course-detail.html?id=${course.id}" class="course-view-btn">
+                    View Details
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="9,18 15,12 9,6"></polyline>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          `,
+            )
+            .join("");
+        }
+
+        function renderListView(coursesToShow) {
+          const gridContainer = document.getElementById("coursesGrid");
+          const listContainer = document.getElementById("coursesList");
+
+          gridContainer.style.display = "none";
+          listContainer.style.display = "flex";
+
+          listContainer.innerHTML = coursesToShow
+            .map(
+              (course) => `
+            <div class="course-card-list" data-course-id="${course.id}">
+              <div class="course-list-image">
+                <img src="${course.image}" alt="${course.title}" loading="lazy">
+                <div class="course-level-badge">${course.level}</div>
+              </div>
+              <div class="course-list-content">
+                <div class="course-list-info">
+                  <h3>${course.title}</h3>
+                  <p class="course-card-description">${course.description}</p>
+                  <div class="course-list-meta">
+                    <div class="course-meta-item">
+                      <strong>Duration:</strong> ${course.duration}
+                    </div>
+                    <div class="course-meta-item">
+                      <strong>Students:</strong> ${course.students.toLocaleString()}
+                    </div>
+                    <div class="course-meta-item">
+                      <strong>Lessons:</strong> ${course.lessons}
+                    </div>
+                    <div class="course-meta-item">
+                      <div class="course-rating">
+                        <div class="course-stars">${generateStars(course.rating)}</div>
+                        <span>${course.rating}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="course-list-sidebar">
+                  <div class="course-list-price">$${course.price}</div>
+                  <a href="course-detail.html?id=${course.id}" class="course-view-btn">
+                    View Details
+                  </a>
+                </div>
+              </div>
+            </div>
+          `,
+            )
+            .join("");
+        }
+
+        function generateStars(rating) {
+          const fullStars = Math.floor(rating);
+          const hasHalfStar = rating % 1 >= 0.5;
+          let stars = "";
+
+          for (let i = 0; i < fullStars; i++) {
+            stars += "★";
+          }
+
+          if (hasHalfStar) {
+            stars += "☆";
+          }
+
+          return stars;
+        }
+
+        function updateResultsCount() {
+          const count = filteredCourses.length;
+          const countElement = document.getElementById("resultsCount");
+          countElement.textContent = `${count} ${count === 1 ? "course" : "courses"} found`;
+        }
+
+        function setupPagination() {
+          const totalPages = Math.ceil(filteredCourses.length / coursesPerPage);
+          const paginationPages = document.getElementById("paginationPages");
+          const prevBtn = document.getElementById("prevPage");
+          const nextBtn = document.getElementById("nextPage");
+
+          // Update button states
+          prevBtn.disabled = currentPage === 1;
+          nextBtn.disabled = currentPage === totalPages;
+
+          // Generate page numbers
+          paginationPages.innerHTML = "";
+          for (let i = 1; i <= totalPages; i++) {
+            const pageBtn = document.createElement("button");
+            pageBtn.textContent = i;
+            pageBtn.className = `pagination-page ${i === currentPage ? "active" : ""}`;
+            pageBtn.style.cssText = `
+              padding: 0.75rem 1rem;
+              border: 2px solid ${i === currentPage ? "#dc2626" : "#e5e7eb"};
+              background: ${i === currentPage ? "#dc2626" : "white"};
+              color: ${i === currentPage ? "white" : "#6b7280"};
+              border-radius: 0.5rem;
+              font-weight: 500;
+              cursor: pointer;
+              transition: all 0.15s;
+            `;
+            pageBtn.addEventListener("click", () => goToPage(i));
+            paginationPages.appendChild(pageBtn);
+          }
+
+          // Pagination navigation
+          prevBtn.onclick = () => goToPage(currentPage - 1);
+          nextBtn.onclick = () => goToPage(currentPage + 1);
+        }
+
+        function goToPage(page) {
+          const totalPages = Math.ceil(filteredCourses.length / coursesPerPage);
+          if (page < 1 || page > totalPages) return;
+
+          currentPage = page;
+          renderCourses();
+          setupPagination();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        // Initialize filter chip states and clear button
+        updateFilterChipStates();
+        updateClearButton();
+      });
+    </script>
+  </body>
+</html>

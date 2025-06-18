@@ -1,0 +1,1452 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Nihongo Sekai</title>
+    <meta
+      name="description"
+      content="Your personal Japanese learning dashboard. Track progress, access courses, and manage your learning journey."
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎌</text></svg>"
+    />
+  </head>
+  <body>
+    <!-- Navigation Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="nav-brand">
+            <a href="index.html" class="brand-link">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">
+                <span class="brand-nihongo">Nihongo</span>
+                <span class="brand-sekai">Sekai</span>
+              </span>
+            </a>
+          </div>
+
+          <div class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+              <li><a href="index.html" class="nav-link">Home</a></li>
+              <li><a href="courses.html" class="nav-link">Courses</a></li>
+              <li><a href="classrooms.html" class="nav-link">Classrooms</a></li>
+              <li><a href="teachers.html" class="nav-link">Teachers</a></li>
+              <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+          </div>
+
+          <div class="nav-actions">
+            <div class="user-menu" id="userMenu">
+              <button class="user-avatar" id="userAvatarBtn">
+                <img src="" alt="User Avatar" id="userAvatarImg" />
+                <svg
+                  class="dropdown-icon"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <polyline points="6,9 12,15 18,9"></polyline>
+                </svg>
+              </button>
+              <div class="user-dropdown" id="userDropdown">
+                <div class="dropdown-header">
+                  <div class="user-info">
+                    <div class="user-name" id="userName"></div>
+                    <div class="user-email" id="userEmail"></div>
+                  </div>
+                </div>
+                <div class="dropdown-menu">
+                  <a href="dashboard.html" class="dropdown-item active">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <rect x="3" y="3" width="7" height="9" />
+                      <rect x="14" y="3" width="7" height="5" />
+                      <rect x="14" y="12" width="7" height="9" />
+                      <rect x="3" y="16" width="7" height="5" />
+                    </svg>
+                    Dashboard
+                  </a>
+                  <a href="profile.html" class="dropdown-item">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                    Profile
+                  </a>
+                  <a href="my-courses.html" class="dropdown-item">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                    </svg>
+                    My Courses
+                  </a>
+                  <a href="my-classrooms.html" class="dropdown-item">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                      <circle cx="9" cy="7" r="4" />
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                    </svg>
+                    My Classrooms
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <button class="dropdown-item" onclick="logout()">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                      <polyline points="16,17 21,12 16,7" />
+                      <line x1="21" y1="12" x2="9" y2="12" />
+                    </svg>
+                    Sign Out
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Dashboard Header -->
+      <section class="dashboard-header">
+        <div class="container">
+          <div class="welcome-section">
+            <h1 class="welcome-title">
+              Welcome back, <span id="welcomeUserName">Student</span>!
+            </h1>
+            <p class="welcome-subtitle">
+              Continue your Japanese learning journey
+            </p>
+          </div>
+
+          <div class="quick-stats">
+            <div class="stat-card">
+              <div class="stat-icon">📚</div>
+              <div class="stat-content">
+                <div class="stat-number" id="enrolledCoursesCount">0</div>
+                <div class="stat-label">Enrolled Courses</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">⏱️</div>
+              <div class="stat-content">
+                <div class="stat-number" id="studyTimeToday">0h</div>
+                <div class="stat-label">Study Time Today</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">🏆</div>
+              <div class="stat-content">
+                <div class="stat-number" id="completedLessons">0</div>
+                <div class="stat-label">Lessons Completed</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">📈</div>
+              <div class="stat-content">
+                <div class="stat-number" id="overallProgress">0%</div>
+                <div class="stat-label">Overall Progress</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dashboard Content -->
+      <section class="dashboard-content">
+        <div class="container">
+          <div class="dashboard-grid">
+            <!-- Main Content Area -->
+            <div class="main-content">
+              <!-- Continue Learning Section -->
+              <div class="content-section">
+                <div class="section-header">
+                  <h2 class="section-title">Continue Learning</h2>
+                  <a href="my-courses.html" class="section-link"
+                    >View All Courses</a
+                  >
+                </div>
+                <div class="continue-learning-grid" id="continueCoursesGrid">
+                  <!-- Courses in progress will be loaded here -->
+                </div>
+              </div>
+
+              <!-- Recent Activity -->
+              <div class="content-section">
+                <div class="section-header">
+                  <h2 class="section-title">Recent Activity</h2>
+                  <button class="section-link" onclick="clearActivity()">
+                    Clear All
+                  </button>
+                </div>
+                <div class="activity-feed" id="activityFeed">
+                  <!-- Recent activities will be loaded here -->
+                </div>
+              </div>
+
+              <!-- Recommended Courses -->
+              <div class="content-section">
+                <div class="section-header">
+                  <h2 class="section-title">Recommended for You</h2>
+                  <a href="courses.html" class="section-link">Browse All</a>
+                </div>
+                <div
+                  class="recommended-courses-grid"
+                  id="recommendedCoursesGrid"
+                >
+                  <!-- Recommended courses will be loaded here -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+              <!-- Learning Streak -->
+              <div class="sidebar-widget">
+                <h3 class="widget-title">Learning Streak</h3>
+                <div class="streak-display">
+                  <div class="streak-number" id="streakDays">0</div>
+                  <div class="streak-label">days</div>
+                </div>
+                <div class="streak-calendar" id="streakCalendar">
+                  <!-- Calendar will be generated here -->
+                </div>
+              </div>
+
+              <!-- Study Goals -->
+              <div class="sidebar-widget">
+                <h3 class="widget-title">Daily Study Goal</h3>
+                <div class="goal-progress">
+                  <div class="goal-circle">
+                    <svg class="progress-ring" width="80" height="80">
+                      <circle
+                        class="progress-ring-circle"
+                        stroke="currentColor"
+                        stroke-width="6"
+                        fill="transparent"
+                        r="34"
+                        cx="40"
+                        cy="40"
+                      />
+                    </svg>
+                    <div class="goal-text">
+                      <div class="goal-minutes" id="goalMinutes">0</div>
+                      <div class="goal-label">min</div>
+                    </div>
+                  </div>
+                  <div class="goal-info">
+                    <div class="goal-target">
+                      Goal: <span id="goalTarget">30 min</span>
+                    </div>
+                    <button
+                      class="btn btn-sm btn-outline"
+                      onclick="updateGoal()"
+                    >
+                      Update Goal
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Achievements -->
+              <div class="sidebar-widget">
+                <h3 class="widget-title">Recent Achievements</h3>
+                <div class="achievements-list" id="achievementsList">
+                  <!-- Achievements will be loaded here -->
+                </div>
+              </div>
+
+              <!-- Upcoming Classes -->
+              <div class="sidebar-widget">
+                <h3 class="widget-title">Upcoming Classes</h3>
+                <div class="upcoming-classes" id="upcomingClasses">
+                  <!-- Upcoming classes will be loaded here -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <div class="footer-brand">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">Nihongo Sekai</span>
+            </div>
+            <p class="footer-description">
+              Master Japanese through immersive conversations, cultural
+              insights, and personalized learning paths with native speakers.
+            </p>
+          </div>
+
+          <div class="footer-section">
+            <h4 class="footer-title">Learning</h4>
+            <ul class="footer-links">
+              <li><a href="courses.html">Courses</a></li>
+              <li><a href="classrooms.html">Classrooms</a></li>
+              <li><a href="teachers.html">Teachers</a></li>
+              <li><a href="pricing.html">Pricing</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4 class="footer-title">Support</h4>
+            <ul class="footer-links">
+              <li><a href="help.html">Help Center</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+              <li><a href="community.html">Community</a></li>
+              <li><a href="blog.html">Blog</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4 class="footer-title">Company</h4>
+            <ul class="footer-links">
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="press.html">Press</a></li>
+              <li><a href="partners.html">Partners</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="copyright">© 2024 Nihongo Sekai. All rights reserved.</p>
+          <div class="footer-bottom-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="cookies.html">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+      // Dashboard functionality
+      let user = null;
+      let userCourses = [];
+      let userActivity = [];
+      let currentStreak = 0;
+      let studyGoal = 30; // minutes
+
+      document.addEventListener("DOMContentLoaded", function () {
+        initializeNavigation();
+        checkAuthentication();
+        initializeDashboard();
+      });
+
+      function checkAuthentication() {
+        user = JSON.parse(localStorage.getItem("user") || "null");
+
+        if (!user) {
+          // Redirect to login if not authenticated
+          window.location.href = "/login.html";
+          return;
+        }
+
+        // Populate user information
+        document.getElementById("userName").textContent = user.fullName;
+        document.getElementById("userEmail").textContent = user.email;
+        document.getElementById("userAvatarImg").src =
+          user.avatar ||
+          "https://api.dicebear.com/7.x/avataaars/svg?seed=" + user.email;
+        document.getElementById("welcomeUserName").textContent =
+          user.fullName.split(" ")[0];
+      }
+
+      function initializeDashboard() {
+        loadUserData();
+        loadContinueLearning();
+        loadRecentActivity();
+        loadRecommendedCourses();
+        loadStreakData();
+        loadStudyGoal();
+        loadAchievements();
+        loadUpcomingClasses();
+
+        // Initialize user dropdown
+        initializeUserDropdown();
+      }
+
+      function initializeUserDropdown() {
+        const avatarBtn = document.getElementById("userAvatarBtn");
+        const dropdown = document.getElementById("userDropdown");
+
+        avatarBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          dropdown.classList.toggle("active");
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", () => {
+          dropdown.classList.remove("active");
+        });
+
+        dropdown.addEventListener("click", (e) => {
+          e.stopPropagation();
+        });
+      }
+
+      function loadUserData() {
+        // Simulate loading user progress data
+        const purchases = JSON.parse(localStorage.getItem("purchases") || "[]");
+        const enrolledCount = purchases.length;
+
+        // Mock data for demonstration
+        const studyTimeToday = Math.floor(Math.random() * 120); // 0-2 hours
+        const completedLessons = Math.floor(Math.random() * 50) + 10;
+        const overallProgress = Math.floor(Math.random() * 80) + 10;
+
+        document.getElementById("enrolledCoursesCount").textContent =
+          enrolledCount;
+        document.getElementById("studyTimeToday").textContent =
+          `${Math.floor(studyTimeToday / 60)}h ${studyTimeToday % 60}m`;
+        document.getElementById("completedLessons").textContent =
+          completedLessons;
+        document.getElementById("overallProgress").textContent =
+          `${overallProgress}%`;
+      }
+
+      function loadContinueLearning() {
+        const purchases = JSON.parse(localStorage.getItem("purchases") || "[]");
+        const container = document.getElementById("continueCoursesGrid");
+
+        if (purchases.length === 0) {
+          container.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-icon">📚</div>
+              <h3>No courses yet</h3>
+              <p>Start your Japanese learning journey by enrolling in a course</p>
+              <a href="courses.html" class="btn btn-primary">Browse Courses</a>
+            </div>
+          `;
+          return;
+        }
+
+        // Show recent purchases with mock progress
+        container.innerHTML = purchases
+          .slice(0, 3)
+          .map((purchase) => {
+            const progress = Math.floor(Math.random() * 80) + 10;
+            return `
+            <div class="continue-course-card">
+              <div class="course-progress">
+                <div class="progress-circle">
+                  <svg width="60" height="60">
+                    <circle cx="30" cy="30" r="25" stroke="#e5e7eb" stroke-width="4" fill="none"/>
+                    <circle cx="30" cy="30" r="25" stroke="#dc2626" stroke-width="4" fill="none"
+                            stroke-dasharray="157" stroke-dashoffset="${157 - (157 * progress) / 100}"
+                            stroke-linecap="round" transform="rotate(-90 30 30)"/>
+                  </svg>
+                  <div class="progress-text">${progress}%</div>
+                </div>
+              </div>
+              <div class="course-info">
+                <h4 class="course-title">${purchase.course_title}</h4>
+                <p class="course-progress-text">${Math.floor(progress * 0.15)} of ${Math.floor((progress * 0.15) / (progress / 100))} lessons completed</p>
+                <div class="course-meta">
+                  <span class="last-activity">Last studied 2 hours ago</span>
+                </div>
+              </div>
+              <div class="course-actions">
+                <button class="btn btn-primary btn-sm" onclick="continueCourse('${purchase.course_id}')">
+                  Continue
+                </button>
+              </div>
+            </div>
+          `;
+          })
+          .join("");
+      }
+
+      function loadRecentActivity() {
+        const activities = [
+          {
+            type: "lesson",
+            text: 'Completed "Hiragana Practice Session"',
+            time: "2 hours ago",
+            icon: "✅",
+          },
+          {
+            type: "quiz",
+            text: 'Passed "Basic Vocabulary Quiz" with 85%',
+            time: "1 day ago",
+            icon: "🎯",
+          },
+          {
+            type: "streak",
+            text: "Achieved 7-day learning streak!",
+            time: "2 days ago",
+            icon: "🔥",
+          },
+          {
+            type: "course",
+            text: 'Enrolled in "Business Japanese"',
+            time: "3 days ago",
+            icon: "📚",
+          },
+          {
+            type: "classroom",
+            text: 'Joined "Morning Conversation Circle"',
+            time: "1 week ago",
+            icon: "👥",
+          },
+        ];
+
+        const container = document.getElementById("activityFeed");
+        container.innerHTML = activities
+          .map(
+            (activity) => `
+          <div class="activity-item">
+            <div class="activity-icon">${activity.icon}</div>
+            <div class="activity-content">
+              <div class="activity-text">${activity.text}</div>
+              <div class="activity-time">${activity.time}</div>
+            </div>
+          </div>
+        `,
+          )
+          .join("");
+      }
+
+      function loadRecommendedCourses() {
+        // Mock recommended courses based on user level/interests
+        const recommendations = [
+          {
+            id: 5,
+            title: "Japanese Grammar Mastery",
+            description: "Deep dive into Japanese grammar patterns",
+            level: "Intermediate",
+            price: 99.99,
+            rating: 4.8,
+            image:
+              "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=250&fit=crop",
+          },
+          {
+            id: 7,
+            title: "Japanese Culture Through Language",
+            description: "Explore culture while learning language",
+            level: "Elementary",
+            price: 59.99,
+            rating: 4.7,
+            image:
+              "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=250&fit=crop",
+          },
+        ];
+
+        const container = document.getElementById("recommendedCoursesGrid");
+        container.innerHTML = recommendations
+          .map(
+            (course) => `
+          <div class="recommended-course-card" onclick="viewCourse(${course.id})">
+            <div class="course-image">
+              <img src="${course.image}" alt="${course.title}" />
+              <div class="course-level">${course.level}</div>
+              <div class="course-price">$${course.price}</div>
+            </div>
+            <div class="course-content">
+              <h4 class="course-title">${course.title}</h4>
+              <p class="course-description">${course.description}</p>
+              <div class="course-rating">
+                <div class="stars">${generateStars(course.rating)}</div>
+                <span>${course.rating}</span>
+              </div>
+            </div>
+          </div>
+        `,
+          )
+          .join("");
+      }
+
+      function loadStreakData() {
+        // Mock streak data
+        currentStreak = Math.floor(Math.random() * 30) + 1;
+        document.getElementById("streakDays").textContent = currentStreak;
+
+        // Generate streak calendar for last 30 days
+        const calendar = document.getElementById("streakCalendar");
+        const today = new Date();
+        let calendarHTML = "";
+
+        for (let i = 29; i >= 0; i--) {
+          const date = new Date(today);
+          date.setDate(date.getDate() - i);
+          const hasActivity = i < currentStreak || Math.random() > 0.3;
+
+          calendarHTML += `
+            <div class="streak-day ${hasActivity ? "active" : ""}" 
+                 title="${date.toLocaleDateString()}">
+            </div>
+          `;
+        }
+
+        calendar.innerHTML = calendarHTML;
+      }
+
+      function loadStudyGoal() {
+        const savedGoal = localStorage.getItem("studyGoal");
+        if (savedGoal) {
+          studyGoal = parseInt(savedGoal);
+        }
+
+        const todayMinutes = Math.floor(Math.random() * studyGoal * 1.5);
+        const progressPercent = Math.min((todayMinutes / studyGoal) * 100, 100);
+
+        document.getElementById("goalMinutes").textContent = todayMinutes;
+        document.getElementById("goalTarget").textContent = `${studyGoal} min`;
+
+        // Update progress ring
+        const circle = document.querySelector(".progress-ring-circle");
+        const circumference = 2 * Math.PI * 34;
+        const offset = circumference - (progressPercent / 100) * circumference;
+
+        circle.style.strokeDasharray = circumference;
+        circle.style.strokeDashoffset = offset;
+      }
+
+      function loadAchievements() {
+        const achievements = [
+          {
+            title: "First Lesson",
+            description: "Completed your first lesson",
+            icon: "🌟",
+            date: "3 days ago",
+          },
+          {
+            title: "Week Warrior",
+            description: "7-day learning streak",
+            icon: "🔥",
+            date: "2 days ago",
+          },
+          {
+            title: "Quiz Master",
+            description: "Scored 90%+ on 5 quizzes",
+            icon: "🏆",
+            date: "1 week ago",
+          },
+        ];
+
+        const container = document.getElementById("achievementsList");
+        container.innerHTML = achievements
+          .map(
+            (achievement) => `
+          <div class="achievement-item">
+            <div class="achievement-icon">${achievement.icon}</div>
+            <div class="achievement-content">
+              <div class="achievement-title">${achievement.title}</div>
+              <div class="achievement-description">${achievement.description}</div>
+              <div class="achievement-date">${achievement.date}</div>
+            </div>
+          </div>
+        `,
+          )
+          .join("");
+      }
+
+      function loadUpcomingClasses() {
+        const classes = [
+          {
+            title: "Morning Conversation Circle",
+            teacher: "Hiroshi Tanaka",
+            time: "Today, 9:00 AM JST",
+            participants: 5,
+          },
+          {
+            title: "JLPT N3 Study Group",
+            teacher: "Mai Suzuki",
+            time: "Tomorrow, 2:00 PM JST",
+            participants: 12,
+          },
+        ];
+
+        const container = document.getElementById("upcomingClasses");
+
+        if (classes.length === 0) {
+          container.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-icon">👥</div>
+              <p>No upcoming classes</p>
+              <a href="classrooms.html" class="btn btn-sm btn-outline">Join a Classroom</a>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = classes
+          .map(
+            (classItem) => `
+          <div class="class-item">
+            <div class="class-info">
+              <div class="class-title">${classItem.title}</div>
+              <div class="class-teacher">with ${classItem.teacher}</div>
+              <div class="class-time">${classItem.time}</div>
+              <div class="class-participants">${classItem.participants} participants</div>
+            </div>
+            <button class="btn btn-sm btn-primary">Join</button>
+          </div>
+        `,
+          )
+          .join("");
+      }
+
+      // Helper functions
+      function generateStars(rating) {
+        const fullStars = Math.floor(rating);
+        const hasHalfStar = rating % 1 !== 0;
+        let stars = "";
+
+        for (let i = 0; i < fullStars; i++) {
+          stars += '<span class="star filled">★</span>';
+        }
+
+        if (hasHalfStar) {
+          stars += '<span class="star half">★</span>';
+        }
+
+        const emptyStars = 5 - Math.ceil(rating);
+        for (let i = 0; i < emptyStars; i++) {
+          stars += '<span class="star">★</span>';
+        }
+
+        return stars;
+      }
+
+      function continueCourse(courseId) {
+        window.location.href = `/course-player.html?id=${courseId}`;
+      }
+
+      function viewCourse(courseId) {
+        window.location.href = `/courses.html#course-${courseId}`;
+      }
+
+      function clearActivity() {
+        document.getElementById("activityFeed").innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon">✨</div>
+            <p>No recent activity</p>
+          </div>
+        `;
+      }
+
+      function updateGoal() {
+        const newGoal = prompt(
+          `Enter your daily study goal (current: ${studyGoal} minutes):`,
+          studyGoal,
+        );
+        if (newGoal && !isNaN(newGoal) && newGoal > 0) {
+          studyGoal = parseInt(newGoal);
+          localStorage.setItem("studyGoal", studyGoal);
+          loadStudyGoal();
+          showToast(`Study goal updated to ${studyGoal} minutes!`, "success");
+        }
+      }
+
+      function logout() {
+        localStorage.removeItem("user");
+        localStorage.removeItem("purchases");
+        window.location.href = "/login.html";
+      }
+    </script>
+
+    <style>
+      /* Dashboard specific styles */
+      .dashboard-header {
+        background: linear-gradient(
+          135deg,
+          var(--color-primary-50) 0%,
+          var(--color-secondary-50) 100%
+        );
+        padding: var(--spacing-2xl) 0;
+      }
+
+      .welcome-section {
+        text-align: center;
+        margin-bottom: var(--spacing-2xl);
+      }
+
+      .welcome-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--color-gray-900);
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .welcome-subtitle {
+        font-size: 1.125rem;
+        color: var(--color-gray-600);
+      }
+
+      .quick-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--spacing-lg);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .stat-card {
+        background: var(--color-white);
+        padding: var(--spacing-lg);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-md);
+        transition: transform var(--transition-normal);
+      }
+
+      .stat-card:hover {
+        transform: translateY(-2px);
+      }
+
+      .stat-icon {
+        font-size: 2rem;
+        background: var(--color-primary-100);
+        padding: var(--spacing-md);
+        border-radius: 50%;
+      }
+
+      .stat-number {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--color-primary);
+      }
+
+      .stat-label {
+        font-size: 0.875rem;
+        color: var(--color-gray-600);
+      }
+
+      /* User Menu Styles */
+      .user-menu {
+        position: relative;
+      }
+
+      .user-avatar {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: var(--spacing-xs);
+        border-radius: var(--radius-full);
+        transition: background var(--transition-fast);
+      }
+
+      .user-avatar:hover {
+        background: var(--color-gray-100);
+      }
+
+      .user-avatar img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 2px solid var(--color-white);
+      }
+
+      .dropdown-icon {
+        width: 16px;
+        height: 16px;
+        color: var(--color-gray-600);
+        transition: transform var(--transition-fast);
+      }
+
+      .user-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: var(--color-white);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-xl);
+        border: 1px solid var(--color-gray-200);
+        min-width: 250px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all var(--transition-fast);
+        z-index: 1000;
+        margin-top: var(--spacing-sm);
+      }
+
+      .user-dropdown.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .dropdown-header {
+        padding: var(--spacing-lg);
+        border-bottom: 1px solid var(--color-gray-200);
+      }
+
+      .user-info .user-name {
+        font-weight: 600;
+        color: var(--color-gray-900);
+        margin-bottom: var(--spacing-xs);
+      }
+
+      .user-info .user-email {
+        font-size: 0.875rem;
+        color: var(--color-gray-600);
+      }
+
+      .dropdown-menu {
+        padding: var(--spacing-sm);
+      }
+
+      .dropdown-item {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+        padding: var(--spacing-sm) var(--spacing-md);
+        color: var(--color-gray-700);
+        text-decoration: none;
+        border-radius: var(--radius-md);
+        transition: background var(--transition-fast);
+        background: none;
+        border: none;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+        font-size: 0.875rem;
+      }
+
+      .dropdown-item:hover {
+        background: var(--color-gray-100);
+        color: var(--color-gray-900);
+      }
+
+      .dropdown-item.active {
+        background: var(--color-primary-100);
+        color: var(--color-primary);
+      }
+
+      .dropdown-item svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .dropdown-divider {
+        height: 1px;
+        background: var(--color-gray-200);
+        margin: var(--spacing-sm) 0;
+      }
+
+      /* Dashboard Content */
+      .dashboard-content {
+        padding: var(--spacing-2xl) 0;
+      }
+
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: var(--spacing-2xl);
+      }
+
+      .content-section {
+        background: var(--color-white);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-xl);
+        box-shadow: var(--shadow-sm);
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--spacing-lg);
+      }
+
+      .section-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--color-gray-900);
+      }
+
+      .section-link {
+        color: var(--color-primary);
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 500;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+
+      .section-link:hover {
+        text-decoration: underline;
+      }
+
+      /* Continue Learning */
+      .continue-learning-grid {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+      }
+
+      .continue-course-card {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-lg);
+        padding: var(--spacing-lg);
+        background: var(--color-gray-50);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--color-gray-200);
+        transition: box-shadow var(--transition-fast);
+      }
+
+      .continue-course-card:hover {
+        box-shadow: var(--shadow-md);
+      }
+
+      .progress-circle {
+        position: relative;
+        width: 60px;
+        height: 60px;
+      }
+
+      .progress-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--color-primary);
+      }
+
+      .course-info {
+        flex: 1;
+      }
+
+      .course-info .course-title {
+        font-weight: 600;
+        color: var(--color-gray-900);
+        margin-bottom: var(--spacing-xs);
+      }
+
+      .course-progress-text {
+        font-size: 0.875rem;
+        color: var(--color-gray-600);
+        margin-bottom: var(--spacing-xs);
+      }
+
+      .course-meta .last-activity {
+        font-size: 0.75rem;
+        color: var(--color-gray-500);
+      }
+
+      /* Activity Feed */
+      .activity-feed {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+      }
+
+      .activity-item {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--spacing-md);
+        padding: var(--spacing-md);
+        background: var(--color-gray-50);
+        border-radius: var(--radius-md);
+      }
+
+      .activity-icon {
+        font-size: 1.25rem;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--color-white);
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      .activity-text {
+        font-size: 0.875rem;
+        color: var(--color-gray-900);
+        margin-bottom: var(--spacing-xs);
+      }
+
+      .activity-time {
+        font-size: 0.75rem;
+        color: var(--color-gray-500);
+      }
+
+      /* Recommended Courses */
+      .recommended-courses-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--spacing-lg);
+      }
+
+      .recommended-course-card {
+        background: var(--color-gray-50);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        transition: transform var(--transition-normal);
+        cursor: pointer;
+        border: 1px solid var(--color-gray-200);
+      }
+
+      .recommended-course-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .recommended-course-card .course-image {
+        height: 120px;
+        position: relative;
+      }
+
+      .recommended-course-card .course-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .recommended-course-card .course-level {
+        position: absolute;
+        top: var(--spacing-sm);
+        left: var(--spacing-sm);
+        background: var(--color-primary);
+        color: var(--color-white);
+        padding: var(--spacing-xs) var(--spacing-sm);
+        border-radius: var(--radius-full);
+        font-size: 0.75rem;
+      }
+
+      .recommended-course-card .course-price {
+        position: absolute;
+        top: var(--spacing-sm);
+        right: var(--spacing-sm);
+        background: var(--color-white);
+        color: var(--color-primary);
+        padding: var(--spacing-xs) var(--spacing-sm);
+        border-radius: var(--radius-full);
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      .recommended-course-card .course-content {
+        padding: var(--spacing-md);
+      }
+
+      .recommended-course-card .course-title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: var(--spacing-xs);
+      }
+
+      .recommended-course-card .course-description {
+        font-size: 0.875rem;
+        color: var(--color-gray-600);
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .course-rating {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+        font-size: 0.875rem;
+      }
+
+      /* Sidebar Widgets */
+      .sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+      }
+
+      .sidebar-widget {
+        background: var(--color-white);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-lg);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .widget-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--color-gray-900);
+        margin-bottom: var(--spacing-md);
+      }
+
+      /* Streak Display */
+      .streak-display {
+        text-align: center;
+        margin-bottom: var(--spacing-lg);
+      }
+
+      .streak-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--color-primary);
+      }
+
+      .streak-label {
+        font-size: 0.875rem;
+        color: var(--color-gray-600);
+      }
+
+      .streak-calendar {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 2px;
+      }
+
+      .streak-day {
+        width: 24px;
+        height: 24px;
+        background: var(--color-gray-200);
+        border-radius: var(--radius-sm);
+        transition: background var(--transition-fast);
+      }
+
+      .streak-day.active {
+        background: var(--color-primary);
+      }
+
+      /* Study Goal */
+      .goal-progress {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-md);
+      }
+
+      .goal-circle {
+        position: relative;
+        width: 80px;
+        height: 80px;
+      }
+
+      .progress-ring {
+        transform: rotate(-90deg);
+      }
+
+      .progress-ring-circle {
+        color: var(--color-primary);
+        transition: stroke-dashoffset var(--transition-normal);
+      }
+
+      .goal-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+
+      .goal-minutes {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--color-primary);
+      }
+
+      .goal-label {
+        font-size: 0.75rem;
+        color: var(--color-gray-600);
+      }
+
+      .goal-info {
+        text-align: center;
+      }
+
+      .goal-target {
+        font-size: 0.875rem;
+        color: var(--color-gray-600);
+        margin-bottom: var(--spacing-sm);
+      }
+
+      /* Achievements */
+      .achievements-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+      }
+
+      .achievement-item {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+      }
+
+      .achievement-icon {
+        font-size: 1.5rem;
+        width: 40px;
+        height: 40px;
+        background: var(--color-primary-100);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .achievement-title {
+        font-weight: 600;
+        color: var(--color-gray-900);
+        font-size: 0.875rem;
+      }
+
+      .achievement-description {
+        font-size: 0.75rem;
+        color: var(--color-gray-600);
+      }
+
+      .achievement-date {
+        font-size: 0.75rem;
+        color: var(--color-gray-500);
+      }
+
+      /* Upcoming Classes */
+      .upcoming-classes {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+      }
+
+      .class-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--spacing-md);
+        background: var(--color-gray-50);
+        border-radius: var(--radius-md);
+      }
+
+      .class-title {
+        font-weight: 600;
+        color: var(--color-gray-900);
+        font-size: 0.875rem;
+        margin-bottom: var(--spacing-xs);
+      }
+
+      .class-teacher,
+      .class-time,
+      .class-participants {
+        font-size: 0.75rem;
+        color: var(--color-gray-600);
+      }
+
+      /* Empty State */
+      .empty-state {
+        text-align: center;
+        padding: var(--spacing-2xl);
+        color: var(--color-gray-600);
+      }
+
+      .empty-icon {
+        font-size: 3rem;
+        margin-bottom: var(--spacing-md);
+      }
+
+      .empty-state h3 {
+        color: var(--color-gray-900);
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .empty-state p {
+        margin-bottom: var(--spacing-lg);
+      }
+
+      /* Stars */
+      .stars {
+        display: flex;
+        gap: 1px;
+      }
+
+      .star {
+        color: var(--color-gray-300);
+        font-size: 0.875rem;
+      }
+
+      .star.filled {
+        color: var(--color-yellow-400);
+      }
+
+      .star.half {
+        background: linear-gradient(
+          90deg,
+          var(--color-yellow-400) 50%,
+          var(--color-gray-300) 50%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1024px) {
+        .dashboard-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+          grid-row: 1;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .welcome-title {
+          font-size: 2rem;
+        }
+
+        .quick-stats {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .stat-card {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .recommended-courses-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .continue-course-card {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .class-item {
+          flex-direction: column;
+          align-items: stretch;
+          gap: var(--spacing-sm);
+        }
+      }
+    </style>
+  </body>
+</html>

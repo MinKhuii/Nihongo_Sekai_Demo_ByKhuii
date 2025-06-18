@@ -1,0 +1,129 @@
+@model Dictionary<string, object>
+@{
+    var title = Model.GetValueOrDefault("title", "Welcome to Nihongo Sekai").ToString();
+    var subtitle = Model.GetValueOrDefault("subtitle", "Learn Japanese with native speakers").ToString();
+    var buttonText = Model.GetValueOrDefault("buttonText", "Get Started").ToString();
+    var buttonLink = Model.GetValueOrDefault("buttonLink", "/courses").ToString();
+    var backgroundImage = Model.GetValueOrDefault("backgroundImage", "").ToString();
+}
+
+<section class="hero-section position-relative overflow-hidden" 
+         style="background: linear-gradient(135deg, rgba(220, 38, 38, 0.9), rgba(236, 72, 153, 0.8)), url('@backgroundImage') center/cover;">
+    <div class="container py-5">
+        <div class="row min-vh-75 align-items-center">
+            <div class="col-lg-6">
+                <div class="hero-content text-white">
+                    <h1 class="display-4 fw-bold mb-4 animate-fade-in">
+                        @Html.Raw(title)
+                    </h1>
+                    <p class="lead mb-5 animate-fade-in-delay">
+                        @Html.Raw(subtitle)
+                    </p>
+                    <div class="hero-actions animate-fade-in-delay-2">
+                        <a href="@buttonLink" class="btn btn-light btn-lg px-4 py-3 me-3 shadow-sm">
+                            <i class="bi bi-play-circle me-2"></i>@buttonText
+                        </a>
+                        <a href="/about" class="btn btn-outline-light btn-lg px-4 py-3">
+                            Learn More
+                        </a>
+                    </div>
+                    
+                    <!-- Stats Row -->
+                    <div class="row mt-5 text-center">
+                        <div class="col-6 col-md-3">
+                            <div class="stat-item">
+                                <h3 class="fw-bold mb-1">10K+</h3>
+                                <small class="text-light">Students</small>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="stat-item">
+                                <h3 class="fw-bold mb-1">150+</h3>
+                                <small class="text-light">Courses</small>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="stat-item">
+                                <h3 class="fw-bold mb-1">50+</h3>
+                                <small class="text-light">Teachers</small>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="stat-item">
+                                <h3 class="fw-bold mb-1">95%</h3>
+                                <small class="text-light">Success Rate</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="hero-image text-center">
+                    <img src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=600&h=400&fit=crop" 
+                         alt="Japanese Learning" 
+                         class="img-fluid rounded-3 shadow-lg animate-float">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Decorative Elements -->
+    <div class="position-absolute top-0 end-0 p-4">
+        <div class="japanese-character opacity-25 text-white">
+            <span style="font-size: 8rem; font-weight: 300;">日</span>
+        </div>
+    </div>
+    
+    <div class="position-absolute bottom-0 start-0 p-4">
+        <div class="japanese-character opacity-25 text-white">
+            <span style="font-size: 6rem; font-weight: 300;">本</span>
+        </div>
+    </div>
+</section>
+
+<style>
+    .min-vh-75 { min-height: 75vh; }
+    
+    .animate-fade-in {
+        animation: fadeInUp 1s ease-out;
+    }
+    
+    .animate-fade-in-delay {
+        animation: fadeInUp 1s ease-out 0.3s both;
+    }
+    
+    .animate-fade-in-delay-2 {
+        animation: fadeInUp 1s ease-out 0.6s both;
+    }
+    
+    .animate-float {
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    @@keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @@keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+    }
+    
+    .stat-item {
+        padding: 1rem 0;
+        border-radius: 0.5rem;
+        transition: transform 0.3s ease;
+    }
+    
+    .stat-item:hover {
+        transform: translateY(-2px);
+    }
+</style>

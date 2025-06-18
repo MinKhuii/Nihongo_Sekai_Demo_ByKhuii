@@ -1,0 +1,1360 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up - Nihongo Sekai</title>
+    <meta
+      name="description"
+      content="Create your Nihongo Sekai account and start your Japanese learning journey today."
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎌</text></svg>"
+    />
+  </head>
+  <body>
+    <!-- Navigation Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="nav-brand">
+            <a href="index.html" class="brand-link">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">
+                <span class="brand-nihongo">Nihongo</span>
+                <span class="brand-sekai">Sekai</span>
+              </span>
+            </a>
+          </div>
+
+          <div class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+              <li><a href="index.html" class="nav-link">Home</a></li>
+              <li><a href="courses.html" class="nav-link">Courses</a></li>
+              <li><a href="classrooms.html" class="nav-link">Classrooms</a></li>
+              <li><a href="teachers.html" class="nav-link">Teachers</a></li>
+              <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+          </div>
+
+          <div class="nav-actions">
+            <a href="login.html" class="btn btn-outline">Sign In</a>
+            <a href="register.html" class="btn btn-primary">Sign Up</a>
+          </div>
+
+          <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <section class="auth-section">
+        <div class="container">
+          <div class="signup-container">
+            <!-- Role Selection Step -->
+            <div class="signup-step active" id="roleSelection">
+              <div class="step-header">
+                <h1 class="step-title">Choose Your Learning Path</h1>
+                <p class="step-subtitle">
+                  Select how you'd like to be part of the Nihongo Sekai
+                  community
+                </p>
+              </div>
+
+              <div class="role-grid">
+                <div class="role-card" data-role="Learner">
+                  <div class="role-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path
+                        d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+                      />
+                    </svg>
+                  </div>
+                  <h3 class="role-title">Student</h3>
+                  <p class="role-description">
+                    Learn Japanese through courses, join live classrooms, and
+                    connect with native speakers.
+                  </p>
+                  <div class="role-features">
+                    <div class="feature">✓ Access to all courses</div>
+                    <div class="feature">✓ Join live classrooms</div>
+                    <div class="feature">✓ Track your progress</div>
+                    <div class="feature">✓ Community access</div>
+                  </div>
+                  <button
+                    class="btn btn-outline"
+                    onclick="selectRole('Learner')"
+                  >
+                    Start Learning
+                  </button>
+                </div>
+
+                <div class="role-card featured" data-role="Teacher">
+                  <div class="role-badge">Popular Choice</div>
+                  <div class="role-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path
+                        d="M16 4a4 4 0 0 0-8 0v4H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2h-2V4z"
+                      />
+                    </svg>
+                  </div>
+                  <h3 class="role-title">Teacher</h3>
+                  <p class="role-description">
+                    Share your Japanese expertise, create classrooms, and earn
+                    income by teaching students worldwide.
+                  </p>
+                  <div class="role-features">
+                    <div class="feature">✓ Create live classrooms</div>
+                    <div class="feature">✓ Earn competitive income</div>
+                    <div class="feature">✓ Global student reach</div>
+                    <div class="feature">✓ Teaching resources</div>
+                  </div>
+                  <button
+                    class="btn btn-primary"
+                    onclick="selectRole('Teacher')"
+                  >
+                    Become a Teacher
+                  </button>
+                </div>
+
+                <div class="role-card" data-role="Admin">
+                  <div class="role-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path
+                        d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"
+                      />
+                    </svg>
+                  </div>
+                  <h3 class="role-title">Administrator</h3>
+                  <p class="role-description">
+                    Manage the platform, approve teachers, and oversee the
+                    learning community. (Invitation only)
+                  </p>
+                  <div class="role-features">
+                    <div class="feature">✓ Platform management</div>
+                    <div class="feature">✓ User oversight</div>
+                    <div class="feature">✓ Content moderation</div>
+                    <div class="feature">✓ Analytics access</div>
+                  </div>
+                  <button
+                    class="btn btn-outline"
+                    disabled
+                    title="Admin accounts are invitation only"
+                  >
+                    Invitation Only
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Student Registration Form -->
+            <div class="signup-step" id="learnerForm">
+              <div class="step-header">
+                <button class="back-button" onclick="goBackToRoleSelection()">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                  </svg>
+                  Back
+                </button>
+                <h1 class="step-title">Create Your Student Account</h1>
+                <p class="step-subtitle">
+                  Join thousands of students learning Japanese worldwide
+                </p>
+              </div>
+
+              <form class="signup-form" id="learnerSignupForm">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label for="learnerFirstName" class="form-label"
+                      >First Name *</label
+                    >
+                    <input
+                      type="text"
+                      id="learnerFirstName"
+                      name="firstName"
+                      class="form-input"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="learnerLastName" class="form-label"
+                      >Last Name *</label
+                    >
+                    <input
+                      type="text"
+                      id="learnerLastName"
+                      name="lastName"
+                      class="form-input"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="learnerEmail" class="form-label"
+                    >Email Address *</label
+                  >
+                  <input
+                    type="email"
+                    id="learnerEmail"
+                    name="email"
+                    class="form-input"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="learnerPassword" class="form-label"
+                    >Password *</label
+                  >
+                  <div class="password-input-wrapper">
+                    <input
+                      type="password"
+                      id="learnerPassword"
+                      name="password"
+                      class="form-input"
+                      minlength="8"
+                      required
+                    />
+                    <button type="button" class="password-toggle">
+                      <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                          d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                        />
+                        <circle cx="12" cy="12" r="3" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="learnerConfirmPassword" class="form-label"
+                    >Confirm Password *</label
+                  >
+                  <input
+                    type="password"
+                    id="learnerConfirmPassword"
+                    name="confirmPassword"
+                    class="form-input"
+                    minlength="8"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="learnerLevel" class="form-label"
+                    >Current Japanese Level</label
+                  >
+                  <select
+                    id="learnerLevel"
+                    name="japaneseLevel"
+                    class="form-select"
+                  >
+                    <option value="">Select your level</option>
+                    <option value="complete-beginner">Complete Beginner</option>
+                    <option value="beginner">Beginner (some basics)</option>
+                    <option value="elementary">Elementary (JLPT N5-N4)</option>
+                    <option value="intermediate">
+                      Intermediate (JLPT N3-N2)
+                    </option>
+                    <option value="advanced">Advanced (JLPT N1+)</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="learnerGoals" class="form-label"
+                    >Learning Goals (Optional)</label
+                  >
+                  <textarea
+                    id="learnerGoals"
+                    name="learningGoals"
+                    class="form-textarea"
+                    rows="3"
+                    placeholder="What do you hope to achieve with Japanese? (Travel, business, anime, culture, etc.)"
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label class="checkbox-label">
+                    <input
+                      type="checkbox"
+                      id="learnerTerms"
+                      name="agreeToTerms"
+                      required
+                    />
+                    <span class="checkbox-checkmark"></span>
+                    I agree to the
+                    <a href="terms.html" target="_blank">Terms of Service</a>
+                    and
+                    <a href="privacy.html" target="_blank">Privacy Policy</a>
+                  </label>
+                </div>
+
+                <div class="form-group">
+                  <label class="checkbox-label">
+                    <input
+                      type="checkbox"
+                      id="learnerNewsletter"
+                      name="subscribeNewsletter"
+                    />
+                    <span class="checkbox-checkmark"></span>
+                    Send me learning tips, course updates, and special offers
+                  </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-large">
+                  Create Student Account
+                </button>
+              </form>
+            </div>
+
+            <!-- Teacher Application Form -->
+            <div class="signup-step" id="teacherForm">
+              <div class="step-header">
+                <button class="back-button" onclick="goBackToRoleSelection()">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                  </svg>
+                  Back
+                </button>
+                <h1 class="step-title">Apply to Become a Teacher</h1>
+                <p class="step-subtitle">
+                  Join our community of expert Japanese instructors
+                </p>
+              </div>
+
+              <div class="teacher-info-panel">
+                <h3>Teacher Requirements</h3>
+                <ul>
+                  <li>Native Japanese speaker or JLPT N1 certified</li>
+                  <li>Teaching experience or relevant education</li>
+                  <li>Valid identification document</li>
+                  <li>Stable internet connection for video calls</li>
+                  <li>Passion for sharing Japanese language and culture</li>
+                </ul>
+              </div>
+
+              <form class="signup-form teacher-form" id="teacherSignupForm">
+                <div class="form-section">
+                  <h3 class="section-title">Personal Information</h3>
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label for="teacherFirstName" class="form-label"
+                        >First Name *</label
+                      >
+                      <input
+                        type="text"
+                        id="teacherFirstName"
+                        name="firstName"
+                        class="form-input"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="teacherLastName" class="form-label"
+                        >Last Name *</label
+                      >
+                      <input
+                        type="text"
+                        id="teacherLastName"
+                        name="lastName"
+                        class="form-input"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="teacherEmail" class="form-label"
+                      >Email Address *</label
+                    >
+                    <input
+                      type="email"
+                      id="teacherEmail"
+                      name="email"
+                      class="form-input"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="teacherPassword" class="form-label"
+                      >Password *</label
+                    >
+                    <div class="password-input-wrapper">
+                      <input
+                        type="password"
+                        id="teacherPassword"
+                        name="password"
+                        class="form-input"
+                        minlength="8"
+                        required
+                      />
+                      <button type="button" class="password-toggle">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                          <path
+                            d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                          />
+                          <circle cx="12" cy="12" r="3" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="teacherConfirmPassword" class="form-label"
+                      >Confirm Password *</label
+                    >
+                    <input
+                      type="password"
+                      id="teacherConfirmPassword"
+                      name="confirmPassword"
+                      class="form-input"
+                      minlength="8"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="form-section">
+                  <h3 class="section-title">Teaching Background</h3>
+
+                  <div class="form-group">
+                    <label for="teachingExperience" class="form-label"
+                      >Years of Teaching Experience *</label
+                    >
+                    <select
+                      id="teachingExperience"
+                      name="teachingExperience"
+                      class="form-select"
+                      required
+                    >
+                      <option value="">Select experience level</option>
+                      <option value="0-1">Less than 1 year</option>
+                      <option value="1-3">1-3 years</option>
+                      <option value="3-5">3-5 years</option>
+                      <option value="5-10">5-10 years</option>
+                      <option value="10+">More than 10 years</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="qualifications" class="form-label"
+                      >Qualifications & Certifications *</label
+                    >
+                    <textarea
+                      id="qualifications"
+                      name="qualifications"
+                      class="form-textarea"
+                      rows="4"
+                      placeholder="List your relevant qualifications, certifications, degrees, and teaching credentials..."
+                      required
+                    ></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="specializations" class="form-label"
+                      >Teaching Specializations</label
+                    >
+                    <div class="checkbox-group">
+                      <label class="checkbox-label">
+                        <input
+                          type="checkbox"
+                          name="specializations"
+                          value="grammar"
+                        />
+                        <span class="checkbox-checkmark"></span>
+                        Grammar & Structure
+                      </label>
+                      <label class="checkbox-label">
+                        <input
+                          type="checkbox"
+                          name="specializations"
+                          value="conversation"
+                        />
+                        <span class="checkbox-checkmark"></span>
+                        Conversation Practice
+                      </label>
+                      <label class="checkbox-label">
+                        <input
+                          type="checkbox"
+                          name="specializations"
+                          value="business"
+                        />
+                        <span class="checkbox-checkmark"></span>
+                        Business Japanese
+                      </label>
+                      <label class="checkbox-label">
+                        <input
+                          type="checkbox"
+                          name="specializations"
+                          value="jlpt"
+                        />
+                        <span class="checkbox-checkmark"></span>
+                        JLPT Preparation
+                      </label>
+                      <label class="checkbox-label">
+                        <input
+                          type="checkbox"
+                          name="specializations"
+                          value="culture"
+                        />
+                        <span class="checkbox-checkmark"></span>
+                        Japanese Culture
+                      </label>
+                      <label class="checkbox-label">
+                        <input
+                          type="checkbox"
+                          name="specializations"
+                          value="beginner"
+                        />
+                        <span class="checkbox-checkmark"></span>
+                        Beginner Students
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="teachingBio" class="form-label"
+                      >Teaching Philosophy & Bio *</label
+                    >
+                    <textarea
+                      id="teachingBio"
+                      name="teachingBio"
+                      class="form-textarea"
+                      rows="5"
+                      placeholder="Tell us about your teaching philosophy, approach, and what makes you passionate about teaching Japanese..."
+                      required
+                    ></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="hourlyRate" class="form-label"
+                      >Desired Hourly Rate (USD)</label
+                    >
+                    <select
+                      id="hourlyRate"
+                      name="hourlyRate"
+                      class="form-select"
+                    >
+                      <option value="">Select rate range</option>
+                      <option value="20-30">$20-30 per hour</option>
+                      <option value="30-40">$30-40 per hour</option>
+                      <option value="40-50">$40-50 per hour</option>
+                      <option value="50-60">$50-60 per hour</option>
+                      <option value="60+">$60+ per hour</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-section">
+                  <h3 class="section-title">Document Verification</h3>
+
+                  <div class="form-group">
+                    <label for="idDocument" class="form-label"
+                      >Government ID or Passport *</label
+                    >
+                    <div class="file-upload-area" id="idUploadArea">
+                      <input
+                        type="file"
+                        id="idDocument"
+                        name="idDocument"
+                        accept=".jpg,.jpeg,.png,.pdf"
+                        required
+                        hidden
+                      />
+                      <div class="upload-content">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                          <path
+                            d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"
+                          />
+                        </svg>
+                        <p>
+                          <strong>Click to upload</strong> or drag and drop your
+                          ID document
+                        </p>
+                        <span>PNG, JPG, or PDF (max. 5MB)</span>
+                      </div>
+                    </div>
+                    <div
+                      class="file-info"
+                      id="idFileInfo"
+                      style="display: none"
+                    >
+                      <span class="file-name"></span>
+                      <button type="button" class="file-remove">Remove</button>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="teachingCertificate" class="form-label"
+                      >Teaching Certificate (Optional)</label
+                    >
+                    <div class="file-upload-area" id="certUploadArea">
+                      <input
+                        type="file"
+                        id="teachingCertificate"
+                        name="teachingCertificate"
+                        accept=".jpg,.jpeg,.png,.pdf"
+                        hidden
+                      />
+                      <div class="upload-content">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                          <path
+                            d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"
+                          />
+                        </svg>
+                        <p>
+                          <strong>Click to upload</strong> teaching credentials
+                        </p>
+                        <span>PNG, JPG, or PDF (max. 5MB)</span>
+                      </div>
+                    </div>
+                    <div
+                      class="file-info"
+                      id="certFileInfo"
+                      style="display: none"
+                    >
+                      <span class="file-name"></span>
+                      <button type="button" class="file-remove">Remove</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-section">
+                  <div class="form-group">
+                    <label class="checkbox-label">
+                      <input
+                        type="checkbox"
+                        id="teacherTerms"
+                        name="agreeToTerms"
+                        required
+                      />
+                      <span class="checkbox-checkmark"></span>
+                      I agree to the
+                      <a href="terms.html" target="_blank">Terms of Service</a>,
+                      <a href="privacy.html" target="_blank">Privacy Policy</a>,
+                      and
+                      <a href="teacher-terms.html" target="_blank"
+                        >Teacher Agreement</a
+                      >
+                    </label>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="checkbox-label">
+                      <input
+                        type="checkbox"
+                        id="backgroundCheck"
+                        name="backgroundCheck"
+                        required
+                      />
+                      <span class="checkbox-checkmark"></span>
+                      I consent to a background check and identity verification
+                      process
+                    </label>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-large">
+                  Submit Teacher Application
+                </button>
+
+                <div class="application-note">
+                  <p>
+                    <strong>Note:</strong> Your application will be reviewed by
+                    our team within 3-5 business days. We'll contact you via
+                    email regarding the status of your application.
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Success Messages -->
+          <div
+            class="success-message"
+            id="successMessage"
+            style="display: none"
+          >
+            <div class="success-content">
+              <div class="success-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                </svg>
+              </div>
+              <h2 class="success-title" id="successTitle"></h2>
+              <p class="success-description" id="successDescription"></p>
+              <div class="success-actions">
+                <a href="login.html" class="btn btn-primary">Sign In Now</a>
+                <a href="index.html" class="btn btn-outline">Return Home</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+      // Global variables
+      let selectedRole = null;
+      let currentStep = "roleSelection";
+
+      document.addEventListener("DOMContentLoaded", function () {
+        initializeNavigation();
+        initializeSignupForms();
+        initializeFileUploads();
+        initializePasswordToggles();
+      });
+
+      function selectRole(role) {
+        selectedRole = role;
+        hideAllSteps();
+
+        if (role === "Learner") {
+          showStep("learnerForm");
+        } else if (role === "Teacher") {
+          showStep("teacherForm");
+        }
+      }
+
+      function goBackToRoleSelection() {
+        hideAllSteps();
+        showStep("roleSelection");
+        selectedRole = null;
+      }
+
+      function hideAllSteps() {
+        document.querySelectorAll(".signup-step").forEach((step) => {
+          step.classList.remove("active");
+        });
+      }
+
+      function showStep(stepId) {
+        currentStep = stepId;
+        document.getElementById(stepId).classList.add("active");
+      }
+
+      function initializeSignupForms() {
+        // Learner form
+        document
+          .getElementById("learnerSignupForm")
+          .addEventListener("submit", handleLearnerSignup);
+
+        // Teacher form
+        document
+          .getElementById("teacherSignupForm")
+          .addEventListener("submit", handleTeacherSignup);
+      }
+
+      async function handleLearnerSignup(e) {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries());
+
+        // Validate passwords match
+        if (data.password !== data.confirmPassword) {
+          showToast("Passwords do not match", "error");
+          return;
+        }
+
+        // Validate password strength
+        if (!validatePassword(data.password)) {
+          showToast("Password does not meet requirements", "error");
+          return;
+        }
+
+        try {
+          showLoading();
+
+          // Simulate API call
+          await new Promise((resolve) => setTimeout(resolve, 2000));
+
+          // Show success message
+          showSuccessMessage(
+            "Welcome to Nihongo Sekai!",
+            `Hi ${data.firstName}! Your student account has been created successfully. You can now sign in and start your Japanese learning journey.`,
+          );
+        } catch (error) {
+          showToast("Failed to create account. Please try again.", "error");
+        } finally {
+          hideLoading();
+        }
+      }
+
+      async function handleTeacherSignup(e) {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries());
+
+        // Validate required files
+        if (!data.idDocument || data.idDocument.size === 0) {
+          showToast("Please upload a valid ID document", "error");
+          return;
+        }
+
+        // Validate passwords match
+        if (data.password !== data.confirmPassword) {
+          showToast("Passwords do not match", "error");
+          return;
+        }
+
+        // Validate password strength
+        if (!validatePassword(data.password)) {
+          showToast("Password does not meet requirements", "error");
+          return;
+        }
+
+        try {
+          showLoading();
+
+          // Simulate API call with file upload
+          await new Promise((resolve) => setTimeout(resolve, 3000));
+
+          // Show success message
+          showSuccessMessage(
+            "Application Submitted Successfully!",
+            `Thank you ${data.firstName}! Your teacher application has been submitted and is now under review. Our team will contact you within 3-5 business days regarding the status of your application.`,
+          );
+        } catch (error) {
+          showToast("Failed to submit application. Please try again.", "error");
+        } finally {
+          hideLoading();
+        }
+      }
+
+      function showSuccessMessage(title, description) {
+        hideAllSteps();
+        document.getElementById("successTitle").textContent = title;
+        document.getElementById("successDescription").textContent = description;
+        document.getElementById("successMessage").style.display = "block";
+      }
+
+      function initializeFileUploads() {
+        // ID Document upload
+        setupFileUpload("idDocument", "idUploadArea", "idFileInfo");
+        // Teaching Certificate upload
+        setupFileUpload(
+          "teachingCertificate",
+          "certUploadArea",
+          "certFileInfo",
+        );
+      }
+
+      function setupFileUpload(inputId, areaId, infoId) {
+        const input = document.getElementById(inputId);
+        const area = document.getElementById(areaId);
+        const info = document.getElementById(infoId);
+
+        // Click to upload
+        area.addEventListener("click", () => input.click());
+
+        // Drag and drop
+        area.addEventListener("dragover", (e) => {
+          e.preventDefault();
+          area.classList.add("drag-over");
+        });
+
+        area.addEventListener("dragleave", () => {
+          area.classList.remove("drag-over");
+        });
+
+        area.addEventListener("drop", (e) => {
+          e.preventDefault();
+          area.classList.remove("drag-over");
+          const files = e.dataTransfer.files;
+          if (files.length > 0) {
+            handleFileSelection(files[0], input, area, info);
+          }
+        });
+
+        // File input change
+        input.addEventListener("change", (e) => {
+          if (e.target.files.length > 0) {
+            handleFileSelection(e.target.files[0], input, area, info);
+          }
+        });
+      }
+
+      function handleFileSelection(file, input, area, info) {
+        // Validate file size (5MB max)
+        if (file.size > 5 * 1024 * 1024) {
+          showToast("File size must be less than 5MB", "error");
+          return;
+        }
+
+        // Validate file type
+        const allowedTypes = [
+          "image/jpeg",
+          "image/jpg",
+          "image/png",
+          "application/pdf",
+        ];
+        if (!allowedTypes.includes(file.type)) {
+          showToast(
+            "Please upload a valid image (JPG, PNG) or PDF file",
+            "error",
+          );
+          return;
+        }
+
+        // Show file info
+        area.style.display = "none";
+        info.style.display = "flex";
+        info.querySelector(".file-name").textContent = file.name;
+
+        // Remove file function
+        info.querySelector(".file-remove").onclick = () => {
+          input.value = "";
+          area.style.display = "block";
+          info.style.display = "none";
+        };
+      }
+
+      function initializePasswordToggles() {
+        document.querySelectorAll(".password-toggle").forEach((toggle) => {
+          toggle.addEventListener("click", () => {
+            const input = toggle.previousElementSibling;
+            const isPassword = input.type === "password";
+            input.type = isPassword ? "text" : "password";
+
+            // Update icon (simplified - you can enhance this)
+            toggle.innerHTML = isPassword
+              ? '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>'
+              : '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+          });
+        });
+      }
+
+      function validatePassword(password) {
+        const minLength = password.length >= 8;
+        const hasUpper = /[A-Z]/.test(password);
+        const hasLower = /[a-z]/.test(password);
+        const hasNumber = /\d/.test(password);
+        const hasSpecial = /[!@#$%^&*]/.test(password);
+
+        return minLength && hasUpper && hasLower && hasNumber && hasSpecial;
+      }
+    </script>
+
+    <style>
+      /* Signup page specific styles */
+      .auth-section {
+        min-height: calc(100vh - 80px);
+        padding: var(--spacing-2xl) 0;
+        background: linear-gradient(
+          135deg,
+          var(--color-primary-50) 0%,
+          var(--color-white) 50%,
+          var(--color-secondary-50) 100%
+        );
+      }
+
+      .signup-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: var(--color-white);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-2xl);
+        overflow: hidden;
+      }
+
+      .signup-step {
+        display: none;
+        padding: var(--spacing-3xl);
+      }
+
+      .signup-step.active {
+        display: block;
+      }
+
+      .step-header {
+        text-align: center;
+        margin-bottom: var(--spacing-3xl);
+        position: relative;
+      }
+
+      .back-button {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: none;
+        border: none;
+        color: var(--color-gray-600);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+        font-size: 0.875rem;
+        padding: var(--spacing-sm);
+        border-radius: var(--radius-md);
+        transition: all var(--transition-fast);
+      }
+
+      .back-button:hover {
+        background: var(--color-gray-100);
+        color: var(--color-gray-900);
+      }
+
+      .back-button svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .step-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--color-gray-900);
+        margin-bottom: var(--spacing-md);
+      }
+
+      .step-subtitle {
+        font-size: 1.125rem;
+        color: var(--color-gray-600);
+        line-height: 1.6;
+      }
+
+      /* Role Selection Styles */
+      .role-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--spacing-2xl);
+        margin-top: var(--spacing-3xl);
+      }
+
+      .role-card {
+        background: var(--color-white);
+        border: 2px solid var(--color-gray-200);
+        border-radius: var(--radius-xl);
+        padding: var(--spacing-2xl);
+        text-align: center;
+        cursor: pointer;
+        transition: all var(--transition-normal);
+        position: relative;
+      }
+
+      .role-card:hover {
+        border-color: var(--color-primary);
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-xl);
+      }
+
+      .role-card.featured {
+        border-color: var(--color-primary);
+        background: linear-gradient(
+          135deg,
+          var(--color-primary-50) 0%,
+          var(--color-white) 100%
+        );
+      }
+
+      .role-badge {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--color-primary);
+        color: var(--color-white);
+        padding: var(--spacing-xs) var(--spacing-md);
+        border-radius: var(--radius-full);
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      .role-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--color-primary-100);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto var(--spacing-lg);
+        color: var(--color-primary);
+      }
+
+      .role-icon svg {
+        width: 40px;
+        height: 40px;
+      }
+
+      .role-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--color-gray-900);
+        margin-bottom: var(--spacing-md);
+      }
+
+      .role-description {
+        color: var(--color-gray-600);
+        line-height: 1.6;
+        margin-bottom: var(--spacing-lg);
+      }
+
+      .role-features {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        margin-bottom: var(--spacing-2xl);
+        text-align: left;
+      }
+
+      .feature {
+        color: var(--color-gray-700);
+        font-size: 0.875rem;
+      }
+
+      /* Form Styles */
+      .signup-form {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .teacher-form {
+        max-width: none;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-lg);
+      }
+
+      .form-section {
+        margin-bottom: var(--spacing-3xl);
+        padding-bottom: var(--spacing-2xl);
+        border-bottom: 1px solid var(--color-gray-200);
+      }
+
+      .form-section:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+      }
+
+      .section-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--color-gray-900);
+        margin-bottom: var(--spacing-lg);
+      }
+
+      .teacher-info-panel {
+        background: var(--color-primary-50);
+        border: 1px solid var(--color-primary-200);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-xl);
+        margin-bottom: var(--spacing-2xl);
+      }
+
+      .teacher-info-panel h3 {
+        color: var(--color-primary);
+        margin-bottom: var(--spacing-md);
+      }
+
+      .teacher-info-panel ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .teacher-info-panel li {
+        color: var(--color-gray-700);
+        padding: var(--spacing-xs) 0;
+        position: relative;
+        padding-left: var(--spacing-md);
+      }
+
+      .teacher-info-panel li:before {
+        content: "✓";
+        color: var(--color-primary);
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+      }
+
+      .checkbox-group {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--spacing-md);
+      }
+
+      /* File Upload Styles */
+      .file-upload-area {
+        border: 2px dashed var(--color-gray-300);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-2xl);
+        text-align: center;
+        cursor: pointer;
+        transition: all var(--transition-fast);
+      }
+
+      .file-upload-area:hover,
+      .file-upload-area.drag-over {
+        border-color: var(--color-primary);
+        background: var(--color-primary-50);
+      }
+
+      .upload-content svg {
+        width: 48px;
+        height: 48px;
+        color: var(--color-gray-400);
+        margin-bottom: var(--spacing-md);
+      }
+
+      .upload-content p {
+        color: var(--color-gray-700);
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .upload-content span {
+        color: var(--color-gray-500);
+        font-size: 0.875rem;
+      }
+
+      .file-info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--color-gray-50);
+        padding: var(--spacing-md);
+        border-radius: var(--radius-md);
+        border: 1px solid var(--color-gray-200);
+      }
+
+      .file-name {
+        color: var(--color-gray-900);
+        font-weight: 500;
+      }
+
+      .file-remove {
+        background: none;
+        border: none;
+        color: var(--color-red-600);
+        cursor: pointer;
+        font-size: 0.875rem;
+        padding: var(--spacing-xs);
+        border-radius: var(--radius-sm);
+        transition: background var(--transition-fast);
+      }
+
+      .file-remove:hover {
+        background: var(--color-red-50);
+      }
+
+      .application-note {
+        background: var(--color-blue-50);
+        border: 1px solid var(--color-blue-200);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-lg);
+        margin-top: var(--spacing-xl);
+      }
+
+      .application-note p {
+        color: var(--color-blue-800);
+        margin: 0;
+        font-size: 0.875rem;
+        line-height: 1.5;
+      }
+
+      /* Success Message Styles */
+      .success-message {
+        padding: var(--spacing-3xl);
+        text-align: center;
+      }
+
+      .success-content {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .success-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--color-green-100);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto var(--spacing-lg);
+        color: var(--color-green-600);
+      }
+
+      .success-icon svg {
+        width: 40px;
+        height: 40px;
+      }
+
+      .success-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--color-gray-900);
+        margin-bottom: var(--spacing-md);
+      }
+
+      .success-description {
+        color: var(--color-gray-600);
+        line-height: 1.6;
+        margin-bottom: var(--spacing-2xl);
+      }
+
+      .success-actions {
+        display: flex;
+        gap: var(--spacing-md);
+        justify-content: center;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .signup-container {
+          margin: var(--spacing-md);
+        }
+
+        .signup-step {
+          padding: var(--spacing-xl);
+        }
+
+        .step-title {
+          font-size: 2rem;
+        }
+
+        .role-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .form-grid,
+        .checkbox-group {
+          grid-template-columns: 1fr;
+        }
+
+        .back-button {
+          position: static;
+          margin-bottom: var(--spacing-md);
+          align-self: flex-start;
+        }
+
+        .success-actions {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </body>
+</html>
