@@ -28,14 +28,5 @@ dist/
 .env.test.local
 .env.production.local
 
-# Remove these React/TypeScript files
-src/
-tsconfig.json
-tsconfig.*.json
-vite.config.ts
-postcss.config.js
-tailwind.config.ts
-components.json
-
 # Keep only the public folder
 !public/
