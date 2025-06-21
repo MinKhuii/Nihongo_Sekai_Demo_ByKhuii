@@ -1,0 +1,961 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Classroom Details - Nihongo Sekai</title>
+    <meta
+      name="description"
+      content="Join live Japanese language classes with certified teachers. Interactive learning experience with video calls and real-time instruction."
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎌</text></svg>"
+    />
+  </head>
+  <body class="classroom-detail-page">
+    <!-- Navigation Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="nav-brand">
+            <a href="index.html" class="brand-link">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">
+                <span class="brand-nihongo">Nihongo</span>
+                <span class="brand-sekai">Sekai</span>
+              </span>
+            </a>
+          </div>
+
+          <div class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+              <li><a href="index.html" class="nav-link">Home</a></li>
+              <li><a href="courses.html" class="nav-link">Courses</a></li>
+              <li><a href="classrooms.html" class="nav-link">Classrooms</a></li>
+              <li><a href="partners.html" class="nav-link">Partners</a></li>
+              <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+          </div>
+
+          <div class="nav-actions" id="navActions">
+            <a href="login.html" class="btn btn-outline">Sign In</a>
+            <a href="register.html" class="btn btn-primary">Get Started</a>
+          </div>
+
+          <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Breadcrumb -->
+      <section
+        style="
+          background: white;
+          padding: 1rem 0;
+          border-bottom: 1px solid #e5e7eb;
+        "
+      >
+        <div class="container">
+          <nav
+            style="
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+              font-size: 0.875rem;
+              color: #6b7280;
+            "
+          >
+            <a href="index.html" style="color: #dc2626; text-decoration: none"
+              >Home</a
+            >
+            <span>›</span>
+            <a
+              href="classrooms.html"
+              style="color: #dc2626; text-decoration: none"
+              >Classrooms</a
+            >
+            <span>›</span>
+            <span id="breadcrumbClassroom">Classroom Details</span>
+          </nav>
+        </div>
+      </section>
+
+      <!-- Pinned Video Call Window -->
+      <section class="video-call-window" id="videoCallWindow">
+        <div class="container">
+          <div class="video-call-content">
+            <div class="video-display" id="videoDisplay">
+              <div class="video-placeholder">
+                <div class="video-icon">📹</div>
+                <h3>Live Classroom Session</h3>
+                <p id="classroomStatus">Waiting for class to start...</p>
+              </div>
+              <!-- In real implementation, this would be the video stream -->
+            </div>
+
+            <div class="video-controls">
+              <div class="control-group">
+                <button class="control-btn" id="muteBtn" title="Mute/Unmute">
+                  <svg
+                    class="mute-icon"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polygon points="11,5 6,9 2,9 2,15 6,15 11,19"></polygon>
+                    <path
+                      d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"
+                    ></path>
+                  </svg>
+                  <svg
+                    class="unmute-icon"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    style="display: none"
+                  >
+                    <polygon points="11,5 6,9 2,9 2,15 6,15 11,19"></polygon>
+                    <line x1="23" y1="9" x2="17" y2="15"></line>
+                    <line x1="17" y1="9" x2="23" y2="15"></line>
+                  </svg>
+                </button>
+
+                <button
+                  class="control-btn"
+                  id="videoBtn"
+                  title="Turn Video On/Off"
+                >
+                  <svg
+                    class="video-icon"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polygon points="23,7 16,12 23,17"></polygon>
+                    <rect
+                      x="1"
+                      y="5"
+                      width="15"
+                      height="14"
+                      rx="2"
+                      ry="2"
+                    ></rect>
+                  </svg>
+                  <svg
+                    class="video-off-icon"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    style="display: none"
+                  >
+                    <path
+                      d="M16 16v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2m5.66 0H14a2 2 0 0 1 2 2v3.34l1 1L23 7v10"
+                    ></path>
+                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                  </svg>
+                </button>
+
+                <button
+                  class="control-btn screen-share"
+                  id="screenShareBtn"
+                  title="Share Screen"
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect
+                      x="2"
+                      y="4"
+                      width="20"
+                      height="12"
+                      rx="2"
+                      ry="2"
+                    ></rect>
+                    <line x1="2" y1="20" x2="22" y2="20"></line>
+                    <line x1="12" y1="16" x2="12" y2="20"></line>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="call-status">
+                <span class="status-indicator online"></span>
+                <span class="status-text" id="callStatus">Connected</span>
+                <span class="participant-count" id="participantCount"
+                  >5 participants</span
+                >
+              </div>
+
+              <div class="control-group">
+                <button
+                  class="control-btn chat-toggle"
+                  id="chatToggle"
+                  title="Toggle Chat"
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                    ></path>
+                  </svg>
+                </button>
+
+                <button
+                  class="control-btn leave-call"
+                  id="leaveCall"
+                  title="Leave Call"
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+                    <line x1="12" y1="2" x2="12" y2="12"></line>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sub-Tab Navigation -->
+      <nav class="sub-tab-navigation">
+        <div class="container">
+          <ul class="sub-tab-list">
+            <li>
+              <button class="sub-tab-button active" data-tab="discussion">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                  ></path>
+                </svg>
+                Discussion
+              </button>
+            </li>
+            <li>
+              <button class="sub-tab-button" data-tab="students">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                Students
+              </button>
+            </li>
+            <li>
+              <button class="sub-tab-button" data-tab="schedule">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                Schedule
+              </button>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Main Content Layout -->
+      <section class="classroom-main-content">
+        <div class="container">
+          <div class="classroom-layout">
+            <!-- Main Content Area -->
+            <div class="classroom-content">
+              <!-- Classroom Info Header -->
+              <div class="classroom-header">
+                <div class="classroom-title-section">
+                  <h1 id="classroomTitle">Loading Classroom...</h1>
+                  <div class="classroom-meta">
+                    <span class="level-badge" id="classroomLevel"
+                      >Beginner</span
+                    >
+                    <span class="schedule-info" id="classroomSchedule"
+                      >Mon, Wed, Fri 9:00 AM JST</span
+                    >
+                    <span class="instructor-info">
+                      with <span id="instructorName">Yuki Tanaka</span>
+                    </span>
+                  </div>
+                </div>
+                <div class="enrollment-status">
+                  <div class="student-count" id="studentCount">
+                    5/8 students
+                  </div>
+                  <div class="progress-bar">
+                    <div
+                      class="progress-fill"
+                      id="enrollmentProgress"
+                      style="width: 62.5%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Sub-Tab Panels -->
+              <div class="sub-tab-panels">
+                <!-- Discussion Panel -->
+                <div class="sub-tab-panel active" id="discussionPanel">
+                  <div class="discussion-container">
+                    <div class="discussion-header">
+                      <h3>Class Discussion</h3>
+                      <div class="discussion-stats">
+                        <span>12 messages today</span>
+                      </div>
+                    </div>
+
+                    <div class="messages-container" id="messagesContainer">
+                      <div class="message-item">
+                        <div class="message-avatar">YT</div>
+                        <div class="message-content">
+                          <div class="message-header">
+                            <span class="message-author">Yuki Tanaka</span>
+                            <span class="message-role">Instructor</span>
+                            <span class="message-time">10:30 AM</span>
+                          </div>
+                          <div class="message-text">
+                            Good morning everyone! Today we'll be practicing
+                            te-form verbs. Please have your workbooks ready.
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="message-item">
+                        <div class="message-avatar">SJ</div>
+                        <div class="message-content">
+                          <div class="message-header">
+                            <span class="message-author">Sarah Johnson</span>
+                            <span class="message-role">Student</span>
+                            <span class="message-time">10:32 AM</span>
+                          </div>
+                          <div class="message-text">
+                            Ready! I've been practicing the exercises from last
+                            week.
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="message-item">
+                        <div class="message-avatar">MK</div>
+                        <div class="message-content">
+                          <div class="message-header">
+                            <span class="message-author">Mike Kim</span>
+                            <span class="message-role">Student</span>
+                            <span class="message-time">10:33 AM</span>
+                          </div>
+                          <div class="message-text">
+                            Could you please review the difference between て
+                            and た forms again?
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="message-input-container"
+                      id="messageInputContainer"
+                    >
+                      <div class="message-input-group">
+                        <input
+                          type="text"
+                          placeholder="Type your message..."
+                          class="message-input"
+                          id="messageInput"
+                        />
+                        <button class="send-button" id="sendMessage">
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                          >
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22,2 15,22 11,13 2,9"></polygon>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Students Panel -->
+                <div
+                  class="sub-tab-panel"
+                  id="studentsPanel"
+                  style="display: none"
+                >
+                  <div class="students-container">
+                    <div class="students-header">
+                      <h3>Enrolled Students</h3>
+                      <div class="students-stats">
+                        <span id="totalStudents">5 of 8 spots filled</span>
+                      </div>
+                    </div>
+
+                    <div class="students-grid" id="studentsGrid">
+                      <!-- Students will be loaded dynamically -->
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Schedule Panel -->
+                <div
+                  class="sub-tab-panel"
+                  id="schedulePanel"
+                  style="display: none"
+                >
+                  <div class="schedule-container">
+                    <div class="schedule-header">
+                      <h3>Class Schedule</h3>
+                      <div class="schedule-info">
+                        <span>Next class: Monday, 9:00 AM JST</span>
+                      </div>
+                    </div>
+
+                    <div class="schedule-calendar" id="scheduleCalendar">
+                      <div class="calendar-week">
+                        <div class="calendar-day">
+                          <div class="day-header">Mon</div>
+                          <div class="day-sessions">
+                            <div class="session-slot active">
+                              <div class="session-time">9:00 - 10:00 AM</div>
+                              <div class="session-topic">Te-form Practice</div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="calendar-day">
+                          <div class="day-header">Tue</div>
+                          <div class="day-sessions">
+                            <!-- No sessions -->
+                          </div>
+                        </div>
+
+                        <div class="calendar-day">
+                          <div class="day-header">Wed</div>
+                          <div class="day-sessions">
+                            <div class="session-slot">
+                              <div class="session-time">9:00 - 10:00 AM</div>
+                              <div class="session-topic">
+                                Conversation Practice
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="calendar-day">
+                          <div class="day-header">Thu</div>
+                          <div class="day-sessions">
+                            <!-- No sessions -->
+                          </div>
+                        </div>
+
+                        <div class="calendar-day">
+                          <div class="day-header">Fri</div>
+                          <div class="day-sessions">
+                            <div class="session-slot">
+                              <div class="session-time">9:00 - 10:00 AM</div>
+                              <div class="session-topic">Review & Quiz</div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="calendar-day">
+                          <div class="day-header">Sat</div>
+                          <div class="day-sessions">
+                            <!-- No sessions -->
+                          </div>
+                        </div>
+
+                        <div class="calendar-day">
+                          <div class="day-header">Sun</div>
+                          <div class="day-sessions">
+                            <!-- No sessions -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="classroom-sidebar">
+              <!-- Enrollment Card -->
+              <div class="sidebar-card">
+                <h3>Join This Classroom</h3>
+                <div class="enrollment-info">
+                  <div class="price-info">
+                    <span class="price">$25</span>
+                    <span class="price-period">per session</span>
+                  </div>
+                  <div class="enrollment-details">
+                    <div class="detail-item">
+                      <span class="detail-label">Duration:</span>
+                      <span class="detail-value">1 hour</span>
+                    </div>
+                    <div class="detail-item">
+                      <span class="detail-label">Students:</span>
+                      <span class="detail-value">5-8 max</span>
+                    </div>
+                    <div class="detail-item">
+                      <span class="detail-label">Level:</span>
+                      <span class="detail-value">Beginner</span>
+                    </div>
+                  </div>
+                </div>
+
+                <button class="cta-button" id="enrollClassroomBtn">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"
+                    ></path>
+                  </svg>
+                  <span id="enrollBtnText">Join Classroom</span>
+                </button>
+              </div>
+
+              <!-- Instructor Card -->
+              <div class="sidebar-card">
+                <h3>Your Instructor</h3>
+                <div class="instructor-profile">
+                  <div class="instructor-avatar-large">YT</div>
+                  <div class="instructor-details">
+                    <h4 id="instructorFullName">Yuki Tanaka</h4>
+                    <p class="instructor-title">Native Japanese Teacher</p>
+                    <div class="instructor-rating">
+                      <span class="stars">★★★★★</span>
+                      <span class="rating-value">4.8</span>
+                    </div>
+                    <p class="instructor-bio">
+                      Native speaker from Tokyo with 5+ years of teaching
+                      experience. Specializes in conversational Japanese and
+                      grammar fundamentals.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+      // Enhanced Classroom Detail Page with Pinned Video and Sub-Tabs
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get classroom ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const classroomId = parseInt(urlParams.get("id")) || 1;
+
+        let classroom = null;
+        let currentUser = getCurrentUser();
+
+        // Initialize page
+        loadClassroomData();
+        setupScrollEffects();
+        setupSubTabNavigation();
+        setupVideoControls();
+        setupMessageInput();
+
+        function getCurrentUser() {
+          return {
+            id: 1,
+            isLoggedIn: localStorage.getItem("user_logged_in") === "true",
+            role: localStorage.getItem("user_role") || "Learner",
+            name: "Current User",
+          };
+        }
+
+        async function loadClassroomData() {
+          try {
+            // Mock classroom data
+            const classrooms = {
+              1: {
+                id: 1,
+                title: "Morning Conversation Practice",
+                description:
+                  "Join our morning conversation circle to practice speaking Japanese in a supportive environment. Perfect for beginners to intermediate learners.",
+                level: "Beginner",
+                currentStudents: 5,
+                maxStudents: 8,
+                schedule: "Mon, Wed, Fri 9:00 AM JST",
+                price: 25,
+                instructor: "Yuki Tanaka",
+                instructorBio:
+                  "Native speaker from Tokyo with 5+ years of teaching experience. Specializes in conversational Japanese and grammar fundamentals.",
+                rating: 4.8,
+                students: [
+                  {
+                    id: 1,
+                    name: "Sarah Johnson",
+                    avatar: "SJ",
+                    joinDate: "2024-01-15",
+                  },
+                  {
+                    id: 2,
+                    name: "Mike Kim",
+                    avatar: "MK",
+                    joinDate: "2024-01-10",
+                  },
+                  {
+                    id: 3,
+                    name: "Emma Rodriguez",
+                    avatar: "ER",
+                    joinDate: "2024-01-12",
+                  },
+                  {
+                    id: 4,
+                    name: "David Chen",
+                    avatar: "DC",
+                    joinDate: "2024-01-08",
+                  },
+                  {
+                    id: 5,
+                    name: "Lisa Brown",
+                    avatar: "LB",
+                    joinDate: "2024-01-20",
+                  },
+                ],
+              },
+            };
+
+            classroom = classrooms[classroomId];
+            if (!classroom) {
+              showError("Classroom not found");
+              return;
+            }
+
+            populateClassroomData(classroom);
+            loadStudentsData(classroom);
+            updateEnrollmentButton(classroom);
+          } catch (error) {
+            console.error("Error loading classroom:", error);
+            showError("Failed to load classroom data");
+          }
+        }
+
+        function populateClassroomData(classroom) {
+          document.title = `${classroom.title} - Nihongo Sekai`;
+          document.getElementById("breadcrumbClassroom").textContent =
+            classroom.title;
+          document.getElementById("classroomTitle").textContent =
+            classroom.title;
+          document.getElementById("classroomLevel").textContent =
+            classroom.level;
+          document.getElementById("classroomSchedule").textContent =
+            classroom.schedule;
+          document.getElementById("instructorName").textContent =
+            classroom.instructor;
+          document.getElementById("instructorFullName").textContent =
+            classroom.instructor;
+          document.getElementById("studentCount").textContent =
+            `${classroom.currentStudents}/${classroom.maxStudents} students`;
+          document.getElementById("totalStudents").textContent =
+            `${classroom.currentStudents} of ${classroom.maxStudents} spots filled`;
+
+          const progressPercentage =
+            (classroom.currentStudents / classroom.maxStudents) * 100;
+          document.getElementById("enrollmentProgress").style.width =
+            `${progressPercentage}%`;
+        }
+
+        function loadStudentsData(classroom) {
+          const studentsGrid = document.getElementById("studentsGrid");
+          const studentsHtml = classroom.students
+            .map(
+              (student) => `
+            <div class="student-card">
+              <div class="student-avatar">${student.avatar}</div>
+              <div class="student-info">
+                <div class="student-name">${student.name}</div>
+                <div class="student-join-date">Joined ${new Date(student.joinDate).toLocaleDateString()}</div>
+              </div>
+              <div class="student-status">
+                <span class="status-indicator online"></span>
+                <span class="status-text">Active</span>
+              </div>
+            </div>
+          `,
+            )
+            .join("");
+
+          studentsGrid.innerHTML = studentsHtml;
+        }
+
+        function setupScrollEffects() {
+          const videoWindow = document.getElementById("videoCallWindow");
+          let isScrolling = false;
+
+          window.addEventListener("scroll", () => {
+            const scrollY = window.scrollY;
+
+            if (scrollY > 100) {
+              videoWindow.classList.add("pinned");
+            } else {
+              videoWindow.classList.remove("pinned");
+            }
+          });
+        }
+
+        function setupSubTabNavigation() {
+          const tabButtons = document.querySelectorAll(".sub-tab-button");
+          const tabPanels = document.querySelectorAll(".sub-tab-panel");
+
+          tabButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+              const targetTab = button.dataset.tab;
+
+              // Update active states with animation
+              tabButtons.forEach((btn) => btn.classList.remove("active"));
+              tabPanels.forEach((panel) => {
+                panel.classList.remove("active");
+                panel.style.display = "none";
+                panel.style.opacity = "0";
+              });
+
+              button.classList.add("active");
+              const targetPanel = document.getElementById(targetTab + "Panel");
+              if (targetPanel) {
+                targetPanel.style.display = "block";
+
+                // Smooth fade-in animation
+                setTimeout(() => {
+                  targetPanel.classList.add("active");
+                  targetPanel.style.opacity = "1";
+                }, 50);
+              }
+            });
+          });
+        }
+
+        function setupVideoControls() {
+          const muteBtn = document.getElementById("muteBtn");
+          const videoBtn = document.getElementById("videoBtn");
+          const screenShareBtn = document.getElementById("screenShareBtn");
+          const chatToggle = document.getElementById("chatToggle");
+          const leaveCall = document.getElementById("leaveCall");
+
+          muteBtn.addEventListener("click", toggleMute);
+          videoBtn.addEventListener("click", toggleVideo);
+          screenShareBtn.addEventListener("click", toggleScreenShare);
+          chatToggle.addEventListener("click", toggleChat);
+          leaveCall.addEventListener("click", confirmLeaveCall);
+        }
+
+        function toggleMute() {
+          const muteIcon = document.querySelector(".mute-icon");
+          const unmuteIcon = document.querySelector(".unmute-icon");
+          const btn = document.getElementById("muteBtn");
+
+          if (muteIcon.style.display !== "none") {
+            muteIcon.style.display = "none";
+            unmuteIcon.style.display = "block";
+            btn.classList.add("muted");
+          } else {
+            muteIcon.style.display = "block";
+            unmuteIcon.style.display = "none";
+            btn.classList.remove("muted");
+          }
+        }
+
+        function toggleVideo() {
+          const videoIcon = document.querySelector(".video-icon");
+          const videoOffIcon = document.querySelector(".video-off-icon");
+          const btn = document.getElementById("videoBtn");
+
+          if (videoIcon.style.display !== "none") {
+            videoIcon.style.display = "none";
+            videoOffIcon.style.display = "block";
+            btn.classList.add("video-off");
+          } else {
+            videoIcon.style.display = "block";
+            videoOffIcon.style.display = "none";
+            btn.classList.remove("video-off");
+          }
+        }
+
+        function toggleScreenShare() {
+          const btn = document.getElementById("screenShareBtn");
+          btn.classList.toggle("active");
+          // In real implementation, this would start/stop screen sharing
+        }
+
+        function toggleChat() {
+          const btn = document.getElementById("chatToggle");
+          btn.classList.toggle("active");
+          // In real implementation, this would show/hide chat sidebar
+        }
+
+        function confirmLeaveCall() {
+          if (confirm("Are you sure you want to leave the classroom?")) {
+            window.location.href = "classrooms.html";
+          }
+        }
+
+        function setupMessageInput() {
+          const messageInput = document.getElementById("messageInput");
+          const sendButton = document.getElementById("sendMessage");
+          const messagesContainer =
+            document.getElementById("messagesContainer");
+
+          function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message) return;
+
+            // Add message to discussion (mock functionality)
+            const messageHtml = `
+              <div class="message-item">
+                <div class="message-avatar">${currentUser.name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")}</div>
+                <div class="message-content">
+                  <div class="message-header">
+                    <span class="message-author">${currentUser.name}</span>
+                    <span class="message-role">Student</span>
+                    <span class="message-time">${new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</span>
+                  </div>
+                  <div class="message-text">${message}</div>
+                </div>
+              </div>
+            `;
+
+            messagesContainer.insertAdjacentHTML("beforeend", messageHtml);
+            messageInput.value = "";
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          }
+
+          sendButton.addEventListener("click", sendMessage);
+          messageInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+              sendMessage();
+            }
+          });
+        }
+
+        function updateEnrollmentButton(classroom) {
+          const button = document.getElementById("enrollClassroomBtn");
+          const buttonText = document.getElementById("enrollBtnText");
+
+          if (!currentUser.isLoggedIn) {
+            buttonText.textContent = "Sign In to Join";
+            button.onclick = () => (window.location.href = "login.html");
+            return;
+          }
+
+          if (currentUser.role === "Partner") {
+            buttonText.textContent = "View Only";
+            button.disabled = true;
+            button.style.opacity = "0.6";
+            return;
+          }
+
+          // Check enrollment status (mock)
+          const isEnrolled = true; // Mock enrolled status
+          if (isEnrolled) {
+            buttonText.textContent = "You're Enrolled";
+            button.disabled = true;
+            button.style.background = "var(--color-success)";
+          } else {
+            buttonText.textContent = "Join Classroom";
+            button.onclick = () => enrollInClassroom();
+          }
+        }
+
+        function enrollInClassroom() {
+          if (!currentUser.isLoggedIn) {
+            window.location.href = "login.html";
+            return;
+          }
+          alert(`Enrollment initiated for ${classroom.title}!`);
+        }
+
+        function showError(message) {
+          document.getElementById("classroomTitle").textContent = "Error";
+          console.error(message);
+        }
+      });
+    </script>
+  </body>
+</html>

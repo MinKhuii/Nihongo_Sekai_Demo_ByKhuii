@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Partner Profile - Nihongo Sekai</title>
+    <meta
+      name="description"
+      content="View detailed partner profile with experience, specialties, and available classrooms for Japanese language learning."
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎌</text></svg>"
+    />
+  </head>
+  <body class="partner-detail-page">
+    <!-- Navigation Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="nav-brand">
+            <a href="index.html" class="brand-link">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">
+                <span class="brand-nihongo">Nihongo</span>
+                <span class="brand-sekai">Sekai</span>
+              </span>
+            </a>
+          </div>
+
+          <div class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+              <li><a href="index.html" class="nav-link">Home</a></li>
+              <li><a href="courses.html" class="nav-link">Courses</a></li>
+              <li><a href="classrooms.html" class="nav-link">Classrooms</a></li>
+              <li><a href="partners.html" class="nav-link">Partners</a></li>
+              <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+          </div>
+
+          <div class="nav-actions" id="navActions">
+            <a href="login.html" class="btn btn-outline">Sign In</a>
+            <a href="register.html" class="btn btn-primary">Get Started</a>
+          </div>
+
+          <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Breadcrumb -->
+      <section
+        style="
+          background: white;
+          padding: 1rem 0;
+          border-bottom: 1px solid #e5e7eb;
+        "
+      >
+        <div class="container">
+          <nav
+            style="
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+              font-size: 0.875rem;
+              color: #6b7280;
+            "
+          >
+            <a href="index.html" style="color: #dc2626; text-decoration: none"
+              >Home</a
+            >
+            <span>›</span>
+            <a
+              href="partners-list.html"
+              style="color: #dc2626; text-decoration: none"
+              >Partners</a
+            >
+            <span>›</span>
+            <span id="breadcrumbPartner">Partner Profile</span>
+          </nav>
+        </div>
+      </section>
+
+      <!-- Partner Profile Section -->
+      <section class="partner-profile-section">
+        <div class="container">
+          <div class="partner-profile-layout">
+            <!-- Main Profile Content -->
+            <div class="partner-main-content">
+              <!-- Profile Header -->
+              <div class="partner-profile-header">
+                <div class="partner-image-container">
+                  <img
+                    id="partnerImage"
+                    src=""
+                    alt="Partner Profile"
+                    class="partner-profile-image"
+                  />
+                  <div
+                    class="verified-badge"
+                    id="verifiedBadge"
+                    style="display: none"
+                  >
+                    ✓
+                  </div>
+                </div>
+
+                <div class="partner-header-info">
+                  <h1 id="partnerName">Loading Partner...</h1>
+                  <div class="partner-title" id="partnerTitle">
+                    Japanese Language Partner
+                  </div>
+                  <div class="partner-location" id="partnerLocation">
+                    Tokyo, Japan
+                  </div>
+
+                  <div class="partner-rating-section">
+                    <div class="rating-display">
+                      <div class="stars" id="partnerStars">★★★★★</div>
+                      <span class="rating-value" id="partnerRating">4.9</span>
+                      <span class="rating-count" id="ratingCount"
+                        >(342 reviews)</span
+                      >
+                    </div>
+                  </div>
+
+                  <div class="partner-languages">
+                    <span class="languages-label">Speaks:</span>
+                    <div class="languages-list" id="partnerLanguages">
+                      <!-- Languages will be loaded here -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- About Section -->
+              <div class="partner-section">
+                <h2>About</h2>
+                <div class="partner-bio" id="partnerBio">
+                  <!-- Bio will be loaded here -->
+                </div>
+              </div>
+
+              <!-- Specialties Section -->
+              <div class="partner-section">
+                <h2>Specialties</h2>
+                <div class="specialties-grid" id="specialtiesGrid">
+                  <!-- Specialties will be loaded here -->
+                </div>
+              </div>
+
+              <!-- Experience Section -->
+              <div class="partner-section">
+                <h2>Teaching Experience</h2>
+                <div class="experience-info" id="experienceInfo">
+                  <!-- Experience will be loaded here -->
+                </div>
+              </div>
+
+              <!-- Managed Classrooms Section -->
+              <div class="partner-section">
+                <h2>Available Classrooms</h2>
+                <div class="classrooms-grid" id="managedClassrooms">
+                  <!-- Classrooms will be loaded here -->
+                </div>
+              </div>
+
+              <!-- Reviews Section -->
+              <div class="partner-section">
+                <h2>Student Reviews</h2>
+                <div id="reviewsSection">
+                  <!-- Reviews will be loaded here -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="partner-sidebar">
+              <!-- Contact Card -->
+              <div class="sidebar-card">
+                <h3>Get Started</h3>
+                <div class="session-pricing">
+                  <div class="price-display">
+                    <span class="price" id="sessionPrice">$35</span>
+                    <span class="price-period">per session</span>
+                  </div>
+                </div>
+
+                <div class="contact-actions">
+                  <button class="btn btn-primary btn-large" id="contactBtn">
+                    Contact Partner
+                  </button>
+                  <button class="btn btn-outline btn-large" id="scheduleBtn">
+                    Schedule Session
+                  </button>
+                </div>
+
+                <div class="availability-info">
+                  <h4>Availability</h4>
+                  <div class="availability-item">
+                    <span class="availability-label">Response time:</span>
+                    <span class="availability-value">Within 1 hour</span>
+                  </div>
+                  <div class="availability-item">
+                    <span class="availability-label">Time zone:</span>
+                    <span class="availability-value">JST (UTC+9)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Stats Card -->
+              <div class="sidebar-card">
+                <h3>Teaching Stats</h3>
+                <div class="stats-grid">
+                  <div class="stat-item">
+                    <div class="stat-number" id="totalStudents">150+</div>
+                    <div class="stat-label">Students Taught</div>
+                  </div>
+                  <div class="stat-item">
+                    <div class="stat-number" id="totalSessions">1,200+</div>
+                    <div class="stat-label">Sessions Completed</div>
+                  </div>
+                  <div class="stat-item">
+                    <div class="stat-number" id="responseRate">98%</div>
+                    <div class="stat-label">Response Rate</div>
+                  </div>
+                  <div class="stat-item">
+                    <div class="stat-number" id="repeatStudents">85%</div>
+                    <div class="stat-label">Repeat Students</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Achievements Card -->
+              <div class="sidebar-card">
+                <h3>Achievements</h3>
+                <div class="achievements-list">
+                  <div class="achievement-item">
+                    <div class="achievement-icon">🏆</div>
+                    <div class="achievement-text">Top Rated Partner 2024</div>
+                  </div>
+                  <div class="achievement-item">
+                    <div class="achievement-icon">✅</div>
+                    <div class="achievement-text">Verified Native Speaker</div>
+                  </div>
+                  <div class="achievement-item">
+                    <div class="achievement-icon">📜</div>
+                    <div class="achievement-text">Teaching Certification</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <div class="footer-brand">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">
+                <span class="brand-nihongo">Nihongo</span>
+                <span class="brand-sekai">Sekai</span>
+              </span>
+            </div>
+            <p class="footer-description">
+              Master Japanese with confidence through our comprehensive learning
+              platform designed for global learners.
+            </p>
+          </div>
+
+          <div class="footer-section">
+            <h3 class="footer-title">Learn</h3>
+            <ul class="footer-links">
+              <li><a href="courses.html">Courses</a></li>
+              <li><a href="classrooms.html">Live Classes</a></li>
+              <li><a href="partners.html">Partners</a></li>
+              <li><a href="pricing.html">Pricing</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3 class="footer-title">Company</h3>
+            <ul class="footer-links">
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="press.html">Press</a></li>
+              <li><a href="partners.html">Partners</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3 class="footer-title">Support</h3>
+            <ul class="footer-links">
+              <li><a href="help.html">Help Center</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+              <li><a href="community.html">Community</a></li>
+              <li><a href="blog.html">Blog</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-bottom-content">
+            <p class="footer-copyright">
+              © 2024 Nihongo Sekai. All rights reserved.
+            </p>
+            <div class="footer-bottom-links">
+              <a href="privacy.html">Privacy</a>
+              <a href="terms.html">Terms</a>
+              <a href="cookie-policy.html">Cookies</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+      // Partner Detail Page Functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get partner ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const partnerId = parseInt(urlParams.get("id")) || 1;
+
+        let partner = null;
+        let currentUser = getCurrentUser();
+
+        // Initialize page
+        loadPartnerData();
+
+        function getCurrentUser() {
+          return {
+            id: 1,
+            isLoggedIn: localStorage.getItem("user_logged_in") === "true",
+            role: localStorage.getItem("user_role") || "Learner",
+          };
+        }
+
+        async function loadPartnerData() {
+          try {
+            // Mock partner data - in real app, fetch from API
+            const partners = {
+              1: {
+                id: 1,
+                name: "Yuki Tanaka",
+                title:
+                  "Native Japanese Teacher & Business Communication Expert",
+                bio: "I'm a native Japanese speaker from Tokyo with over 8 years of teaching experience. I hold a Master's degree in Applied Linguistics and have taught students from over 30 countries. My passion is helping students not just learn Japanese, but truly understand Japanese culture and mindset. I specialize in conversational Japanese and business communication, having worked as a corporate trainer for international companies for 5 years before becoming a full-time language teacher.",
+                averageRating: 4.9,
+                totalRatings: 342,
+                isVerified: true,
+                isNative: true,
+                specialty: [
+                  "Conversation",
+                  "Business Japanese",
+                  "Cultural Studies",
+                ],
+                experience: "8 years",
+                location: "Tokyo, Japan",
+                languages: [
+                  "Japanese (Native)",
+                  "English (Fluent)",
+                  "Korean (Conversational)",
+                ],
+                sessionPrice: 35,
+                profileImage:
+                  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
+                responseTime: "Within 1 hour",
+                timezone: "JST (UTC+9)",
+                totalStudents: 150,
+                totalSessions: 1200,
+                responseRate: 98,
+                repeatStudents: 85,
+                classrooms: [
+                  {
+                    id: 1,
+                    title: "Morning Conversation Practice",
+                    description:
+                      "Daily conversation practice focusing on natural Japanese expressions and pronunciation.",
+                    schedule: "Mon, Wed, Fri 9:00 AM JST",
+                    students: "5/8",
+                    level: "Beginner to Intermediate",
+                  },
+                  {
+                    id: 3,
+                    title: "Business Japanese Workshop",
+                    description:
+                      "Professional Japanese for workplace communication, presentations, and meetings.",
+                    schedule: "Tue, Thu 7:00 PM JST",
+                    students: "6/10",
+                    level: "Intermediate to Advanced",
+                  },
+                  {
+                    id: 7,
+                    title: "Cultural Immersion Sessions",
+                    description:
+                      "Learn Japanese through cultural activities, food, and traditional practices.",
+                    schedule: "Sat 2:00 PM JST",
+                    students: "8/12",
+                    level: "All Levels",
+                  },
+                ],
+                reviews: [
+                  {
+                    id: 1,
+                    studentName: "Sarah M.",
+                    rating: 5,
+                    date: "2024-01-15",
+                    comment:
+                      "Yuki-sensei is absolutely amazing! Her teaching style is so natural and she makes complex grammar concepts easy to understand. I've improved my conversation skills dramatically in just 3 months.",
+                  },
+                  {
+                    id: 2,
+                    studentName: "Michael K.",
+                    rating: 5,
+                    date: "2024-01-10",
+                    comment:
+                      "Best Japanese teacher I've ever had. The business Japanese classes have been invaluable for my work in Japan. Highly recommend!",
+                  },
+                  {
+                    id: 3,
+                    studentName: "Emma R.",
+                    rating: 4,
+                    date: "2024-01-08",
+                    comment:
+                      "Very patient and encouraging teacher. The cultural insights she shares make learning so much more interesting and meaningful.",
+                  },
+                ],
+              },
+              2: {
+                id: 2,
+                name: "Hiroshi Sato",
+                title: "JLPT Specialist & Japanese Linguistics Expert",
+                bio: "PhD in Japanese Linguistics with 15+ years of teaching experience. JLPT preparation specialist who has helped over 500 students pass N1-N5 exams. Former university professor with innovative teaching methods.",
+                averageRating: 4.8,
+                totalRatings: 189,
+                isVerified: true,
+                isNative: true,
+                specialty: ["JLPT Preparation", "Grammar", "Academic Japanese"],
+                experience: "15 years",
+                location: "Kyoto, Japan",
+                languages: [
+                  "Japanese (Native)",
+                  "English (Fluent)",
+                  "Mandarin (Intermediate)",
+                ],
+                sessionPrice: 45,
+                profileImage:
+                  "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
+                responseTime: "Within 2 hours",
+                timezone: "JST (UTC+9)",
+                totalStudents: 200,
+                totalSessions: 1800,
+                responseRate: 95,
+                repeatStudents: 90,
+                classrooms: [
+                  {
+                    id: 2,
+                    title: "JLPT Study Group",
+                    description:
+                      "Intensive JLPT preparation covering all test sections with practice exams.",
+                    schedule: "Tue, Thu 7:00 PM JST",
+                    students: "7/10",
+                    level: "N5 to N1",
+                  },
+                ],
+                reviews: [
+                  {
+                    id: 1,
+                    studentName: "David L.",
+                    rating: 5,
+                    date: "2024-01-12",
+                    comment:
+                      "Passed JLPT N2 thanks to Hiroshi-sensei's excellent preparation methods. His explanations are incredibly detailed and helpful.",
+                  },
+                ],
+              },
+            };
+
+            partner = partners[partnerId];
+            if (!partner) {
+              showError("Partner not found");
+              return;
+            }
+
+            populatePartnerData(partner);
+            loadClassroomsData(partner);
+            loadReviewsData(partner);
+            setupContactButtons(partner);
+          } catch (error) {
+            console.error("Error loading partner:", error);
+            showError("Failed to load partner data");
+          }
+        }
+
+        function populatePartnerData(partner) {
+          // Update page title and meta
+          document.title = `${partner.name} - Nihongo Sekai`;
+
+          // Update breadcrumb
+          document.getElementById("breadcrumbPartner").textContent =
+            partner.name;
+
+          // Populate header
+          document.getElementById("partnerImage").src = partner.profileImage;
+          document.getElementById("partnerName").textContent = partner.name;
+          document.getElementById("partnerTitle").textContent = partner.title;
+          document.getElementById("partnerLocation").textContent =
+            partner.location;
+          document.getElementById("partnerRating").textContent =
+            partner.averageRating;
+          document.getElementById("ratingCount").textContent =
+            `(${partner.totalRatings} reviews)`;
+          document.getElementById("partnerStars").textContent =
+            "★".repeat(Math.floor(partner.averageRating)) +
+            (partner.averageRating % 1 >= 0.5 ? "☆" : "");
+
+          // Show verified badge if verified
+          if (partner.isVerified) {
+            document.getElementById("verifiedBadge").style.display = "block";
+          }
+
+          // Populate languages
+          const languagesHtml = partner.languages
+            .map((lang) => `<span class="language-tag">${lang}</span>`)
+            .join("");
+          document.getElementById("partnerLanguages").innerHTML = languagesHtml;
+
+          // Populate bio
+          document.getElementById("partnerBio").textContent = partner.bio;
+
+          // Populate specialties
+          const specialtiesHtml = partner.specialty
+            .map(
+              (spec) => `
+            <div class="specialty-card">
+              <div class="specialty-icon">${getSpecialtyIcon(spec)}</div>
+              <div class="specialty-name">${spec}</div>
+            </div>
+          `,
+            )
+            .join("");
+          document.getElementById("specialtiesGrid").innerHTML =
+            specialtiesHtml;
+
+          // Populate experience
+          document.getElementById("experienceInfo").innerHTML = `
+            <div class="experience-highlight">
+              <span class="experience-years">${partner.experience}</span>
+              <span class="experience-label">of teaching experience</span>
+            </div>
+            <p>Specializing in ${partner.specialty.join(", ").toLowerCase()} with proven track record of student success.</p>
+          `;
+
+          // Populate sidebar stats
+          document.getElementById("sessionPrice").textContent =
+            `$${partner.sessionPrice}`;
+          document.getElementById("totalStudents").textContent =
+            `${partner.totalStudents}+`;
+          document.getElementById("totalSessions").textContent =
+            `${partner.totalSessions}+`;
+          document.getElementById("responseRate").textContent =
+            `${partner.responseRate}%`;
+          document.getElementById("repeatStudents").textContent =
+            `${partner.repeatStudents}%`;
+        }
+
+        function getSpecialtyIcon(specialty) {
+          const icons = {
+            Conversation: "💬",
+            "Business Japanese": "💼",
+            "Cultural Studies": "🎎",
+            "JLPT Preparation": "📝",
+            Grammar: "📚",
+            "Academic Japanese": "🎓",
+          };
+          return icons[specialty] || "📖";
+        }
+
+        function loadClassroomsData(partner) {
+          const classroomsHtml = partner.classrooms
+            .map(
+              (classroom) => `
+            <div class="classroom-card">
+              <div class="classroom-header">
+                <h4 class="classroom-title">${classroom.title}</h4>
+                <div class="classroom-level">${classroom.level}</div>
+              </div>
+              <p class="classroom-description">${classroom.description}</p>
+              <div class="classroom-details">
+                <div class="classroom-schedule">
+                  <span class="detail-icon">🕒</span>
+                  <span>${classroom.schedule}</span>
+                </div>
+                <div class="classroom-students">
+                  <span class="detail-icon">👥</span>
+                  <span>${classroom.students} students</span>
+                </div>
+              </div>
+              <div class="classroom-actions">
+                <a href="classroom-detail.html?id=${classroom.id}" class="btn btn-outline">View Classroom</a>
+              </div>
+            </div>
+          `,
+            )
+            .join("");
+
+          document.getElementById("managedClassrooms").innerHTML =
+            classroomsHtml;
+        }
+
+        function loadReviewsData(partner) {
+          const reviewsHtml = partner.reviews
+            .map(
+              (review) => `
+            <div class="review-item">
+              <div class="review-header">
+                <div class="reviewer-info">
+                  <div class="reviewer-avatar">${review.studentName
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")}</div>
+                  <div>
+                    <div class="reviewer-name">${review.studentName}</div>
+                    <div class="review-date">${new Date(review.date).toLocaleDateString()}</div>
+                  </div>
+                </div>
+                <div class="review-rating">${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}</div>
+              </div>
+              <div class="review-content">${review.comment}</div>
+            </div>
+          `,
+            )
+            .join("");
+
+          document.getElementById("reviewsSection").innerHTML = reviewsHtml;
+        }
+
+        function setupContactButtons(partner) {
+          const contactBtn = document.getElementById("contactBtn");
+          const scheduleBtn = document.getElementById("scheduleBtn");
+
+          contactBtn.addEventListener("click", () => {
+            if (!currentUser.isLoggedIn) {
+              window.location.href = "login.html";
+              return;
+            }
+            alert(
+              `Contact feature for ${partner.name} would be implemented here.`,
+            );
+          });
+
+          scheduleBtn.addEventListener("click", () => {
+            if (!currentUser.isLoggedIn) {
+              window.location.href = "login.html";
+              return;
+            }
+            alert(
+              `Schedule session with ${partner.name} would be implemented here.`,
+            );
+          });
+        }
+
+        function showError(message) {
+          document.getElementById("partnerName").textContent = "Error";
+          console.error(message);
+        }
+      });
+    </script>
+  </body>
+</html>

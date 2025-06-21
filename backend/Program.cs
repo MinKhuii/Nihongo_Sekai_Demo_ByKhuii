@@ -1,100 +1,105 @@
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using BuilderNihongoSekai.Api.Data;
-using BuilderNihongoSekai.Api.Models;
-using BuilderNihongoSekai.Api.Services;
-using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Serilog;
-using System.Reflection;
+using NihongoSekai.Data;
+using NihongoSekai.Services;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configure Serilog
-Log.Logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(builder.Configuration)
-    .CreateLogger();
+// Add services to the container.
+builder.Services.AddControllers();
 
-builder.Host.UseSerilog();
-
-// Add services to the container
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+// Configure Entity Framework with SQL Server
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Configure ASP.NET Identity
-builder.Services.AddIdentity<Account, IdentityRole<int>>(options =>
+// Configure JWT Authentication
+var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+var secretKey = jwtSettings["SecretKey"] ?? throw new ArgumentException("JWT SecretKey is required");
+
+builder.Services.AddAuthentication(options =>
 {
-    options.Password.RequireDigit = true;
-    options.Password.RequireUppercase = true;
-    options.Password.RequiredLength = 6;
-    options.Password.RequireNonAlphanumeric = false;
-    
-    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
-    options.Lockout.MaxFailedAccessAttempts = 5;
-    options.Lockout.AllowedForNewUsers = true;
-    
-    options.User.RequireUniqueEmail = true;
-    options.SignIn.RequireConfirmedEmail = false;
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
-.AddEntityFrameworkStores<AppDbContext>()
-.AddDefaultTokenProviders();
-
-// Configure Google Authentication
-builder.Services.AddAuthentication()
-    .AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
     {
-        options.ClientId = builder.Configuration["Google:ClientId"] ?? "";
-        options.ClientSecret = builder.Configuration["Google:ClientSecret"] ?? "";
-        options.SaveTokens = true;
-        options.Scope.Add("https://www.googleapis.com/auth/calendar");
-        options.Scope.Add("https://www.googleapis.com/auth/calendar.events");
-    });
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = jwtSettings["Issuer"],
+        ValidAudience = jwtSettings["Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
+        ClockSkew = TimeSpan.Zero
+    };
 
-// Configure CORS for frontend
+    // Configure JWT for SignalR (if needed later)
+    options.Events = new JwtBearerEvents
+    {
+        OnMessageReceived = context =>
+        {
+            var accessToken = context.Request.Query["access_token"];
+            var path = context.HttpContext.Request.Path;
+            
+            if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/hubs"))
+            {
+                context.Token = accessToken;
+            }
+            return Task.CompletedTask;
+        }
+    };
+});
+
+// Add Authorization
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("TeacherOnly", policy => policy.RequireRole("Partner"));
+    options.AddPolicy("StudentOnly", policy => policy.RequireRole("Learner"));
+    options.AddPolicy("TeacherOrAdmin", policy => policy.RequireRole("Partner", "Admin"));
+});
+
+// Configure CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:5173", "https://localhost:5173", "http://localhost:3000")
-              .AllowAnyHeader()
-              .AllowAnyMethod()
-              .AllowCredentials();
+        policy.WithOrigins(
+            "http://localhost:3000",
+            "http://localhost:5173",
+            "https://localhost:3000",
+            "https://localhost:5173"
+        )
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials();
     });
 });
 
-// Configure Builder.io options
-builder.Services.Configure<BuilderIoOptions>(
-    builder.Configuration.GetSection(BuilderIoOptions.SectionName));
-
-// Add controllers and API services
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
+// Register application services
+builder.Services.AddScoped<IVideoCallService, VideoCallService>();
+builder.Services.AddHttpClient<IVideoCallService, VideoCallService>();
 
 // Configure Swagger/OpenAPI
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Title = "Nihongo Sekai API",
+    c.SwaggerDoc("v1", new OpenApiInfo 
+    { 
+        Title = "Nihongo Sekai API", 
         Version = "v1",
-        Description = "API for Japanese Communication & Culture Learning Platform",
-        Contact = new OpenApiContact
-        {
-            Name = "Nihongo Sekai Team",
-            Email = "api@nihongosekai.com"
-        }
+        Description = "Japanese Learning Platform API with Video Call Integration"
     });
 
-    // Include XML comments
-    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-    c.IncludeXmlComments(xmlPath);
-
-    // Configure JWT Bearer token
+    // Configure JWT authentication in Swagger
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
-        Description = "JWT Authorization header using the Bearer scheme.",
+        Description = "JWT Authorization header using the Bearer scheme. Enter 'Bearer' [space] and then your token in the text input below.",
         Name = "Authorization",
         In = ParameterLocation.Header,
         Type = SecuritySchemeType.ApiKey,
@@ -112,81 +117,129 @@ builder.Services.AddSwaggerGen(c =>
                     Id = "Bearer"
                 }
             },
-            Array.Empty<string>()
+            new string[] {}
         }
     });
-
-    // Enable annotations
-    c.EnableAnnotations();
 });
 
-// Add HttpClient for Builder.io
-builder.Services.AddHttpClient<IBuilderIoClientService, BuilderIoClientService>(client =>
+// Configure logging
+builder.Services.AddLogging(logging =>
 {
-    client.Timeout = TimeSpan.FromSeconds(30);
-    client.DefaultRequestHeaders.Add("User-Agent", "BuilderNihongoSekai/1.0");
+    logging.ClearProviders();
+    logging.AddConsole();
+    logging.AddDebug();
+    
+    if (builder.Environment.IsProduction())
+    {
+        logging.AddEventLog();
+    }
 });
 
-// Register custom services
-builder.Services.AddScoped<IBuilderIoClientService, BuilderIoClientService>();
-builder.Services.AddScoped<IGoogleService, GoogleService>();
-builder.Services.AddScoped<ICourseService, CourseService>();
-builder.Services.AddScoped<IClassroomService, ClassroomService>();
-builder.Services.AddScoped<ITeacherService, TeacherService>();
-
-// Add memory cache and response compression
-builder.Services.AddMemoryCache();
-builder.Services.AddResponseCompression(options =>
+// Configure JSON options
+builder.Services.ConfigureHttpJsonOptions(options =>
 {
-    options.EnableForHttps = true;
+    options.SerializerOptions.PropertyNameCaseInsensitive = true;
+    options.SerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
 });
-builder.Services.AddResponseCaching();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline
+// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Nihongo Sekai API V1");
-        c.RoutePrefix = "api/docs";
+        c.RoutePrefix = "api-docs";
     });
 }
 
+// Security headers
+app.Use((context, next) =>
+{
+    context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
+    context.Response.Headers.Add("X-Frame-Options", "DENY");
+    context.Response.Headers.Add("X-XSS-Protection", "1; mode=block");
+    context.Response.Headers.Add("Referrer-Policy", "strict-origin-when-cross-origin");
+    
+    if (app.Environment.IsProduction())
+    {
+        context.Response.Headers.Add("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+    }
+    
+    return next();
+});
+
 app.UseHttpsRedirection();
-app.UseStaticFiles();
 
-app.UseResponseCompression();
-app.UseResponseCaching();
-
+// Enable CORS
 app.UseCors("AllowFrontend");
 
-app.UseRouting();
-
+// Authentication & Authorization
 app.UseAuthentication();
 app.UseAuthorization();
 
+// Global exception handling
+app.UseExceptionHandler(errorApp =>
+{
+    errorApp.Run(async context =>
+    {
+        context.Response.StatusCode = 500;
+        context.Response.ContentType = "application/json";
+        
+        var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
+        logger.LogError("Unhandled exception occurred");
+        
+        await context.Response.WriteAsync(System.Text.Json.JsonSerializer.Serialize(new
+        {
+            message = "An internal server error occurred",
+            timestamp = DateTime.UtcNow
+        }));
+    });
+});
+
+// Map controllers
 app.MapControllers();
 
-// Serve frontend in production
-if (!app.Environment.IsDevelopment())
+// Health check endpoint
+app.MapGet("/api/health", () => new
 {
-    app.MapFallbackToFile("index.html");
-}
+    status = "healthy",
+    timestamp = DateTime.UtcNow,
+    environment = app.Environment.EnvironmentName,
+    version = "1.0.0"
+});
 
-// Initialize database
-try
+// Database initialization
+using (var scope = app.Services.CreateScope())
 {
-    await AppDbInitializer.InitializeAsync(app.Services);
-}
-catch (Exception ex)
-{
-    var logger = app.Services.GetRequiredService<ILogger<Program>>();
-    logger.LogError(ex, "An error occurred while initializing the database.");
+    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+    
+    try
+    {
+        // Ensure database is created and migrations are applied
+        if (app.Environment.IsDevelopment())
+        {
+            await context.Database.EnsureCreatedAsync();
+            logger.LogInformation("Database initialized successfully");
+        }
+        else
+        {
+            // In production, use migrations
+            await context.Database.MigrateAsync();
+            logger.LogInformation("Database migrations applied successfully");
+        }
+    }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, "An error occurred while initializing the database");
+        throw;
+    }
 }
 
 app.Run();
 
+// Make the implicit Program class public for testing
 public partial class Program { }

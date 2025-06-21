@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verify Code - Nihongo Sekai</title>
+    <meta
+      name="description"
+      content="Enter the verification code sent to your email to reset your password."
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎌</text></svg>"
+    />
+  </head>
+  <body class="otp-page">
+    <!-- Main Content -->
+    <main>
+      <div class="otp-card">
+        <div class="otp-header">
+          <div class="auth-brand">
+            <span class="brand-icon">日</span>
+            <span class="brand-text">Nihongo Sekai</span>
+          </div>
+          <h1 class="otp-title">Verify Your Email</h1>
+          <p class="otp-subtitle">
+            We've sent a 4-digit verification code to<br />
+            <span class="otp-email" id="userEmail">your email</span>
+          </p>
+        </div>
+
+        <!-- Error/Success Messages -->
+        <div id="authMessage" style="display: none"></div>
+
+        <!-- 4-Box OTP Input -->
+        <form id="otpForm">
+          <div class="otp-input-group">
+            <input
+              type="text"
+              class="otp-input"
+              id="otp1"
+              maxlength="1"
+              pattern="[0-9]"
+              inputmode="numeric"
+              autocomplete="one-time-code"
+            />
+            <input
+              type="text"
+              class="otp-input"
+              id="otp2"
+              maxlength="1"
+              pattern="[0-9]"
+              inputmode="numeric"
+              autocomplete="one-time-code"
+            />
+            <input
+              type="text"
+              class="otp-input"
+              id="otp3"
+              maxlength="1"
+              pattern="[0-9]"
+              inputmode="numeric"
+              autocomplete="one-time-code"
+            />
+            <input
+              type="text"
+              class="otp-input"
+              id="otp4"
+              maxlength="1"
+              pattern="[0-9]"
+              inputmode="numeric"
+              autocomplete="one-time-code"
+            />
+          </div>
+
+          <!-- Countdown Timer -->
+          <div class="otp-countdown">
+            <div class="countdown-text">Code expires in</div>
+            <div class="countdown-timer" id="countdownTimer">05:00</div>
+          </div>
+
+          <button type="submit" class="auth-button" id="verifyButton">
+            <span id="verifyButtonText">Verify Code</span>
+            <div id="verifySpinner" class="spinner" style="display: none"></div>
+          </button>
+        </form>
+
+        <!-- Resend Section -->
+        <div class="resend-section">
+          <p>Didn't receive the code?</p>
+          <button
+            type="button"
+            class="resend-button"
+            id="resendButton"
+            disabled
+          >
+            Resend Code
+          </button>
+        </div>
+
+        <!-- Back Link -->
+        <div style="text-align: center; margin-top: var(--spacing-xl)">
+          <a href="forgot-password.html" class="auth-link">
+            ← Back to password reset
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+      // OTP Verification Functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        const otpForm = document.getElementById("otpForm");
+        const verifyButton = document.getElementById("verifyButton");
+        const verifyButtonText = document.getElementById("verifyButtonText");
+        const verifySpinner = document.getElementById("verifySpinner");
+        const authMessage = document.getElementById("authMessage");
+        const resendButton = document.getElementById("resendButton");
+        const countdownTimer = document.getElementById("countdownTimer");
+        const userEmailSpan = document.getElementById("userEmail");
+
+        // Get email from session storage
+        const userEmail = sessionStorage.getItem("reset_email");
+        if (!userEmail) {
+          // Redirect back if no email in session
+          window.location.href = "forgot-password.html";
+          return;
+        }
+
+        userEmailSpan.textContent = userEmail;
+
+        // OTP inputs
+        const otpInputs = [
+          document.getElementById("otp1"),
+          document.getElementById("otp2"),
+          document.getElementById("otp3"),
+          document.getElementById("otp4"),
+        ];
+
+        // Countdown variables
+        let timeLeft = 300; // 5 minutes in seconds
+        let countdownInterval;
+
+        // Initialize
+        setupOTPInputs();
+        startCountdown();
+
+        // Handle form submission
+        otpForm.addEventListener("submit", handleVerifyOTP);
+
+        function setupOTPInputs() {
+          otpInputs.forEach((input, index) => {
+            // Auto-move to next input
+            input.addEventListener("input", (e) => {
+              const value = e.target.value;
+
+              // Only allow numbers
+              if (!/^\d$/.test(value) && value !== "") {
+                e.target.value = "";
+                return;
+              }
+
+              // Move to next input if value is entered
+              if (value && index < otpInputs.length - 1) {
+                otpInputs[index + 1].focus();
+              }
+
+              // Add filled class for styling
+              if (value) {
+                input.classList.add("filled");
+              } else {
+                input.classList.remove("filled");
+              }
+
+              // Check if all inputs are filled
+              checkAllInputsFilled();
+            });
+
+            // Handle backspace
+            input.addEventListener("keydown", (e) => {
+              if (e.key === "Backspace" && !input.value && index > 0) {
+                otpInputs[index - 1].focus();
+                otpInputs[index - 1].value = "";
+                otpInputs[index - 1].classList.remove("filled");
+              }
+            });
+
+            // Handle paste
+            input.addEventListener("paste", (e) => {
+              e.preventDefault();
+              const pastedData = e.clipboardData.getData("text");
+              const digits = pastedData.replace(/\D/g, "").slice(0, 4);
+
+              digits.split("").forEach((digit, i) => {
+                if (otpInputs[i]) {
+                  otpInputs[i].value = digit;
+                  otpInputs[i].classList.add("filled");
+                }
+              });
+
+              // Focus on the last filled input or first empty input
+              const lastIndex = Math.min(digits.length - 1, 3);
+              otpInputs[lastIndex].focus();
+
+              checkAllInputsFilled();
+            });
+          });
+
+          // Focus first input
+          otpInputs[0].focus();
+        }
+
+        function checkAllInputsFilled() {
+          const allFilled = otpInputs.every((input) => input.value !== "");
+          verifyButton.disabled = !allFilled;
+        }
+
+        function startCountdown() {
+          updateCountdownDisplay();
+
+          countdownInterval = setInterval(() => {
+            timeLeft--;
+            updateCountdownDisplay();
+
+            if (timeLeft <= 0) {
+              clearInterval(countdownInterval);
+              handleCountdownExpired();
+            }
+          }, 1000);
+        }
+
+        function updateCountdownDisplay() {
+          const minutes = Math.floor(timeLeft / 60);
+          const seconds = timeLeft % 60;
+          const display = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+
+          countdownTimer.textContent = display;
+
+          if (timeLeft <= 30) {
+            countdownTimer.classList.add("expired");
+          }
+        }
+
+        function handleCountdownExpired() {
+          countdownTimer.textContent = "Expired";
+          countdownTimer.classList.add("expired");
+          resendButton.disabled = false;
+
+          // Disable OTP inputs
+          otpInputs.forEach((input) => {
+            input.disabled = true;
+            input.classList.add("error");
+          });
+
+          verifyButton.disabled = true;
+          showMessage(
+            "Verification code has expired. Please request a new one.",
+            "error",
+          );
+        }
+
+        async function handleVerifyOTP(e) {
+          e.preventDefault();
+
+          const otp = otpInputs.map((input) => input.value).join("");
+
+          if (otp.length !== 4) {
+            showMessage("Please enter the complete 4-digit code", "error");
+            return;
+          }
+
+          // Show loading state
+          setLoadingState(true);
+
+          try {
+            // Simulate API call - in real app, make actual API request
+            const response = await mockVerifyOTPAPI(userEmail, otp);
+
+            if (response.success) {
+              showMessage(
+                "Code verified successfully! Redirecting...",
+                "success",
+              );
+
+              // Store verification token for password reset
+              sessionStorage.setItem("reset_token", response.token);
+
+              // Redirect to reset password page
+              setTimeout(() => {
+                window.location.href = "reset-password.html";
+              }, 2000);
+            } else {
+              showMessage(
+                response.message || "Invalid verification code",
+                "error",
+              );
+
+              // Add error styling to inputs
+              otpInputs.forEach((input) => {
+                input.classList.add("error");
+                setTimeout(() => {
+                  input.classList.remove("error");
+                }, 500);
+              });
+
+              // Clear inputs and focus first one
+              otpInputs.forEach((input) => {
+                input.value = "";
+                input.classList.remove("filled");
+              });
+              otpInputs[0].focus();
+            }
+          } catch (error) {
+            console.error("OTP verification error:", error);
+            showMessage("An error occurred. Please try again.", "error");
+          } finally {
+            setLoadingState(false);
+          }
+        }
+
+        async function mockVerifyOTPAPI(email, otp) {
+          // Simulate API delay
+          await new Promise((resolve) => setTimeout(resolve, 1500));
+
+          // Mock verification - accept 1234 as valid OTP
+          if (otp === "1234") {
+            return {
+              success: true,
+              token: "reset_token_" + Date.now(),
+            };
+          }
+
+          return {
+            success: false,
+            message: "Invalid verification code. Please try again.",
+          };
+        }
+
+        // Resend OTP functionality
+        resendButton.addEventListener("click", async () => {
+          setResendLoading(true);
+
+          try {
+            // Simulate API call to resend OTP
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+
+            showMessage("New verification code sent to your email", "success");
+
+            // Reset countdown
+            clearInterval(countdownInterval);
+            timeLeft = 300;
+            countdownTimer.classList.remove("expired");
+            resendButton.disabled = true;
+
+            // Re-enable inputs
+            otpInputs.forEach((input) => {
+              input.disabled = false;
+              input.classList.remove("error");
+              input.value = "";
+              input.classList.remove("filled");
+            });
+
+            verifyButton.disabled = true;
+            otpInputs[0].focus();
+
+            startCountdown();
+          } catch (error) {
+            showMessage("Failed to resend code. Please try again.", "error");
+          } finally {
+            setResendLoading(false);
+          }
+        });
+
+        function setLoadingState(loading) {
+          verifyButton.disabled = loading;
+          if (loading) {
+            verifyButton.classList.add("loading");
+            verifyButtonText.style.display = "none";
+            verifySpinner.style.display = "block";
+          } else {
+            verifyButton.classList.remove("loading");
+            verifyButtonText.style.display = "block";
+            verifySpinner.style.display = "none";
+          }
+        }
+
+        function setResendLoading(loading) {
+          resendButton.disabled = loading;
+          resendButton.textContent = loading ? "Sending..." : "Resend Code";
+        }
+
+        function showMessage(message, type) {
+          authMessage.className = `auth-message ${type}`;
+          authMessage.innerHTML = `
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              ${getMessageIcon(type)}
+            </svg>
+            ${message}
+          `;
+          authMessage.style.display = "flex";
+
+          // Auto-hide success messages
+          if (type === "success") {
+            setTimeout(() => {
+              authMessage.style.display = "none";
+            }, 3000);
+          }
+        }
+
+        function getMessageIcon(type) {
+          switch (type) {
+            case "success":
+              return '<polyline points="20,6 9,17 4,12"></polyline>';
+            case "error":
+              return '<circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line>';
+            case "warning":
+              return '<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line>';
+            default:
+              return '<circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path>';
+          }
+        }
+
+        // Demo message
+        setTimeout(() => {
+          showMessage("Demo: Enter '1234' as the verification code", "warning");
+        }, 1000);
+
+        // Cleanup on page unload
+        window.addEventListener("beforeunload", () => {
+          if (countdownInterval) {
+            clearInterval(countdownInterval);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
