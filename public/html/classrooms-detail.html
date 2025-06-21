@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Classroom Details - Nihongo Sekai</title>
+    <meta
+      name="description"
+      content="Join this live Japanese classroom with expert instruction and interactive learning experience."
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../css/global.css" />
+    <!-- Page-specific CSS -->
+    <link rel="stylesheet" href="../css/classrooms-detail.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎌</text></svg>"
+    />
+  </head>
+  <body class="classroom-detail-page">
+    <!-- Navigation Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="nav-brand">
+            <a href="index.html" class="brand-link">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">
+                <span class="brand-nihongo">Nihongo</span>
+                <span class="brand-sekai">Sekai</span>
+              </span>
+            </a>
+          </div>
+
+          <div class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+              <li><a href="index.html" class="nav-link">Home</a></li>
+              <li><a href="courses.html" class="nav-link">Courses</a></li>
+              <li>
+                <a href="classrooms.html" class="nav-link active">Classrooms</a>
+              </li>
+              <li><a href="partners.html" class="nav-link">Partners</a></li>
+              <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+          </div>
+
+          <div class="nav-actions">
+            <a href="login.html" class="btn btn-outline">Sign In</a>
+            <a href="register.html" class="btn btn-primary">Get Started</a>
+          </div>
+
+          <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Section -->
+      <section class="classroom-hero">
+        <div class="hero-background"></div>
+        <div class="container">
+          <div class="hero-content">
+            <!-- Content will be populated by JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Content Section -->
+      <section class="classroom-content">
+        <div class="container">
+          <div class="content-grid">
+            <!-- Main Content Area -->
+            <div class="main-content">
+              <!-- Content Tabs -->
+              <div class="content-tabs">
+                <button class="tab-button active" data-tab="overview">
+                  Overview
+                </button>
+                <button class="tab-button" data-tab="schedule">Schedule</button>
+                <button class="tab-button" data-tab="instructor">
+                  Instructor
+                </button>
+              </div>
+
+              <!-- Tab Panels -->
+              <div class="tab-content">
+                <!-- Overview Tab -->
+                <div id="overview" class="tab-panel active">
+                  <!-- Content will be populated by JavaScript -->
+                </div>
+
+                <!-- Schedule Tab -->
+                <div id="schedule" class="tab-panel">
+                  <!-- Content will be populated by JavaScript -->
+                </div>
+
+                <!-- Instructor Tab -->
+                <div id="instructor" class="tab-panel">
+                  <div
+                    style="
+                      text-align: center;
+                      padding: var(--spacing-2xl);
+                      color: var(--color-gray-600);
+                    "
+                  >
+                    <p>Instructor details are shown in the sidebar.</p>
+                    <p>
+                      This tab can be expanded with additional instructor
+                      information, teaching philosophy, qualifications, etc.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+              <!-- Content will be populated by JavaScript -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Join Confirmation Modal -->
+    <div class="join-modal" id="joinModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-icon">🎓</div>
+          <h3 class="modal-title">Join Classroom</h3>
+          <p class="modal-subtitle">Ready to start your learning journey?</p>
+        </div>
+        <div class="modal-body">
+          <!-- Content will be populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <div class="footer-brand">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">Nihongo Sekai</span>
+            </div>
+            <p>
+              Master Japanese through immersive learning experiences with native
+              speakers.
+            </p>
+          </div>
+
+          <div class="footer-section">
+            <h4>Learn</h4>
+            <ul>
+              <li><a href="courses.html">Courses</a></li>
+              <li><a href="classrooms.html">Live Classes</a></li>
+              <li><a href="partners.html">Find a Teacher</a></li>
+              <li><a href="pricing.html">Pricing</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="press.html">Press</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4>Support</h4>
+            <ul>
+              <li><a href="help.html">Help Center</a></li>
+              <li><a href="community.html">Community</a></li>
+              <li><a href="privacy.html">Privacy Policy</a></li>
+              <li><a href="terms.html">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2024 Nihongo Sekai. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/global.js"></script>
+    <script src="../js/classrooms-detail.js"></script>
+  </body>
+</html>

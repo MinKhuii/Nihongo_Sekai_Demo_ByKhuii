@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live Japanese Classrooms - Nihongo Sekai</title>
+    <meta
+      name="description"
+      content="Join live Japanese language classes with certified teachers. Interactive learning experience with video calls and real-time instruction."
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../css/global.css" />
+    <!-- Page-specific CSS -->
+    <link rel="stylesheet" href="../css/classrooms.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎌</text></svg>"
+    />
+  </head>
+  <body class="classrooms-page">
+    <!-- Navigation Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="nav-brand">
+            <a href="index.html" class="brand-link">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">
+                <span class="brand-nihongo">Nihongo</span>
+                <span class="brand-sekai">Sekai</span>
+              </span>
+            </a>
+          </div>
+
+          <div class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+              <li><a href="index.html" class="nav-link">Home</a></li>
+              <li><a href="courses.html" class="nav-link">Courses</a></li>
+              <li>
+                <a href="classrooms.html" class="nav-link active">Classrooms</a>
+              </li>
+              <li><a href="partners.html" class="nav-link">Partners</a></li>
+              <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+          </div>
+
+          <div class="nav-actions">
+            <a href="login.html" class="btn btn-outline">Sign In</a>
+            <a href="register.html" class="btn btn-primary">Get Started</a>
+          </div>
+
+          <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Enhanced Hero Section -->
+      <section class="enhanced-hero">
+        <div class="sakura-container" id="sakuraContainer"></div>
+        <div class="container">
+          <div class="enhanced-hero-content">
+            <h1 class="enhanced-hero-title">Live Japanese Classrooms</h1>
+            <p class="enhanced-hero-subtitle">
+              Join interactive live sessions with certified native speakers.
+              Practice real conversation, get instant feedback, and learn with
+              fellow students from around the world.
+            </p>
+            <div class="enhanced-hero-stats">
+              <div class="enhanced-stat">
+                <span class="enhanced-stat-number">5</span>
+                <span class="enhanced-stat-label">Live Sessions</span>
+              </div>
+              <div class="enhanced-stat">
+                <span class="enhanced-stat-number">50+</span>
+                <span class="enhanced-stat-label">Active Students</span>
+              </div>
+              <div class="enhanced-stat">
+                <span class="enhanced-stat-number">15</span>
+                <span class="enhanced-stat-label">Hours Weekly</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Filters Section -->
+      <section class="classrooms-filters">
+        <div class="container">
+          <div class="filters-container">
+            <div class="filters-group">
+              <select id="levelFilter" class="filter-select">
+                <option value="">All Levels</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Elementary">Elementary</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+                <option value="All Levels">All Levels</option>
+              </select>
+
+              <select id="statusFilter" class="filter-select">
+                <option value="">All Status</option>
+                <option value="live">Live Now</option>
+                <option value="upcoming">Upcoming</option>
+                <option value="full">Full</option>
+              </select>
+
+              <select id="timeFilter" class="filter-select">
+                <option value="">Any Time</option>
+                <option value="morning">Morning (6-12)</option>
+                <option value="afternoon">Afternoon (12-18)</option>
+                <option value="evening">Evening (18-24)</option>
+              </select>
+            </div>
+
+            <div class="search-container">
+              <svg
+                class="search-icon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+              </svg>
+              <input
+                type="text"
+                id="classroomSearch"
+                class="search-input"
+                placeholder="Search classrooms, instructors, or topics..."
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Classrooms Grid Section -->
+      <section class="classrooms-section">
+        <div class="container">
+          <div class="classrooms-grid" id="classroomsGrid">
+            <!-- Classrooms will be populated by JavaScript -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <div class="footer-brand">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">Nihongo Sekai</span>
+            </div>
+            <p>
+              Master Japanese through immersive learning experiences with native
+              speakers.
+            </p>
+          </div>
+
+          <div class="footer-section">
+            <h4>Learn</h4>
+            <ul>
+              <li><a href="courses.html">Courses</a></li>
+              <li><a href="classrooms.html">Live Classes</a></li>
+              <li><a href="partners.html">Find a Teacher</a></li>
+              <li><a href="pricing.html">Pricing</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="press.html">Press</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4>Support</h4>
+            <ul>
+              <li><a href="help.html">Help Center</a></li>
+              <li><a href="community.html">Community</a></li>
+              <li><a href="privacy.html">Privacy Policy</a></li>
+              <li><a href="terms.html">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2024 Nihongo Sekai. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/global.js"></script>
+    <script src="../js/classrooms.js"></script>
+  </body>
+</html>

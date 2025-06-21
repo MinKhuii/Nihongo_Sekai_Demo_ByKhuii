@@ -1,0 +1,775 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Profile - Nihongo Sekai Partner</title>
+    <meta
+      name="description"
+      content="Manage your teaching profile and credentials"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../css/global.css" />
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="../css/dashboard.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎌</text></svg>"
+    />
+  </head>
+  <body>
+    <!-- Navigation Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="nav-brand">
+            <a href="index.html" class="brand-link">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">
+                <span class="brand-nihongo">Nihongo</span>
+                <span class="brand-sekai">Sekai</span>
+              </span>
+            </a>
+          </div>
+
+          <div class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+              <li><a href="index.html" class="nav-link">Home</a></li>
+              <li><a href="courses.html" class="nav-link">Courses</a></li>
+              <li><a href="classrooms.html" class="nav-link">Classrooms</a></li>
+              <li><a href="partners.html" class="nav-link">Partners</a></li>
+              <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+          </div>
+
+          <div class="nav-actions">
+            <!-- Profile dropdown will be inserted here by JavaScript -->
+          </div>
+
+          <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Profile Content -->
+    <main class="dashboard-layout">
+      <div class="dashboard-container">
+        <!-- Dashboard Header -->
+        <div class="dashboard-header fade-in">
+          <h1 class="dashboard-title">Teaching Profile</h1>
+          <p class="dashboard-subtitle">
+            Manage your teaching profile and credentials
+          </p>
+        </div>
+
+        <div class="dashboard-grid">
+          <!-- Profile Information -->
+          <div class="dashboard-card fade-in delay-1">
+            <div class="card-header">
+              <div class="card-icon">👨‍🏫</div>
+              <h3 class="card-title">Profile Information</h3>
+            </div>
+
+            <form id="profileForm" class="profile-form">
+              <!-- Avatar Upload -->
+              <div class="form-group">
+                <label class="form-label">Profile Picture</label>
+                <div class="avatar-upload-container">
+                  <div class="current-avatar" id="currentAvatar">
+                    <span class="avatar-placeholder">PS</span>
+                  </div>
+                  <div class="avatar-upload-controls">
+                    <input
+                      type="file"
+                      id="avatarInput"
+                      accept="image/*"
+                      style="display: none"
+                    />
+                    <button
+                      type="button"
+                      class="btn btn-outline"
+                      onclick="document.getElementById('avatarInput').click()"
+                    >
+                      Change Photo
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      onclick="removeAvatar()"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Basic Information -->
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName" class="form-label">First Name</label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    class="form-input"
+                    value="Partner"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="lastName" class="form-label">Last Name</label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    class="form-input"
+                    value="Sensei"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="email" class="form-label">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  class="form-input"
+                  value="partner@nihongosekai.com"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="bio" class="form-label">Teaching Bio</label>
+                <textarea
+                  id="bio"
+                  class="form-input form-textarea"
+                  placeholder="Describe your teaching experience and approach..."
+                >
+Native Japanese speaker with 8+ years of teaching experience. Specialized in conversational Japanese and business communication. Passionate about helping students achieve fluency through engaging and practical lessons.</textarea
+                >
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="location" class="form-label">Location</label>
+                  <input
+                    type="text"
+                    id="location"
+                    class="form-input"
+                    value="Tokyo, Japan"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="timezone" class="form-label">Timezone</label>
+                  <select id="timezone" class="form-input">
+                    <option value="Asia/Tokyo" selected>
+                      Japan Standard Time (JST)
+                    </option>
+                    <option value="America/New_York">Eastern Time (ET)</option>
+                    <option value="America/Chicago">Central Time (CT)</option>
+                    <option value="America/Denver">Mountain Time (MT)</option>
+                    <option value="America/Los_Angeles">
+                      Pacific Time (PT)
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary">
+                Save Changes
+              </button>
+            </form>
+          </div>
+
+          <!-- Teaching Stats -->
+          <div class="dashboard-card fade-in delay-2">
+            <div class="card-header">
+              <div class="card-icon">📊</div>
+              <h3 class="card-title">Teaching Statistics</h3>
+            </div>
+
+            <div class="stats-grid">
+              <div class="stat-item">
+                <div class="stat-value">156</div>
+                <div class="stat-label">Hours Taught</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">24</div>
+                <div class="stat-label">Active Students</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">4.9</div>
+                <div class="stat-label">Average Rating</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">89</div>
+                <div class="stat-label">Total Reviews</div>
+              </div>
+            </div>
+
+            <div class="rating-breakdown">
+              <h4>Rating Breakdown</h4>
+              <div class="rating-bars">
+                <div class="rating-bar">
+                  <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                  <div class="progress-container">
+                    <div class="progress-bar" data-width="85%"></div>
+                  </div>
+                  <span class="rating-count">76</span>
+                </div>
+                <div class="rating-bar">
+                  <span class="rating-stars">⭐⭐⭐⭐</span>
+                  <div class="progress-container">
+                    <div class="progress-bar" data-width="12%"></div>
+                  </div>
+                  <span class="rating-count">11</span>
+                </div>
+                <div class="rating-bar">
+                  <span class="rating-stars">⭐⭐⭐</span>
+                  <div class="progress-container">
+                    <div class="progress-bar" data-width="3%"></div>
+                  </div>
+                  <span class="rating-count">2</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Teaching Credentials & Specializations -->
+        <div class="dashboard-grid">
+          <div class="dashboard-card fade-in delay-3">
+            <div class="card-header">
+              <div class="card-icon">🎓</div>
+              <h3 class="card-title">Credentials & Certifications</h3>
+            </div>
+
+            <form id="credentialsForm" class="credentials-form">
+              <div class="form-group">
+                <label for="education" class="form-label">Education</label>
+                <textarea
+                  id="education"
+                  class="form-input form-textarea"
+                  placeholder="List your educational background..."
+                >
+Master's in Japanese Language Education - Tokyo University of Foreign Studies
+Bachelor's in Linguistics - Waseda University</textarea
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="certifications" class="form-label"
+                  >Teaching Certifications</label
+                >
+                <textarea
+                  id="certifications"
+                  class="form-input form-textarea"
+                  placeholder="List your teaching certifications..."
+                >
+- Certified Japanese Language Teacher (JLTF)
+- TESOL Certification
+- Business Japanese Teaching Certificate</textarea
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="experience" class="form-label"
+                  >Teaching Experience (Years)</label
+                >
+                <select id="experience" class="form-input">
+                  <option value="1-2">1-2 years</option>
+                  <option value="3-5">3-5 years</option>
+                  <option value="6-10" selected>6-10 years</option>
+                  <option value="10+">10+ years</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Specializations</label>
+                <div class="checkbox-group">
+                  <label class="checkbox-item">
+                    <input type="checkbox" checked /> Conversational Japanese
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" checked /> Business Japanese
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" /> JLPT Preparation
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" checked /> Grammar & Writing
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" /> Pronunciation & Speaking
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" /> Cultural Studies
+                  </label>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary">
+                Save Credentials
+              </button>
+            </form>
+          </div>
+
+          <div class="dashboard-card fade-in delay-4">
+            <div class="card-header">
+              <div class="card-icon">💰</div>
+              <h3 class="card-title">Earnings Overview</h3>
+            </div>
+
+            <div class="earnings-stats">
+              <div class="earnings-item">
+                <div class="earnings-label">This Month</div>
+                <div class="earnings-value">$1,240</div>
+                <div class="earnings-change positive">+15%</div>
+              </div>
+              <div class="earnings-item">
+                <div class="earnings-label">Total Earned</div>
+                <div class="earnings-value">$8,560</div>
+                <div class="earnings-change">lifetime</div>
+              </div>
+              <div class="earnings-item">
+                <div class="earnings-label">Average/Hour</div>
+                <div class="earnings-value">$35</div>
+                <div class="earnings-change positive">+$3</div>
+              </div>
+            </div>
+
+            <div class="payout-info">
+              <h4>Next Payout</h4>
+              <div class="payout-details">
+                <div class="payout-amount">$420.50</div>
+                <div class="payout-date">February 1, 2024</div>
+                <button class="btn btn-outline">View Payment History</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Availability & Preferences -->
+        <div class="dashboard-card fade-in delay-5">
+          <div class="card-header">
+            <div class="card-icon">📅</div>
+            <h3 class="card-title">Availability & Teaching Preferences</h3>
+          </div>
+
+          <form id="availabilityForm" class="availability-form">
+            <div class="form-group">
+              <label class="form-label">Preferred Teaching Times (JST)</label>
+              <div class="time-slots">
+                <label class="time-slot">
+                  <input type="checkbox" checked /> Morning (6:00 - 12:00)
+                </label>
+                <label class="time-slot">
+                  <input type="checkbox" checked /> Afternoon (12:00 - 18:00)
+                </label>
+                <label class="time-slot">
+                  <input type="checkbox" checked /> Evening (18:00 - 22:00)
+                </label>
+                <label class="time-slot">
+                  <input type="checkbox" /> Late Night (22:00 - 6:00)
+                </label>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="maxStudentsPerSession" class="form-label"
+                  >Max Students per Session</label
+                >
+                <select id="maxStudentsPerSession" class="form-input">
+                  <option value="5">5 students</option>
+                  <option value="8" selected>8 students</option>
+                  <option value="10">10 students</option>
+                  <option value="15">15 students</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="sessionDuration" class="form-label"
+                  >Preferred Session Duration</label
+                >
+                <select id="sessionDuration" class="form-input">
+                  <option value="30">30 minutes</option>
+                  <option value="45">45 minutes</option>
+                  <option value="60" selected>60 minutes</option>
+                  <option value="90">90 minutes</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="hourlyRate" class="form-label"
+                >Hourly Rate (USD)</label
+              >
+              <input
+                type="number"
+                id="hourlyRate"
+                class="form-input"
+                value="35"
+                min="10"
+                max="100"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Save Preferences
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <!-- Global JavaScript -->
+    <script src="../js/global.js"></script>
+    <!-- Dashboard JavaScript -->
+    <script src="../js/dashboard.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        loadPartnerProfile();
+        initializeFormHandlers();
+      });
+
+      function loadPartnerProfile() {
+        const user = JSON.parse(localStorage.getItem("currentUser")) || {
+          firstName: "Partner",
+          lastName: "Sensei",
+          email: "partner@nihongosekai.com",
+          bio: "Native Japanese speaker with 8+ years of teaching experience...",
+          location: "Tokyo, Japan",
+          timezone: "Asia/Tokyo",
+          avatar: null,
+        };
+
+        // Populate form fields
+        document.getElementById("firstName").value =
+          user.firstName || "Partner";
+        document.getElementById("lastName").value = user.lastName || "Sensei";
+        document.getElementById("email").value =
+          user.email || "partner@nihongosekai.com";
+        document.getElementById("bio").value = user.bio || "";
+        document.getElementById("location").value =
+          user.location || "Tokyo, Japan";
+        document.getElementById("timezone").value =
+          user.timezone || "Asia/Tokyo";
+
+        // Update avatar display
+        const avatarContainer = document.getElementById("currentAvatar");
+        if (user.avatar) {
+          avatarContainer.innerHTML = `<img src="${user.avatar}" alt="Profile Picture" class="avatar-image">`;
+        } else {
+          const initials =
+            (user.firstName?.[0] || "P") + (user.lastName?.[0] || "S");
+          avatarContainer.innerHTML = `<span class="avatar-placeholder">${initials}</span>`;
+        }
+      }
+
+      function initializeFormHandlers() {
+        // Profile form handler
+        document
+          .getElementById("profileForm")
+          .addEventListener("submit", (e) => {
+            e.preventDefault();
+            saveProfile();
+          });
+
+        // Credentials form handler
+        document
+          .getElementById("credentialsForm")
+          .addEventListener("submit", (e) => {
+            e.preventDefault();
+            saveCredentials();
+          });
+
+        // Availability form handler
+        document
+          .getElementById("availabilityForm")
+          .addEventListener("submit", (e) => {
+            e.preventDefault();
+            saveAvailability();
+          });
+
+        // Avatar upload handler
+        document
+          .getElementById("avatarInput")
+          .addEventListener("change", handleAvatarUpload);
+      }
+
+      function saveProfile() {
+        const formData = {
+          firstName: document.getElementById("firstName").value,
+          lastName: document.getElementById("lastName").value,
+          email: document.getElementById("email").value,
+          bio: document.getElementById("bio").value,
+          location: document.getElementById("location").value,
+          timezone: document.getElementById("timezone").value,
+        };
+
+        // Get current user data and merge
+        const currentUser =
+          JSON.parse(localStorage.getItem("currentUser")) || {};
+        const updatedUser = {
+          ...currentUser,
+          ...formData,
+          name: `${formData.firstName} ${formData.lastName}`,
+        };
+
+        localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+
+        if (window.ToastManager) {
+          window.ToastManager.show("Profile updated successfully!", "success");
+        } else {
+          alert("Profile updated successfully!");
+        }
+      }
+
+      function saveCredentials() {
+        const credentials = {
+          education: document.getElementById("education").value,
+          certifications: document.getElementById("certifications").value,
+          experience: document.getElementById("experience").value,
+          specializations: Array.from(
+            document.querySelectorAll(
+              '#credentialsForm input[type="checkbox"]:checked',
+            ),
+          ).map((cb) => cb.parentNode.textContent.trim()),
+        };
+
+        localStorage.setItem("partnerCredentials", JSON.stringify(credentials));
+
+        if (window.ToastManager) {
+          window.ToastManager.show(
+            "Credentials saved successfully!",
+            "success",
+          );
+        } else {
+          alert("Credentials saved successfully!");
+        }
+      }
+
+      function saveAvailability() {
+        const availability = {
+          timeSlots: Array.from(
+            document.querySelectorAll(
+              '.time-slot input[type="checkbox"]:checked',
+            ),
+          ).map((cb) => cb.parentNode.textContent.trim()),
+          maxStudents: document.getElementById("maxStudentsPerSession").value,
+          sessionDuration: document.getElementById("sessionDuration").value,
+          hourlyRate: document.getElementById("hourlyRate").value,
+        };
+
+        localStorage.setItem(
+          "partnerAvailability",
+          JSON.stringify(availability),
+        );
+
+        if (window.ToastManager) {
+          window.ToastManager.show(
+            "Preferences saved successfully!",
+            "success",
+          );
+        } else {
+          alert("Preferences saved successfully!");
+        }
+      }
+
+      function handleAvatarUpload(event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const avatarContainer = document.getElementById("currentAvatar");
+            avatarContainer.innerHTML = `<img src="${e.target.result}" alt="Profile Picture" class="avatar-image">`;
+
+            // Save avatar to localStorage (in real app, upload to server)
+            const currentUser =
+              JSON.parse(localStorage.getItem("currentUser")) || {};
+            currentUser.avatar = e.target.result;
+            localStorage.setItem("currentUser", JSON.stringify(currentUser));
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+
+      function removeAvatar() {
+        const currentUser =
+          JSON.parse(localStorage.getItem("currentUser")) || {};
+        delete currentUser.avatar;
+        localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+        const avatarContainer = document.getElementById("currentAvatar");
+        const initials =
+          (currentUser.firstName?.[0] || "P") +
+          (currentUser.lastName?.[0] || "S");
+        avatarContainer.innerHTML = `<span class="avatar-placeholder">${initials}</span>`;
+
+        if (window.ToastManager) {
+          window.ToastManager.show("Avatar removed successfully!", "success");
+        }
+      }
+    </script>
+
+    <style>
+      /* Partner profile specific styles */
+      .rating-breakdown {
+        margin-top: 24px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 12px;
+      }
+
+      .rating-breakdown h4 {
+        margin: 0 0 16px 0;
+        color: var(--text-color);
+      }
+
+      .rating-bar {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 12px;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+
+      .rating-stars {
+        font-size: 0.8rem;
+        width: 80px;
+      }
+
+      .rating-count {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        width: 30px;
+        text-align: right;
+      }
+
+      .earnings-stats {
+        margin-bottom: 24px;
+      }
+
+      .earnings-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #e9ecef;
+      }
+
+      .earnings-item:last-child {
+        border-bottom: none;
+      }
+
+      .earnings-label {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+
+      .earnings-value {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--primary-color);
+      }
+
+      .earnings-change {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      .earnings-change.positive {
+        color: #28a745;
+      }
+
+      .payout-info {
+        background: linear-gradient(
+          135deg,
+          rgba(102, 126, 234, 0.05),
+          rgba(118, 75, 162, 0.05)
+        );
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .payout-info h4 {
+        margin: 0 0 12px 0;
+        color: var(--text-color);
+      }
+
+      .payout-amount {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--primary-color);
+        margin-bottom: 4px;
+      }
+
+      .payout-date {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 16px;
+      }
+
+      .time-slots {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .time-slot {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 6px;
+        transition: background-color 0.2s ease;
+      }
+
+      .time-slot:hover {
+        background: #f8f9fa;
+      }
+
+      .time-slot input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        accent-color: var(--primary-color);
+      }
+
+      @media (max-width: 768px) {
+        .time-slots {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .rating-bar {
+          grid-template-columns: 1fr;
+          gap: 8px;
+          text-align: center;
+        }
+
+        .earnings-item {
+          flex-direction: column;
+          gap: 4px;
+          align-items: center;
+          text-align: center;
+        }
+      }
+    </style>
+  </body>
+</html>

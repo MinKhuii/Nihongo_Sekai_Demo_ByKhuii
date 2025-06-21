@@ -210,6 +210,24 @@
         <div class="admin-header-right">
           <div class="admin-user-menu">
             <div class="admin-user-avatar" id="adminUserAvatar">A</div>
+            <button
+              class="admin-logout-btn"
+              onclick="showAdminLogoutConfirmation()"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                <polyline points="16,17 21,12 16,7"></polyline>
+                <line x1="21" y1="12" x2="9" y2="12"></line>
+              </svg>
+              Log Out
+            </button>
           </div>
         </div>
       </header>
@@ -466,6 +484,7 @@
 
     <!-- Scripts -->
     <script src="script.js"></script>
+    <script src="admin-management.js"></script>
     <script>
       // Admin Dashboard Functionality
       document.addEventListener("DOMContentLoaded", function () {
@@ -510,10 +529,177 @@
           const userAvatar = document.getElementById("adminUserAvatar");
           userAvatar.textContent = userData.name
             .split(" ")
-            .map((n) => n[0])
+            .map((name) => name[0])
             .join("")
             .toUpperCase();
         }
+
+        // Initialize enhanced analytics charts
+        initializeAnalyticsCharts();
+      };
+
+      // Show admin logout confirmation modal
+      function showAdminLogoutConfirmation() {
+        const modal = document.createElement('div');
+        modal.className = 'admin-logout-modal';
+        modal.innerHTML = `
+          <div class="modal-overlay" onclick="this.parentElement.remove()">
+            <div class="modal-content" onclick="event.stopPropagation()">
+              <div class="modal-header">
+                <h3>Confirm Logout</h3>
+                <button class="modal-close" onclick="this.closest('.admin-logout-modal').remove()">×</button>
+              </div>
+              <div class="modal-body">
+                <p>Are you sure you want to log out of the admin dashboard?</p>
+              </div>
+              <div class="modal-actions">
+                <button class="btn btn-outline" onclick="this.closest('.admin-logout-modal').remove()">Cancel</button>
+                <button class="btn btn-danger" onclick="confirmAdminLogout()">Confirm</button>
+              </div>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(modal);
+      }
+
+      // Confirm admin logout
+      function confirmAdminLogout() {
+        const modal = document.querySelector('.admin-logout-modal');
+        if (modal) modal.remove();
+
+        // Clear admin session
+        localStorage.removeItem("user_logged_in");
+        localStorage.removeItem("user_data");
+        localStorage.removeItem("auth_token");
+
+        // Redirect to login
+        window.location.href = "login.html";
+      }
+
+      // Initialize enhanced analytics charts
+      function initializeAnalyticsCharts() {
+        // Monthly Revenue Chart (Line Chart)
+        const revenueCtx = document.getElementById('revenueChart');
+        if (revenueCtx) {
+          new Chart(revenueCtx, {
+            type: 'line',
+            data: {
+              labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+              datasets: [{
+                label: 'Monthly Revenue',
+                data: [12000, 15000, 18000, 22000, 25000, 28000, 32000, 35000, 38000, 41000, 43000, 45000],
+                borderColor: '#dc2626',
+                backgroundColor: 'rgba(220, 38, 38, 0.1)',
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  display: false
+                }
+              },
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  ticks: {
+                    callback: function(value) {
+                      return '$' + value.toLocaleString();
+                    }
+                  }
+                }
+              }
+            }
+          });
+        }
+
+        // User Sign-ups by Role Chart (Bar Chart)
+        const signupsCtx = document.getElementById('signupsChart');
+        if (signupsCtx) {
+          new Chart(signupsCtx, {
+            type: 'bar',
+            data: {
+              labels: ['Learners', 'Teachers', 'Partners'],
+              datasets: [{
+                label: 'New Sign-ups',
+                data: [450, 120, 35],
+                backgroundColor: [
+                  '#22c55e',
+                  '#3b82f6',
+                  '#f59e0b'
+                ],
+                borderRadius: 6,
+                borderSkipped: false
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  display: false
+                }
+              },
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+        }
+
+        // Course vs Classroom Enrollments Chart (Pie Chart)
+        const enrollmentsCtx = document.getElementById('enrollmentsChart');
+        if (enrollmentsCtx) {
+          new Chart(enrollmentsCtx, {
+            type: 'doughnut',
+            data: {
+              labels: ['Course Purchases', 'Classroom Enrollments'],
+              datasets: [{
+                data: [780, 465],
+                backgroundColor: [
+                  '#dc2626',
+                  '#ec4899'
+                ],
+                borderWidth: 0,
+                cutout: '60%'
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  position: 'bottom',
+                  labels: {
+                    usePointStyle: true,
+                    padding: 20
+                  }
+                }
+              }
+            }
+          });
+        }
+      }
+
+      // Export functionality
+      function exportRevenueData() {
+        const csvData = 'Month,Revenue\nJan,12000\nFeb,15000\nMar,18000\nApr,22000\nMay,25000\nJun,28000\nJul,32000\nAug,35000\nSep,38000\nOct,41000\nNov,43000\nDec,45000';
+        const blob = new Blob([csvData], { type: 'text/csv' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.setAttribute('hidden', '');
+        a.setAttribute('href', url);
+        a.setAttribute('download', 'revenue-data.csv');
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
 
         // Setup mobile sidebar
         if (window.innerWidth <= 1024) {
