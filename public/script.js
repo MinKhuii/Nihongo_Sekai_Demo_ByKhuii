@@ -671,8 +671,8 @@ const NihongoSekai = {
 
   // Show logout confirmation modal
   showLogoutConfirmation() {
-    const modal = document.createElement("div");
-    modal.className = "logout-confirmation-modal";
+    const modal = document.createElement('div');
+    modal.className = 'logout-confirmation-modal';
     modal.innerHTML = `
       <div class="modal-overlay" onclick="this.parentElement.remove()">
         <div class="modal-content" onclick="event.stopPropagation()">
@@ -694,7 +694,7 @@ const NihongoSekai = {
 
   // Confirm logout action
   confirmLogout() {
-    const modal = document.querySelector(".logout-confirmation-modal");
+    const modal = document.querySelector('.logout-confirmation-modal');
     if (modal) modal.remove();
     this.logout();
   },
@@ -947,29 +947,100 @@ const NihongoSekai = {
       right: 20px;
       background: ${type === "success" ? "#22c55e" : type === "error" ? "#ef4444" : type === "warning" ? "#f59e0b" : "#3b82f6"};
       color: white;
-      padding: 1rem 1.5rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-      z-index: 1000;
+      padding: 12px 20px;
+      border-radius: 8px;
       font-weight: 500;
-      max-width: 350px;
-      font-size: 0.875rem;
-      line-height: 1.4;
+      z-index: 10000;
+      min-width: 200px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      animation: slideInFromRight 0.3s ease;
     `;
-    toast.textContent = message;
+    toast.innerHTML = `
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <span>${message}</span>
+        <button onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; color: white; font-size: 18px; cursor: pointer; margin-left: 10px;">×</button>
+      </div>
+    `;
+
     document.body.appendChild(toast);
 
     setTimeout(() => {
-      toast.remove();
-    }, 5000);
+      if (toast.parentElement) {
+        toast.remove();
+      }
+    }, CONFIG.TOAST_DURATION);
   },
 
-  // API Functions
-  async fetchAPI(endpoint, options = {}) {
-    if (!CONFIG.API_BASE_URL || CONFIG.USE_MOCK_DATA) {
-      console.log(
-        `📋 Using mock data for ${endpoint} (static deployment mode)`,
-      );
+  // Show logout confirmation modal
+  showLogoutConfirmation() {
+    const modal = document.createElement('div');
+    modal.className = 'logout-confirmation-modal';
+    modal.innerHTML = `
+      <div class="modal-overlay" onclick="this.parentElement.remove()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+          <div class="modal-header">
+            <h3>Confirm Logout</h3>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to log out?</p>
+          </div>
+          <div class="modal-actions">
+            <button class="btn btn-outline" onclick="this.closest('.logout-confirmation-modal').remove()">Cancel</button>
+            <button class="btn btn-primary" onclick="NihongoSekai.confirmLogout()">Confirm</button>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  },
+
+  // Confirm logout action
+  confirmLogout() {
+    const modal = document.querySelector('.logout-confirmation-modal');
+    if (modal) modal.remove();
+    this.logout();
+  },
+
+  // Get enrollment date for classroom
+  getEnrollmentDate(type, contentId) {
+    // Mock data - in real app, fetch from API
+    const mockEnrollments = {
+      classroom: {
+        "1": "2024-01-01",
+        "2": "2024-01-15"
+      }
+    };
+
+    return mockEnrollments[type]?.[contentId.toString()] || null;
+  },
+
+  // Enhanced purchase/enroll button logic
+  getPurchaseButtonHTML(contentType, contentId, price) {
+    const hasPurchased = this.hasUserPurchased(contentType, contentId);
+
+    if (hasPurchased) {
+      return `
+        <button disabled class="purchased-button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 12l2 2 4-4"></path>
+            <circle cx="12" cy="12" r="9"></circle>
+          </svg>
+          ${contentType === "course" ? "Purchased" : "Enrolled"}
+        </button>
+      `;
+    }
+
+    return `
+      <button class="cta-button" onclick="NihongoSekai.handlePurchase('${contentType}', '${contentId}', ${price})">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        ${contentType === "course" ? "Buy Now" : "Enroll"} - $${price}
+      </button>
+    `;
+  },
       return { success: false, error: "Static deployment - using mock data" };
     }
 
