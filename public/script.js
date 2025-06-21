@@ -671,8 +671,8 @@ const NihongoSekai = {
 
   // Show logout confirmation modal
   showLogoutConfirmation() {
-    const modal = document.createElement('div');
-    modal.className = 'logout-confirmation-modal';
+    const modal = document.createElement("div");
+    modal.className = "logout-confirmation-modal";
     modal.innerHTML = `
       <div class="modal-overlay" onclick="this.parentElement.remove()">
         <div class="modal-content" onclick="event.stopPropagation()">
@@ -694,7 +694,7 @@ const NihongoSekai = {
 
   // Confirm logout action
   confirmLogout() {
-    const modal = document.querySelector('.logout-confirmation-modal');
+    const modal = document.querySelector(".logout-confirmation-modal");
     if (modal) modal.remove();
     this.logout();
   },
@@ -973,8 +973,8 @@ const NihongoSekai = {
 
   // Show logout confirmation modal
   showLogoutConfirmation() {
-    const modal = document.createElement('div');
-    modal.className = 'logout-confirmation-modal';
+    const modal = document.createElement("div");
+    modal.className = "logout-confirmation-modal";
     modal.innerHTML = `
       <div class="modal-overlay" onclick="this.parentElement.remove()">
         <div class="modal-content" onclick="event.stopPropagation()">
@@ -996,7 +996,7 @@ const NihongoSekai = {
 
   // Confirm logout action
   confirmLogout() {
-    const modal = document.querySelector('.logout-confirmation-modal');
+    const modal = document.querySelector(".logout-confirmation-modal");
     if (modal) modal.remove();
     this.logout();
   },
@@ -1006,9 +1006,9 @@ const NihongoSekai = {
     // Mock data - in real app, fetch from API
     const mockEnrollments = {
       classroom: {
-        "1": "2024-01-01",
-        "2": "2024-01-15"
-      }
+        1: "2024-01-01",
+        2: "2024-01-15",
+      },
     };
 
     return mockEnrollments[type]?.[contentId.toString()] || null;
@@ -1041,6 +1041,10 @@ const NihongoSekai = {
       </button>
     `;
   },
+
+  // API Functions
+  async fetchAPI(endpoint, options = {}) {
+    if (!CONFIG.API_BASE_URL || CONFIG.USE_MOCK_DATA) {
       return { success: false, error: "Static deployment - using mock data" };
     }
 
