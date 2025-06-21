@@ -511,22 +511,30 @@ const NihongoSekai = {
         <div class="user-profile-menu">
           <div class="user-avatar-container" id="userAvatarContainer">
             <div class="user-avatar" id="userAvatar">
-              ${this.user.name
-                .split(" ")
-                .map((n) => n[0])
-                .join("")
-                .toUpperCase()}
+              <svg class="cartoon-avatar" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="50" fill="#4F46E5"/>
+                <circle cx="50" cy="35" r="12" fill="#FFFFFF"/>
+                <ellipse cx="50" cy="70" rx="20" ry="18" fill="#FFFFFF"/>
+                <circle cx="45" cy="32" r="2" fill="#1F2937"/>
+                <circle cx="55" cy="32" r="2" fill="#1F2937"/>
+                <path d="M45 38 Q50 42 55 38" stroke="#1F2937" stroke-width="1.5" fill="none"/>
+              </svg>
             </div>
             <div class="online-indicator"></div>
           </div>
 
           <div class="profile-dropdown" id="profileDropdown" style="display: none;">
             <div class="dropdown-header">
-              <div class="dropdown-avatar">${this.user.name
-                .split(" ")
-                .map((n) => n[0])
-                .join("")
-                .toUpperCase()}</div>
+              <div class="dropdown-avatar">
+                <svg class="cartoon-avatar" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="50" cy="50" r="50" fill="#4F46E5"/>
+                  <circle cx="50" cy="35" r="12" fill="#FFFFFF"/>
+                  <ellipse cx="50" cy="70" rx="20" ry="18" fill="#FFFFFF"/>
+                  <circle cx="45" cy="32" r="2" fill="#1F2937"/>
+                  <circle cx="55" cy="32" r="2" fill="#1F2937"/>
+                  <path d="M45 38 Q50 42 55 38" stroke="#1F2937" stroke-width="1.5" fill="none"/>
+                </svg>
+              </div>
               <div class="dropdown-user-info">
                 <div class="dropdown-name">${this.user.name}</div>
                 <div class="dropdown-role">${this.user.role}</div>
@@ -568,12 +576,14 @@ const NihongoSekai = {
               <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
             </svg>
             My Courses
+            <div class="menu-progress-preview">3 active</div>
           </a>
           <a href="#" class="dropdown-item" onclick="NihongoSekai.navigateToMyClassrooms()">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"></path>
             </svg>
             My Classrooms
+            <div class="menu-join-indicator">2 available</div>
           </a>
           <a href="#" class="dropdown-item" onclick="NihongoSekai.navigateToTransactions()">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -586,12 +596,14 @@ const NihongoSekai = {
         break;
 
       case "Partner":
+      case "Teacher":
         roleSpecificItems = `
           <a href="#" class="dropdown-item" onclick="NihongoSekai.navigateToMyClassrooms()">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"></path>
             </svg>
             My Classrooms
+            <div class="menu-edit-indicator">5 hosted</div>
           </a>
         `;
         break;
@@ -620,7 +632,7 @@ const NihongoSekai = {
         </svg>
         Settings
       </a>
-      <a href="#" class="dropdown-item logout" onclick="NihongoSekai.logout()">
+      <a href="#" class="dropdown-item logout" onclick="NihongoSekai.showLogoutConfirmation()">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
           <polyline points="16,17 21,12 16,7"></polyline>
@@ -657,29 +669,59 @@ const NihongoSekai = {
     }
   },
 
+  // Show logout confirmation modal
+  showLogoutConfirmation() {
+    const modal = document.createElement("div");
+    modal.className = "logout-confirmation-modal";
+    modal.innerHTML = `
+      <div class="modal-overlay" onclick="this.parentElement.remove()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+          <div class="modal-header">
+            <h3>Confirm Logout</h3>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to log out?</p>
+          </div>
+          <div class="modal-actions">
+            <button class="btn btn-outline" onclick="this.closest('.logout-confirmation-modal').remove()">Cancel</button>
+            <button class="btn btn-primary" onclick="NihongoSekai.confirmLogout()">Confirm</button>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  },
+
+  // Confirm logout action
+  confirmLogout() {
+    const modal = document.querySelector(".logout-confirmation-modal");
+    if (modal) modal.remove();
+    this.logout();
+  },
+
   // Navigation methods
   navigateToProfile() {
-    console.log("Navigate to profile");
+    this.showToast("Navigating to profile page...", "info");
     // In real app: window.location.href = "profile.html";
   },
 
   navigateToMyCourses() {
-    console.log("Navigate to my courses");
+    this.showToast("Loading your courses...", "info");
     // In real app: window.location.href = "my-courses.html";
   },
 
   navigateToMyClassrooms() {
-    console.log("Navigate to my classrooms");
+    this.showToast("Loading your classrooms...", "info");
     // In real app: window.location.href = "my-classrooms.html";
   },
 
   navigateToTransactions() {
-    console.log("Navigate to transactions");
+    this.showToast("Loading transaction history...", "info");
     // In real app: window.location.href = "transactions.html";
   },
 
   navigateToSettings() {
-    console.log("Navigate to settings");
+    this.showToast("Opening settings...", "info");
     // In real app: window.location.href = "settings.html";
   },
 
