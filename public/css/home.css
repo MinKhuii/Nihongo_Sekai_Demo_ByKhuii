@@ -219,8 +219,16 @@
 }
 
 .featured-card:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: var(--shadow-xl);
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.featured-card:hover .featured-card-image {
+  transform: scale(1.1);
+}
+
+.featured-card-image {
+  transition: transform var(--transition-base);
 }
 
 .featured-card-image {
@@ -572,6 +580,14 @@
     font-size: 3rem;
   }
 
+  .featured-grid.courses-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .featured-grid.classrooms-grid {
+    grid-template-columns: 1fr;
+  }
+
   .featured-grid {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
@@ -614,7 +630,9 @@
     align-items: flex-start;
   }
 
-  .featured-grid {
+  .featured-grid,
+  .featured-grid.courses-grid,
+  .featured-grid.classrooms-grid {
     grid-template-columns: 1fr;
   }
 
