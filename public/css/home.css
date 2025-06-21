@@ -200,6 +200,14 @@
   gap: var(--spacing-xl);
 }
 
+.featured-grid.courses-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.featured-grid.classrooms-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .featured-card {
   background: var(--color-white);
   border-radius: var(--radius-xl);

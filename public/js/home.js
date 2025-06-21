@@ -35,7 +35,7 @@ class HomePage {
   }
 
   async loadFeaturedCourses() {
-    // Mock featured courses data
+    // Mock featured courses data - exactly 3 featured courses
     const courses = [
       {
         id: 1,
@@ -89,7 +89,7 @@ class HomePage {
   }
 
   async loadFeaturedClassrooms() {
-    // Mock featured classrooms data
+    // Mock featured classrooms data - exactly 2 popular classrooms
     const classrooms = [
       {
         id: 1,
