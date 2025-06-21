@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Partner Dashboard - Nihongo Sekai</title>
+    <meta
+      name="description"
+      content="Manage your teaching sessions and track your performance"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../css/global.css" />
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="../css/dashboard.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎌</text></svg>"
+    />
+  </head>
+  <body>
+    <!-- Navigation Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="nav-brand">
+            <a href="index.html" class="brand-link">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">
+                <span class="brand-nihongo">Nihongo</span>
+                <span class="brand-sekai">Sekai</span>
+              </span>
+            </a>
+          </div>
+
+          <div class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+              <li><a href="index.html" class="nav-link">Home</a></li>
+              <li><a href="courses.html" class="nav-link">Courses</a></li>
+              <li><a href="classrooms.html" class="nav-link">Classrooms</a></li>
+              <li><a href="partners.html" class="nav-link">Partners</a></li>
+              <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+          </div>
+
+          <div class="nav-actions">
+            <!-- Profile dropdown will be inserted here by JavaScript -->
+          </div>
+
+          <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Dashboard Content -->
+    <main class="dashboard-layout">
+      <div class="dashboard-container">
+        <!-- Dashboard Header -->
+        <div class="dashboard-header fade-in">
+          <h1 class="dashboard-title">
+            Welcome back, <span id="partnerName">Sensei</span>! 🎓
+          </h1>
+          <p class="dashboard-subtitle">
+            Manage your classrooms and track your teaching performance
+          </p>
+        </div>
+
+        <!-- Performance Stats Grid -->
+        <div class="dashboard-grid">
+          <div class="dashboard-card fade-in delay-1">
+            <div class="card-header">
+              <div class="card-icon">🏫</div>
+              <h3 class="card-title">Active Classrooms</h3>
+            </div>
+            <div class="card-value" id="activeClassrooms">3</div>
+            <div class="card-change positive">+1 this month</div>
+          </div>
+
+          <div class="dashboard-card fade-in delay-2">
+            <div class="card-header">
+              <div class="card-icon">👥</div>
+              <h3 class="card-title">Total Students</h3>
+            </div>
+            <div class="card-value" id="totalStudents">24</div>
+            <div class="card-change positive">+6 this week</div>
+          </div>
+
+          <div class="dashboard-card fade-in delay-3">
+            <div class="card-header">
+              <div class="card-icon">💰</div>
+              <h3 class="card-title">Monthly Revenue</h3>
+            </div>
+            <div class="card-value" id="monthlyRevenue">$1,240</div>
+            <div class="card-change positive">+15% this month</div>
+          </div>
+
+          <div class="dashboard-card fade-in delay-4">
+            <div class="card-header">
+              <div class="card-icon">⭐</div>
+              <h3 class="card-title">Average Rating</h3>
+            </div>
+            <div class="card-value">4.9</div>
+            <div class="card-change">based on 89 reviews</div>
+          </div>
+        </div>
+
+        <!-- Teaching Schedule & Quick Actions -->
+        <div class="dashboard-grid">
+          <!-- Today's Schedule -->
+          <div class="dashboard-card fade-in">
+            <div class="card-header">
+              <div class="card-icon">📅</div>
+              <h3 class="card-title">Today's Schedule</h3>
+            </div>
+            <div id="todaySchedule" class="schedule-list">
+              <!-- Today's sessions will be loaded here -->
+            </div>
+            <a href="partner-classrooms.html" class="btn btn-primary"
+              >Manage All Sessions</a
+            >
+          </div>
+
+          <!-- Quick Stats -->
+          <div class="dashboard-card fade-in">
+            <div class="card-header">
+              <div class="card-icon">📊</div>
+              <h3 class="card-title">This Week Overview</h3>
+            </div>
+            <div class="stats-overview">
+              <div class="stat-item">
+                <div class="stat-value">12</div>
+                <div class="stat-label">Sessions Taught</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">18h</div>
+                <div class="stat-label">Teaching Hours</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">95%</div>
+                <div class="stat-label">Attendance Rate</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">4.8</div>
+                <div class="stat-label">Session Rating</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Activity & Student Feedback -->
+        <div class="dashboard-grid">
+          <!-- Recent Student Activity -->
+          <div class="dashboard-card fade-in">
+            <div class="card-header">
+              <div class="card-icon">🎯</div>
+              <h3 class="card-title">Recent Student Activity</h3>
+            </div>
+            <div id="studentActivity" class="activity-list">
+              <!-- Student activity will be loaded here -->
+            </div>
+          </div>
+
+          <!-- Recent Reviews -->
+          <div class="dashboard-card fade-in">
+            <div class="card-header">
+              <div class="card-icon">💬</div>
+              <h3 class="card-title">Recent Reviews</h3>
+            </div>
+            <div id="recentReviews" class="reviews-list">
+              <!-- Recent reviews will be loaded here -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Revenue Chart -->
+        <div class="dashboard-card fade-in">
+          <div class="card-header">
+            <div class="card-icon">📈</div>
+            <h3 class="card-title">Revenue Trends</h3>
+          </div>
+          <div class="revenue-chart">
+            <canvas id="revenueChart" width="400" height="200"></canvas>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Global JavaScript -->
+    <script src="../js/global.js"></script>
+    <!-- Dashboard JavaScript -->
+    <script src="../js/dashboard.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        loadPartnerData();
+        loadTodaySchedule();
+        loadStudentActivity();
+        loadRecentReviews();
+        createRevenueChart();
+      });
+
+      function loadPartnerData() {
+        // Get partner data from localStorage or use default
+        const user = JSON.parse(localStorage.getItem("currentUser")) || {
+          name: "Partner Sensei",
+        };
+        document.getElementById("partnerName").textContent =
+          user.name.split(" ")[0];
+
+        // Update stats with demo data
+        document.getElementById("activeClassrooms").textContent = "3";
+        document.getElementById("totalStudents").textContent = "24";
+        document.getElementById("monthlyRevenue").textContent = "$1,240";
+      }
+
+      function loadTodaySchedule() {
+        const todaySchedule = [
+          {
+            id: 1,
+            title: "Morning Conversation Circle",
+            time: "09:00 - 10:00",
+            students: 6,
+            status: "upcoming",
+          },
+          {
+            id: 2,
+            title: "Business Japanese Workshop",
+            time: "14:00 - 15:30",
+            students: 8,
+            status: "upcoming",
+          },
+          {
+            id: 3,
+            title: "Evening Pronunciation Practice",
+            time: "20:00 - 20:45",
+            students: 7,
+            status: "upcoming",
+          },
+        ];
+
+        const container = document.getElementById("todaySchedule");
+        container.innerHTML = todaySchedule
+          .map(
+            (session) => `
+                <div class="schedule-item">
+                    <div class="session-info">
+                        <h4 class="session-title">${session.title}</h4>
+                        <p class="session-time">${session.time}</p>
+                        <p class="session-students">${session.students} students enrolled</p>
+                    </div>
+                    <div class="session-actions">
+                        <span class="status-badge status-${session.status}">${session.status}</span>
+                        <button class="btn btn-outline btn-sm" onclick="startSession(${session.id})">
+                            Start Session
+                        </button>
+                    </div>
+                </div>
+            `,
+          )
+          .join("");
+      }
+
+      function loadStudentActivity() {
+        const activities = [
+          {
+            student: "Sarah Johnson",
+            action: "Joined Morning Conversation Circle",
+            time: "2 hours ago",
+            type: "join",
+          },
+          {
+            student: "Mike Chen",
+            action: "Completed Business Japanese lesson",
+            time: "4 hours ago",
+            type: "completion",
+          },
+          {
+            student: "Emma Wilson",
+            action: "Left a 5-star review",
+            time: "6 hours ago",
+            type: "review",
+          },
+          {
+            student: "David Kim",
+            action: "Enrolled in Weekend Cultural Exchange",
+            time: "1 day ago",
+            type: "enrollment",
+          },
+        ];
+
+        const container = document.getElementById("studentActivity");
+        container.innerHTML = activities
+          .map(
+            (activity) => `
+                <div class="activity-item">
+                    <div class="activity-icon activity-${activity.type}">
+                        ${getActivityIcon(activity.type)}
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-text">
+                            <strong>${activity.student}</strong> ${activity.action}
+                        </div>
+                        <div class="activity-time">${activity.time}</div>
+                    </div>
+                </div>
+            `,
+          )
+          .join("");
+      }
+
+      function loadRecentReviews() {
+        const reviews = [
+          {
+            student: "Sarah J.",
+            rating: 5,
+            comment: "Excellent teaching style! Very patient and encouraging.",
+            session: "Morning Conversation Circle",
+            time: "2 days ago",
+          },
+          {
+            student: "Mike C.",
+            rating: 5,
+            comment: "Great explanations of business Japanese concepts.",
+            session: "Business Japanese Workshop",
+            time: "3 days ago",
+          },
+          {
+            student: "Emma W.",
+            rating: 4,
+            comment:
+              "Very helpful pronunciation tips. Looking forward to more sessions.",
+            session: "Evening Pronunciation Practice",
+            time: "5 days ago",
+          },
+        ];
+
+        const container = document.getElementById("recentReviews");
+        container.innerHTML = reviews
+          .map(
+            (review) => `
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="review-meta">
+                            <strong>${review.student}</strong>
+                            <span class="review-session">${review.session}</span>
+                        </div>
+                        <div class="review-rating">
+                            ${"⭐".repeat(review.rating)}
+                        </div>
+                    </div>
+                    <p class="review-comment">"${review.comment}"</p>
+                    <div class="review-time">${review.time}</div>
+                </div>
+            `,
+          )
+          .join("");
+      }
+
+      function createRevenueChart() {
+        // Simple revenue chart using canvas
+        const canvas = document.getElementById("revenueChart");
+        const ctx = canvas.getContext("2d");
+
+        // Sample revenue data for the last 6 months
+        const data = [800, 950, 1100, 1050, 1200, 1240];
+        const labels = ["Aug", "Sep", "Oct", "Nov", "Dec", "Jan"];
+
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
+        const padding = 40;
+        const chartWidth = canvasWidth - 2 * padding;
+        const chartHeight = canvasHeight - 2 * padding;
+
+        // Clear canvas
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+        // Draw grid
+        ctx.strokeStyle = "#e9ecef";
+        ctx.lineWidth = 1;
+
+        // Vertical grid lines
+        for (let i = 0; i <= 5; i++) {
+          const x = padding + (i * chartWidth) / 5;
+          ctx.beginPath();
+          ctx.moveTo(x, padding);
+          ctx.lineTo(x, canvasHeight - padding);
+          ctx.stroke();
+        }
+
+        // Horizontal grid lines
+        for (let i = 0; i <= 4; i++) {
+          const y = padding + (i * chartHeight) / 4;
+          ctx.beginPath();
+          ctx.moveTo(padding, y);
+          ctx.lineTo(canvasWidth - padding, y);
+          ctx.stroke();
+        }
+
+        // Draw revenue line
+        const maxRevenue = Math.max(...data);
+        const minRevenue = Math.min(...data);
+        const revenueRange = maxRevenue - minRevenue;
+
+        ctx.strokeStyle = "#667eea";
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+
+        data.forEach((revenue, index) => {
+          const x = padding + (index * chartWidth) / (data.length - 1);
+          const y =
+            canvasHeight -
+            padding -
+            ((revenue - minRevenue) / revenueRange) * chartHeight;
+
+          if (index === 0) {
+            ctx.moveTo(x, y);
+          } else {
+            ctx.lineTo(x, y);
+          }
+
+          // Draw data points
+          ctx.fillStyle = "#667eea";
+          ctx.beginPath();
+          ctx.arc(x, y, 4, 0, 2 * Math.PI);
+          ctx.fill();
+        });
+
+        ctx.stroke();
+
+        // Draw labels
+        ctx.fillStyle = "#666";
+        ctx.font = "12px Inter";
+        ctx.textAlign = "center";
+
+        labels.forEach((label, index) => {
+          const x = padding + (index * chartWidth) / (labels.length - 1);
+          ctx.fillText(label, x, canvasHeight - 10);
+        });
+      }
+
+      function getActivityIcon(type) {
+        const icons = {
+          join: "👋",
+          completion: "✅",
+          review: "⭐",
+          enrollment: "📝",
+        };
+        return icons[type] || "📌";
+      }
+
+      function startSession(sessionId) {
+        window.location.href = `classroom-live.html?id=${sessionId}&role=instructor`;
+      }
+    </script>
+
+    <style>
+      /* Partner dashboard specific styles */
+      .schedule-list,
+      .activity-list,
+      .reviews-list {
+        margin-bottom: 20px;
+      }
+
+      .schedule-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px;
+        background: #f8f9fa;
+        border-radius: 12px;
+        margin-bottom: 12px;
+        transition: all 0.3s ease;
+      }
+
+      .schedule-item:hover {
+        background: #e9ecef;
+        transform: translateX(4px);
+      }
+
+      .session-title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0 0 4px 0;
+        color: var(--text-color);
+      }
+
+      .session-time,
+      .session-students {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin: 2px 0;
+      }
+
+      .session-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-end;
+      }
+
+      .stats-overview {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 16px;
+        background: linear-gradient(
+          135deg,
+          rgba(102, 126, 234, 0.05),
+          rgba(118, 75, 162, 0.05)
+        );
+        border-radius: 12px;
+      }
+
+      .stat-value {
+        font-size: 1.5rem;
+        font-weight: 800;
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: block;
+      }
+
+      .stat-label {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        font-weight: 500;
+        margin-top: 4px;
+      }
+
+      .activity-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid #f1f3f4;
+      }
+
+      .activity-item:last-child {
+        border-bottom: none;
+      }
+
+      .activity-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+
+      .activity-join {
+        background: #e3f2fd;
+      }
+
+      .activity-completion {
+        background: #e8f5e8;
+      }
+
+      .activity-review {
+        background: #fff3e0;
+      }
+
+      .activity-enrollment {
+        background: #fce4ec;
+      }
+
+      .activity-text {
+        font-size: 0.9rem;
+        color: var(--text-color);
+        margin-bottom: 2px;
+      }
+
+      .activity-time {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      .review-item {
+        padding: 16px;
+        background: #f8f9fa;
+        border-radius: 12px;
+        margin-bottom: 12px;
+      }
+
+      .review-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 8px;
+      }
+
+      .review-session {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        display: block;
+      }
+
+      .review-rating {
+        font-size: 0.9rem;
+      }
+
+      .review-comment {
+        font-size: 0.9rem;
+        color: var(--text-color);
+        margin: 8px 0;
+        font-style: italic;
+      }
+
+      .review-time {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      .revenue-chart {
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #revenueChart {
+        max-width: 100%;
+        height: auto;
+      }
+
+      @media (max-width: 768px) {
+        .schedule-item {
+          flex-direction: column;
+          gap: 12px;
+          align-items: flex-start;
+        }
+
+        .session-actions {
+          align-items: flex-start;
+          flex-direction: row;
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .stats-overview {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+
+        .activity-item {
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .review-header {
+          flex-direction: column;
+          gap: 4px;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </body>
+</html>
