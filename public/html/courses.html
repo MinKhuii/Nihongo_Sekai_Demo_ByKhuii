@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Japanese Courses - Nihongo Sekai</title>
+    <meta
+      name="description"
+      content="Explore our comprehensive Japanese language courses. From beginner to advanced, find the perfect course for your learning journey."
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../css/global.css" />
+    <!-- Page-specific CSS -->
+    <link rel="stylesheet" href="../css/courses.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎌</text></svg>"
+    />
+  </head>
+  <body class="courses-page">
+    <!-- Navigation Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="nav-brand">
+            <a href="index.html" class="brand-link">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">
+                <span class="brand-nihongo">Nihongo</span>
+                <span class="brand-sekai">Sekai</span>
+              </span>
+            </a>
+          </div>
+
+          <div class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+              <li><a href="index.html" class="nav-link">Home</a></li>
+              <li>
+                <a href="courses.html" class="nav-link active">Courses</a>
+              </li>
+              <li><a href="classrooms.html" class="nav-link">Classrooms</a></li>
+              <li><a href="partners.html" class="nav-link">Partners</a></li>
+              <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+          </div>
+
+          <div class="nav-actions">
+            <a href="login.html" class="btn btn-outline">Sign In</a>
+            <a href="register.html" class="btn btn-primary">Get Started</a>
+          </div>
+
+          <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Enhanced Hero Section -->
+      <section class="enhanced-hero">
+        <div class="sakura-container" id="sakuraContainer"></div>
+        <div class="container">
+          <div class="enhanced-hero-content">
+            <h1 class="enhanced-hero-title">Master Japanese Language</h1>
+            <p class="enhanced-hero-subtitle">
+              Discover our comprehensive collection of Japanese courses designed
+              by experts. From complete beginners to advanced learners, find
+              your perfect learning path with our structured curriculum.
+            </p>
+            <div class="enhanced-hero-stats">
+              <div class="enhanced-stat">
+                <span class="enhanced-stat-number">10+</span>
+                <span class="enhanced-stat-label">Expert Courses</span>
+              </div>
+              <div class="enhanced-stat">
+                <span class="enhanced-stat-number">8,000+</span>
+                <span class="enhanced-stat-label">Active Students</span>
+              </div>
+              <div class="enhanced-stat">
+                <span class="enhanced-stat-number">4.8</span>
+                <span class="enhanced-stat-label">Average Rating</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Filters Section -->
+      <section class="courses-filters">
+        <div class="container">
+          <div class="filters-container">
+            <div class="filters-group">
+              <select id="levelFilter" class="filter-select">
+                <option value="">All Levels</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Elementary">Elementary</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+              </select>
+
+              <select id="categoryFilter" class="filter-select">
+                <option value="">All Categories</option>
+                <option value="General">General</option>
+                <option value="Conversation">Conversation</option>
+                <option value="Business">Business</option>
+                <option value="Grammar">Grammar</option>
+                <option value="Test Prep">Test Prep</option>
+                <option value="Culture">Culture</option>
+                <option value="Travel">Travel</option>
+                <option value="Writing">Writing</option>
+                <option value="Pronunciation">Pronunciation</option>
+              </select>
+
+              <select id="priceFilter" class="filter-select">
+                <option value="">All Prices</option>
+                <option value="free">Free</option>
+                <option value="under50">Under $50</option>
+                <option value="50to100">$50 - $100</option>
+                <option value="over100">Over $100</option>
+              </select>
+
+              <select id="ratingFilter" class="filter-select">
+                <option value="">All Ratings</option>
+                <option value="4.5">4.5+ Stars</option>
+                <option value="4.0">4.0+ Stars</option>
+                <option value="3.5">3.5+ Stars</option>
+              </select>
+            </div>
+
+            <div class="search-container">
+              <svg
+                class="search-icon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+              </svg>
+              <input
+                type="text"
+                id="courseSearch"
+                class="search-input"
+                placeholder="Search courses, instructors, or topics..."
+              />
+            </div>
+
+            <div class="sort-options">
+              <label class="sort-label">Sort by:</label>
+              <select id="sortSelect" class="filter-select">
+                <option value="popular">Most Popular</option>
+                <option value="rating">Highest Rated</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="newest">Newest</option>
+                <option value="title">Title A-Z</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Courses Grid Section -->
+      <section class="courses-section">
+        <div class="container">
+          <div class="courses-grid" id="coursesGrid">
+            <!-- Courses will be populated by JavaScript -->
+          </div>
+
+          <!-- Pagination -->
+          <div class="pagination-section">
+            <div class="pagination" id="pagination">
+              <!-- Pagination will be populated by JavaScript -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <div class="footer-brand">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">Nihongo Sekai</span>
+            </div>
+            <p>
+              Master Japanese through immersive learning experiences with native
+              speakers.
+            </p>
+          </div>
+
+          <div class="footer-section">
+            <h4>Learn</h4>
+            <ul>
+              <li><a href="courses.html">Courses</a></li>
+              <li><a href="classrooms.html">Live Classes</a></li>
+              <li><a href="partners.html">Find a Teacher</a></li>
+              <li><a href="pricing.html">Pricing</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="press.html">Press</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4>Support</h4>
+            <ul>
+              <li><a href="help.html">Help Center</a></li>
+              <li><a href="community.html">Community</a></li>
+              <li><a href="privacy.html">Privacy Policy</a></li>
+              <li><a href="terms.html">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2024 Nihongo Sekai. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/global.js"></script>
+    <script src="../js/courses.js"></script>
+  </body>
+</html>
