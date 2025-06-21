@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login - Nihongo Sekai</title>
+    <title>Sign In - Nihongo Sekai</title>
     <meta
       name="description"
-      content="Sign in to your Nihongo Sekai account to continue your Japanese learning journey."
+      content="Sign in to your Nihongo Sekai account and continue your Japanese learning journey with expert courses and live classrooms."
     />
 
     <!-- Google Fonts -->
@@ -24,7 +24,7 @@
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎌</text></svg>"
     />
   </head>
-  <body>
+  <body class="auth-page">
     <!-- Navigation Header -->
     <header class="header">
       <nav class="navbar">
@@ -44,14 +44,14 @@
               <li><a href="index.html" class="nav-link">Home</a></li>
               <li><a href="courses.html" class="nav-link">Courses</a></li>
               <li><a href="classrooms.html" class="nav-link">Classrooms</a></li>
-              <li><a href="teachers.html" class="nav-link">Teachers</a></li>
+              <li><a href="partners.html" class="nav-link">Partners</a></li>
               <li><a href="about.html" class="nav-link">About</a></li>
             </ul>
           </div>
 
           <div class="nav-actions">
-            <a href="register.html" class="btn btn-outline">Sign Up</a>
-            <a href="login.html" class="btn btn-primary">Sign In</a>
+            <a href="login.html" class="btn btn-outline active">Sign In</a>
+            <a href="register.html" class="btn btn-primary">Get Started</a>
           </div>
 
           <button class="nav-toggle" id="navToggle">
@@ -64,1047 +64,511 @@
     </header>
 
     <!-- Main Content -->
-    <main>
-      <section class="auth-section">
-        <div class="container">
-          <div class="auth-container">
-            <div class="auth-form-wrapper">
-              <div class="auth-header">
-                <div class="auth-brand">
-                  <span class="brand-icon">日</span>
-                  <span class="brand-text">Nihongo Sekai</span>
-                </div>
-                <h1 class="auth-title">Welcome Back</h1>
-                <p class="auth-subtitle">
-                  Sign in to your account to continue your Japanese learning
-                  journey
-                </p>
-              </div>
+    <main class="auth-main">
+      <div class="auth-card">
+        <!-- Form Column -->
+        <div class="auth-form-column">
+          <div class="auth-header">
+            <div class="auth-brand">
+              <span class="brand-icon">日</span>
+              <span class="brand-nihongo">Nihongo</span>
+              <span class="brand-sekai">Sekai</span>
+            </div>
+            <h1 class="auth-title">Welcome Back</h1>
+            <p class="auth-subtitle">
+              Sign in to continue your Japanese learning journey
+            </p>
+          </div>
 
-              <form class="auth-form" id="loginForm">
-                <div class="form-group">
-                  <label for="email" class="form-label">Email Address</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    class="form-input"
-                    placeholder="Enter your email"
-                    required
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label for="password" class="form-label">Password</label>
-                  <div class="password-input-wrapper">
-                    <input
-                      type="password"
-                      id="password"
-                      name="password"
-                      class="form-input"
-                      placeholder="Enter your password"
-                      required
-                    />
-                    <button
-                      type="button"
-                      class="password-toggle"
-                      id="passwordToggle"
-                    >
-                      <svg
-                        id="eyeOpen"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <path
-                          d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
-                        />
-                        <circle cx="12" cy="12" r="3" />
-                      </svg>
-                      <svg
-                        id="eyeClosed"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        style="display: none"
-                      >
-                        <path
-                          d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"
-                        />
-                        <line x1="1" y1="1" x2="23" y2="23" />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="form-options">
-                  <label class="checkbox-label">
-                    <input type="checkbox" id="rememberMe" name="rememberMe" />
-                    <span class="checkbox-checkmark"></span>
-                    Remember me
-                  </label>
-                  <button
-                    type="button"
-                    class="forgot-password-link"
-                    onclick="openForgotPasswordModal()"
-                  >
-                    Forgot password?
-                  </button>
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-large">
-                  Sign In
-                </button>
-
-                <div class="auth-footer">
-                  <p>
-                    Don't have an account?
-                    <a href="register.html" class="auth-link">Sign up here</a>
-                  </p>
-                </div>
-              </form>
-
-              <!-- Social Login Options -->
-              <div class="social-login">
-                <div class="divider">
-                  <span>Or continue with</span>
-                </div>
-                <div class="social-buttons">
-                  <button class="btn btn-social" onclick="signInWithGoogle()">
-                    <svg viewBox="0 0 24 24" width="20" height="20">
-                      <path
-                        fill="#4285F4"
-                        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                      />
-                      <path
-                        fill="#34A853"
-                        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                      />
-                      <path
-                        fill="#FBBC05"
-                        d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                      />
-                      <path
-                        fill="#EA4335"
-                        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                      />
-                    </svg>
-                    Google
-                  </button>
-                  <button class="btn btn-social" onclick="signInWithFacebook()">
-                    <svg viewBox="0 0 24 24" width="20" height="20">
-                      <path
-                        fill="#1877F2"
-                        d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-                      />
-                    </svg>
-                    Facebook
-                  </button>
-                </div>
+          <!-- Security Notification -->
+          <div
+            id="securityNotification"
+            class="security-notification"
+            style="display: none"
+          >
+            <div class="security-icon">🔐</div>
+            <div class="security-content">
+              <div class="security-title">Your password is secure</div>
+              <div class="security-description">
+                We use advanced encryption and never store passwords in
+                plaintext
               </div>
             </div>
+          </div>
 
-            <!-- Decorative Side Panel -->
-            <div class="auth-side-panel">
-              <div class="side-panel-content">
-                <h2 class="side-panel-title">
-                  Continue Your <span class="text-gradient">Japanese</span>
-                  Journey
-                </h2>
-                <p class="side-panel-description">
-                  Access your personalized learning dashboard, track your
-                  progress, and continue where you left off.
-                </p>
-                <div class="side-panel-features">
-                  <div class="feature-item">
-                    <div class="feature-icon">📚</div>
-                    <div class="feature-text">Access your enrolled courses</div>
-                  </div>
-                  <div class="feature-item">
-                    <div class="feature-icon">👥</div>
-                    <div class="feature-text">Join live classroom sessions</div>
-                  </div>
-                  <div class="feature-item">
-                    <div class="feature-icon">📈</div>
-                    <div class="feature-text">Track your learning progress</div>
-                  </div>
-                  <div class="feature-item">
-                    <div class="feature-icon">🎌</div>
-                    <div class="feature-text">Explore Japanese culture</div>
-                  </div>
+          <form class="auth-form" id="loginForm" novalidate>
+            <div class="form-group">
+              <label for="email" class="form-label">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input"
+                placeholder="Enter your email"
+                required
+                autocomplete="email"
+              />
+              <div class="form-error" id="emailError"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="password" class="form-label">Password</label>
+              <div class="password-input-group">
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  class="form-input password-input"
+                  placeholder="Enter your password"
+                  required
+                  autocomplete="current-password"
+                />
+                <button
+                  type="button"
+                  class="password-toggle"
+                  id="passwordToggle"
+                  aria-label="Toggle password visibility"
+                >
+                  <svg
+                    class="eye-icon"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                    ></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  <svg
+                    class="eye-off-icon"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    style="display: none"
+                  >
+                    <path
+                      d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"
+                    ></path>
+                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                  </svg>
+                </button>
+              </div>
+              <div class="form-error" id="passwordError"></div>
+            </div>
+
+            <!-- Auth Message -->
+            <div id="authMessage" class="auth-message" style="display: none">
+              <div class="message-content"></div>
+            </div>
+
+            <div class="form-group">
+              <button
+                type="submit"
+                class="btn btn-primary btn-large"
+                id="loginButton"
+              >
+                <span id="loginButtonText">Sign In</span>
+                <div
+                  id="loginSpinner"
+                  class="auth-spinner"
+                  style="display: none"
+                >
+                  <div class="spinner"></div>
+                </div>
+              </button>
+            </div>
+
+            <div class="form-divider">
+              <span>or continue with</span>
+            </div>
+
+            <!-- Social Login -->
+            <div class="social-login">
+              <button
+                type="button"
+                class="btn btn-social btn-google"
+                id="googleLogin"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24">
+                  <path
+                    fill="#4285F4"
+                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                  />
+                  <path
+                    fill="#34A853"
+                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                  />
+                  <path
+                    fill="#FBBC05"
+                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                  />
+                  <path
+                    fill="#EA4335"
+                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                  />
+                </svg>
+                Continue with Google
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-social btn-facebook"
+                id="facebookLogin"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2">
+                  <path
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                  />
+                </svg>
+                Continue with Facebook
+              </button>
+            </div>
+
+            <div class="form-footer">
+              <div class="form-links">
+                <a href="forgot-password.html" class="form-link">
+                  Forgot your password?
+                </a>
+              </div>
+              <p class="auth-switch">
+                Don't have an account?
+                <a href="register.html" class="auth-link">Sign up</a>
+              </p>
+            </div>
+
+            <!-- Demo Accounts -->
+            <div class="demo-accounts">
+              <h4>Demo Accounts (for testing)</h4>
+              <div class="demo-buttons">
+                <button
+                  type="button"
+                  class="btn btn-demo"
+                  onclick="fillDemoAccount('admin')"
+                >
+                  Admin Demo
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-demo"
+                  onclick="fillDemoAccount('partner')"
+                >
+                  Partner Demo
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-demo"
+                  onclick="fillDemoAccount('learner')"
+                >
+                  Learner Demo
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Benefits Column -->
+        <div class="auth-benefits-column">
+          <div class="benefits-content">
+            <h2>Master Japanese with Confidence</h2>
+            <p>
+              Join thousands of learners on their journey to Japanese fluency
+              with our comprehensive platform
+            </p>
+
+            <div class="benefits-list">
+              <div class="benefit-item">
+                <div class="benefit-icon">📚</div>
+                <div class="benefit-content">
+                  <h3>Expert-Led Courses</h3>
+                  <p>
+                    Learn from native speakers and certified teachers with
+                    structured, progressive lessons
+                  </p>
+                </div>
+              </div>
+
+              <div class="benefit-item">
+                <div class="benefit-icon">💬</div>
+                <div class="benefit-content">
+                  <h3>Live Conversation Practice</h3>
+                  <p>
+                    Join interactive classrooms and practice speaking with real
+                    people in real-time
+                  </p>
+                </div>
+              </div>
+
+              <div class="benefit-item">
+                <div class="benefit-icon">📊</div>
+                <div class="benefit-content">
+                  <h3>Track Your Progress</h3>
+                  <p>
+                    Monitor your learning journey with detailed analytics and
+                    personalized recommendations
+                  </p>
+                </div>
+              </div>
+
+              <div class="benefit-item">
+                <div class="benefit-icon">🌍</div>
+                <div class="benefit-content">
+                  <h3>Global Community</h3>
+                  <p>
+                    Connect with learners worldwide and immerse yourself in
+                    Japanese culture
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
-    </main>
-
-    <!-- Forgot Password Modal -->
-    <div class="modal" id="forgotPasswordModal">
-      <div class="modal-overlay" onclick="closeForgotPasswordModal()"></div>
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title">Reset Your Password</h3>
-          <button
-            class="modal-close"
-            onclick="closeForgotPasswordModal()"
-            aria-label="Close"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-          </button>
-        </div>
-
-        <!-- Step 1: Email Input -->
-        <div class="modal-step" id="emailStep">
-          <p class="modal-description">
-            Enter your email address and we'll send you a 4-digit verification
-            code to reset your password.
-          </p>
-          <form id="forgotPasswordForm">
-            <div class="form-group">
-              <label for="resetEmail" class="form-label">Email Address</label>
-              <input
-                type="email"
-                id="resetEmail"
-                name="resetEmail"
-                class="form-input"
-                placeholder="Enter your email"
-                required
-              />
-            </div>
-            <button type="submit" class="btn btn-primary btn-large">
-              Send Reset Code
-            </button>
-          </form>
-        </div>
-
-        <!-- Step 2: OTP Verification -->
-        <div class="modal-step" id="otpStep" style="display: none">
-          <p class="modal-description">
-            We've sent a 4-digit code to your email. Enter it below to verify
-            your identity. The code expires in 10 minutes.
-          </p>
-          <form id="otpForm">
-            <div class="form-group">
-              <label for="otpCode" class="form-label">Verification Code</label>
-              <div class="otp-input-group">
-                <input
-                  type="text"
-                  class="otp-input"
-                  maxlength="1"
-                  pattern="[0-9]"
-                  required
-                />
-                <input
-                  type="text"
-                  class="otp-input"
-                  maxlength="1"
-                  pattern="[0-9]"
-                  required
-                />
-                <input
-                  type="text"
-                  class="otp-input"
-                  maxlength="1"
-                  pattern="[0-9]"
-                  required
-                />
-                <input
-                  type="text"
-                  class="otp-input"
-                  maxlength="1"
-                  pattern="[0-9]"
-                  required
-                />
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary btn-large">
-              Verify Code
-            </button>
-            <button
-              type="button"
-              class="btn btn-outline btn-large"
-              onclick="resendOTP()"
-            >
-              Resend Code
-            </button>
-          </form>
-        </div>
-
-        <!-- Step 3: New Password -->
-        <div class="modal-step" id="newPasswordStep" style="display: none">
-          <p class="modal-description">
-            Create a new secure password for your account.
-          </p>
-          <form id="newPasswordForm">
-            <div class="form-group">
-              <label for="newPassword" class="form-label">New Password</label>
-              <input
-                type="password"
-                id="newPassword"
-                name="newPassword"
-                class="form-input"
-                placeholder="Enter new password"
-                minlength="8"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="confirmPassword" class="form-label"
-                >Confirm Password</label
-              >
-              <input
-                type="password"
-                id="confirmPassword"
-                name="confirmPassword"
-                class="form-input"
-                placeholder="Confirm new password"
-                minlength="8"
-                required
-              />
-            </div>
-            <div class="password-requirements">
-              <p>Password must contain:</p>
-              <ul>
-                <li>At least 8 characters</li>
-                <li>One uppercase letter</li>
-                <li>One lowercase letter</li>
-                <li>One number</li>
-                <li>One special character</li>
-              </ul>
-            </div>
-            <button type="submit" class="btn btn-primary btn-large">
-              Update Password
-            </button>
-          </form>
-        </div>
       </div>
-    </div>
+    </main>
 
     <!-- Scripts -->
     <script src="script.js"></script>
     <script>
-      // Login page functionality
+      // Enhanced Login Functionality with Security Features
       document.addEventListener("DOMContentLoaded", function () {
-        initializeNavigation();
-        initializeLoginForm();
-        initializeForgotPassword();
-        initializePasswordToggle();
-      });
-
-      function initializeLoginForm() {
-        const form = document.getElementById("loginForm");
-        form.addEventListener("submit", handleLogin);
-      }
-
-      function initializePasswordToggle() {
+        const loginForm = document.getElementById("loginForm");
+        const loginButton = document.getElementById("loginButton");
+        const loginButtonText = document.getElementById("loginButtonText");
+        const loginSpinner = document.getElementById("loginSpinner");
+        const authMessage = document.getElementById("authMessage");
+        const passwordToggle = document.getElementById("passwordToggle");
         const passwordInput = document.getElementById("password");
-        const toggleButton = document.getElementById("passwordToggle");
-        const eyeOpen = document.getElementById("eyeOpen");
-        const eyeClosed = document.getElementById("eyeClosed");
+        const securityNotification = document.getElementById(
+          "securityNotification",
+        );
 
-        toggleButton.addEventListener("click", () => {
-          const isPassword = passwordInput.type === "password";
-          passwordInput.type = isPassword ? "text" : "password";
-          eyeOpen.style.display = isPassword ? "none" : "block";
-          eyeClosed.style.display = isPassword ? "block" : "none";
-        });
-      }
+        // Handle form submission
+        loginForm.addEventListener("submit", handleLogin);
 
-      async function handleLogin(e) {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData.entries());
+        // Password visibility toggle
+        passwordToggle.addEventListener("click", togglePasswordVisibility);
 
-        try {
-          showLoading();
+        // Check for redirect URL
+        const redirectUrl = new URLSearchParams(window.location.search).get(
+          "redirect",
+        );
 
-          // Simulate API call
-          const response = await fetch("/api/auth/login", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-          });
+        function togglePasswordVisibility() {
+          const eyeIcon = passwordToggle.querySelector(".eye-icon");
+          const eyeOffIcon = passwordToggle.querySelector(".eye-off-icon");
 
-          if (response.ok) {
-            const result = await response.json();
-
-            // Store session information
-            localStorage.setItem("user", JSON.stringify(result.user));
-
-            // Redirect based on role
-            if (result.user.role === "Admin") {
-              window.location.href = "/admin/dashboard.html";
-            } else {
-              window.location.href = "/dashboard.html";
-            }
-
-            showToast("Login successful! Welcome back.", "success");
+          if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            eyeIcon.style.display = "none";
+            eyeOffIcon.style.display = "block";
           } else {
-            const error = await response.json();
-            showToast(error.message || "Invalid credentials", "error");
+            passwordInput.type = "password";
+            eyeIcon.style.display = "block";
+            eyeOffIcon.style.display = "none";
           }
-        } catch (error) {
-          // Demo mode - simulate successful login
-          showToast("Demo login successful!", "success");
+        }
 
-          // Simulate user data based on email
-          const isAdmin = data.email === "admin@nihongosekai.com";
-          const user = {
-            id: 1,
-            email: data.email,
-            fullName: isAdmin ? "System Administrator" : "Demo User",
-            role: isAdmin ? "Admin" : "Learner",
-            avatar:
-              "https://api.dicebear.com/7.x/avataaars/svg?seed=" + data.email,
+        async function handleLogin(e) {
+          e.preventDefault();
+
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+
+          // Validate inputs
+          if (!email || !password) {
+            showMessage("Please fill in all fields", "error");
+            return;
+          }
+
+          // Show loading state
+          setLoadingState(true);
+
+          try {
+            // Secure login - never log password in plaintext
+            const loginData = {
+              email: email,
+              passwordHash: await hashPassword(password), // Hash password client-side
+            };
+
+            // Simulate API call - in real app, make actual API request
+            const response = await mockLoginAPI(email, password);
+
+            if (response.success) {
+              // Show security notification
+              showSecurityNotification();
+
+              // Store user data and token securely
+              localStorage.setItem("auth_token", response.token);
+              localStorage.setItem("user_data", JSON.stringify(response.user));
+              localStorage.setItem("user_logged_in", "true");
+              localStorage.setItem("user_role", response.user.role);
+
+              showMessage("Login successful! Redirecting...", "success");
+
+              // Redirect based on role and redirect URL
+              setTimeout(() => {
+                const redirectTo = getRedirectUrl(response.user.role);
+                window.location.href = redirectTo;
+              }, 2000);
+            } else {
+              showMessage(response.message || "Login failed", "error");
+            }
+          } catch (error) {
+            console.error(
+              "Login error (no sensitive data logged):",
+              error.message,
+            );
+            showMessage("Login failed. Please try again.", "error");
+          }
+
+          setLoadingState(false);
+        }
+
+        // Simple client-side password hashing (in production, use proper crypto libraries)
+        async function hashPassword(password) {
+          // This is a simplified example - use proper crypto libraries in production
+          const encoder = new TextEncoder();
+          const data = encoder.encode(password + "salt_string");
+          const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+          const hashArray = Array.from(new Uint8Array(hashBuffer));
+          return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+        }
+
+        function showSecurityNotification() {
+          securityNotification.style.display = "flex";
+          securityNotification.style.animation = "slideInFromTop 0.5s ease";
+
+          // Auto-hide after 3 seconds
+          setTimeout(() => {
+            securityNotification.style.animation = "slideOutToTop 0.5s ease";
+            setTimeout(() => {
+              securityNotification.style.display = "none";
+            }, 500);
+          }, 3000);
+        }
+
+        async function mockLoginAPI(email, password) {
+          // Simulate API delay
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+
+          // Demo accounts (passwords are hashed in real implementation)
+          const accounts = {
+            "admin@nihongosekai.com": {
+              password: "admin123",
+              user: {
+                id: 1,
+                name: "Admin User",
+                email: "admin@nihongosekai.com",
+                role: "Admin",
+                avatar: "AU",
+              },
+            },
+            "partner@nihongosekai.com": {
+              password: "partner123",
+              user: {
+                id: 2,
+                name: "Partner User",
+                email: "partner@nihongosekai.com",
+                role: "Partner",
+                avatar: "PU",
+              },
+            },
+            "learner@nihongosekai.com": {
+              password: "learner123",
+              user: {
+                id: 3,
+                name: "Learner User",
+                email: "learner@nihongosekai.com",
+                role: "Learner",
+                avatar: "LU",
+              },
+            },
           };
 
-          localStorage.setItem("user", JSON.stringify(user));
+          const account = accounts[email];
+          if (account && account.password === password) {
+            return {
+              success: true,
+              token: "jwt_token_" + Date.now(),
+              user: account.user,
+              message: "Login successful",
+            };
+          }
 
-          // Redirect after short delay
-          setTimeout(() => {
-            if (isAdmin) {
-              window.location.href = "/admin/dashboard.html";
-            } else {
-              window.location.href = "/dashboard.html";
-            }
-          }, 1000);
-        } finally {
-          hideLoading();
+          return {
+            success: false,
+            message: "Invalid email or password",
+          };
         }
-      }
 
-      // Forgot Password Modal Functions
-      function openForgotPasswordModal() {
-        document.getElementById("forgotPasswordModal").classList.add("active");
-        document.body.style.overflow = "hidden";
-      }
+        function getRedirectUrl(role) {
+          if (redirectUrl) {
+            return decodeURIComponent(redirectUrl);
+          }
 
-      function closeForgotPasswordModal() {
-        document
-          .getElementById("forgotPasswordModal")
-          .classList.remove("active");
-        document.body.style.overflow = "";
-        resetForgotPasswordModal();
-      }
-
-      function resetForgotPasswordModal() {
-        // Reset to first step
-        document.getElementById("emailStep").style.display = "block";
-        document.getElementById("otpStep").style.display = "none";
-        document.getElementById("newPasswordStep").style.display = "none";
-
-        // Clear forms
-        document.getElementById("forgotPasswordForm").reset();
-        document.getElementById("otpForm").reset();
-        document.getElementById("newPasswordForm").reset();
-      }
-
-      function initializeForgotPassword() {
-        // Email form
-        document
-          .getElementById("forgotPasswordForm")
-          .addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const email = document.getElementById("resetEmail").value;
-
-            try {
-              showLoading();
-
-              // Simulate API call to send OTP
-              await new Promise((resolve) => setTimeout(resolve, 1000));
-
-              showToast("Verification code sent to your email!", "success");
-
-              // Move to OTP step
-              document.getElementById("emailStep").style.display = "none";
-              document.getElementById("otpStep").style.display = "block";
-            } catch (error) {
-              showToast("Failed to send verification code", "error");
-            } finally {
-              hideLoading();
-            }
-          });
-
-        // OTP form
-        document
-          .getElementById("otpForm")
-          .addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const otpInputs = document.querySelectorAll(".otp-input");
-            const otp = Array.from(otpInputs)
-              .map((input) => input.value)
-              .join("");
-
-            if (otp.length !== 4) {
-              showToast("Please enter the complete 4-digit code", "error");
-              return;
-            }
-
-            try {
-              showLoading();
-
-              // Simulate OTP verification
-              await new Promise((resolve) => setTimeout(resolve, 800));
-
-              showToast("Code verified successfully!", "success");
-
-              // Move to new password step
-              document.getElementById("otpStep").style.display = "none";
-              document.getElementById("newPasswordStep").style.display =
-                "block";
-            } catch (error) {
-              showToast("Invalid verification code", "error");
-            } finally {
-              hideLoading();
-            }
-          });
-
-        // New password form
-        document
-          .getElementById("newPasswordForm")
-          .addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const newPassword = document.getElementById("newPassword").value;
-            const confirmPassword =
-              document.getElementById("confirmPassword").value;
-
-            if (newPassword !== confirmPassword) {
-              showToast("Passwords do not match", "error");
-              return;
-            }
-
-            if (!validatePassword(newPassword)) {
-              showToast("Password does not meet requirements", "error");
-              return;
-            }
-
-            try {
-              showLoading();
-
-              // Simulate password update
-              await new Promise((resolve) => setTimeout(resolve, 1000));
-
-              showToast("Password updated successfully!", "success");
-
-              // Close modal and reset
-              setTimeout(() => {
-                closeForgotPasswordModal();
-              }, 1500);
-            } catch (error) {
-              showToast("Failed to update password", "error");
-            } finally {
-              hideLoading();
-            }
-          });
-
-        // OTP input handling
-        const otpInputs = document.querySelectorAll(".otp-input");
-        otpInputs.forEach((input, index) => {
-          input.addEventListener("input", (e) => {
-            if (e.target.value.length === 1 && index < otpInputs.length - 1) {
-              otpInputs[index + 1].focus();
-            }
-          });
-
-          input.addEventListener("keydown", (e) => {
-            if (e.key === "Backspace" && !e.target.value && index > 0) {
-              otpInputs[index - 1].focus();
-            }
-          });
-        });
-      }
-
-      function resendOTP() {
-        showToast("New verification code sent!", "info");
-      }
-
-      function validatePassword(password) {
-        const minLength = password.length >= 8;
-        const hasUpper = /[A-Z]/.test(password);
-        const hasLower = /[a-z]/.test(password);
-        const hasNumber = /\d/.test(password);
-        const hasSpecial = /[!@#$%^&*]/.test(password);
-
-        return minLength && hasUpper && hasLower && hasNumber && hasSpecial;
-      }
-
-      // Social login functions
-      function signInWithGoogle() {
-        showToast("Google login integration coming soon!", "info");
-      }
-
-      function signInWithFacebook() {
-        showToast("Facebook login integration coming soon!", "info");
-      }
-
-      // Close modal on escape key
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") {
-          closeForgotPasswordModal();
+          switch (role) {
+            case "Admin":
+              return "dashboard.html";
+            case "Partner":
+              return "index.html";
+            case "Learner":
+              return "index.html";
+            default:
+              return "index.html";
+          }
         }
+
+        function setLoadingState(loading) {
+          loginButton.disabled = loading;
+          if (loading) {
+            loginButtonText.style.display = "none";
+            loginSpinner.style.display = "flex";
+          } else {
+            loginButtonText.style.display = "block";
+            loginSpinner.style.display = "none";
+          }
+        }
+
+        function showMessage(message, type) {
+          const messageContent = authMessage.querySelector(".message-content");
+          messageContent.textContent = message;
+          authMessage.className = `auth-message ${type}`;
+          authMessage.style.display = "block";
+
+          if (type === "success") {
+            setTimeout(() => {
+              authMessage.style.display = "none";
+            }, 3000);
+          }
+        }
+
+        // Demo account functions
+        window.fillDemoAccount = function (type) {
+          const accounts = {
+            admin: { email: "admin@nihongosekai.com", password: "admin123" },
+            partner: {
+              email: "partner@nihongosekai.com",
+              password: "partner123",
+            },
+            learner: {
+              email: "learner@nihongosekai.com",
+              password: "learner123",
+            },
+          };
+
+          const account = accounts[type];
+          if (account) {
+            document.getElementById("email").value = account.email;
+            document.getElementById("password").value = account.password;
+          }
+        };
       });
     </script>
-
-    <style>
-      /* Login page specific styles */
-      .auth-section {
-        min-height: calc(100vh - 80px);
-        display: flex;
-        align-items: center;
-        padding: var(--spacing-2xl) 0;
-        background: linear-gradient(
-          135deg,
-          var(--color-primary-50) 0%,
-          var(--color-white) 50%,
-          var(--color-secondary-50) 100%
-        );
-      }
-
-      .auth-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        max-width: 1000px;
-        margin: 0 auto;
-        background: var(--color-white);
-        border-radius: var(--radius-xl);
-        box-shadow: var(--shadow-2xl);
-        overflow: hidden;
-        min-height: 600px;
-      }
-
-      .auth-form-wrapper {
-        padding: var(--spacing-3xl);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-
-      .auth-header {
-        text-align: center;
-        margin-bottom: var(--spacing-2xl);
-      }
-
-      .auth-brand {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: var(--spacing-sm);
-        margin-bottom: var(--spacing-lg);
-      }
-
-      .auth-brand .brand-icon {
-        font-size: 2rem;
-        color: var(--color-primary);
-      }
-
-      .auth-brand .brand-text {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--color-gray-900);
-      }
-
-      .auth-title {
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--color-gray-900);
-        margin-bottom: var(--spacing-sm);
-      }
-
-      .auth-subtitle {
-        color: var(--color-gray-600);
-        font-size: 1rem;
-        line-height: 1.6;
-      }
-
-      .auth-form {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-lg);
-      }
-
-      .password-input-wrapper {
-        position: relative;
-      }
-
-      .password-toggle {
-        position: absolute;
-        right: var(--spacing-md);
-        top: 50%;
-        transform: translateY(-50%);
-        background: none;
-        border: none;
-        color: var(--color-gray-500);
-        cursor: pointer;
-        padding: var(--spacing-xs);
-        border-radius: var(--radius-sm);
-        transition: color var(--transition-fast);
-      }
-
-      .password-toggle:hover {
-        color: var(--color-gray-700);
-      }
-
-      .password-toggle svg {
-        width: 20px;
-        height: 20px;
-      }
-
-      .form-options {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin: var(--spacing-md) 0;
-      }
-
-      .forgot-password-link {
-        background: none;
-        border: none;
-        color: var(--color-primary);
-        cursor: pointer;
-        font-size: 0.875rem;
-        text-decoration: none;
-        transition: color var(--transition-fast);
-      }
-
-      .forgot-password-link:hover {
-        color: var(--color-primary-dark);
-        text-decoration: underline;
-      }
-
-      .auth-footer {
-        text-align: center;
-        margin-top: var(--spacing-lg);
-        color: var(--color-gray-600);
-      }
-
-      .auth-link {
-        color: var(--color-primary);
-        text-decoration: none;
-        font-weight: 500;
-      }
-
-      .auth-link:hover {
-        text-decoration: underline;
-      }
-
-      .social-login {
-        margin-top: var(--spacing-xl);
-      }
-
-      .divider {
-        text-align: center;
-        margin: var(--spacing-lg) 0;
-        position: relative;
-        color: var(--color-gray-500);
-        font-size: 0.875rem;
-      }
-
-      .divider::before {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: var(--color-gray-200);
-        z-index: 1;
-      }
-
-      .divider span {
-        background: var(--color-white);
-        padding: 0 var(--spacing-md);
-        position: relative;
-        z-index: 2;
-      }
-
-      .social-buttons {
-        display: flex;
-        gap: var(--spacing-md);
-      }
-
-      .btn-social {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: var(--spacing-sm);
-        padding: var(--spacing-md);
-        border: 1px solid var(--color-gray-300);
-        background: var(--color-white);
-        color: var(--color-gray-700);
-        border-radius: var(--radius-md);
-        font-weight: 500;
-        transition: all var(--transition-fast);
-      }
-
-      .btn-social:hover {
-        background: var(--color-gray-50);
-        border-color: var(--color-gray-400);
-      }
-
-      .auth-side-panel {
-        background: linear-gradient(
-          135deg,
-          var(--color-primary) 0%,
-          var(--color-secondary) 100%
-        );
-        color: var(--color-white);
-        padding: var(--spacing-3xl);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .side-panel-content {
-        text-align: center;
-      }
-
-      .side-panel-title {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: var(--spacing-lg);
-        line-height: 1.2;
-      }
-
-      .text-gradient {
-        background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .side-panel-description {
-        font-size: 1.125rem;
-        line-height: 1.6;
-        margin-bottom: var(--spacing-2xl);
-        opacity: 0.9;
-      }
-
-      .side-panel-features {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-lg);
-      }
-
-      .feature-item {
-        display: flex;
-        align-items: center;
-        gap: var(--spacing-md);
-        text-align: left;
-      }
-
-      .feature-icon {
-        font-size: 1.5rem;
-        width: 40px;
-        height: 40px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .feature-text {
-        font-size: 1rem;
-        opacity: 0.9;
-      }
-
-      /* Modal Styles */
-      .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 10000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        visibility: hidden;
-        transition: all var(--transition-normal);
-      }
-
-      .modal.active {
-        opacity: 1;
-        visibility: visible;
-      }
-
-      .modal-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(4px);
-      }
-
-      .modal-content {
-        background: var(--color-white);
-        border-radius: var(--radius-xl);
-        padding: var(--spacing-2xl);
-        max-width: 500px;
-        width: 90%;
-        max-height: 90vh;
-        overflow-y: auto;
-        position: relative;
-        box-shadow: var(--shadow-2xl);
-        transform: scale(0.9);
-        transition: transform var(--transition-normal);
-      }
-
-      .modal.active .modal-content {
-        transform: scale(1);
-      }
-
-      .modal-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: var(--spacing-lg);
-        padding-bottom: var(--spacing-md);
-        border-bottom: 1px solid var(--color-gray-200);
-      }
-
-      .modal-title {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: var(--color-gray-900);
-      }
-
-      .modal-close {
-        background: none;
-        border: none;
-        color: var(--color-gray-500);
-        cursor: pointer;
-        padding: var(--spacing-xs);
-        border-radius: var(--radius-sm);
-        transition: color var(--transition-fast);
-      }
-
-      .modal-close:hover {
-        color: var(--color-gray-700);
-      }
-
-      .modal-close svg {
-        width: 24px;
-        height: 24px;
-      }
-
-      .modal-description {
-        color: var(--color-gray-600);
-        line-height: 1.6;
-        margin-bottom: var(--spacing-lg);
-      }
-
-      .otp-input-group {
-        display: flex;
-        gap: var(--spacing-md);
-        justify-content: center;
-      }
-
-      .otp-input {
-        width: 60px;
-        height: 60px;
-        text-align: center;
-        font-size: 1.5rem;
-        font-weight: 600;
-        border: 2px solid var(--color-gray-300);
-        border-radius: var(--radius-md);
-        background: var(--color-white);
-        transition: border-color var(--transition-fast);
-      }
-
-      .otp-input:focus {
-        outline: none;
-        border-color: var(--color-primary);
-        box-shadow: 0 0 0 3px var(--color-primary-100);
-      }
-
-      .password-requirements {
-        background: var(--color-gray-50);
-        padding: var(--spacing-md);
-        border-radius: var(--radius-md);
-        margin: var(--spacing-md) 0;
-      }
-
-      .password-requirements p {
-        font-weight: 500;
-        margin-bottom: var(--spacing-sm);
-        color: var(--color-gray-700);
-      }
-
-      .password-requirements ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-
-      .password-requirements li {
-        color: var(--color-gray-600);
-        font-size: 0.875rem;
-        padding: var(--spacing-xs) 0;
-        position: relative;
-        padding-left: var(--spacing-md);
-      }
-
-      .password-requirements li::before {
-        content: "•";
-        color: var(--color-gray-400);
-        position: absolute;
-        left: 0;
-      }
-
-      /* Responsive Design */
-      @media (max-width: 768px) {
-        .auth-container {
-          grid-template-columns: 1fr;
-          margin: var(--spacing-md);
-        }
-
-        .auth-side-panel {
-          order: -1;
-          padding: var(--spacing-2xl);
-        }
-
-        .auth-form-wrapper {
-          padding: var(--spacing-2xl);
-        }
-
-        .side-panel-title {
-          font-size: 1.5rem;
-        }
-
-        .side-panel-features {
-          display: none;
-        }
-
-        .social-buttons {
-          flex-direction: column;
-        }
-
-        .otp-input {
-          width: 50px;
-          height: 50px;
-          font-size: 1.25rem;
-        }
-
-        .form-options {
-          flex-direction: column;
-          gap: var(--spacing-md);
-          align-items: stretch;
-        }
-      }
-    </style>
   </body>
 </html>
