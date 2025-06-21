@@ -47,7 +47,7 @@
               <li><a href="index.html" class="nav-link">Home</a></li>
               <li><a href="courses.html" class="nav-link">Courses</a></li>
               <li><a href="classrooms.html" class="nav-link">Classrooms</a></li>
-              <li><a href="teachers.html" class="nav-link">Teachers</a></li>
+              <li><a href="partners.html" class="nav-link">Partners</a></li>
               <li><a href="about.html" class="nav-link">About</a></li>
             </ul>
           </div>
@@ -99,908 +99,525 @@
         </div>
       </section>
 
-      <!-- Course Detail Layout -->
-      <section class="course-detail-container">
-        <div class="course-detail-layout">
-          <!-- Left Column - Video & Content -->
-          <div>
-            <!-- Video Preview -->
-            <div class="course-detail-video">
-              <div style="text-align: center; color: white; font-size: 1.25rem">
-                <svg
-                  width="80"
-                  height="80"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  style="margin-bottom: 1rem"
-                >
-                  <polygon points="5,3 19,12 5,21"></polygon>
-                </svg>
-                <div>Course Preview Video</div>
-                <div style="font-size: 0.875rem; opacity: 0.8">
-                  Click to watch introduction
-                </div>
-              </div>
-            </div>
-
-            <!-- Course Details Card -->
-            <div class="course-detail-main">
-              <!-- Tab Navigation -->
-              <div class="course-detail-tabs">
-                <div class="course-tabs">
-                  <button class="course-tab active" data-tab="overview">
-                    Overview
-                  </button>
-                  <button class="course-tab" data-tab="curriculum">
-                    Curriculum
-                  </button>
-                  <button class="course-tab" data-tab="reviews">Reviews</button>
-                  <button class="course-tab" data-tab="faq">FAQ</button>
-                </div>
-              </div>
-
-              <!-- Tab Content -->
-              <div class="course-tab-content">
-                <!-- Overview Tab -->
-                <div class="course-tab-panel active" data-panel="overview">
-                  <h2
-                    style="
-                      font-family: var(--font-heading);
-                      font-size: 1.875rem;
-                      font-weight: 600;
-                      color: var(--color-gray-900);
-                      margin-bottom: 1.5rem;
-                    "
-                  >
-                    About This Course
-                  </h2>
-                  <div
-                    id="courseOverview"
-                    style="
-                      line-height: 1.7;
-                      color: var(--color-gray-700);
-                      margin-bottom: 2rem;
-                    "
-                  >
-                    <!-- Course overview will be loaded here -->
-                  </div>
-
-                  <h3
-                    style="
-                      font-family: var(--font-heading);
-                      font-size: 1.5rem;
-                      font-weight: 600;
-                      color: var(--color-gray-900);
-                      margin-bottom: 1rem;
-                    "
-                  >
-                    What You'll Learn
-                  </h3>
-                  <div
-                    style="
-                      display: grid;
-                      grid-template-columns: repeat(
-                        auto-fit,
-                        minmax(300px, 1fr)
-                      );
-                      gap: 1rem;
-                      margin-bottom: 2rem;
-                    "
-                  >
-                    <div
-                      style="
-                        background: #f9fafb;
-                        padding: 1.5rem;
-                        border-radius: 0.75rem;
-                        border-left: 4px solid #dc2626;
-                      "
-                    >
-                      <h4
-                        style="
-                          font-weight: 600;
-                          color: #dc2626;
-                          margin-bottom: 0.5rem;
-                        "
-                      >
-                        📚 Comprehensive Learning
-                      </h4>
-                      <p
-                        style="color: var(--color-gray-600); font-size: 0.9rem"
-                      >
-                        Master all aspects of Japanese language through
-                        structured lessons and practical exercises.
-                      </p>
-                    </div>
-                    <div
-                      style="
-                        background: #f9fafb;
-                        padding: 1.5rem;
-                        border-radius: 0.75rem;
-                        border-left: 4px solid #dc2626;
-                      "
-                    >
-                      <h4
-                        style="
-                          font-weight: 600;
-                          color: #dc2626;
-                          margin-bottom: 0.5rem;
-                        "
-                      >
-                        🎯 Practical Skills
-                      </h4>
-                      <p
-                        style="color: var(--color-gray-600); font-size: 0.9rem"
-                      >
-                        Apply your knowledge in real-world scenarios and build
-                        confidence in communication.
-                      </p>
-                    </div>
-                    <div
-                      style="
-                        background: #f9fafb;
-                        padding: 1.5rem;
-                        border-radius: 0.75rem;
-                        border-left: 4px solid #dc2626;
-                      "
-                    >
-                      <h4
-                        style="
-                          font-weight: 600;
-                          color: #dc2626;
-                          margin-bottom: 0.5rem;
-                        "
-                      >
-                        📈 Progress Tracking
-                      </h4>
-                      <p
-                        style="color: var(--color-gray-600); font-size: 0.9rem"
-                      >
-                        Monitor your learning progress with detailed analytics
-                        and milestone achievements.
-                      </p>
-                    </div>
-                    <div
-                      style="
-                        background: #f9fafb;
-                        padding: 1.5rem;
-                        border-radius: 0.75rem;
-                        border-left: 4px solid #dc2626;
-                      "
-                    >
-                      <h4
-                        style="
-                          font-weight: 600;
-                          color: #dc2626;
-                          margin-bottom: 0.5rem;
-                        "
-                      >
-                        🏆 Certification
-                      </h4>
-                      <p
-                        style="color: var(--color-gray-600); font-size: 0.9rem"
-                      >
-                        Earn a certificate of completion to showcase your
-                        Japanese language proficiency.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Curriculum Tab -->
-                <div class="course-tab-panel" data-panel="curriculum">
-                  <h2
-                    style="
-                      font-family: var(--font-heading);
-                      font-size: 1.875rem;
-                      font-weight: 600;
-                      color: var(--color-gray-900);
-                      margin-bottom: 1.5rem;
-                    "
-                  >
-                    Course Curriculum
-                  </h2>
-                  <div id="courseCurriculum">
-                    <!-- Curriculum will be loaded here -->
-                  </div>
-                </div>
-
-                <!-- Reviews Tab -->
-                <div class="course-tab-panel" data-panel="reviews">
-                  <h2
-                    style="
-                      font-family: var(--font-heading);
-                      font-size: 1.875rem;
-                      font-weight: 600;
-                      color: var(--color-gray-900);
-                      margin-bottom: 1.5rem;
-                    "
-                  >
-                    Student Reviews
-                  </h2>
-
-                  <!-- Rating Summary -->
-                  <div
-                    style="
-                      background: white;
-                      border: 1px solid #e5e7eb;
-                      border-radius: 1rem;
-                      padding: 2rem;
-                      margin-bottom: 2rem;
-                    "
-                  >
-                    <div
-                      style="
-                        display: grid;
-                        grid-template-columns: auto 1fr;
-                        gap: 2rem;
-                        align-items: center;
-                      "
-                    >
-                      <div style="text-align: center">
-                        <div
-                          style="
-                            font-size: 3rem;
-                            font-weight: 700;
-                            color: #dc2626;
-                            margin-bottom: 0.5rem;
-                          "
-                          id="avgRating"
-                        >
-                          4.8
-                        </div>
-                        <div
-                          style="
-                            color: #fbbf24;
-                            font-size: 1.5rem;
-                            margin-bottom: 0.5rem;
-                          "
-                        >
-                          ★★★★★
-                        </div>
-                        <div style="color: var(--color-gray-600)">
-                          Based on <span id="reviewCount">245</span> reviews
-                        </div>
-                      </div>
-                      <div>
-                        <!-- Rating bars will be generated -->
-                        <div
-                          style="
-                            display: flex;
-                            align-items: center;
-                            gap: 1rem;
-                            margin-bottom: 0.5rem;
-                          "
-                        >
-                          <span style="font-size: 0.875rem; width: 60px"
-                            >5 stars</span
-                          >
-                          <div
-                            style="
-                              flex: 1;
-                              background: #e5e7eb;
-                              height: 8px;
-                              border-radius: 4px;
-                              overflow: hidden;
-                            "
-                          >
-                            <div
-                              style="
-                                background: #fbbf24;
-                                height: 100%;
-                                width: 75%;
-                              "
-                            ></div>
-                          </div>
-                          <span style="font-size: 0.875rem; width: 40px"
-                            >75%</span
-                          >
-                        </div>
-                        <div
-                          style="
-                            display: flex;
-                            align-items: center;
-                            gap: 1rem;
-                            margin-bottom: 0.5rem;
-                          "
-                        >
-                          <span style="font-size: 0.875rem; width: 60px"
-                            >4 stars</span
-                          >
-                          <div
-                            style="
-                              flex: 1;
-                              background: #e5e7eb;
-                              height: 8px;
-                              border-radius: 4px;
-                              overflow: hidden;
-                            "
-                          >
-                            <div
-                              style="
-                                background: #fbbf24;
-                                height: 100%;
-                                width: 20%;
-                              "
-                            ></div>
-                          </div>
-                          <span style="font-size: 0.875rem; width: 40px"
-                            >20%</span
-                          >
-                        </div>
-                        <div
-                          style="
-                            display: flex;
-                            align-items: center;
-                            gap: 1rem;
-                            margin-bottom: 0.5rem;
-                          "
-                        >
-                          <span style="font-size: 0.875rem; width: 60px"
-                            >3 stars</span
-                          >
-                          <div
-                            style="
-                              flex: 1;
-                              background: #e5e7eb;
-                              height: 8px;
-                              border-radius: 4px;
-                              overflow: hidden;
-                            "
-                          >
-                            <div
-                              style="
-                                background: #fbbf24;
-                                height: 100%;
-                                width: 3%;
-                              "
-                            ></div>
-                          </div>
-                          <span style="font-size: 0.875rem; width: 40px"
-                            >3%</span
-                          >
-                        </div>
-                        <div
-                          style="
-                            display: flex;
-                            align-items: center;
-                            gap: 1rem;
-                            margin-bottom: 0.5rem;
-                          "
-                        >
-                          <span style="font-size: 0.875rem; width: 60px"
-                            >2 stars</span
-                          >
-                          <div
-                            style="
-                              flex: 1;
-                              background: #e5e7eb;
-                              height: 8px;
-                              border-radius: 4px;
-                              overflow: hidden;
-                            "
-                          >
-                            <div
-                              style="
-                                background: #fbbf24;
-                                height: 100%;
-                                width: 1%;
-                              "
-                            ></div>
-                          </div>
-                          <span style="font-size: 0.875rem; width: 40px"
-                            >1%</span
-                          >
-                        </div>
-                        <div
-                          style="display: flex; align-items: center; gap: 1rem"
-                        >
-                          <span style="font-size: 0.875rem; width: 60px"
-                            >1 star</span
-                          >
-                          <div
-                            style="
-                              flex: 1;
-                              background: #e5e7eb;
-                              height: 8px;
-                              border-radius: 4px;
-                              overflow: hidden;
-                            "
-                          >
-                            <div
-                              style="
-                                background: #fbbf24;
-                                height: 100%;
-                                width: 1%;
-                              "
-                            ></div>
-                          </div>
-                          <span style="font-size: 0.875rem; width: 40px"
-                            >1%</span
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Individual Reviews -->
-                  <div id="reviewsList">
-                    <!-- Sample reviews -->
-                    <div
-                      style="
-                        border: 1px solid #e5e7eb;
-                        border-radius: 1rem;
-                        padding: 1.5rem;
-                        margin-bottom: 1rem;
-                      "
-                    >
-                      <div
-                        style="
-                          display: flex;
-                          justify-content: space-between;
-                          align-items: start;
-                          margin-bottom: 1rem;
-                        "
-                      >
-                        <div>
-                          <div
-                            style="
-                              font-weight: 600;
-                              color: var(--color-gray-900);
-                              margin-bottom: 0.25rem;
-                            "
-                          >
-                            Sarah Johnson
-                          </div>
-                          <div style="color: #fbbf24; margin-bottom: 0.25rem">
-                            ★★★★★
-                          </div>
-                          <div style="font-size: 0.875rem; color: #6b7280">
-                            2 weeks ago
-                          </div>
-                        </div>
-                      </div>
-                      <p style="color: var(--color-gray-700); line-height: 1.6">
-                        "This course exceeded my expectations! The structured
-                        approach to learning hiragana and katakana made it so
-                        much easier than other methods I've tried. The cultural
-                        context provided throughout the lessons really helps
-                        understand the language better."
-                      </p>
-                    </div>
-
-                    <div
-                      style="
-                        border: 1px solid #e5e7eb;
-                        border-radius: 1rem;
-                        padding: 1.5rem;
-                        margin-bottom: 1rem;
-                      "
-                    >
-                      <div
-                        style="
-                          display: flex;
-                          justify-content: space-between;
-                          align-items: start;
-                          margin-bottom: 1rem;
-                        "
-                      >
-                        <div>
-                          <div
-                            style="
-                              font-weight: 600;
-                              color: var(--color-gray-900);
-                              margin-bottom: 0.25rem;
-                            "
-                          >
-                            Michael Chen
-                          </div>
-                          <div style="color: #fbbf24; margin-bottom: 0.25rem">
-                            ★★★★★
-                          </div>
-                          <div style="font-size: 0.875rem; color: #6b7280">
-                            1 month ago
-                          </div>
-                        </div>
-                      </div>
-                      <p style="color: var(--color-gray-700); line-height: 1.6">
-                        "Perfect for beginners! I went from knowing nothing to
-                        being able to read basic Japanese text. The practice
-                        exercises are well-designed and the progress tracking
-                        keeps me motivated."
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- FAQ Tab -->
-                <div class="course-tab-panel" data-panel="faq">
-                  <h2
-                    style="
-                      font-family: var(--font-heading);
-                      font-size: 1.875rem;
-                      font-weight: 600;
-                      color: var(--color-gray-900);
-                      margin-bottom: 1.5rem;
-                    "
-                  >
-                    Frequently Asked Questions
-                  </h2>
-
-                  <div style="space-y: 1rem">
-                    <div
-                      style="
-                        border: 1px solid #e5e7eb;
-                        border-radius: 1rem;
-                        overflow: hidden;
-                        margin-bottom: 1rem;
-                      "
-                    >
-                      <button
-                        class="faq-question"
-                        style="
-                          width: 100%;
-                          text-align: left;
-                          padding: 1.5rem;
-                          background: white;
-                          border: none;
-                          font-weight: 600;
-                          color: var(--color-gray-900);
-                          cursor: pointer;
-                          display: flex;
-                          justify-content: space-between;
-                          align-items: center;
-                        "
-                      >
-                        How long do I have access to the course?
-                        <span>+</span>
-                      </button>
-                      <div
-                        class="faq-answer"
-                        style="
-                          padding: 0 1.5rem 1.5rem;
-                          color: var(--color-gray-700);
-                          line-height: 1.6;
-                          display: none;
-                        "
-                      >
-                        You have lifetime access to the course once purchased.
-                        This includes all future updates and additional content
-                        that may be added to the course.
-                      </div>
-                    </div>
-
-                    <div
-                      style="
-                        border: 1px solid #e5e7eb;
-                        border-radius: 1rem;
-                        overflow: hidden;
-                        margin-bottom: 1rem;
-                      "
-                    >
-                      <button
-                        class="faq-question"
-                        style="
-                          width: 100%;
-                          text-align: left;
-                          padding: 1.5rem;
-                          background: white;
-                          border: none;
-                          font-weight: 600;
-                          color: var(--color-gray-900);
-                          cursor: pointer;
-                          display: flex;
-                          justify-content: space-between;
-                          align-items: center;
-                        "
-                      >
-                        Do I need any prior knowledge of Japanese?
-                        <span>+</span>
-                      </button>
-                      <div
-                        class="faq-answer"
-                        style="
-                          padding: 0 1.5rem 1.5rem;
-                          color: var(--color-gray-700);
-                          line-height: 1.6;
-                          display: none;
-                        "
-                      >
-                        No prior knowledge is required! This course is designed
-                        for complete beginners and starts with the very basics
-                        of Japanese language and writing systems.
-                      </div>
-                    </div>
-
-                    <div
-                      style="
-                        border: 1px solid #e5e7eb;
-                        border-radius: 1rem;
-                        overflow: hidden;
-                        margin-bottom: 1rem;
-                      "
-                    >
-                      <button
-                        class="faq-question"
-                        style="
-                          width: 100%;
-                          text-align: left;
-                          padding: 1.5rem;
-                          background: white;
-                          border: none;
-                          font-weight: 600;
-                          color: var(--color-gray-900);
-                          cursor: pointer;
-                          display: flex;
-                          justify-content: space-between;
-                          align-items: center;
-                        "
-                      >
-                        Is there a certificate upon completion?
-                        <span>+</span>
-                      </button>
-                      <div
-                        class="faq-answer"
-                        style="
-                          padding: 0 1.5rem 1.5rem;
-                          color: var(--color-gray-700);
-                          line-height: 1.6;
-                          display: none;
-                        "
-                      >
-                        Yes! Upon successful completion of all course modules
-                        and assessments, you'll receive a certificate of
-                        completion that you can add to your portfolio or resume.
-                      </div>
-                    </div>
-
-                    <div
-                      style="
-                        border: 1px solid #e5e7eb;
-                        border-radius: 1rem;
-                        overflow: hidden;
-                        margin-bottom: 1rem;
-                      "
-                    >
-                      <button
-                        class="faq-question"
-                        style="
-                          width: 100%;
-                          text-align: left;
-                          padding: 1.5rem;
-                          background: white;
-                          border: none;
-                          font-weight: 600;
-                          color: var(--color-gray-900);
-                          cursor: pointer;
-                          display: flex;
-                          justify-content: space-between;
-                          align-items: center;
-                        "
-                      >
-                        Can I download the course materials?
-                        <span>+</span>
-                      </button>
-                      <div
-                        class="faq-answer"
-                        style="
-                          padding: 0 1.5rem 1.5rem;
-                          color: var(--color-gray-700);
-                          line-height: 1.6;
-                          display: none;
-                        "
-                      >
-                        Yes, all supplementary materials including PDFs,
-                        workbooks, and audio files are available for download so
-                        you can study offline.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+      <!-- Sticky Shrinking Video Header -->
+      <section class="sticky-video-header" id="videoHeader">
+        <div class="container">
+          <div class="video-preview" id="videoPreview">
+            <img
+              id="courseImage"
+              src=""
+              alt="Course Preview"
+              style="display: none"
+            />
+            <div class="video-play-button" id="playButton">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <polygon points="5,3 19,12 5,21"></polygon>
+              </svg>
             </div>
           </div>
+        </div>
+      </section>
 
-          <!-- Right Column - Course Info & Enrollment -->
-          <div class="course-detail-sidebar">
-            <div class="course-detail-title" id="courseTitle">
-              Loading course...
-            </div>
-            <div class="course-detail-subtitle" id="courseSubtitle">
-              Course description will appear here
-            </div>
+      <!-- Tab Navigation -->
+      <nav class="tab-navigation">
+        <div class="container">
+          <ul class="tab-list">
+            <li>
+              <button class="tab-button active" data-tab="overview">
+                Overview
+              </button>
+            </li>
+            <li>
+              <button class="tab-button" data-tab="curriculum">
+                Curriculum
+              </button>
+            </li>
+            <li>
+              <button class="tab-button" data-tab="reviews">Reviews</button>
+            </li>
+            <li>
+              <button class="tab-button" data-tab="faq">FAQ</button>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-            <!-- Course Facts -->
-            <div class="course-facts">
-              <div class="course-fact">
-                <div class="course-fact-label">Duration</div>
-                <div class="course-fact-value" id="courseDuration">8 weeks</div>
+      <!-- Two-Column Layout -->
+      <section class="detail-layout">
+        <div class="container">
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 350px;
+              gap: var(--spacing-3xl);
+            "
+          >
+            <!-- Left Column - Content -->
+            <div class="detail-content">
+              <!-- Overview Tab -->
+              <div class="tab-panel active" id="overviewPanel">
+                <h1
+                  id="courseTitle"
+                  style="
+                    font-size: 2.5rem;
+                    font-weight: 700;
+                    margin-bottom: var(--spacing-lg);
+                    color: var(--color-gray-900);
+                  "
+                >
+                  Loading Course...
+                </h1>
+
+                <div
+                  id="courseDescription"
+                  style="
+                    font-size: 1.125rem;
+                    line-height: 1.7;
+                    color: var(--color-gray-700);
+                    margin-bottom: var(--spacing-2xl);
+                  "
+                >
+                  <!-- Course description will be loaded here -->
+                </div>
+
+                <h2
+                  style="
+                    font-size: 1.875rem;
+                    font-weight: 600;
+                    margin-bottom: var(--spacing-lg);
+                    color: var(--color-gray-900);
+                  "
+                >
+                  What You'll Learn
+                </h2>
+
+                <div
+                  id="learningOutcomes"
+                  style="
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                    gap: var(--spacing-lg);
+                    margin-bottom: var(--spacing-2xl);
+                  "
+                >
+                  <!-- Learning outcomes will be loaded here -->
+                </div>
+
+                <h2
+                  style="
+                    font-size: 1.875rem;
+                    font-weight: 600;
+                    margin-bottom: var(--spacing-lg);
+                    color: var(--color-gray-900);
+                  "
+                >
+                  Course Requirements
+                </h2>
+
+                <div
+                  id="requirements"
+                  style="margin-bottom: var(--spacing-2xl)"
+                >
+                  <!-- Requirements will be loaded here -->
+                </div>
               </div>
-              <div class="course-fact">
-                <div class="course-fact-label">Level</div>
-                <div class="course-fact-value" id="courseLevel">Beginner</div>
+
+              <!-- Curriculum Tab -->
+              <div class="tab-panel" id="curriculumPanel" style="display: none">
+                <div class="curriculum-container">
+                  <div class="curriculum-sidebar">
+                    <h2
+                      style="
+                        font-size: 1.5rem;
+                        font-weight: 600;
+                        margin-bottom: var(--spacing-lg);
+                        color: var(--color-gray-900);
+                      "
+                    >
+                      Course Curriculum
+                    </h2>
+                    <div id="curriculumList">
+                      <!-- Curriculum sections will be loaded here -->
+                    </div>
+                  </div>
+                  <div class="curriculum-content">
+                    <div id="lessonContent" class="lesson-content-placeholder">
+                      <div
+                        style="
+                          text-align: center;
+                          padding: var(--spacing-3xl);
+                          color: var(--color-gray-500);
+                        "
+                      >
+                        <svg
+                          width="64"
+                          height="64"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1"
+                          style="margin-bottom: var(--spacing-lg); opacity: 0.5"
+                        >
+                          <circle cx="12" cy="12" r="3"></circle>
+                          <path d="M12 1v6m0 6v6"></path>
+                          <path
+                            d="m15.5 4.5-2 2m0 6-2 2m6-1.5-2-2m-6 0-2-2"
+                          ></path>
+                        </svg>
+                        <h3 style="margin-bottom: var(--spacing-sm)">
+                          Select a lesson to view content
+                        </h3>
+                        <p>
+                          Click on any lesson from the curriculum on the left to
+                          see its detailed content.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="course-fact">
-                <div class="course-fact-label">Students</div>
-                <div class="course-fact-value" id="courseStudents">1,205</div>
+
+              <!-- Reviews Tab -->
+              <div class="tab-panel" id="reviewsPanel" style="display: none">
+                <h2
+                  style="
+                    font-size: 1.875rem;
+                    font-weight: 600;
+                    margin-bottom: var(--spacing-lg);
+                    color: var(--color-gray-900);
+                  "
+                >
+                  Student Reviews
+                </h2>
+
+                <!-- Rating Summary -->
+                <div
+                  class="rating-summary"
+                  style="margin-bottom: var(--spacing-2xl)"
+                >
+                  <div class="rating-overview">
+                    <div class="overall-rating">
+                      <div id="overallRating" class="rating-number">4.8</div>
+                      <div class="rating-stars" id="overallStars">★★★★★</div>
+                      <div class="rating-text">
+                        Based on <span id="totalReviews">245</span> reviews
+                      </div>
+                    </div>
+                    <div class="rating-breakdown" id="ratingBreakdown">
+                      <!-- Rating bars will be loaded here -->
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Review Form (shown based on user eligibility) -->
+                <div id="reviewForm" class="review-form" style="display: none">
+                  <h3 style="margin-bottom: var(--spacing-lg)">
+                    Leave a Review
+                  </h3>
+                  <form id="reviewSubmitForm">
+                    <div
+                      class="rating-input"
+                      style="margin-bottom: var(--spacing-lg)"
+                    >
+                      <label>Your Rating:</label>
+                      <div class="star-rating" id="starRating">
+                        <span class="star" data-rating="1">☆</span>
+                        <span class="star" data-rating="2">☆</span>
+                        <span class="star" data-rating="3">☆</span>
+                        <span class="star" data-rating="4">☆</span>
+                        <span class="star" data-rating="5">☆</span>
+                      </div>
+                    </div>
+                    <div style="margin-bottom: var(--spacing-lg)">
+                      <label
+                        for="reviewText"
+                        style="
+                          display: block;
+                          margin-bottom: var(--spacing-sm);
+                          font-weight: 500;
+                        "
+                        >Your Review:</label
+                      >
+                      <textarea
+                        id="reviewText"
+                        rows="4"
+                        style="
+                          width: 100%;
+                          padding: var(--spacing-md);
+                          border: 1px solid var(--color-gray-300);
+                          border-radius: 8px;
+                          font-family: inherit;
+                        "
+                        placeholder="Share your experience with this course..."
+                      ></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                      Submit Review
+                    </button>
+                  </form>
+                </div>
+
+                <!-- Reviews List -->
+                <div id="reviewsList">
+                  <!-- Individual reviews will be loaded here -->
+                </div>
               </div>
-              <div class="course-fact">
-                <div class="course-fact-label">Rating</div>
-                <div class="course-fact-value">
-                  <span id="courseRating">4.8</span>
-                  <span style="color: #fbbf24">★★★★★</span>
+
+              <!-- FAQ Tab -->
+              <div class="tab-panel" id="faqPanel" style="display: none">
+                <h2
+                  style="
+                    font-size: 1.875rem;
+                    font-weight: 600;
+                    margin-bottom: var(--spacing-lg);
+                    color: var(--color-gray-900);
+                  "
+                >
+                  Frequently Asked Questions
+                </h2>
+                <div id="faqContent" class="faq-container">
+                  <!-- FAQ items will be loaded here -->
                 </div>
               </div>
             </div>
 
-            <!-- Price -->
-            <div
-              style="
-                text-align: center;
-                margin-bottom: 1.5rem;
-                padding: 1.5rem;
-                background: #f9fafb;
-                border-radius: 1rem;
-              "
-            >
-              <div
-                style="
-                  font-size: 3rem;
-                  font-weight: 700;
-                  color: #dc2626;
-                  margin-bottom: 0.5rem;
-                "
-                id="coursePrice"
-              >
-                $49
-              </div>
-              <div style="color: #6b7280; font-size: 0.9rem">
-                One-time payment • Lifetime access
-              </div>
-            </div>
-
-            <!-- Enroll Button -->
-            <button
-              class="course-enroll-btn"
-              id="enrollBtn"
-              onclick="enrollInCourse()"
-            >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="16" y1="2" x2="16" y2="6"></line>
-                <line x1="8" y1="2" x2="8" y2="6"></line>
-                <line x1="3" y1="10" x2="21" y2="10"></line>
-              </svg>
-              Enroll Now with PayPal
-            </button>
-
-            <!-- Security badges -->
-            <div
-              style="
-                text-align: center;
-                margin-top: 1rem;
-                padding-top: 1rem;
-                border-top: 1px solid #e5e7eb;
-              "
-            >
-              <div
-                style="
-                  font-size: 0.875rem;
-                  color: #6b7280;
-                  margin-bottom: 0.5rem;
-                "
-              >
-                🔒 Secure payment processing
-              </div>
-              <div
-                style="
-                  font-size: 0.875rem;
-                  color: #6b7280;
-                  margin-bottom: 0.5rem;
-                "
-              >
-                💯 30-day money-back guarantee
-              </div>
-              <div style="font-size: 0.875rem; color: #6b7280">
-                📱 Access on all devices
-              </div>
-            </div>
-
-            <!-- Quick Course Info -->
-            <div
-              style="
-                margin-top: 2rem;
-                padding: 1.5rem;
-                background: white;
-                border: 1px solid #e5e7eb;
-                border-radius: 1rem;
-              "
-            >
-              <h4
-                style="
-                  font-weight: 600;
-                  margin-bottom: 1rem;
-                  color: var(--color-gray-900);
-                "
-              >
-                This course includes:
-              </h4>
-              <div style="space-y: 0.75rem">
+            <!-- Right Column - Sidebar -->
+            <div class="detail-sidebar">
+              <!-- Course Stats Card -->
+              <div class="sidebar-card">
                 <div
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: 0.75rem;
-                    margin-bottom: 0.75rem;
-                  "
+                  style="text-align: center; margin-bottom: var(--spacing-xl)"
                 >
-                  <span style="color: #22c55e">✓</span>
-                  <span style="font-size: 0.9rem" id="courseLessons"
-                    >24 video lessons</span
+                  <div
+                    style="
+                      font-size: 3rem;
+                      font-weight: 700;
+                      color: var(--color-primary-600);
+                      margin-bottom: var(--spacing-sm);
+                    "
+                    id="coursePrice"
                   >
+                    $99
+                  </div>
+                  <div style="color: var(--color-gray-600); font-size: 0.9rem">
+                    One-time payment • Lifetime access
+                  </div>
                 </div>
+
                 <div
                   style="
-                    display: flex;
-                    align-items: center;
-                    gap: 0.75rem;
-                    margin-bottom: 0.75rem;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: var(--spacing-lg);
+                    margin-bottom: var(--spacing-xl);
                   "
                 >
-                  <span style="color: #22c55e">✓</span>
-                  <span style="font-size: 0.9rem">Downloadable resources</span>
+                  <div style="text-align: center">
+                    <div
+                      style="
+                        font-size: 1.5rem;
+                        font-weight: 600;
+                        color: var(--color-gray-900);
+                      "
+                      id="courseLessons"
+                    >
+                      24
+                    </div>
+                    <div
+                      style="font-size: 0.875rem; color: var(--color-gray-600)"
+                    >
+                      Lessons
+                    </div>
+                  </div>
+                  <div style="text-align: center">
+                    <div
+                      style="
+                        font-size: 1.5rem;
+                        font-weight: 600;
+                        color: var(--color-gray-900);
+                      "
+                      id="courseDuration"
+                    >
+                      8 weeks
+                    </div>
+                    <div
+                      style="font-size: 0.875rem; color: var(--color-gray-600)"
+                    >
+                      Duration
+                    </div>
+                  </div>
+                  <div style="text-align: center">
+                    <div
+                      style="
+                        font-size: 1.5rem;
+                        font-weight: 600;
+                        color: var(--color-gray-900);
+                      "
+                      id="courseLevel"
+                    >
+                      Beginner
+                    </div>
+                    <div
+                      style="font-size: 0.875rem; color: var(--color-gray-600)"
+                    >
+                      Level
+                    </div>
+                  </div>
+                  <div style="text-align: center">
+                    <div
+                      style="
+                        font-size: 1.5rem;
+                        font-weight: 600;
+                        color: var(--color-gray-900);
+                      "
+                      id="courseStudents"
+                    >
+                      1.2k
+                    </div>
+                    <div
+                      style="font-size: 0.875rem; color: var(--color-gray-600)"
+                    >
+                      Students
+                    </div>
+                  </div>
                 </div>
-                <div
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: 0.75rem;
-                    margin-bottom: 0.75rem;
-                  "
+
+                <button
+                  class="cta-button"
+                  id="enrollBtn"
+                  onclick="enrollInCourse()"
                 >
-                  <span style="color: #22c55e">✓</span>
-                  <span style="font-size: 0.9rem">Interactive exercises</span>
-                </div>
-                <div
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: 0.75rem;
-                    margin-bottom: 0.75rem;
-                  "
-                >
-                  <span style="color: #22c55e">✓</span>
-                  <span style="font-size: 0.9rem"
-                    >Certificate of completion</span
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
                   >
-                </div>
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="m22 21-3-3"></path>
+                  </svg>
+                  <span id="enrollBtnText">Enroll Now</span>
+                </button>
+              </div>
+
+              <!-- Course Features -->
+              <div class="sidebar-card">
+                <h3
+                  style="
+                    font-weight: 600;
+                    margin-bottom: var(--spacing-lg);
+                    color: var(--color-gray-900);
+                  "
+                >
+                  Course Features
+                </h3>
+                <ul style="list-style: none; margin: 0; padding: 0">
+                  <li
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: var(--spacing-sm);
+                      margin-bottom: var(--spacing-sm);
+                      color: var(--color-gray-700);
+                    "
+                  >
+                    <span style="color: var(--color-primary-600)">🎥</span>
+                    High-quality video lessons
+                  </li>
+                  <li
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: var(--spacing-sm);
+                      margin-bottom: var(--spacing-sm);
+                      color: var(--color-gray-700);
+                    "
+                  >
+                    <span style="color: var(--color-primary-600)">📱</span>
+                    Mobile-friendly platform
+                  </li>
+                  <li
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: var(--spacing-sm);
+                      margin-bottom: var(--spacing-sm);
+                      color: var(--color-gray-700);
+                    "
+                  >
+                    <span style="color: var(--color-primary-600)">📜</span>
+                    Certificate of completion
+                  </li>
+                  <li
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: var(--spacing-sm);
+                      margin-bottom: var(--spacing-sm);
+                      color: var(--color-gray-700);
+                    "
+                  >
+                    <span style="color: var(--color-primary-600)">♾</span>
+                    Lifetime access
+                  </li>
+                  <li
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: var(--spacing-sm);
+                      color: var(--color-gray-700);
+                    "
+                  >
+                    <span style="color: var(--color-primary-600)">💬</span>
+                    Q&A support
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Instructor Card -->
+              <div class="sidebar-card">
+                <h3
+                  style="
+                    font-weight: 600;
+                    margin-bottom: var(--spacing-lg);
+                    color: var(--color-gray-900);
+                  "
+                >
+                  Instructor
+                </h3>
                 <div
                   style="
                     display: flex;
                     align-items: center;
-                    gap: 0.75rem;
-                    margin-bottom: 0.75rem;
+                    gap: var(--spacing-md);
                   "
                 >
-                  <span style="color: #22c55e">✓</span>
-                  <span style="font-size: 0.9rem">Lifetime access</span>
-                </div>
-                <div
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: 0.75rem;
-                    margin-bottom: 0.75rem;
-                  "
-                >
-                  <span style="color: #22c55e">✓</span>
-                  <span style="font-size: 0.9rem">Mobile app access</span>
+                  <div
+                    class="instructor-avatar"
+                    style="width: 50px; height: 50px; font-size: 1.25rem"
+                  >
+                    AT
+                  </div>
+                  <div>
+                    <div
+                      style="font-weight: 500; margin-bottom: var(--spacing-xs)"
+                    >
+                      Admin Team
+                    </div>
+                    <div
+                      style="color: var(--color-gray-600); font-size: 0.875rem"
+                    >
+                      Expert Instructors
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1008,29 +625,6 @@
         </div>
       </section>
     </main>
-
-    <!-- Sticky Buy Bar -->
-    <div class="sticky-buy-bar" id="stickyBuyBar">
-      <div class="sticky-buy-content">
-        <div class="sticky-course-info">
-          <h4 id="stickyCourseTitle">Course Title</h4>
-          <div class="sticky-course-meta">
-            <span id="stickyCourseLevel">Level</span> •
-            <span id="stickyCourseDuration">Duration</span>
-          </div>
-        </div>
-        <div style="display: flex; align-items: center; gap: 2rem">
-          <div class="sticky-course-price" id="stickyCoursePrice">$49</div>
-          <button
-            class="course-enroll-btn"
-            style="width: auto; margin: 0; padding: 1rem 2rem"
-            onclick="enrollInCourse()"
-          >
-            Enroll Now
-          </button>
-        </div>
-      </div>
-    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -1061,7 +655,7 @@
             <ul class="footer-links">
               <li><a href="courses.html">Courses</a></li>
               <li><a href="classrooms.html">Live Classes</a></li>
-              <li><a href="teachers.html">Teachers</a></li>
+              <li><a href="partners.html">Partners</a></li>
               <li><a href="pricing.html">Pricing</a></li>
             </ul>
           </div>
@@ -1114,254 +708,672 @@
     <!-- Enhanced Scripts -->
     <script src="script.js"></script>
     <script>
-      // Course Detail Page Functionality
+      // Enhanced Course Detail Page Functionality
       document.addEventListener("DOMContentLoaded", function () {
-        // Mock course data (same as courses page)
-        const courses = [
-          {
-            id: 1,
-            title: "Complete Japanese for Beginners",
-            description:
-              "Start your Japanese journey with hiragana, katakana, and basic grammar concepts.",
-            image:
-              "https://images.unsplash.com/photo-1528164344705-47542687000d?w=400&h=300&fit=crop",
-            level: "Beginner",
-            category: "grammar",
-            price: 49,
-            duration: "8 weeks",
-            students: 1205,
-            rating: 4.8,
-            lessons: 24,
-            overview:
-              "This comprehensive beginner course covers all the fundamentals of Japanese language learning. You'll master hiragana and katakana writing systems, learn essential vocabulary, and understand basic grammar patterns that form the foundation of Japanese communication. Our structured approach ensures steady progress while building confidence in your language skills. Each lesson builds upon the previous one, creating a solid foundation for your Japanese learning journey.",
-            curriculum: [
-              {
-                title: "Introduction to Japanese",
-                lessons: 3,
-                duration: "45 min",
-              },
-              { title: "Hiragana Mastery", lessons: 4, duration: "60 min" },
-              { title: "Katakana Mastery", lessons: 4, duration: "60 min" },
-              {
-                title: "Basic Grammar Patterns",
-                lessons: 6,
-                duration: "75 min",
-              },
-              { title: "Essential Vocabulary", lessons: 4, duration: "45 min" },
-              {
-                title: "Practical Conversations",
-                lessons: 3,
-                duration: "90 min",
-              },
-            ],
-          },
-          {
-            id: 2,
-            title: "Japanese Grammar Mastery",
-            description:
-              "Deep dive into Japanese grammar structures and patterns for intermediate learners.",
-            image:
-              "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop",
-            level: "Intermediate",
-            category: "grammar",
-            price: 89,
-            duration: "12 weeks",
-            students: 856,
-            rating: 4.9,
-            lessons: 36,
-            overview:
-              "Master complex Japanese grammar patterns and structures. This course focuses on intermediate to advanced grammar concepts that will elevate your Japanese proficiency significantly. You'll learn to construct sophisticated sentences, understand nuanced expressions, and communicate with greater precision and fluency.",
-            curriculum: [
-              { title: "Complex Verb Forms", lessons: 6, duration: "60 min" },
-              {
-                title: "Conditional Expressions",
-                lessons: 5,
-                duration: "75 min",
-              },
-              { title: "Honorific Language", lessons: 8, duration: "90 min" },
-              { title: "Advanced Particles", lessons: 7, duration: "60 min" },
-              { title: "Literary Expressions", lessons: 6, duration: "45 min" },
-              { title: "Grammar in Context", lessons: 4, duration: "120 min" },
-            ],
-          },
-          // Add other courses as needed...
-        ];
-
         // Get course ID from URL
         const urlParams = new URLSearchParams(window.location.search);
         const courseId = parseInt(urlParams.get("id")) || 1;
-        const course = courses.find((c) => c.id === courseId) || courses[0];
 
-        // Load course data
-        loadCourseData(course);
+        let course = null;
+        let currentUser = getCurrentUser();
+        let selectedRating = 0;
+
+        // Initialize page
+        loadCourseData();
+        setupScrollEffects();
         setupTabNavigation();
-        setupFAQAccordion();
-        setupStickyBuyBar();
+        setupReviewForm();
 
-        function loadCourseData(course) {
-          // Update page title
+        function getCurrentUser() {
+          // Mock user - in real app, get from JWT token
+          return {
+            id: 1,
+            isLoggedIn: localStorage.getItem("user_logged_in") === "true",
+            role: localStorage.getItem("user_role") || "Learner",
+          };
+        }
+
+        async function loadCourseData() {
+          try {
+            // Mock course data - in real app, fetch from API
+            const courses = {
+              1: {
+                id: 1,
+                title: "Complete Japanese for Beginners",
+                description:
+                  "Start your Japanese journey with hiragana, katakana, and basic grammar concepts. This comprehensive beginner course covers all the fundamentals of Japanese language learning. You'll master hiragana and katakana writing systems, learn essential vocabulary, and understand basic grammar patterns that form the foundation of Japanese communication.",
+                image:
+                  "https://images.unsplash.com/photo-1528164344705-47542687000d?w=800&h=400&fit=crop",
+                level: "Beginner",
+                category: "grammar",
+                price: 49,
+                duration: "8 weeks",
+                students: 1205,
+                rating: 4.8,
+                lessons: 24,
+                instructor: "Admin Team",
+                learningOutcomes: [
+                  "Master hiragana and katakana writing systems",
+                  "Learn 300+ essential Japanese vocabulary words",
+                  "Understand basic grammar patterns and sentence structure",
+                  "Practice pronunciation with native speaker audio",
+                  "Form simple sentences for everyday conversations",
+                  "Read basic Japanese texts and signs",
+                ],
+                requirements: [
+                  "No prior Japanese language experience required",
+                  "Computer or mobile device with internet connection",
+                  "Dedication to practice 30 minutes daily",
+                  "Notebook for writing practice (recommended)",
+                ],
+                curriculum: [
+                  {
+                    title: "Introduction to Japanese",
+                    lessons: [
+                      {
+                        id: 1,
+                        title: "Welcome to Japanese",
+                        duration: "15 min",
+                        type: "video",
+                        description:
+                          "Overview of the Japanese language, writing systems, and what you'll learn in this course.",
+                        content:
+                          "In this introductory lesson, we'll explore the fascinating world of Japanese language. You'll learn about the three writing systems: hiragana, katakana, and kanji, and understand how they work together to create the beautiful Japanese language.",
+                      },
+                      {
+                        id: 2,
+                        title: "Japanese Pronunciation Basics",
+                        duration: "20 min",
+                        type: "video",
+                        description:
+                          "Learn the fundamental sounds of Japanese and practice proper pronunciation.",
+                        content:
+                          "Master the basic sounds of Japanese with our pronunciation guide. We'll cover vowel sounds, consonants, and the rhythm of Japanese speech to help you sound natural from the beginning.",
+                      },
+                      {
+                        id: 3,
+                        title: "Cultural Context",
+                        duration: "10 min",
+                        type: "reading",
+                        description:
+                          "Understanding Japanese culture and its influence on language.",
+                        content:
+                          "Language and culture are inseparable. In this lesson, we explore key cultural concepts that will help you understand not just what to say, but when and how to say it appropriately.",
+                      },
+                    ],
+                  },
+                  {
+                    title: "Hiragana Mastery",
+                    lessons: [
+                      {
+                        id: 4,
+                        title: "Basic Hiragana (あ-な)",
+                        duration: "25 min",
+                        type: "practice",
+                        description:
+                          "Learn the first set of hiragana characters with stroke order and pronunciation.",
+                        content:
+                          "Start your hiragana journey with the first 15 characters. Each character comes with detailed stroke order animations, pronunciation guides, and practice exercises.",
+                      },
+                      {
+                        id: 5,
+                        title: "Hiragana Continued (は-わ)",
+                        duration: "25 min",
+                        type: "practice",
+                        description:
+                          "Complete your hiragana learning with the remaining characters.",
+                        content:
+                          "Complete your hiragana foundation with the remaining characters. Practice reading simple words and understand how hiragana forms the backbone of Japanese writing.",
+                      },
+                    ],
+                  },
+                ],
+                reviews: [
+                  {
+                    id: 1,
+                    user: "Sarah Johnson",
+                    rating: 5,
+                    date: "2024-01-15",
+                    comment:
+                      "Absolutely fantastic course! The pacing is perfect for beginners and the explanations are crystal clear. I went from knowing nothing to being able to read basic hiragana in just 2 weeks.",
+                  },
+                  {
+                    id: 2,
+                    user: "Mike Chen",
+                    rating: 4,
+                    date: "2024-01-10",
+                    comment:
+                      "Great foundation course. The video quality is excellent and the practice exercises really help reinforce the learning. Would love to see more interactive elements.",
+                  },
+                  {
+                    id: 3,
+                    user: "Emma Rodriguez",
+                    rating: 5,
+                    date: "2024-01-08",
+                    comment:
+                      "This course exceeded my expectations! The cultural context lessons were particularly valuable. I feel confident moving on to the next level.",
+                  },
+                ],
+                faq: [
+                  {
+                    question: "How long does it take to complete this course?",
+                    answer:
+                      "Most students complete this course in 8 weeks studying 30 minutes per day. However, you can go at your own pace since you have lifetime access.",
+                  },
+                  {
+                    question: "Do I need any prior Japanese knowledge?",
+                    answer:
+                      "No! This course is designed for complete beginners. We start from the very basics and build up gradually.",
+                  },
+                  {
+                    question: "What materials do I need?",
+                    answer:
+                      "Just a computer or mobile device with internet access. A notebook for writing practice is recommended but not required.",
+                  },
+                  {
+                    question: "Is there a certificate upon completion?",
+                    answer:
+                      "Yes! You'll receive a certificate of completion that you can download and share on your professional profiles.",
+                  },
+                  {
+                    question: "Can I access the course on mobile?",
+                    answer:
+                      "Absolutely! Our platform is fully mobile-responsive, so you can learn anywhere, anytime on any device.",
+                  },
+                ],
+              },
+              2: {
+                id: 2,
+                title: "Japanese Grammar Mastery",
+                description:
+                  "Deep dive into Japanese grammar structures and patterns for intermediate learners. Master complex sentence construction, verb conjugations, and advanced particles.",
+                image:
+                  "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=400&fit=crop",
+                level: "Intermediate",
+                category: "grammar",
+                price: 89,
+                duration: "12 weeks",
+                students: 856,
+                rating: 4.9,
+                lessons: 36,
+                instructor: "Admin Team",
+                learningOutcomes: [
+                  "Master all major verb conjugation patterns",
+                  "Use complex particles correctly in context",
+                  "Construct sophisticated sentence structures",
+                  "Express nuanced meanings and emotions",
+                  "Understand formal and informal speech levels",
+                  "Read intermediate Japanese texts fluently",
+                ],
+                requirements: [
+                  "Basic Japanese knowledge (hiragana, katakana, basic vocabulary)",
+                  "Understanding of basic sentence structure",
+                  "Completion of a beginner course or equivalent knowledge",
+                ],
+                curriculum: [
+                  {
+                    title: "Advanced Verb Forms",
+                    lessons: [
+                      {
+                        id: 1,
+                        title: "Te-form and its Applications",
+                        duration: "30 min",
+                        type: "video",
+                        description:
+                          "Master the versatile te-form and its many uses in Japanese.",
+                        content:
+                          "The te-form is one of the most important verb forms in Japanese. Learn how to form it correctly and use it for connecting actions, making requests, and expressing ongoing states.",
+                      },
+                    ],
+                  },
+                ],
+                reviews: [
+                  {
+                    id: 1,
+                    user: "David Kim",
+                    rating: 5,
+                    date: "2024-01-12",
+                    comment:
+                      "Incredible depth and clarity. This course took my Japanese to the next level. The grammar explanations are thorough yet easy to understand.",
+                  },
+                ],
+                faq: [
+                  {
+                    question:
+                      "What level should I be before taking this course?",
+                    answer:
+                      "You should have completed basic hiragana, katakana, and know fundamental sentence patterns. Our beginner course is a perfect prerequisite.",
+                  },
+                ],
+              },
+            };
+
+            course = courses[courseId];
+            if (!course) {
+              showError("Course not found");
+              return;
+            }
+
+            populateCourseData(course);
+            loadTabContent(course);
+            updateEnrollmentButton(course);
+          } catch (error) {
+            console.error("Error loading course:", error);
+            showError("Failed to load course data");
+          }
+        }
+
+        function populateCourseData(course) {
+          // Update page title and meta
           document.title = `${course.title} - Nihongo Sekai`;
 
           // Update breadcrumb
           document.getElementById("breadcrumbCourse").textContent =
             course.title;
 
-          // Update course info
+          // Update main content
           document.getElementById("courseTitle").textContent = course.title;
-          document.getElementById("courseSubtitle").textContent =
+          document.getElementById("courseDescription").textContent =
             course.description;
+          document.getElementById("courseImage").src = course.image;
+          document.getElementById("courseImage").style.display = "block";
+
+          // Update sidebar stats
+          document.getElementById("coursePrice").textContent =
+            `$${course.price}`;
+          document.getElementById("courseLessons").textContent = course.lessons;
           document.getElementById("courseDuration").textContent =
             course.duration;
           document.getElementById("courseLevel").textContent = course.level;
           document.getElementById("courseStudents").textContent =
-            course.students.toLocaleString();
-          document.getElementById("courseRating").textContent = course.rating;
-          document.getElementById("coursePrice").textContent =
-            `$${course.price}`;
-          document.getElementById("courseLessons").textContent =
-            `${course.lessons} video lessons`;
-
-          // Update sticky bar
-          document.getElementById("stickyCourseTitle").textContent =
-            course.title;
-          document.getElementById("stickyCourseLevel").textContent =
-            course.level;
-          document.getElementById("stickyCourseDuration").textContent =
-            course.duration;
-          document.getElementById("stickyCoursePrice").textContent =
-            `$${course.price}`;
-
-          // Load overview content
-          document.getElementById("courseOverview").innerHTML = `
-            <p>${course.overview}</p>
-            <p style="margin-top: 1rem;">Whether you're starting from scratch or looking to solidify your foundation, this course provides the perfect balance of structure and flexibility to accommodate your learning style and pace.</p>
-          `;
-
-          // Load curriculum
-          loadCurriculum(course.curriculum);
+            course.students > 1000
+              ? `${(course.students / 1000).toFixed(1)}k`
+              : course.students;
         }
 
-        function loadCurriculum(curriculum) {
-          const curriculumContainer =
-            document.getElementById("courseCurriculum");
-          curriculumContainer.innerHTML = curriculum
+        function loadTabContent(course) {
+          loadOverviewContent(course);
+          loadCurriculumContent(course);
+          loadReviewsContent(course);
+          loadFAQContent(course);
+        }
+
+        function loadOverviewContent(course) {
+          // Learning outcomes
+          const outcomesHtml = course.learningOutcomes
             .map(
-              (module, index) => `
-            <div style="border: 1px solid #e5e7eb; border-radius: 1rem; margin-bottom: 1rem; overflow: hidden;">
-              <div style="background: #f9fafb; padding: 1.5rem; border-bottom: 1px solid #e5e7eb;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <h3 style="font-weight: 600; color: var(--color-gray-900); margin: 0;">
-                    Module ${index + 1}: ${module.title}
-                  </h3>
-                  <div style="font-size: 0.875rem; color: #6b7280;">
-                    ${module.lessons} lessons • ${module.duration}
-                  </div>
+              (outcome) => `
+            <div style="display: flex; align-items: flex-start; gap: var(--spacing-sm);">
+              <span style="color: var(--color-success); font-size: 1.25rem; margin-top: 2px;">✓</span>
+              <span style="color: var(--color-gray-700);">${outcome}</span>
+            </div>
+          `,
+            )
+            .join("");
+          document.getElementById("learningOutcomes").innerHTML = outcomesHtml;
+
+          // Requirements
+          const requirementsHtml = course.requirements
+            .map(
+              (req) => `
+            <div style="display: flex; align-items: flex-start; gap: var(--spacing-sm); margin-bottom: var(--spacing-sm);">
+              <span style="color: var(--color-primary-600); font-size: 1.25rem; margin-top: 2px;">•</span>
+              <span style="color: var(--color-gray-700);">${req}</span>
+            </div>
+          `,
+            )
+            .join("");
+          document.getElementById("requirements").innerHTML = requirementsHtml;
+        }
+
+        function loadCurriculumContent(course) {
+          const curriculumHtml = course.curriculum
+            .map(
+              (section, sectionIndex) => `
+            <div class="curriculum-section">
+              <div class="section-header" onclick="toggleSection(${sectionIndex})">
+                <h3>${section.title}</h3>
+                <div class="section-meta">
+                  <span>${section.lessons.length} lessons</span>
+                  <svg class="expand-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6,9 12,15 18,9"></polyline>
+                  </svg>
                 </div>
               </div>
-              <div style="padding: 1.5rem;">
-                <div style="display: grid; gap: 0.75rem;">
-                  ${Array.from({ length: module.lessons }, (_, i) => i + 1)
-                    .map(
-                      (lessonNum) => `
-                    <div style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem; background: white; border-radius: 0.5rem; border: 1px solid #f3f4f6;">
-                      <div style="width: 32px; height: 32px; background: #dc2626; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.875rem; font-weight: 600;">
-                        ${lessonNum}
-                      </div>
-                      <div style="flex: 1;">
-                        <div style="font-weight: 500; color: var(--color-gray-900);">
-                          Lesson ${lessonNum}: ${module.title} Part ${lessonNum}
-                        </div>
-                        <div style="font-size: 0.875rem; color: #6b7280;">
-                          Video • ${Math.floor(Math.random() * 30 + 10)} minutes
-                        </div>
-                      </div>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #6b7280;">
-                        <polygon points="5,3 19,12 5,21"></polygon>
-                      </svg>
+              <div class="lessons-list" id="section-${sectionIndex}">
+                ${section.lessons
+                  .map(
+                    (lesson, lessonIndex) => `
+                  <div class="lesson-item" onclick="loadLessonContent(${sectionIndex}, ${lessonIndex})">
+                    <div class="lesson-icon">${lesson.type === "video" ? "🎥" : lesson.type === "practice" ? "✏️" : "📖"}</div>
+                    <div class="lesson-details">
+                      <div class="lesson-title">${lesson.title}</div>
+                      <div class="lesson-meta">${lesson.duration} • ${lesson.type}</div>
                     </div>
-                  `,
-                    )
-                    .join("")}
-                </div>
+                  </div>
+                `,
+                  )
+                  .join("")}
               </div>
             </div>
           `,
             )
             .join("");
+
+          document.getElementById("curriculumList").innerHTML = curriculumHtml;
+        }
+
+        function loadReviewsContent(course) {
+          // Rating summary
+          const ratingBreakdown = [
+            { stars: 5, percentage: 78 },
+            { stars: 4, percentage: 18 },
+            { stars: 3, percentage: 3 },
+            { stars: 2, percentage: 1 },
+            { stars: 1, percentage: 0 },
+          ];
+
+          document.getElementById("overallRating").textContent = course.rating;
+          document.getElementById("overallStars").textContent =
+            "★".repeat(Math.floor(course.rating)) +
+            (course.rating % 1 >= 0.5 ? "☆" : "");
+          document.getElementById("totalReviews").textContent =
+            course.reviews.length;
+
+          const breakdownHtml = ratingBreakdown
+            .map(
+              (item) => `
+            <div class="rating-bar">
+              <span class="stars-label">${item.stars} stars</span>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: ${item.percentage}%"></div>
+              </div>
+              <span class="percentage">${item.percentage}%</span>
+            </div>
+          `,
+            )
+            .join("");
+          document.getElementById("ratingBreakdown").innerHTML = breakdownHtml;
+
+          // Check if user can review
+          const canReview = checkReviewEligibility(course.id);
+          if (canReview) {
+            document.getElementById("reviewForm").style.display = "block";
+          }
+
+          // Reviews list
+          const reviewsHtml = course.reviews
+            .map(
+              (review) => `
+            <div class="review-item">
+              <div class="review-header">
+                <div class="reviewer-info">
+                  <div class="reviewer-avatar">${review.user
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")}</div>
+                  <div>
+                    <div class="reviewer-name">${review.user}</div>
+                    <div class="review-date">${new Date(review.date).toLocaleDateString()}</div>
+                  </div>
+                </div>
+                <div class="review-rating">${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}</div>
+              </div>
+              <div class="review-content">${review.comment}</div>
+            </div>
+          `,
+            )
+            .join("");
+          document.getElementById("reviewsList").innerHTML = reviewsHtml;
+        }
+
+        function loadFAQContent(course) {
+          const faqHtml = course.faq
+            .map(
+              (item, index) => `
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQ(${index})">
+                <h3>${item.question}</h3>
+                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6,9 12,15 18,9"></polyline>
+                </svg>
+              </div>
+              <div class="faq-answer" id="faq-${index}" style="display: none;">
+                <p>${item.answer}</p>
+              </div>
+            </div>
+          `,
+            )
+            .join("");
+          document.getElementById("faqContent").innerHTML = faqHtml;
         }
 
         function setupTabNavigation() {
-          const tabs = document.querySelectorAll(".course-tab");
-          const panels = document.querySelectorAll(".course-tab-panel");
+          const tabButtons = document.querySelectorAll(".tab-button");
+          const tabPanels = document.querySelectorAll(".tab-panel");
 
-          tabs.forEach((tab) => {
-            tab.addEventListener("click", () => {
-              const targetPanel = tab.dataset.tab;
+          tabButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+              const targetTab = button.dataset.tab;
 
-              // Remove active from all tabs and panels
-              tabs.forEach((t) => t.classList.remove("active"));
-              panels.forEach((p) => p.classList.remove("active"));
+              // Update active states
+              tabButtons.forEach((btn) => btn.classList.remove("active"));
+              tabPanels.forEach((panel) => {
+                panel.classList.remove("active");
+                panel.style.display = "none";
+              });
 
-              // Add active to clicked tab and corresponding panel
-              tab.classList.add("active");
-              document
-                .querySelector(`[data-panel="${targetPanel}"]`)
-                .classList.add("active");
-            });
-          });
-        }
-
-        function setupFAQAccordion() {
-          const faqQuestions = document.querySelectorAll(".faq-question");
-
-          faqQuestions.forEach((question) => {
-            question.addEventListener("click", () => {
-              const answer = question.nextElementSibling;
-              const icon = question.querySelector("span");
-
-              if (answer.style.display === "none" || !answer.style.display) {
-                answer.style.display = "block";
-                icon.textContent = "−";
-              } else {
-                answer.style.display = "none";
-                icon.textContent = "+";
+              button.classList.add("active");
+              const targetPanel = document.getElementById(targetTab + "Panel");
+              if (targetPanel) {
+                targetPanel.classList.add("active");
+                targetPanel.style.display = "block";
               }
             });
           });
         }
 
-        function setupStickyBuyBar() {
-          const stickyBar = document.getElementById("stickyBuyBar");
-          const enrollBtn = document.getElementById("enrollBtn");
+        function setupScrollEffects() {
+          const videoHeader = document.getElementById("videoHeader");
+          let lastScrollY = window.scrollY;
 
-          function toggleStickyBar() {
-            const enrollBtnRect = enrollBtn.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
+          window.addEventListener("scroll", () => {
+            const currentScrollY = window.scrollY;
 
-            if (enrollBtnRect.bottom < 0) {
-              stickyBar.classList.add("visible");
+            if (currentScrollY > 100) {
+              videoHeader.style.height = "60px";
+              videoHeader.style.opacity = "0.9";
             } else {
-              stickyBar.classList.remove("visible");
+              videoHeader.style.height = "300px";
+              videoHeader.style.opacity = "1";
             }
-          }
 
-          window.addEventListener("scroll", toggleStickyBar);
-          toggleStickyBar(); // Initial check
+            lastScrollY = currentScrollY;
+          });
         }
 
-        // Global function for enrollment
-        window.enrollInCourse = function () {
-          // In a real application, this would integrate with PayPal
-          alert(
-            `Enrolling in ${course.title} for $${course.price}. In a real application, this would redirect to PayPal checkout.`,
-          );
+        function setupReviewForm() {
+          const stars = document.querySelectorAll("#starRating .star");
+          const form = document.getElementById("reviewSubmitForm");
 
-          // Mock PayPal integration
-          if (typeof paypal !== "undefined") {
-            // PayPal integration would go here
-            console.log("PayPal integration would be implemented here");
+          stars.forEach((star) => {
+            star.addEventListener("click", () => {
+              selectedRating = parseInt(star.dataset.rating);
+              updateStarDisplay();
+            });
+
+            star.addEventListener("mouseenter", () => {
+              const rating = parseInt(star.dataset.rating);
+              highlightStars(rating);
+            });
+          });
+
+          document
+            .getElementById("starRating")
+            .addEventListener("mouseleave", () => {
+              updateStarDisplay();
+            });
+
+          if (form) {
+            form.addEventListener("submit", handleReviewSubmit);
+          }
+        }
+
+        function updateStarDisplay() {
+          const stars = document.querySelectorAll("#starRating .star");
+          stars.forEach((star, index) => {
+            star.textContent = index < selectedRating ? "★" : "☆";
+            star.style.color = index < selectedRating ? "#dc2626" : "#d1d5db";
+          });
+        }
+
+        function highlightStars(rating) {
+          const stars = document.querySelectorAll("#starRating .star");
+          stars.forEach((star, index) => {
+            star.textContent = index < rating ? "★" : "☆";
+            star.style.color = index < rating ? "#dc2626" : "#d1d5db";
+          });
+        }
+
+        function handleReviewSubmit(e) {
+          e.preventDefault();
+
+          if (selectedRating === 0) {
+            alert("Please select a rating");
+            return;
+          }
+
+          const reviewText = document.getElementById("reviewText").value.trim();
+          if (!reviewText) {
+            alert("Please write a review");
+            return;
+          }
+
+          // In real app, submit to API
+          console.log("Submitting review:", {
+            rating: selectedRating,
+            text: reviewText,
+          });
+          alert("Thank you for your review!");
+
+          // Reset form
+          selectedRating = 0;
+          updateStarDisplay();
+          document.getElementById("reviewText").value = "";
+        }
+
+        function checkReviewEligibility(courseId) {
+          // Check if user is logged in, has purchased course, and completed ≥50%
+          if (!currentUser.isLoggedIn) return false;
+          if (currentUser.role === "Partner") return false;
+
+          // Mock check - in real app, verify purchase and progress
+          const hasPurchased = ["1", "4"].includes(courseId.toString());
+          const progress = { 1: 0.75, 4: 0.6 }[courseId] || 0;
+
+          return hasPurchased && progress >= 0.5;
+        }
+
+        function updateEnrollmentButton(course) {
+          const button = document.getElementById("enrollBtn");
+          const buttonText = document.getElementById("enrollBtnText");
+
+          if (!currentUser.isLoggedIn) {
+            buttonText.textContent = "Sign In to Enroll";
+            button.onclick = () => (window.location.href = "login.html");
+            return;
+          }
+
+          if (currentUser.role === "Partner") {
+            buttonText.textContent = "View Only";
+            button.disabled = true;
+            button.style.opacity = "0.6";
+            return;
+          }
+
+          const hasPurchased = ["1", "4"].includes(course.id.toString());
+          if (hasPurchased) {
+            buttonText.textContent = "Continue Learning";
+            button.onclick = () => console.log("Continue learning");
+          } else {
+            buttonText.textContent = "Enroll Now";
+            button.onclick = () => enrollInCourse();
+          }
+        }
+
+        // Global functions
+        window.toggleSection = function (sectionIndex) {
+          const section = document.getElementById(`section-${sectionIndex}`);
+          const isExpanded = section.style.display === "block";
+
+          // Collapse all sections first
+          document.querySelectorAll(".lessons-list").forEach((list) => {
+            list.style.display = "none";
+          });
+
+          // Expand clicked section if it wasn't already expanded
+          if (!isExpanded) {
+            section.style.display = "block";
           }
         };
+
+        window.loadLessonContent = function (sectionIndex, lessonIndex) {
+          const lesson = course.curriculum[sectionIndex].lessons[lessonIndex];
+          const contentArea = document.getElementById("lessonContent");
+
+          // Highlight selected lesson
+          document.querySelectorAll(".lesson-item").forEach((item) => {
+            item.classList.remove("active");
+          });
+          event.target.closest(".lesson-item").classList.add("active");
+
+          contentArea.innerHTML = `
+            <div class="lesson-header">
+              <h2>${lesson.title}</h2>
+              <div class="lesson-meta">
+                <span class="lesson-type">${lesson.type}</span>
+                <span class="lesson-duration">${lesson.duration}</span>
+              </div>
+            </div>
+            <div class="lesson-description">${lesson.description}</div>
+            <div class="lesson-content">${lesson.content}</div>
+            ${lesson.type === "video" ? '<div class="video-placeholder">🎥 Video content would be embedded here</div>' : ""}
+          `;
+        };
+
+        window.toggleFAQ = function (index) {
+          const answer = document.getElementById(`faq-${index}`);
+          const isVisible = answer.style.display === "block";
+
+          // Close all other FAQ items
+          document.querySelectorAll(".faq-answer").forEach((item) => {
+            item.style.display = "none";
+          });
+
+          // Toggle current item
+          answer.style.display = isVisible ? "none" : "block";
+
+          // Animate the icon
+          const icon = event.target
+            .closest(".faq-question")
+            .querySelector(".faq-icon");
+          icon.style.transform = isVisible ? "rotate(0deg)" : "rotate(180deg)";
+        };
+
+        window.enrollInCourse = function () {
+          if (!currentUser.isLoggedIn) {
+            window.location.href = "login.html";
+            return;
+          }
+
+          // Mock enrollment - in real app, process payment
+          alert(`Enrollment initiated for ${course.title}!`);
+        };
+
+        function showError(message) {
+          document.getElementById("courseTitle").textContent = "Error";
+          document.getElementById("courseDescription").textContent = message;
+        }
       });
     </script>
   </body>
