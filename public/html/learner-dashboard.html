@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Dashboard - Nihongo Sekai</title>
+    <meta
+      name="description"
+      content="Your personal learning dashboard at Nihongo Sekai"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../css/global.css" />
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="../css/dashboard.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎌</text></svg>"
+    />
+  </head>
+  <body>
+    <!-- Navigation Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="nav-brand">
+            <a href="index.html" class="brand-link">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">
+                <span class="brand-nihongo">Nihongo</span>
+                <span class="brand-sekai">Sekai</span>
+              </span>
+            </a>
+          </div>
+
+          <div class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+              <li><a href="index.html" class="nav-link">Home</a></li>
+              <li><a href="courses.html" class="nav-link">Courses</a></li>
+              <li><a href="classrooms.html" class="nav-link">Classrooms</a></li>
+              <li><a href="partners.html" class="nav-link">Partners</a></li>
+              <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+          </div>
+
+          <div class="nav-actions">
+            <!-- Profile dropdown will be inserted here by JavaScript -->
+          </div>
+
+          <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Dashboard Content -->
+    <main class="dashboard-layout">
+      <div class="dashboard-container">
+        <!-- Dashboard Header -->
+        <div class="dashboard-header fade-in">
+          <h1 class="dashboard-title">
+            Welcome back, <span id="userName">Student</span>! 🌸
+          </h1>
+          <p class="dashboard-subtitle">
+            Continue your Japanese learning journey
+          </p>
+        </div>
+
+        <!-- Quick Stats Grid -->
+        <div class="dashboard-grid">
+          <div class="dashboard-card fade-in delay-1">
+            <div class="card-header">
+              <div class="card-icon">📚</div>
+              <h3 class="card-title">Courses in Progress</h3>
+            </div>
+            <div class="card-value" id="coursesCount">3</div>
+            <div class="card-change positive">+1 this month</div>
+          </div>
+
+          <div class="dashboard-card fade-in delay-2">
+            <div class="card-header">
+              <div class="card-icon">🎯</div>
+              <h3 class="card-title">Overall Progress</h3>
+            </div>
+            <div class="card-value" id="overallProgress">67%</div>
+            <div class="progress-container">
+              <div class="progress-bar" data-width="67%"></div>
+            </div>
+          </div>
+
+          <div class="dashboard-card fade-in delay-3">
+            <div class="card-header">
+              <div class="card-icon">⚡</div>
+              <h3 class="card-title">Study Streak</h3>
+            </div>
+            <div class="card-value" id="studyStreak">12</div>
+            <div class="card-change positive">days in a row</div>
+          </div>
+
+          <div class="dashboard-card fade-in delay-4">
+            <div class="card-header">
+              <div class="card-icon">🏫</div>
+              <h3 class="card-title">Live Sessions</h3>
+            </div>
+            <div class="card-value" id="liveSessionsCount">2</div>
+            <div class="card-change">upcoming this week</div>
+          </div>
+        </div>
+
+        <!-- Recent Activity & Quick Actions -->
+        <div class="dashboard-grid">
+          <!-- Current Courses -->
+          <div class="dashboard-card fade-in">
+            <div class="card-header">
+              <div class="card-icon">📖</div>
+              <h3 class="card-title">Continue Learning</h3>
+            </div>
+            <div id="currentCourses" class="courses-list">
+              <!-- Courses will be loaded here by JavaScript -->
+            </div>
+            <a href="learner-courses.html" class="btn btn-primary"
+              >View All Courses</a
+            >
+          </div>
+
+          <!-- Upcoming Classrooms -->
+          <div class="dashboard-card fade-in">
+            <div class="card-header">
+              <div class="card-icon">🕐</div>
+              <h3 class="card-title">Upcoming Sessions</h3>
+            </div>
+            <div id="upcomingSessions" class="sessions-list">
+              <!-- Sessions will be loaded here by JavaScript -->
+            </div>
+            <a href="learner-classrooms.html" class="btn btn-primary"
+              >View All Sessions</a
+            >
+          </div>
+        </div>
+
+        <!-- Recent Achievements -->
+        <div class="dashboard-card fade-in">
+          <div class="card-header">
+            <div class="card-icon">🏆</div>
+            <h3 class="card-title">Recent Achievements</h3>
+          </div>
+          <div id="recentAchievements" class="achievements-grid">
+            <!-- Achievements will be loaded here -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Global JavaScript -->
+    <script src="../js/global.js"></script>
+    <!-- Dashboard JavaScript -->
+    <script src="../js/dashboard.js"></script>
+
+    <script>
+      // Initialize learner dashboard specific functionality
+      document.addEventListener("DOMContentLoaded", () => {
+        loadDashboardData();
+        initializeCountdowns();
+      });
+
+      function loadDashboardData() {
+        // Load current courses
+        const courses = DashboardDataGenerator.generateCourseProgress();
+        displayCurrentCourses(courses.slice(0, 3));
+
+        // Load upcoming sessions
+        const sessions = DashboardDataGenerator.generateClassroomSessions();
+        displayUpcomingSessions(sessions.slice(0, 3));
+
+        // Load recent achievements
+        displayRecentAchievements();
+
+        // Update user name
+        const user = JSON.parse(localStorage.getItem("currentUser")) || {
+          name: "Student",
+        };
+        document.getElementById("userName").textContent =
+          user.name.split(" ")[0];
+      }
+
+      function displayCurrentCourses(courses) {
+        const container = document.getElementById("currentCourses");
+        container.innerHTML = courses
+          .map(
+            (course) => `
+                <div class="course-item">
+                    <div class="course-info">
+                        <h4 class="course-title">${course.title}</h4>
+                        <p class="course-progress">Lesson ${course.completedLessons}/${course.totalLessons}</p>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-width="${course.progress}%"></div>
+                        </div>
+                    </div>
+                    <a href="course-detail.html?id=${course.id}" class="btn btn-outline">Continue</a>
+                </div>
+            `,
+          )
+          .join("");
+      }
+
+      function displayUpcomingSessions(sessions) {
+        const container = document.getElementById("upcomingSessions");
+        container.innerHTML = sessions
+          .map(
+            (session) => `
+                <div class="session-item">
+                    <div class="session-info">
+                        <h4 class="session-title">${session.title}</h4>
+                        <p class="session-time">${new Date(session.nextSession).toLocaleDateString()}</p>
+                        <p class="session-instructor">with ${session.instructor}</p>
+                    </div>
+                    <span class="status-badge status-${session.status}">${session.status}</span>
+                </div>
+            `,
+          )
+          .join("");
+      }
+
+      function displayRecentAchievements() {
+        const achievements = [
+          {
+            icon: "🌟",
+            title: "First Week Complete",
+            description: "Completed your first week of study!",
+          },
+          {
+            icon: "📝",
+            title: "Kanji Master",
+            description: "Learned 50 kanji characters",
+          },
+          {
+            icon: "🗣️",
+            title: "Conversation Pro",
+            description: "Participated in 5 live sessions",
+          },
+        ];
+
+        const container = document.getElementById("recentAchievements");
+        container.innerHTML = achievements
+          .map(
+            (achievement) => `
+                <div class="achievement-item">
+                    <div class="achievement-icon">${achievement.icon}</div>
+                    <div class="achievement-content">
+                        <h4 class="achievement-title">${achievement.title}</h4>
+                        <p class="achievement-description">${achievement.description}</p>
+                    </div>
+                </div>
+            `,
+          )
+          .join("");
+      }
+
+      function initializeCountdowns() {
+        // Initialize any countdown timers for upcoming sessions
+        document.querySelectorAll(".session-item").forEach((item) => {
+          // Add countdown logic if needed
+        });
+      }
+    </script>
+
+    <style>
+      /* Additional styles for dashboard components */
+      .courses-list,
+      .sessions-list {
+        margin-bottom: 20px;
+      }
+
+      .course-item,
+      .session-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px;
+        background: #f8f9fa;
+        border-radius: 12px;
+        margin-bottom: 12px;
+        transition: all 0.3s ease;
+      }
+
+      .course-item:hover,
+      .session-item:hover {
+        background: #e9ecef;
+        transform: translateX(4px);
+      }
+
+      .course-info,
+      .session-info {
+        flex: 1;
+      }
+
+      .course-title,
+      .session-title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0 0 4px 0;
+        color: var(--text-color);
+      }
+
+      .course-progress,
+      .session-time,
+      .session-instructor {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin: 2px 0;
+      }
+
+      .achievements-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 16px;
+      }
+
+      .achievement-item {
+        display: flex;
+        align-items: center;
+        padding: 16px;
+        background: linear-gradient(
+          135deg,
+          rgba(102, 126, 234, 0.05),
+          rgba(118, 75, 162, 0.05)
+        );
+        border-radius: 12px;
+        gap: 16px;
+      }
+
+      .achievement-icon {
+        font-size: 2rem;
+        flex-shrink: 0;
+      }
+
+      .achievement-title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0 0 4px 0;
+        color: var(--text-color);
+      }
+
+      .achievement-description {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin: 0;
+      }
+
+      @media (max-width: 768px) {
+        .course-item,
+        .session-item {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+
+        .achievements-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </body>
+</html>
