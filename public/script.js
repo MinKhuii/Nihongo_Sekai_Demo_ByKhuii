@@ -1,17 +1,15 @@
-// Nihongo Sekai - Unified JavaScript
+// Nihongo Sekai - Comprehensive JavaScript with Role-Based Authorization
 
 // Global Configuration
 const CONFIG = {
-  // For static HTML deployment, we disable API calls and use mock data
-  API_BASE_URL: null, // Set to null to force mock data usage
+  API_BASE_URL: null, // Set to null for static deployment
   TOAST_DURATION: 5000,
   LOADING_MIN_DURATION: 500,
-  USE_MOCK_DATA: true, // Force use of mock data for static deployment
+  USE_MOCK_DATA: true,
 };
 
 // Utility Functions
 const Utils = {
-  // Debounce function
   debounce(func, wait, immediate) {
     let timeout;
     return function executedFunction(...args) {
@@ -26,7 +24,6 @@ const Utils = {
     };
   },
 
-  // Format currency
   formatCurrency(amount, currency = "USD") {
     return new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -34,7 +31,6 @@ const Utils = {
     }).format(amount);
   },
 
-  // Format date
   formatDate(date, options = {}) {
     const defaultOptions = {
       year: "numeric",
@@ -47,18 +43,15 @@ const Utils = {
     }).format(new Date(date));
   },
 
-  // Truncate text
   truncate(text, length = 100) {
     if (text.length <= length) return text;
     return text.substring(0, length) + "...";
   },
 
-  // Generate random ID
   generateId() {
     return Math.random().toString(36).substr(2, 9);
   },
 
-  // Scroll to element
   scrollTo(element, offset = 0) {
     const targetPosition =
       element.getBoundingClientRect().top + window.pageYOffset - offset;
@@ -69,583 +62,912 @@ const Utils = {
   },
 };
 
-// API Functions
-async function fetchAPI(endpoint, options = {}) {
-  // If API is disabled (static deployment), immediately return failure to trigger mock data
-  if (!CONFIG.API_BASE_URL || CONFIG.USE_MOCK_DATA) {
-    console.log(`📋 Using mock data for ${endpoint} (static deployment mode)`);
-    return { success: false, error: "Static deployment - using mock data" };
-  }
+// Role-Based Authorization System
+const NihongoSekai = {
+  user: null,
+  isLoggedIn: false,
 
-  const url = `${CONFIG.API_BASE_URL}${endpoint}`;
-  const defaultOptions = {
-    headers: {
-      "Content-Type": "application/json",
+  // User roles and permissions
+  roles: {
+    Admin: {
+      name: "Admin",
+      permissions: [
+        "dashboard",
+        "manage_users",
+        "manage_courses",
+        "manage_classrooms",
+        "view_analytics",
+      ],
     },
-  };
+    Partner: {
+      name: "Partner",
+      permissions: [
+        "view_courses",
+        "view_classrooms",
+        "teach_classrooms",
+        "manage_own_content",
+      ],
+    },
+    Learner: {
+      name: "Learner",
+      permissions: [
+        "purchase_courses",
+        "enroll_classrooms",
+        "rate_courses",
+        "rate_classrooms",
+        "view_progress",
+      ],
+    },
+  },
 
-  try {
-    const response = await fetch(url, { ...defaultOptions, ...options });
+  // Initialize user session
+  init() {
+    this.checkUserSession();
+    this.updateUIBasedOnRole();
+  },
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+  // Check if user is logged in and load user data
+  checkUserSession() {
+    const isLoggedIn = localStorage.getItem("user_logged_in") === "true";
+    const userData = localStorage.getItem("user_data");
+
+    if (isLoggedIn && userData) {
+      try {
+        this.user = JSON.parse(userData);
+        this.isLoggedIn = true;
+      } catch (error) {
+        console.error("Error parsing user data:", error);
+        this.logout();
+      }
+    }
+  },
+
+  // Check if user has specific permission
+  hasPermission(permission) {
+    if (!this.isLoggedIn || !this.user) return false;
+
+    const userRole = this.roles[this.user.role];
+    return userRole && userRole.permissions.includes(permission);
+  },
+
+  // Check if user can rate a course
+  canRateCourse(courseId, userProgress = null) {
+    if (!this.hasPermission("rate_courses")) return false;
+
+    // Check if user has purchased and completed ≥50% of lessons
+    const hasPurchased = this.hasUserPurchased("course", courseId);
+    const completionRate = userProgress ? userProgress.completionRate || 0 : 0;
+
+    return hasPurchased && completionRate >= 0.5;
+  },
+
+  // Check if user can rate a classroom
+  canRateClassroom(classroomId, attendanceWeeks = 0) {
+    if (!this.hasPermission("rate_classrooms")) return false;
+
+    // Check if user has attended ≥1 week
+    return attendanceWeeks >= 1;
+  },
+
+  // Check if user has purchased/enrolled in content
+  hasUserPurchased(type, contentId) {
+    // Mock data - in real app, fetch from API
+    const mockPurchases = {
+      courses: ["1", "4"], // Course IDs user has purchased
+      classrooms: ["1", "2"], // Classroom IDs user has enrolled in
+    };
+
+    const purchases = mockPurchases[type + "s"] || [];
+    return purchases.includes(contentId.toString());
+  },
+
+  // Get user's course progress
+  getUserProgress(courseId) {
+    // Mock progress data - in real app, fetch from API
+    const mockProgress = {
+      1: { completionRate: 0.75, lessonsCompleted: 18, totalLessons: 24 },
+      4: { completionRate: 0.6, lessonsCompleted: 29, totalLessons: 48 },
+    };
+
+    return (
+      mockProgress[courseId.toString()] || {
+        completionRate: 0,
+        lessonsCompleted: 0,
+        totalLessons: 0,
+      }
+    );
+  },
+
+  // Get user's classroom attendance
+  getClassroomAttendance(classroomId) {
+    // Mock attendance data - in real app, fetch from API
+    const mockAttendance = {
+      1: { weeksAttended: 3, totalSessions: 12, attendanceRate: 0.85 },
+      2: { weeksAttended: 2, totalSessions: 8, attendanceRate: 0.9 },
+    };
+
+    return (
+      mockAttendance[classroomId.toString()] || {
+        weeksAttended: 0,
+        totalSessions: 0,
+        attendanceRate: 0,
+      }
+    );
+  },
+
+  // Setup autocomplete functionality for course search
+  setupAutocomplete() {
+    const searchInput =
+      document.getElementById("courseSearch") ||
+      document.getElementById("classroomSearch");
+    const dropdown = document.getElementById("autocompleteDropdown");
+
+    if (!searchInput || !dropdown) return;
+
+    let selectedIndex = -1;
+    const suggestions = [];
+
+    searchInput.addEventListener(
+      "input",
+      Utils.debounce((e) => {
+        const query = e.target.value.trim().toLowerCase();
+
+        if (query.length < 2) {
+          hideDropdown();
+          return;
+        }
+
+        // Get course/classroom data based on page
+        const isCoursePage = window.location.pathname.includes("courses");
+        const data = isCoursePage
+          ? this.getCourseData()
+          : this.getClassroomData();
+
+        // Filter and limit to 5 suggestions
+        const filtered = data
+          .filter(
+            (item) =>
+              item.title.toLowerCase().includes(query) ||
+              item.description.toLowerCase().includes(query) ||
+              (item.category && item.category.toLowerCase().includes(query)),
+          )
+          .slice(0, 5);
+
+        suggestions.length = 0;
+        suggestions.push(...filtered);
+        showSuggestions(query);
+      }, 300),
+    );
+
+    searchInput.addEventListener("keydown", (e) => {
+      if (!dropdown.style.display || dropdown.style.display === "none") return;
+
+      switch (e.key) {
+        case "ArrowDown":
+          e.preventDefault();
+          selectedIndex = Math.min(selectedIndex + 1, suggestions.length - 1);
+          updateHighlight();
+          break;
+        case "ArrowUp":
+          e.preventDefault();
+          selectedIndex = Math.max(selectedIndex - 1, -1);
+          updateHighlight();
+          break;
+        case "Enter":
+          e.preventDefault();
+          if (selectedIndex >= 0) {
+            selectSuggestion(suggestions[selectedIndex]);
+          }
+          break;
+        case "Escape":
+          hideDropdown();
+          break;
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!searchInput.contains(e.target) && !dropdown.contains(e.target)) {
+        hideDropdown();
+      }
+    });
+
+    function showSuggestions(query) {
+      if (suggestions.length === 0) {
+        hideDropdown();
+        return;
+      }
+
+      const isCoursePage = window.location.pathname.includes("courses");
+      const html = suggestions
+        .map(
+          (item, index) => `
+              <div class="autocomplete-suggestion" data-index="${index}" onclick="window.NihongoSekai.selectSuggestion(${JSON.stringify(item).replace(/"/g, "&quot;")})">
+                <div class="suggestion-title">${highlightMatch(item.title, query)}</div>
+                <div class="suggestion-meta">
+                  <span>${item.level || "All Levels"}</span>
+                  ${isCoursePage ? `<span>$${item.price}</span>` : `<span>${item.currentStudents}/${item.maxStudents} enrolled</span>`}
+                  <span>${item.duration || item.schedule}</span>
+                </div>
+              </div>
+            `,
+        )
+        .join("");
+
+      dropdown.innerHTML = html;
+      dropdown.style.display = "block";
+      selectedIndex = -1;
     }
 
-    // Check if response is JSON
-    const contentType = response.headers.get("content-type");
-    if (!contentType || !contentType.includes("application/json")) {
-      throw new Error(
-        `Expected JSON but got ${contentType || "unknown"} content type`,
+    function highlightMatch(text, query) {
+      const regex = new RegExp(`(${query})`, "gi");
+      return text.replace(
+        regex,
+        '<span class="suggestion-highlight">$1</span>',
       );
     }
 
-    const data = await response.json();
-    return { success: true, data };
-  } catch (error) {
-    console.error(`API Error (${endpoint}):`, error);
-    return { success: false, error: error.message };
-  }
-}
+    function updateHighlight() {
+      const items = dropdown.querySelectorAll(".autocomplete-suggestion");
+      items.forEach((item, index) => {
+        item.classList.toggle("highlighted", index === selectedIndex);
+      });
+    }
 
-// Navigation Functions
-function initializeNavigation() {
-  const navToggle = document.getElementById("navToggle");
-  const navMenu = document.getElementById("navMenu");
+    function hideDropdown() {
+      dropdown.style.display = "none";
+      selectedIndex = -1;
+    }
+  },
 
-  if (navToggle && navMenu) {
-    navToggle.addEventListener("click", () => {
-      navMenu.classList.toggle("active");
-      navToggle.classList.toggle("active");
-    });
+  // Get course data for autocomplete
+  getCourseData() {
+    return [
+      {
+        id: 1,
+        title: "Complete Japanese for Beginners",
+        description:
+          "Start your Japanese journey with hiragana, katakana, and basic grammar concepts.",
+        level: "Beginner",
+        category: "grammar",
+        price: 49,
+        duration: "8 weeks",
+      },
+      {
+        id: 2,
+        title: "Japanese Grammar Mastery",
+        description:
+          "Deep dive into Japanese grammar structures and patterns for intermediate learners.",
+        level: "Intermediate",
+        category: "grammar",
+        price: 89,
+        duration: "12 weeks",
+      },
+      {
+        id: 3,
+        title: "Business Japanese Essentials",
+        description:
+          "Professional Japanese for workplace communication and business contexts.",
+        level: "Advanced",
+        category: "business",
+        price: 129,
+        duration: "10 weeks",
+      },
+      {
+        id: 4,
+        title: "JLPT N5 Preparation",
+        description:
+          "Complete preparation course for the Japanese Language Proficiency Test N5 level.",
+        level: "Beginner",
+        category: "jlpt",
+        price: 79,
+        duration: "16 weeks",
+      },
+      {
+        id: 5,
+        title: "Japanese Conversation Practice",
+        description:
+          "Improve your speaking skills with practical conversation scenarios and role-plays.",
+        level: "Intermediate",
+        category: "conversation",
+        price: 69,
+        duration: "8 weeks",
+      },
+      {
+        id: 6,
+        title: "Kanji Mastery Course",
+        description:
+          "Systematic approach to learning and remembering Japanese kanji characters.",
+        level: "Elementary",
+        category: "writing",
+        price: 59,
+        duration: "20 weeks",
+      },
+    ];
+  },
 
-    // Close mobile menu when clicking outside
-    document.addEventListener("click", (e) => {
-      if (
-        !navMenu.contains(e.target) &&
-        !navToggle.contains(e.target) &&
-        navMenu.classList.contains("active")
-      ) {
-        navMenu.classList.remove("active");
-        navToggle.classList.remove("active");
+  // Get classroom data for autocomplete
+  getClassroomData() {
+    return [
+      {
+        id: 1,
+        title: "Morning Conversation Practice",
+        description:
+          "Join our morning conversation circle to practice speaking Japanese in a supportive environment.",
+        level: "Beginner",
+        currentStudents: 5,
+        maxStudents: 8,
+        schedule: "Mon, Wed, Fri 9:00 AM JST",
+      },
+      {
+        id: 2,
+        title: "JLPT Study Group",
+        description: "Intensive study sessions focused on JLPT preparation.",
+        level: "Intermediate",
+        currentStudents: 7,
+        maxStudents: 10,
+        schedule: "Tue, Thu 7:00 PM JST",
+      },
+      {
+        id: 3,
+        title: "Business Japanese Workshop",
+        description: "Advanced workshop for professionals.",
+        level: "Advanced",
+        currentStudents: 6,
+        maxStudents: 6,
+        schedule: "Sat 2:00 PM JST",
+      },
+      {
+        id: 4,
+        title: "Anime Japanese Club",
+        description: "Learn Japanese through popular anime and manga.",
+        level: "Elementary",
+        currentStudents: 9,
+        maxStudents: 12,
+        schedule: "Sun 4:00 PM JST",
+      },
+      {
+        id: 5,
+        title: "Grammar Bootcamp",
+        description:
+          "Intensive grammar sessions covering particles, verb forms, and complex sentence structures.",
+        level: "Intermediate",
+        currentStudents: 4,
+        maxStudents: 8,
+        schedule: "Wed, Fri 6:00 PM JST",
+      },
+      {
+        id: 6,
+        title: "Cultural Exchange Chat",
+        description:
+          "Relaxed conversation sessions focusing on Japanese culture, traditions, and modern life.",
+        level: "Beginner",
+        currentStudents: 6,
+        maxStudents: 10,
+        schedule: "Sat 10:00 AM JST",
+      },
+    ];
+  },
+
+  // Select autocomplete suggestion
+  selectSuggestion(item) {
+    const searchInput =
+      document.getElementById("courseSearch") ||
+      document.getElementById("classroomSearch");
+    const dropdown = document.getElementById("autocompleteDropdown");
+
+    if (searchInput) {
+      searchInput.value = item.title;
+      // Trigger search
+      const event = new Event("input", { bubbles: true });
+      searchInput.dispatchEvent(event);
+    }
+
+    if (dropdown) {
+      dropdown.style.display = "none";
+    }
+  },
+
+  // Update classroom card hover behavior for Partners
+  updateClassroomCardBehavior() {
+    if (!this.isLoggedIn) return;
+
+    const overlayButtons = document.querySelectorAll('[id^="overlayButton-"]');
+    overlayButtons.forEach((button) => {
+      const buttonText = button.querySelector(".button-text");
+      if (buttonText && this.user && this.user.role === "Partner") {
+        button.addEventListener("mouseenter", () => {
+          buttonText.textContent = "View Classroom";
+        });
+        button.addEventListener("mouseleave", () => {
+          buttonText.textContent = "Join Classroom";
+        });
       }
     });
+  },
 
-    // Close mobile menu when clicking on links
-    const navLinks = navMenu.querySelectorAll(".nav-link");
-    navLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        navMenu.classList.remove("active");
-        navToggle.classList.remove("active");
-      });
-    });
-  }
+  // Update UI based on user role
+  updateUIBasedOnRole() {
+    if (!this.isLoggedIn) return;
 
-  // Highlight current page in navigation
-  highlightCurrentNavLink();
+    // Update navigation
+    this.updateNavigation();
 
-  // Add scroll effect to header
-  window.addEventListener("scroll", handleHeaderScroll);
-}
+    // Hide/show purchase buttons based on role
+    this.updatePurchaseButtons();
 
-function highlightCurrentNavLink() {
-  const currentPath = window.location.pathname;
-  const navLinks = document.querySelectorAll(".nav-link");
+    // Update rating forms
+    this.updateRatingForms();
+  },
 
-  navLinks.forEach((link) => {
-    link.classList.remove("active");
-    const linkPath = new URL(link.href).pathname;
+  // Update navigation based on user role
+  updateNavigation() {
+    const navActions =
+      document.querySelector(".nav-actions") ||
+      document.getElementById("navActions");
+    if (!navActions) return;
 
-    if (
-      (currentPath === "/" || currentPath === "/index.html") &&
-      (linkPath === "/" || linkPath === "/index.html")
-    ) {
-      link.classList.add("active");
-    } else if (currentPath.includes(linkPath) && linkPath !== "/") {
-      link.classList.add("active");
+    if (this.isLoggedIn && this.user) {
+      navActions.innerHTML = `
+        <div class="user-profile-menu">
+          <div class="user-avatar-container" id="userAvatarContainer">
+            <div class="user-avatar" id="userAvatar">
+              ${this.user.name
+                .split(" ")
+                .map((n) => n[0])
+                .join("")
+                .toUpperCase()}
+            </div>
+            <div class="online-indicator"></div>
+          </div>
+
+          <div class="profile-dropdown" id="profileDropdown" style="display: none;">
+            <div class="dropdown-header">
+              <div class="dropdown-avatar">${this.user.name
+                .split(" ")
+                .map((n) => n[0])
+                .join("")
+                .toUpperCase()}</div>
+              <div class="dropdown-user-info">
+                <div class="dropdown-name">${this.user.name}</div>
+                <div class="dropdown-role">${this.user.role}</div>
+              </div>
+            </div>
+
+            <div class="dropdown-menu">
+              ${this.getDropdownMenuItems()}
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Setup dropdown functionality
+      this.setupProfileDropdown();
     }
-  });
-}
+  },
 
-function handleHeaderScroll() {
-  const header = document.querySelector(".header");
-  if (window.scrollY > 50) {
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
-  }
-}
+  // Get dropdown menu items based on user role
+  getDropdownMenuItems() {
+    const baseItems = `
+      <a href="#" class="dropdown-item" onclick="NihongoSekai.navigateToProfile()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        My Profile
+      </a>
+    `;
 
-// Loading Functions
-function showLoading() {
-  const loadingIndicator = document.getElementById("loadingIndicator");
-  if (loadingIndicator) {
-    loadingIndicator.classList.add("show");
-  }
-}
+    let roleSpecificItems = "";
 
-function hideLoading() {
-  const loadingIndicator = document.getElementById("loadingIndicator");
-  if (loadingIndicator) {
-    setTimeout(() => {
-      loadingIndicator.classList.remove("show");
-    }, CONFIG.LOADING_MIN_DURATION);
-  }
-}
-
-// Toast Notification Functions
-function showToast(message, type = "info", duration = CONFIG.TOAST_DURATION) {
-  const container = getToastContainer();
-  const toast = createToastElement(message, type);
-
-  container.appendChild(toast);
-
-  // Auto remove after duration
-  setTimeout(() => {
-    removeToast(toast);
-  }, duration);
-
-  // Add click to dismiss
-  toast.addEventListener("click", () => {
-    removeToast(toast);
-  });
-}
-
-function getToastContainer() {
-  let container = document.getElementById("toastContainer");
-  if (!container) {
-    container = document.createElement("div");
-    container.id = "toastContainer";
-    container.className = "toast-container";
-    document.body.appendChild(container);
-  }
-  return container;
-}
-
-function createToastElement(message, type) {
-  const toast = document.createElement("div");
-  toast.className = `toast ${type}`;
-  toast.innerHTML = `
-    <div class="toast-content">
-      ${getToastIcon(type)}
-      <span class="toast-message">${message}</span>
-    </div>
-  `;
-  return toast;
-}
-
-function getToastIcon(type) {
-  const icons = {
-    success: `<svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M9 12l2 2 4-4"/>
-      <circle cx="12" cy="12" r="10"/>
-    </svg>`,
-    error: `<svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <circle cx="12" cy="12" r="10"/>
-      <line x1="15" y1="9" x2="9" y2="15"/>
-      <line x1="9" y1="9" x2="15" y2="15"/>
-    </svg>`,
-    warning: `<svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-      <line x1="12" y1="9" x2="12" y2="13"/>
-      <line x1="12" y1="17" x2="12.01" y2="17"/>
-    </svg>`,
-    info: `<svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <circle cx="12" cy="12" r="10"/>
-      <line x1="12" y1="16" x2="12" y2="12"/>
-      <line x1="12" y1="8" x2="12.01" y2="8"/>
-    </svg>`,
-  };
-  return icons[type] || icons.info;
-}
-
-function removeToast(toast) {
-  toast.style.animation = "slideOut 0.3s ease-in forwards";
-  setTimeout(() => {
-    if (toast.parentNode) {
-      toast.parentNode.removeChild(toast);
-    }
-  }, 300);
-}
-
-// Card Creation Functions
-function createCourseCard(course) {
-  return `
-    <div class="card course-card" data-course-id="${course.courseId}">
-      <img src="${course.coverImageUrl}" alt="${course.name}" class="course-image" loading="lazy">
-      <div class="course-content">
-        <h3 class="course-title">${course.name}</h3>
-        <p class="course-description">${Utils.truncate(course.description, 120)}</p>
-        <div class="course-meta">
-          <div class="course-rating">
-            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+    switch (this.user.role) {
+      case "Learner":
+        roleSpecificItems = `
+          <a href="#" class="dropdown-item" onclick="NihongoSekai.navigateToMyCourses()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
             </svg>
-            <span>${course.evaluationPoint}</span>
-          </div>
-          <div class="course-level">
-            <span class="badge badge-primary">${course.level}</span>
-          </div>
-        </div>
-        <div class="course-stats">
-          <span>${course.studentsCount.toLocaleString()} students</span>
-          <span>${course.duration}h duration</span>
-        </div>
-        <div class="course-footer">
-          <div class="course-price">${Utils.formatCurrency(course.tuition)}</div>
-          <a href="course-detail.html?id=${course.courseId}" class="btn btn-primary">
-            Learn More
+            My Courses
           </a>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function createClassroomCard(classroom) {
-  return `
-    <div class="card classroom-card" data-classroom-id="${classroom.classroomId}">
-      <img src="${classroom.thumbnail}" alt="${classroom.title}" class="classroom-image" loading="lazy">
-      <div class="classroom-content">
-        <h3 class="classroom-title">${classroom.title}</h3>
-        <p class="classroom-description">${Utils.truncate(classroom.description, 100)}</p>
-        <div class="classroom-teacher">
-          <img src="${classroom.partner.avatarUrl}" alt="${classroom.partner.name}" class="teacher-avatar">
-          <div class="teacher-info">
-            <div class="teacher-name">${classroom.partner.name}</div>
-            <div class="teacher-title">Instructor</div>
-          </div>
-        </div>
-        <div class="classroom-meta">
-          <div class="classroom-students">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="m22 21-3-3"/>
+          <a href="#" class="dropdown-item" onclick="NihongoSekai.navigateToMyClassrooms()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"></path>
             </svg>
-            ${classroom.currentStudents}/${classroom.maxStudents} students
-          </div>
-          <div class="classroom-schedule">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-              <line x1="16" y1="2" x2="16" y2="6"/>
-              <line x1="8" y1="2" x2="8" y2="6"/>
-              <line x1="3" y1="10" x2="21" y2="10"/>
+            My Classrooms
+          </a>
+          <a href="#" class="dropdown-item" onclick="NihongoSekai.navigateToTransactions()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+              <line x1="1" y1="10" x2="23" y2="10"></line>
             </svg>
-            ${classroom.schedule}
-          </div>
-        </div>
-        <a href="classroom-detail.html?id=${classroom.classroomId}" class="btn btn-primary">
-          Join Classroom
-        </a>
-      </div>
-    </div>
-  `;
-}
+            Transactions
+          </a>
+        `;
+        break;
 
-function createTeacherCard(teacher) {
-  return `
-    <div class="card teacher-card" data-teacher-id="${teacher.partnerId}">
-      <div class="teacher-header">
-        <img src="${teacher.avatarUrl}" alt="${teacher.account.name}" class="teacher-avatar-large">
-        <div class="teacher-info">
-          <h3 class="teacher-name">${teacher.account.name}</h3>
-          <p class="teacher-specialization">${teacher.specializations.slice(0, 2).join(", ")}</p>
-          <div class="teacher-rating">
-            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+      case "Partner":
+        roleSpecificItems = `
+          <a href="#" class="dropdown-item" onclick="NihongoSekai.navigateToMyClassrooms()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"></path>
             </svg>
-            <span>${teacher.averageRating}</span>
-          </div>
-        </div>
-      </div>
-      <div class="teacher-content">
-        <p class="teacher-bio">${Utils.truncate(teacher.shortBio, 120)}</p>
-        <div class="teacher-stats">
-          <div class="stat">
-            <span class="stat-number">${teacher.teachingExperience}</span>
-            <span class="stat-label">Years Experience</span>
-          </div>
-          <div class="stat">
-            <span class="stat-number">${teacher.coursesTaught.length}</span>
-            <span class="stat-label">Courses</span>
-          </div>
-        </div>
-        <a href="teacher-profile.html?id=${teacher.partnerId}" class="btn btn-outline">
-          View Profile
-        </a>
-      </div>
-    </div>
-  `;
-}
+            My Classrooms
+          </a>
+        `;
+        break;
 
-// Form Handling Functions
-function handleFormSubmission(form, submitHandler) {
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
-
-    // Disable submit button
-    const submitButton = form.querySelector('button[type="submit"]');
-    const originalText = submitButton.innerHTML;
-    submitButton.disabled = true;
-    submitButton.innerHTML = "Loading...";
-
-    try {
-      await submitHandler(data);
-    } catch (error) {
-      console.error("Form submission error:", error);
-      showToast("An error occurred. Please try again.", "error");
-    } finally {
-      // Re-enable submit button
-      submitButton.disabled = false;
-      submitButton.innerHTML = originalText;
+      case "Admin":
+        roleSpecificItems = `
+          <a href="dashboard.html" class="dropdown-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="9"></rect>
+              <rect x="14" y="3" width="7" height="5"></rect>
+              <rect x="14" y="12" width="7" height="9"></rect>
+              <rect x="3" y="16" width="7" height="5"></rect>
+            </svg>
+            Dashboard
+          </a>
+        `;
+        break;
     }
-  });
-}
 
-function validateEmail(email) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-}
+    const settingsAndLogout = `
+      <div class="dropdown-divider"></div>
+      <a href="#" class="dropdown-item" onclick="NihongoSekai.navigateToSettings()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+        Settings
+      </a>
+      <a href="#" class="dropdown-item logout" onclick="NihongoSekai.logout()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <polyline points="16,17 21,12 16,7"></polyline>
+          <line x1="21" y1="12" x2="9" y2="12"></line>
+        </svg>
+        Log out
+      </a>
+    `;
 
-function validatePassword(password) {
-  return password.length >= 6;
-}
+    return baseItems + roleSpecificItems + settingsAndLogout;
+  },
 
-// Search and Filter Functions
-function initializeSearch(searchInput, filterFunction) {
-  const debouncedFilter = Utils.debounce(filterFunction, 300);
+  // Setup profile dropdown functionality
+  setupProfileDropdown() {
+    const avatarContainer = document.getElementById("userAvatarContainer");
+    const dropdown = document.getElementById("profileDropdown");
 
-  searchInput.addEventListener("input", (e) => {
-    debouncedFilter(e.target.value);
-  });
-}
+    if (avatarContainer && dropdown) {
+      avatarContainer.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isVisible = dropdown.style.display === "block";
+        dropdown.style.display = isVisible ? "none" : "block";
+      });
 
-function initializeFilters(filterElements, filterFunction) {
-  filterElements.forEach((element) => {
-    element.addEventListener("change", () => {
-      const filters = {};
-      filterElements.forEach((el) => {
-        if (el.value) {
-          filters[el.name] = el.value;
+      // Close dropdown when clicking outside
+      document.addEventListener("click", (e) => {
+        if (
+          !avatarContainer.contains(e.target) &&
+          !dropdown.contains(e.target)
+        ) {
+          dropdown.style.display = "none";
         }
       });
-      filterFunction(filters);
-    });
-  });
-}
+    }
+  },
 
-// Intersection Observer for Animations
-function initializeAnimations() {
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  };
+  // Navigation methods
+  navigateToProfile() {
+    console.log("Navigate to profile");
+    // In real app: window.location.href = "profile.html";
+  },
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("animate-in");
-        observer.unobserve(entry.target);
+  navigateToMyCourses() {
+    console.log("Navigate to my courses");
+    // In real app: window.location.href = "my-courses.html";
+  },
+
+  navigateToMyClassrooms() {
+    console.log("Navigate to my classrooms");
+    // In real app: window.location.href = "my-classrooms.html";
+  },
+
+  navigateToTransactions() {
+    console.log("Navigate to transactions");
+    // In real app: window.location.href = "transactions.html";
+  },
+
+  navigateToSettings() {
+    console.log("Navigate to settings");
+    // In real app: window.location.href = "settings.html";
+  },
+
+  // Update purchase/enroll buttons based on role
+  updatePurchaseButtons() {
+    const purchaseButtons = document.querySelectorAll(
+      '.course-enroll-btn, .cta-button, [onclick*="enroll"]',
+    );
+
+    purchaseButtons.forEach((button) => {
+      if (
+        !this.hasPermission("purchase_courses") &&
+        !this.hasPermission("enroll_classrooms")
+      ) {
+        // Partners cannot purchase/enroll
+        button.disabled = true;
+        button.style.background = "var(--color-gray-400)";
+        button.style.cursor = "not-allowed";
+        button.innerHTML = `
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M15 9l-6 6M9 9l6 6"></path>
+          </svg>
+          View Only (${this.user.role})
+        `;
+
+        // Remove onclick handlers
+        button.onclick = () => {
+          this.showRoleMessage("purchase_denied");
+        };
       }
     });
-  }, observerOptions);
+  },
 
-  // Observe all animatable elements
-  document
-    .querySelectorAll(
-      ".section, .hero, .feature-card, .card, .course-card, .classroom-card",
-    )
-    .forEach((el) => {
-      observer.observe(el);
-    });
-}
+  // Update rating forms based on permissions
+  updateRatingForms() {
+    // Get current page context
+    const urlParams = new URLSearchParams(window.location.search);
+    const courseId = urlParams.get("id");
+    const currentPage = window.location.pathname;
 
-// Modal Functions
-function openModal(modalId) {
-  const modal = document.getElementById(modalId);
-  if (modal) {
-    modal.classList.add("active");
-    document.body.style.overflow = "hidden";
+    if (currentPage.includes("course-detail.html") && courseId) {
+      this.updateCourseRatingForm(courseId);
+    } else if (currentPage.includes("classroom-detail.html") && courseId) {
+      this.updateClassroomRatingForm(courseId);
+    }
+  },
 
-    // Close on outside click
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        closeModal(modalId);
+  // Update course rating form
+  updateCourseRatingForm(courseId) {
+    const ratingForms = document.querySelectorAll(
+      '.rating-form, [data-rating-type="course"]',
+    );
+
+    ratingForms.forEach((form) => {
+      if (!this.hasPermission("rate_courses")) {
+        form.style.display = "none";
+        return;
+      }
+
+      const userProgress = this.getUserProgress(courseId);
+      const canRate = this.canRateCourse(courseId, userProgress);
+
+      if (!canRate) {
+        const completionRate = Math.round(userProgress.completionRate * 100);
+        form.innerHTML = `
+          <div style="background: var(--color-warning-50); border: 1px solid var(--color-warning-200); border-radius: var(--radius-lg); padding: var(--spacing-lg); text-align: center;">
+            <div style="color: var(--color-warning-700); font-weight: 600; margin-bottom: var(--spacing-sm);">
+              Complete more lessons to rate this course
+            </div>
+            <div style="color: var(--color-warning-600); font-size: 0.875rem;">
+              Progress: ${completionRate}% (need 50% to rate)
+            </div>
+            <div style="margin-top: var(--spacing-sm);">
+              <div style="width: 100%; height: 6px; background: var(--color-warning-200); border-radius: 3px; overflow: hidden;">
+                <div style="width: ${completionRate}%; height: 100%; background: var(--color-warning-500); transition: width 0.3s ease;"></div>
+              </div>
+            </div>
+          </div>
+        `;
       }
     });
+  },
 
-    // Close on escape key
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        closeModal(modalId);
+  // Update classroom rating form
+  updateClassroomRatingForm(classroomId) {
+    const ratingForms = document.querySelectorAll(
+      '.rating-form, [data-rating-type="classroom"]',
+    );
+
+    ratingForms.forEach((form) => {
+      if (!this.hasPermission("rate_classrooms")) {
+        form.style.display = "none";
+        return;
+      }
+
+      const attendance = this.getClassroomAttendance(classroomId);
+      const canRate = this.canRateClassroom(
+        classroomId,
+        attendance.weeksAttended,
+      );
+
+      if (!canRate) {
+        form.innerHTML = `
+          <div style="background: var(--color-warning-50); border: 1px solid var(--color-warning-200); border-radius: var(--radius-lg); padding: var(--spacing-lg); text-align: center;">
+            <div style="color: var(--color-warning-700); font-weight: 600; margin-bottom: var(--spacing-sm);">
+              Attend more sessions to rate this classroom
+            </div>
+            <div style="color: var(--color-warning-600); font-size: 0.875rem;">
+              Attendance: ${attendance.weeksAttended} weeks (need 1+ weeks to rate)
+            </div>
+          </div>
+        `;
       }
     });
-  }
-}
+  },
 
-function closeModal(modalId) {
-  const modal = document.getElementById(modalId);
-  if (modal) {
-    modal.classList.remove("active");
-    document.body.style.overflow = "";
-  }
-}
+  // Show enrollment button with role check
+  showEnrollmentButton(contentType, contentId) {
+    if (!this.isLoggedIn) {
+      return `
+        <button onclick="window.location.href='login.html'" class="cta-button">
+          Sign In to ${contentType === "course" ? "Purchase" : "Enroll"}
+        </button>
+      `;
+    }
 
-// Local Storage Functions
-function saveToLocalStorage(key, data) {
-  try {
-    localStorage.setItem(key, JSON.stringify(data));
-  } catch (error) {
-    console.error("Error saving to localStorage:", error);
-  }
-}
+    const hasPermission =
+      contentType === "course"
+        ? this.hasPermission("purchase_courses")
+        : this.hasPermission("enroll_classrooms");
 
-function getFromLocalStorage(key) {
-  try {
-    const data = localStorage.getItem(key);
-    return data ? JSON.parse(data) : null;
-  } catch (error) {
-    console.error("Error reading from localStorage:", error);
-    return null;
-  }
-}
+    if (!hasPermission) {
+      return `
+        <button disabled class="cta-button" style="background: var(--color-gray-400); cursor: not-allowed;">
+          View Only (${this.user.role})
+        </button>
+      `;
+    }
 
-function removeFromLocalStorage(key) {
-  try {
-    localStorage.removeItem(key);
-  } catch (error) {
-    console.error("Error removing from localStorage:", error);
-  }
-}
+    const hasPurchased = this.hasUserPurchased(contentType, contentId);
+    if (hasPurchased) {
+      return `
+        <button disabled class="cta-button" style="background: var(--color-success);">
+          ${contentType === "course" ? "Purchased" : "Enrolled"}
+        </button>
+      `;
+    }
 
-// URL Parameter Functions
-function getURLParameter(name) {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(name);
-}
+    return `
+      <button onclick="NihongoSekai.handleEnrollment('${contentType}', '${contentId}')" class="cta-button">
+        ${contentType === "course" ? "Purchase Course" : "Enroll in Classroom"}
+      </button>
+    `;
+  },
 
-function setURLParameter(name, value) {
-  const url = new URL(window.location);
-  url.searchParams.set(name, value);
-  window.history.pushState({}, "", url);
-}
+  // Handle enrollment/purchase with role checking
+  handleEnrollment(contentType, contentId) {
+    if (!this.isLoggedIn) {
+      localStorage.setItem("redirect_after_login", window.location.href);
+      window.location.href = "login.html";
+      return;
+    }
 
-// Error Handling
-window.addEventListener("error", (e) => {
-  console.error("Global error:", e.error);
+    const hasPermission =
+      contentType === "course"
+        ? this.hasPermission("purchase_courses")
+        : this.hasPermission("enroll_classrooms");
 
-  // Show user-friendly error message
-  showToast("Something went wrong. Please refresh the page.", "error");
-});
+    if (!hasPermission) {
+      this.showRoleMessage(
+        contentType === "course" ? "purchase_denied" : "enroll_denied",
+      );
+      return;
+    }
 
-window.addEventListener("unhandledrejection", (e) => {
-  console.error("Unhandled promise rejection:", e.reason);
-  e.preventDefault();
+    // Proceed with enrollment/purchase
+    this.showToast(
+      `Successfully ${contentType === "course" ? "purchased" : "enrolled in"} ${contentType}!`,
+      "success",
+    );
 
-  // Show user-friendly error message
-  showToast("A network error occurred. Please try again.", "error");
-});
+    // Update UI to reflect purchase/enrollment
+    this.updatePurchaseButtons();
+  },
 
-// Initialize on DOM ready
+  // Logout user
+  logout() {
+    localStorage.removeItem("user_logged_in");
+    localStorage.removeItem("user_data");
+    localStorage.removeItem("auth_token");
+    localStorage.removeItem("redirect_after_login");
+
+    this.user = null;
+    this.isLoggedIn = false;
+
+    // Redirect to home
+    window.location.href = "index.html";
+  },
+
+  // Show role-based messages
+  showRoleMessage(action, requiredRole = null) {
+    const messages = {
+      purchase_denied: `Only students can purchase courses. ${this.user.role}s can view course content but cannot make purchases.`,
+      enroll_denied: `Only students can enroll in classrooms. ${this.user.role}s can view classroom information but cannot enroll.`,
+      rate_denied:
+        "You need to complete at least 50% of the course to leave a rating.",
+      rate_classroom_denied:
+        "You need to attend at least 1 week of classes to rate this classroom.",
+      login_required: "Please sign in to access this feature.",
+    };
+
+    const message = messages[action] || "Access denied.";
+    this.showToast(message, "warning");
+  },
+
+  // Enhanced toast with role-based styling
+  showToast(message, type = "info") {
+    const toast = document.createElement("div");
+    toast.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: ${type === "success" ? "#22c55e" : type === "error" ? "#ef4444" : type === "warning" ? "#f59e0b" : "#3b82f6"};
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      font-weight: 500;
+      max-width: 350px;
+      font-size: 0.875rem;
+      line-height: 1.4;
+    `;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+      toast.remove();
+    }, 5000);
+  },
+
+  // API Functions
+  async fetchAPI(endpoint, options = {}) {
+    if (!CONFIG.API_BASE_URL || CONFIG.USE_MOCK_DATA) {
+      console.log(
+        `📋 Using mock data for ${endpoint} (static deployment mode)`,
+      );
+      return { success: false, error: "Static deployment - using mock data" };
+    }
+
+    const url = `${CONFIG.API_BASE_URL}${endpoint}`;
+    const defaultOptions = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
+      },
+    };
+
+    try {
+      const response = await fetch(url, { ...defaultOptions, ...options });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      return { success: true, data };
+    } catch (error) {
+      console.error("API Error:", error);
+      return { success: false, error: error.message };
+    }
+  },
+};
+
+// Initialize application when DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
-  initializeNavigation();
-  initializeAnimations();
-
-  // Initialize any forms
-  const forms = document.querySelectorAll("form");
-  forms.forEach((form) => {
-    if (form.dataset.autoHandle !== "false") {
-      // Add basic form validation
-      const inputs = form.querySelectorAll("input[required]");
-      inputs.forEach((input) => {
-        input.addEventListener("blur", () => {
-          validateInput(input);
-        });
-      });
-    }
-  });
+  NihongoSekai.init();
 });
 
-function validateInput(input) {
-  const value = input.value.trim();
-  let isValid = true;
-  let errorMessage = "";
+// Export for global access
+window.NihongoSekai = NihongoSekai;
+window.Utils = Utils;
+window.CONFIG = CONFIG;
 
-  if (input.required && !value) {
-    isValid = false;
-    errorMessage = "This field is required";
-  } else if (input.type === "email" && value && !validateEmail(value)) {
-    isValid = false;
-    errorMessage = "Please enter a valid email address";
-  } else if (input.type === "password" && value && !validatePassword(value)) {
-    isValid = false;
-    errorMessage = "Password must be at least 6 characters";
+// Global helper functions
+window.selectSuggestion = function (item) {
+  if (window.NihongoSekai && window.NihongoSekai.selectSuggestion) {
+    window.NihongoSekai.selectSuggestion(item);
   }
-
-  // Update input styling
-  if (isValid) {
-    input.classList.remove("invalid");
-    input.classList.add("valid");
-  } else {
-    input.classList.remove("valid");
-    input.classList.add("invalid");
-  }
-
-  // Show/hide error message
-  let errorElement = input.parentNode.querySelector(".error-message");
-  if (!errorElement) {
-    errorElement = document.createElement("div");
-    errorElement.className = "error-message";
-    input.parentNode.appendChild(errorElement);
-  }
-
-  errorElement.textContent = errorMessage;
-  errorElement.style.display = isValid ? "none" : "block";
-
-  return isValid;
-}
-
-// Performance monitoring
-window.addEventListener("load", () => {
-  setTimeout(() => {
-    const perfData = performance.getEntriesByType("navigation")[0];
-    if (perfData) {
-      const loadTime = perfData.loadEventEnd - perfData.fetchStart;
-      console.log(`Page load time: ${Math.round(loadTime)}ms`);
-
-      // Send to analytics if available
-      if (typeof gtag !== "undefined") {
-        gtag("event", "timing_complete", {
-          name: "page_load",
-          value: Math.round(loadTime),
-        });
-      }
-    }
-  }, 0);
-});
-
-// Export functions for use in other scripts
-window.NihongoSekai = {
-  Utils,
-  fetchAPI,
-  showLoading,
-  hideLoading,
-  showToast,
-  createCourseCard,
-  createClassroomCard,
-  createTeacherCard,
-  initializeSearch,
-  initializeFilters,
-  openModal,
-  closeModal,
-  saveToLocalStorage,
-  getFromLocalStorage,
-  removeFromLocalStorage,
-  getURLParameter,
-  setURLParameter,
-  validateInput,
-  handleFormSubmission,
 };
