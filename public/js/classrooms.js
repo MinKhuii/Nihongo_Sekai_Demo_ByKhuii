@@ -263,11 +263,11 @@ class ClassroomsPage {
         ${classroom.isEnrolled ? '<div class="enrolled-badge">Enrolled</div>' : ""}
         <div class="level-badge ${classroom.level.toLowerCase().replace(" ", "-")}">${classroom.level}</div>
         <div class="status-badge ${classroom.status}">${this.getStatusText(classroom.status)}</div>
-        
+
         <div class="classroom-card-image">
           <span style="font-size: 3.5rem;">${classroom.image}</span>
         </div>
-        
+
         <div class="classroom-card-content">
           <div class="classroom-card-header">
             <h3 class="classroom-title">${classroom.title}</h3>
@@ -369,9 +369,9 @@ class ClassroomsPage {
     if (classroom.isEnrolled) {
       if (classroom.status === "live") {
         return `
-          <a href="classrooms-detail.html?id=${classroom.id}&action=join" class="btn btn-primary classroom-action">
-            🔴 Join Live Session
-          </a>
+            <a href="classrooms-detail.html?id=${classroom.id}" class="btn btn-primary classroom-action">
+              🔴 Join Live Session
+            </a>
         `;
       } else {
         return `
