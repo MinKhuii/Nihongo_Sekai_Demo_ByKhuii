@@ -1,55 +1,11 @@
 {
-  "name": "nihongo-sekai-frontend",
+  "name": "nihongo-sekai-static",
   "version": "1.0.0",
-  "type": "module",
+  "private": true,
   "scripts": {
-    "dev": "vite --host 0.0.0.0 --port 5173",
-    "build": "npm run type-check && npm run lint && vite build",
-    "preview": "vite preview",
-    "type-check": "tsc --noEmit",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "lint:fix": "eslint . --ext ts,tsx --fix",
-    "generate-api": "nswag run ../backend/nswag.json",
-    "generate-api:watch": "nodemon --watch ../backend/**/*.cs --ext cs --exec \"npm run generate-api\"",
-    "postinstall": "npm run generate-api",
-    "clean": "rimraf dist && rimraf src/api/generated",
-    "test": "vitest",
-    "test:ui": "vitest --ui"
-  },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.20.1",
-    "@tanstack/react-query": "^5.8.4",
-    "axios": "^1.6.2",
-    "date-fns": "^2.30.0",
-    "clsx": "^2.0.0",
-    "tailwind-merge": "^2.0.0",
-    "lucide-react": "^0.294.0",
-    "@radix-ui/react-slot": "^1.0.2",
-    "@radix-ui/react-dialog": "^1.0.5",
-    "@radix-ui/react-dropdown-menu": "^2.0.6",
-    "@radix-ui/react-toast": "^1.1.5"
+    "serve:public": "npx http-server public -p 5173"
   },
   "devDependencies": {
-    "@types/react": "^18.2.37",
-    "@types/react-dom": "^18.2.15",
-    "@typescript-eslint/eslint-plugin": "^6.10.0",
-    "@typescript-eslint/parser": "^6.10.0",
-    "@vitejs/plugin-react": "^4.1.1",
-    "eslint": "^8.53.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.4",
-    "typescript": "^5.2.2",
-    "vite": "^5.0.0",
-    "vitest": "^0.34.6",
-    "@vitest/ui": "^0.34.6",
-    "nswag": "^14.0.0",
-    "nodemon": "^3.0.1",
-    "rimraf": "^5.0.5",
-    "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.31",
-    "tailwindcss": "^3.3.5"
-  },
-  "proxy": "https://localhost:5001"
+    "http-server": "^14.1.1"
+  }
 }
