@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Classrooms - Nihongo Sekai</title>
+    <meta
+      name="description"
+      content="Manage your live classroom sessions and schedules"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../css/global.css" />
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="../css/dashboard.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎌</text></svg>"
+    />
+  </head>
+  <body>
+    <!-- Navigation Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="nav-brand">
+            <a href="index.html" class="brand-link">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">
+                <span class="brand-nihongo">Nihongo</span>
+                <span class="brand-sekai">Sekai</span>
+              </span>
+            </a>
+          </div>
+
+          <div class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+              <li><a href="index.html" class="nav-link">Home</a></li>
+              <li><a href="courses.html" class="nav-link">Courses</a></li>
+              <li><a href="classrooms.html" class="nav-link">Classrooms</a></li>
+              <li><a href="partners.html" class="nav-link">Partners</a></li>
+              <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+          </div>
+
+          <div class="nav-actions">
+            <!-- Profile dropdown will be inserted here by JavaScript -->
+          </div>
+
+          <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-layout">
+      <div class="dashboard-container">
+        <!-- Dashboard Header -->
+        <div class="dashboard-header fade-in">
+          <h1 class="dashboard-title">My Classrooms</h1>
+          <p class="dashboard-subtitle">
+            Join live sessions and track your attendance
+          </p>
+        </div>
+
+        <!-- Classroom Stats -->
+        <div class="dashboard-grid">
+          <div class="dashboard-card fade-in delay-1">
+            <div class="card-header">
+              <div class="card-icon">🏫</div>
+              <h3 class="card-title">Enrolled Sessions</h3>
+            </div>
+            <div class="card-value" id="enrolledSessions">3</div>
+            <div class="card-change">active classrooms</div>
+          </div>
+
+          <div class="dashboard-card fade-in delay-2">
+            <div class="card-header">
+              <div class="card-icon">📅</div>
+              <h3 class="card-title">This Week</h3>
+            </div>
+            <div class="card-value" id="weekSessions">5</div>
+            <div class="card-change">upcoming sessions</div>
+          </div>
+
+          <div class="dashboard-card fade-in delay-3">
+            <div class="card-header">
+              <div class="card-icon">✅</div>
+              <h3 class="card-title">Attendance Rate</h3>
+            </div>
+            <div class="card-value">89%</div>
+            <div class="progress-container">
+              <div class="progress-bar" data-width="89%"></div>
+            </div>
+          </div>
+
+          <div class="dashboard-card fade-in delay-4">
+            <div class="card-header">
+              <div class="card-icon">⏱️</div>
+              <h3 class="card-title">Hours Participated</h3>
+            </div>
+            <div class="card-value">24h</div>
+            <div class="card-change positive">+3h this week</div>
+          </div>
+        </div>
+
+        <!-- Live Now Section -->
+        <div
+          id="liveSessionsContainer"
+          class="dashboard-card fade-in live-sessions"
+        >
+          <div class="card-header">
+            <div class="card-icon status-live">🔴</div>
+            <h3 class="card-title">Live Now</h3>
+          </div>
+          <div id="liveSessions">
+            <!-- Live sessions will be loaded here -->
+          </div>
+        </div>
+
+        <!-- Upcoming Sessions -->
+        <div class="dashboard-card fade-in">
+          <div class="card-header">
+            <div class="card-icon">⏰</div>
+            <h3 class="card-title">Upcoming Sessions</h3>
+          </div>
+          <div id="upcomingSessions" class="sessions-list">
+            <!-- Upcoming sessions will be loaded here -->
+          </div>
+          <a href="classrooms.html" class="btn btn-outline"
+            >Browse More Classrooms</a
+          >
+        </div>
+
+        <!-- Session History -->
+        <div class="dashboard-card fade-in">
+          <div class="card-header">
+            <div class="card-icon">📋</div>
+            <h3 class="card-title">Recent Sessions</h3>
+          </div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Session</th>
+                  <th>Date</th>
+                  <th>Duration</th>
+                  <th>Instructor</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="sessionHistory">
+                <!-- Session history will be loaded here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Global JavaScript -->
+    <script src="../js/global.js"></script>
+    <!-- Dashboard JavaScript -->
+    <script src="../js/dashboard.js"></script>
+
+    <script>
+      let allSessions = [];
+
+      document.addEventListener("DOMContentLoaded", () => {
+        loadSessions();
+        initializeCountdowns();
+        checkForLiveSessions();
+      });
+
+      function loadSessions() {
+        // Extended session data
+        allSessions = [
+          {
+            id: 1,
+            title: "Morning Conversation Circle",
+            instructor: "Tanaka-sensei",
+            nextSession: "2024-01-16T09:00:00",
+            schedule: "Mon, Wed, Fri 9:00 AM JST",
+            duration: 60,
+            participants: 6,
+            maxParticipants: 8,
+            status: "upcoming",
+            level: "Beginner",
+            price: 25.0,
+            enrolled: true,
+            attendanceRate: 95,
+          },
+          {
+            id: 2,
+            title: "Weekend Cultural Exchange",
+            instructor: "Yamamoto-sensei",
+            nextSession: "2024-01-20T14:00:00",
+            schedule: "Saturday 2:00 PM JST",
+            duration: 90,
+            participants: 9,
+            maxParticipants: 12,
+            status: "upcoming",
+            level: "Intermediate",
+            price: 30.0,
+            enrolled: true,
+            attendanceRate: 87,
+          },
+          {
+            id: 3,
+            title: "Evening Pronunciation Practice",
+            instructor: "Sato-sensei",
+            nextSession: "2024-01-16T20:00:00",
+            schedule: "Mon, Wed 8:00 PM JST",
+            duration: 45,
+            participants: 7,
+            maxParticipants: 10,
+            status: "live",
+            level: "All Levels",
+            price: 22.0,
+            enrolled: true,
+            attendanceRate: 82,
+          },
+        ];
+
+        displayLiveSessions();
+        displayUpcomingSessions();
+        displaySessionHistory();
+        updateStats();
+      }
+
+      function displayLiveSessions() {
+        const liveSessions = allSessions.filter(
+          (session) => session.status === "live",
+        );
+        const container = document.getElementById("liveSessions");
+        const liveContainer = document.getElementById("liveSessionsContainer");
+
+        if (liveSessions.length === 0) {
+          liveContainer.style.display = "none";
+          return;
+        }
+
+        liveContainer.style.display = "block";
+        container.innerHTML = liveSessions
+          .map(
+            (session) => `
+                <div class="live-session-card">
+                    <div class="session-info">
+                        <h4 class="session-title">${session.title}</h4>
+                        <p class="session-instructor">with ${session.instructor}</p>
+                        <p class="session-participants">${session.participants}/${session.maxParticipants} participants</p>
+                    </div>
+                    <div class="session-actions">
+                        <span class="status-badge status-live">Live Now</span>
+                        <button class="btn btn-primary" onclick="joinLiveSession(${session.id})">
+                            Join Now
+                        </button>
+                    </div>
+                </div>
+            `,
+          )
+          .join("");
+      }
+
+      function displayUpcomingSessions() {
+        const upcomingSessions = allSessions
+          .filter((session) => session.status === "upcoming")
+          .sort((a, b) => new Date(a.nextSession) - new Date(b.nextSession));
+
+        const container = document.getElementById("upcomingSessions");
+        container.innerHTML = upcomingSessions
+          .map(
+            (session) => `
+                <div class="session-card">
+                    <div class="session-header">
+                        <div class="session-info">
+                            <h4 class="session-title">${session.title}</h4>
+                            <p class="session-instructor">with ${session.instructor}</p>
+                            <p class="session-schedule">${session.schedule}</p>
+                        </div>
+                        <div class="session-meta">
+                            <span class="session-level badge badge-${session.level.toLowerCase().replace(" ", "-")}">${session.level}</span>
+                            <div class="session-countdown" data-target="${session.nextSession}">
+                                <!-- Countdown will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="session-details">
+                        <div class="session-stats">
+                            <div class="stat">
+                                <span class="stat-label">Duration</span>
+                                <span class="stat-value">${session.duration} min</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Participants</span>
+                                <span class="stat-value">${session.participants}/${session.maxParticipants}</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Your Attendance</span>
+                                <span class="stat-value">${session.attendanceRate}%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="session-actions">
+                            <button class="btn btn-outline" onclick="viewSessionDetails(${session.id})">
+                                View Details
+                            </button>
+                            <button class="btn btn-primary" onclick="setReminder(${session.id})">
+                                Set Reminder
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `,
+          )
+          .join("");
+      }
+
+      function displaySessionHistory() {
+        const historyData = [
+          {
+            title: "Morning Conversation Circle",
+            date: "2024-01-15",
+            duration: "60 min",
+            instructor: "Tanaka-sensei",
+            status: "attended",
+            id: 1,
+          },
+          {
+            title: "Evening Pronunciation Practice",
+            date: "2024-01-14",
+            duration: "45 min",
+            instructor: "Sato-sensei",
+            status: "attended",
+            id: 3,
+          },
+          {
+            title: "Weekend Cultural Exchange",
+            date: "2024-01-13",
+            duration: "90 min",
+            instructor: "Yamamoto-sensei",
+            status: "missed",
+            id: 2,
+          },
+          {
+            title: "Morning Conversation Circle",
+            date: "2024-01-12",
+            duration: "60 min",
+            instructor: "Tanaka-sensei",
+            status: "attended",
+            id: 1,
+          },
+        ];
+
+        const tbody = document.getElementById("sessionHistory");
+        tbody.innerHTML = historyData
+          .map(
+            (session) => `
+                <tr>
+                    <td class="session-name">
+                        <strong>${session.title}</strong>
+                    </td>
+                    <td>${formatDate(session.date)}</td>
+                    <td>${session.duration}</td>
+                    <td>${session.instructor}</td>
+                    <td>
+                        <span class="status-badge status-${session.status}">
+                            ${session.status === "attended" ? "Attended" : "Missed"}
+                        </span>
+                    </td>
+                    <td>
+                        <button class="btn-action btn-secondary" onclick="viewRecording(${session.id})">
+                            Recording
+                        </button>
+                        <button class="btn-action btn-outline" onclick="viewNotes(${session.id})">
+                            Notes
+                        </button>
+                    </td>
+                </tr>
+            `,
+          )
+          .join("");
+      }
+
+      function initializeCountdowns() {
+        const countdownElements =
+          document.querySelectorAll(".session-countdown");
+
+        countdownElements.forEach((element) => {
+          const targetTime = new Date(
+            element.getAttribute("data-target"),
+          ).getTime();
+
+          function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = targetTime - now;
+
+            if (timeLeft > 0) {
+              const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+              const hours = Math.floor(
+                (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+              );
+              const minutes = Math.floor(
+                (timeLeft % (1000 * 60 * 60)) / (1000 * 60),
+              );
+
+              let countdownText = "";
+              if (days > 0) {
+                countdownText = `${days}d ${hours}h`;
+              } else if (hours > 0) {
+                countdownText = `${hours}h ${minutes}m`;
+              } else {
+                countdownText = `${minutes}m`;
+              }
+
+              element.innerHTML = `
+                            <div class="countdown-time">
+                                <span class="countdown-label">Starts in</span>
+                                <span class="countdown-value">${countdownText}</span>
+                            </div>
+                        `;
+            } else {
+              element.innerHTML =
+                '<span class="status-badge status-live">Starting Soon</span>';
+            }
+          }
+
+          updateCountdown();
+          setInterval(updateCountdown, 60000); // Update every minute
+        });
+      }
+
+      function checkForLiveSessions() {
+        // Check for live sessions every 30 seconds
+        setInterval(() => {
+          // In a real app, this would make an API call
+          displayLiveSessions();
+        }, 30000);
+      }
+
+      function updateStats() {
+        const enrolledCount = allSessions.filter((s) => s.enrolled).length;
+        const weekSessions = 5; // Would be calculated based on schedule
+
+        document.getElementById("enrolledSessions").textContent = enrolledCount;
+        document.getElementById("weekSessions").textContent = weekSessions;
+      }
+
+      function formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        });
+      }
+
+      // Event handlers
+      function joinLiveSession(sessionId) {
+        window.location.href = `classroom-live.html?id=${sessionId}`;
+      }
+
+      function viewSessionDetails(sessionId) {
+        window.location.href = `classrooms-detail.html?id=${sessionId}`;
+      }
+
+      function setReminder(sessionId) {
+        if (window.ToastManager) {
+          window.ToastManager.show("Reminder set successfully!", "success");
+        } else {
+          alert("Reminder set successfully!");
+        }
+      }
+
+      function viewRecording(sessionId) {
+        window.location.href = `session-recording.html?id=${sessionId}`;
+      }
+
+      function viewNotes(sessionId) {
+        window.location.href = `session-notes.html?id=${sessionId}`;
+      }
+    </script>
+
+    <style>
+      /* Classroom-specific styles */
+      .live-sessions {
+        border: 2px solid var(--chart-danger);
+        background: linear-gradient(
+          135deg,
+          rgba(255, 107, 125, 0.05),
+          rgba(255, 107, 125, 0.1)
+        );
+      }
+
+      .live-session-card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background: white;
+        border-radius: 12px;
+        margin-bottom: 16px;
+        border-left: 4px solid var(--chart-danger);
+      }
+
+      .sessions-list {
+        margin-bottom: 24px;
+      }
+
+      .session-card {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 16px;
+        border: 1px solid #e9ecef;
+        transition: all 0.3s ease;
+      }
+
+      .session-card:hover {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        transform: translateY(-2px);
+      }
+
+      .session-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 16px;
+      }
+
+      .session-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin: 0 0 4px 0;
+        color: var(--text-color);
+      }
+
+      .session-instructor {
+        color: var(--text-muted);
+        margin: 0 0 4px 0;
+        font-size: 0.9rem;
+      }
+
+      .session-schedule {
+        color: var(--text-muted);
+        margin: 0;
+        font-size: 0.85rem;
+      }
+
+      .session-meta {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 8px;
+      }
+
+      .session-level {
+        font-size: 0.75rem;
+      }
+
+      .countdown-time {
+        text-align: right;
+      }
+
+      .countdown-label {
+        display: block;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+
+      .countdown-value {
+        display: block;
+        font-weight: 700;
+        color: var(--primary-color);
+        font-size: 0.9rem;
+      }
+
+      .session-details {
+        border-top: 1px solid #e9ecef;
+        padding-top: 16px;
+      }
+
+      .session-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .session-stats .stat {
+        text-align: center;
+        padding: 8px;
+        background: #f8f9fa;
+        border-radius: 6px;
+      }
+
+      .session-stats .stat-label {
+        font-size: 0.75rem;
+      }
+
+      .session-stats .stat-value {
+        font-size: 0.85rem;
+      }
+
+      .session-actions {
+        display: flex;
+        gap: 12px;
+        justify-content: flex-end;
+      }
+
+      .table-container {
+        overflow-x: auto;
+      }
+
+      .session-name {
+        min-width: 200px;
+      }
+
+      .status-attended {
+        background: #d4edda;
+        color: #155724;
+      }
+
+      .status-missed {
+        background: #f8d7da;
+        color: #721c24;
+      }
+
+      .badge-all-levels {
+        background: #e9ecef;
+        color: #495057;
+      }
+
+      @media (max-width: 768px) {
+        .live-session-card {
+          flex-direction: column;
+          gap: 16px;
+          text-align: center;
+        }
+
+        .session-header {
+          flex-direction: column;
+          gap: 12px;
+          align-items: flex-start;
+        }
+
+        .session-meta {
+          align-items: flex-start;
+          width: 100%;
+        }
+
+        .session-stats {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .session-actions {
+          flex-direction: column;
+          justify-content: stretch;
+        }
+
+        .data-table {
+          font-size: 0.8rem;
+        }
+
+        .data-table th,
+        .data-table td {
+          padding: 8px 12px;
+        }
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nihongo Sekai - Japanese Learning Platform</title>
+    <meta
+      name="description"
+      content="Master Japanese through immersive conversations, cultural insights, and personalized learning paths with native speakers."
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../css/global.css" />
+    <!-- Page-specific CSS -->
+    <link rel="stylesheet" href="../css/home.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎌</text></svg>"
+    />
+  </head>
+  <body>
+    <!-- Navigation Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="nav-brand">
+            <a href="index.html" class="brand-link">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">
+                <span class="brand-nihongo">Nihongo</span>
+                <span class="brand-sekai">Sekai</span>
+              </span>
+            </a>
+          </div>
+
+          <div class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+              <li><a href="index.html" class="nav-link active">Home</a></li>
+              <li><a href="courses.html" class="nav-link">Courses</a></li>
+              <li><a href="classrooms.html" class="nav-link">Classrooms</a></li>
+              <li><a href="partners.html" class="nav-link">Partners</a></li>
+              <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+          </div>
+
+          <div class="nav-actions">
+            <a href="login.html" class="btn btn-outline">Sign In</a>
+            <a href="register.html" class="btn btn-primary">Get Started</a>
+          </div>
+
+          <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Section -->
+      <section class="hero animate-on-scroll">
+        <div class="hero-background">
+          <div class="sakura-container" id="sakuraContainer"></div>
+        </div>
+        <div class="container">
+          <div class="hero-content">
+            <h1 class="hero-title">
+              Master Japanese with
+              <span class="text-primary">Nihongo Sekai</span>
+            </h1>
+            <p class="hero-subtitle">
+              Unlock the beauty of Japanese language through immersive
+              conversations, cultural insights, and personalized learning paths
+              with native speakers.
+            </p>
+            <div class="hero-actions">
+              <a href="register.html" class="btn btn-primary btn-lg">
+                Start Learning Today
+              </a>
+              <a href="#features" class="btn btn-outline btn-lg">
+                Explore Features
+              </a>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-image">
+              <!-- Hero illustration would go here -->
+              <div class="hero-placeholder">
+                <span class="hero-icon">🎌</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Courses & Live Classrooms -->
+      <section class="featured-content animate-on-scroll" id="featured">
+        <div class="container">
+          <div class="section-header">
+            <h2>Featured Learning Opportunities</h2>
+            <p>Discover our most popular courses and live classroom sessions</p>
+          </div>
+
+          <!-- Featured Courses -->
+          <div class="featured-section">
+            <div class="featured-header">
+              <h3>Featured Courses</h3>
+              <a href="courses.html" class="btn btn-outline"
+                >View All Courses</a
+              >
+            </div>
+            <div class="featured-grid courses-grid" id="featuredCourses">
+              <!-- Courses will be populated by JavaScript -->
+            </div>
+          </div>
+
+          <!-- Live Classrooms -->
+          <div class="featured-section">
+            <div class="featured-header">
+              <h3>Popular Live Classrooms</h3>
+              <a href="classrooms.html" class="btn btn-outline"
+                >View All Classrooms</a
+              >
+            </div>
+            <div class="featured-grid classrooms-grid" id="featuredClassrooms">
+              <!-- Classrooms will be populated by JavaScript -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Choose Nihongo Sekai -->
+      <section class="why-choose animate-on-scroll" id="features">
+        <div class="container">
+          <div class="section-header">
+            <h2>
+              Why Nihongo Sekai Is Your Ultimate Japanese Learning Partner
+            </h2>
+            <p>
+              Interactive courses, live native-speaker sessions, and
+              personalized paths—all in one place.
+            </p>
+            <a href="about.html" class="btn btn-primary learn-more-btn"
+              >Learn More</a
+            >
+          </div>
+
+          <div class="features-grid">
+            <div class="feature-card animate-on-scroll">
+              <div class="feature-icon">💬</div>
+              <h3>Live Conversations</h3>
+              <p>
+                Practice with native speakers in real-time video sessions
+                tailored to your level.
+              </p>
+            </div>
+
+            <div class="feature-card animate-on-scroll">
+              <div class="feature-icon">📚</div>
+              <h3>Structured Courses</h3>
+              <p>
+                Comprehensive curriculum from beginner to advanced, designed by
+                language experts.
+              </p>
+            </div>
+
+            <div class="feature-card animate-on-scroll">
+              <div class="feature-icon">🎯</div>
+              <h3>Personalized Learning</h3>
+              <p>
+                AI-powered recommendations and custom learning paths based on
+                your goals.
+              </p>
+            </div>
+
+            <div class="feature-card animate-on-scroll">
+              <div class="feature-icon">🏆</div>
+              <h3>Cultural Immersion</h3>
+              <p>
+                Learn beyond language with cultural insights and real-world
+                context.
+              </p>
+            </div>
+
+            <div class="feature-card animate-on-scroll">
+              <div class="feature-icon">📱</div>
+              <h3>Learn Anywhere</h3>
+              <p>
+                Access your lessons on any device, continue learning on the go.
+              </p>
+            </div>
+
+            <div class="feature-card animate-on-scroll">
+              <div class="feature-icon">🌟</div>
+              <h3>Expert Teachers</h3>
+              <p>
+                Learn from qualified native speakers and certified Japanese
+                instructors.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="testimonials animate-on-scroll">
+        <div class="container">
+          <div class="section-header">
+            <h2>What Our Students Say</h2>
+            <p>
+              Join thousands of learners who've transformed their Japanese
+              skills
+            </p>
+          </div>
+
+          <div class="testimonials-grid">
+            <div class="testimonial-card animate-on-scroll">
+              <div class="testimonial-content">
+                <p>
+                  "Nihongo Sekai transformed my Japanese learning experience.
+                  The live conversations with native speakers gave me confidence
+                  I never had before."
+                </p>
+              </div>
+              <div class="testimonial-author">
+                <div class="author-avatar">
+                  <img
+                    src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
+                    alt="Sarah Kim"
+                  />
+                </div>
+                <div class="author-info">
+                  <h4>Sarah Kim</h4>
+                  <p>Software Engineer</p>
+                  <div class="author-rating">⭐⭐⭐⭐⭐</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card animate-on-scroll">
+              <div class="testimonial-content">
+                <p>
+                  "The structured approach and cultural insights made learning
+                  Japanese enjoyable and effective. I went from zero to
+                  conversational in 6 months!"
+                </p>
+              </div>
+              <div class="testimonial-author">
+                <div class="author-avatar">
+                  <img
+                    src="https://api.dicebear.com/7.x/avataaars/svg?seed=Mike"
+                    alt="Mike Chen"
+                  />
+                </div>
+                <div class="author-info">
+                  <h4>Mike Chen</h4>
+                  <p>Business Analyst</p>
+                  <div class="author-rating">⭐⭐⭐⭐⭐</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card animate-on-scroll">
+              <div class="testimonial-content">
+                <p>
+                  "The flexibility to learn at my own pace while having access
+                  to live teachers when needed is exactly what I was looking
+                  for."
+                </p>
+              </div>
+              <div class="testimonial-author">
+                <div class="author-avatar">
+                  <img
+                    src="https://api.dicebear.com/7.x/avataaars/svg?seed=Emma"
+                    alt="Emma Rodriguez"
+                  />
+                </div>
+                <div class="author-info">
+                  <h4>Emma Rodriguez</h4>
+                  <p>Marketing Manager</p>
+                  <div class="author-rating">⭐⭐⭐⭐⭐</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action -->
+      <section class="cta animate-on-scroll">
+        <div class="container">
+          <div class="cta-content">
+            <h2>Ready to Start Your Japanese Journey?</h2>
+            <p>
+              Join thousands of learners and start speaking Japanese confidently
+              today.
+            </p>
+            <div class="cta-actions">
+              <a href="register.html" class="btn btn-primary btn-lg"
+                >Get Started Free</a
+              >
+              <a href="courses.html" class="btn btn-outline btn-lg"
+                >Browse Courses</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <div class="footer-brand">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">Nihongo Sekai</span>
+            </div>
+            <p>
+              Master Japanese through immersive learning experiences with native
+              speakers.
+            </p>
+          </div>
+
+          <div class="footer-section">
+            <h4>Learn</h4>
+            <ul>
+              <li><a href="courses.html">Courses</a></li>
+              <li><a href="classrooms.html">Live Classes</a></li>
+              <li><a href="partners.html">Find a Teacher</a></li>
+              <li><a href="pricing.html">Pricing</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="press.html">Press</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4>Support</h4>
+            <ul>
+              <li><a href="help.html">Help Center</a></li>
+              <li><a href="community.html">Community</a></li>
+              <li><a href="privacy.html">Privacy Policy</a></li>
+              <li><a href="terms.html">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2024 Nihongo Sekai. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/global.js"></script>
+    <script src="../js/home.js"></script>
+  </body>
+</html>

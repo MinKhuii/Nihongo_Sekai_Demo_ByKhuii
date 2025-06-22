@@ -511,22 +511,30 @@ const NihongoSekai = {
         <div class="user-profile-menu">
           <div class="user-avatar-container" id="userAvatarContainer">
             <div class="user-avatar" id="userAvatar">
-              ${this.user.name
-                .split(" ")
-                .map((n) => n[0])
-                .join("")
-                .toUpperCase()}
+              <svg class="cartoon-avatar" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="50" fill="#4F46E5"/>
+                <circle cx="50" cy="35" r="12" fill="#FFFFFF"/>
+                <ellipse cx="50" cy="70" rx="20" ry="18" fill="#FFFFFF"/>
+                <circle cx="45" cy="32" r="2" fill="#1F2937"/>
+                <circle cx="55" cy="32" r="2" fill="#1F2937"/>
+                <path d="M45 38 Q50 42 55 38" stroke="#1F2937" stroke-width="1.5" fill="none"/>
+              </svg>
             </div>
             <div class="online-indicator"></div>
           </div>
 
           <div class="profile-dropdown" id="profileDropdown" style="display: none;">
             <div class="dropdown-header">
-              <div class="dropdown-avatar">${this.user.name
-                .split(" ")
-                .map((n) => n[0])
-                .join("")
-                .toUpperCase()}</div>
+              <div class="dropdown-avatar">
+                <svg class="cartoon-avatar" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="50" cy="50" r="50" fill="#4F46E5"/>
+                  <circle cx="50" cy="35" r="12" fill="#FFFFFF"/>
+                  <ellipse cx="50" cy="70" rx="20" ry="18" fill="#FFFFFF"/>
+                  <circle cx="45" cy="32" r="2" fill="#1F2937"/>
+                  <circle cx="55" cy="32" r="2" fill="#1F2937"/>
+                  <path d="M45 38 Q50 42 55 38" stroke="#1F2937" stroke-width="1.5" fill="none"/>
+                </svg>
+              </div>
               <div class="dropdown-user-info">
                 <div class="dropdown-name">${this.user.name}</div>
                 <div class="dropdown-role">${this.user.role}</div>
@@ -568,12 +576,14 @@ const NihongoSekai = {
               <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
             </svg>
             My Courses
+            <div class="menu-progress-preview">3 active</div>
           </a>
           <a href="#" class="dropdown-item" onclick="NihongoSekai.navigateToMyClassrooms()">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"></path>
             </svg>
             My Classrooms
+            <div class="menu-join-indicator">2 available</div>
           </a>
           <a href="#" class="dropdown-item" onclick="NihongoSekai.navigateToTransactions()">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -586,12 +596,14 @@ const NihongoSekai = {
         break;
 
       case "Partner":
+      case "Teacher":
         roleSpecificItems = `
           <a href="#" class="dropdown-item" onclick="NihongoSekai.navigateToMyClassrooms()">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"></path>
             </svg>
             My Classrooms
+            <div class="menu-edit-indicator">5 hosted</div>
           </a>
         `;
         break;
@@ -620,7 +632,7 @@ const NihongoSekai = {
         </svg>
         Settings
       </a>
-      <a href="#" class="dropdown-item logout" onclick="NihongoSekai.logout()">
+      <a href="#" class="dropdown-item logout" onclick="NihongoSekai.showLogoutConfirmation()">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
           <polyline points="16,17 21,12 16,7"></polyline>
@@ -657,29 +669,59 @@ const NihongoSekai = {
     }
   },
 
+  // Show logout confirmation modal
+  showLogoutConfirmation() {
+    const modal = document.createElement("div");
+    modal.className = "logout-confirmation-modal";
+    modal.innerHTML = `
+      <div class="modal-overlay" onclick="this.parentElement.remove()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+          <div class="modal-header">
+            <h3>Confirm Logout</h3>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to log out?</p>
+          </div>
+          <div class="modal-actions">
+            <button class="btn btn-outline" onclick="this.closest('.logout-confirmation-modal').remove()">Cancel</button>
+            <button class="btn btn-primary" onclick="NihongoSekai.confirmLogout()">Confirm</button>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  },
+
+  // Confirm logout action
+  confirmLogout() {
+    const modal = document.querySelector(".logout-confirmation-modal");
+    if (modal) modal.remove();
+    this.logout();
+  },
+
   // Navigation methods
   navigateToProfile() {
-    console.log("Navigate to profile");
+    this.showToast("Navigating to profile page...", "info");
     // In real app: window.location.href = "profile.html";
   },
 
   navigateToMyCourses() {
-    console.log("Navigate to my courses");
+    this.showToast("Loading your courses...", "info");
     // In real app: window.location.href = "my-courses.html";
   },
 
   navigateToMyClassrooms() {
-    console.log("Navigate to my classrooms");
+    this.showToast("Loading your classrooms...", "info");
     // In real app: window.location.href = "my-classrooms.html";
   },
 
   navigateToTransactions() {
-    console.log("Navigate to transactions");
+    this.showToast("Loading transaction history...", "info");
     // In real app: window.location.href = "transactions.html";
   },
 
   navigateToSettings() {
-    console.log("Navigate to settings");
+    this.showToast("Opening settings...", "info");
     // In real app: window.location.href = "settings.html";
   },
 
@@ -905,29 +947,104 @@ const NihongoSekai = {
       right: 20px;
       background: ${type === "success" ? "#22c55e" : type === "error" ? "#ef4444" : type === "warning" ? "#f59e0b" : "#3b82f6"};
       color: white;
-      padding: 1rem 1.5rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-      z-index: 1000;
+      padding: 12px 20px;
+      border-radius: 8px;
       font-weight: 500;
-      max-width: 350px;
-      font-size: 0.875rem;
-      line-height: 1.4;
+      z-index: 10000;
+      min-width: 200px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      animation: slideInFromRight 0.3s ease;
     `;
-    toast.textContent = message;
+    toast.innerHTML = `
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <span>${message}</span>
+        <button onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; color: white; font-size: 18px; cursor: pointer; margin-left: 10px;">×</button>
+      </div>
+    `;
+
     document.body.appendChild(toast);
 
     setTimeout(() => {
-      toast.remove();
-    }, 5000);
+      if (toast.parentElement) {
+        toast.remove();
+      }
+    }, CONFIG.TOAST_DURATION);
+  },
+
+  // Show logout confirmation modal
+  showLogoutConfirmation() {
+    const modal = document.createElement("div");
+    modal.className = "logout-confirmation-modal";
+    modal.innerHTML = `
+      <div class="modal-overlay" onclick="this.parentElement.remove()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+          <div class="modal-header">
+            <h3>Confirm Logout</h3>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to log out?</p>
+          </div>
+          <div class="modal-actions">
+            <button class="btn btn-outline" onclick="this.closest('.logout-confirmation-modal').remove()">Cancel</button>
+            <button class="btn btn-primary" onclick="NihongoSekai.confirmLogout()">Confirm</button>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  },
+
+  // Confirm logout action
+  confirmLogout() {
+    const modal = document.querySelector(".logout-confirmation-modal");
+    if (modal) modal.remove();
+    this.logout();
+  },
+
+  // Get enrollment date for classroom
+  getEnrollmentDate(type, contentId) {
+    // Mock data - in real app, fetch from API
+    const mockEnrollments = {
+      classroom: {
+        1: "2024-01-01",
+        2: "2024-01-15",
+      },
+    };
+
+    return mockEnrollments[type]?.[contentId.toString()] || null;
+  },
+
+  // Enhanced purchase/enroll button logic
+  getPurchaseButtonHTML(contentType, contentId, price) {
+    const hasPurchased = this.hasUserPurchased(contentType, contentId);
+
+    if (hasPurchased) {
+      return `
+        <button disabled class="purchased-button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 12l2 2 4-4"></path>
+            <circle cx="12" cy="12" r="9"></circle>
+          </svg>
+          ${contentType === "course" ? "Purchased" : "Enrolled"}
+        </button>
+      `;
+    }
+
+    return `
+      <button class="cta-button" onclick="NihongoSekai.handlePurchase('${contentType}', '${contentId}', ${price})">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        ${contentType === "course" ? "Buy Now" : "Enroll"} - $${price}
+      </button>
+    `;
   },
 
   // API Functions
   async fetchAPI(endpoint, options = {}) {
     if (!CONFIG.API_BASE_URL || CONFIG.USE_MOCK_DATA) {
-      console.log(
-        `📋 Using mock data for ${endpoint} (static deployment mode)`,
-      );
       return { success: false, error: "Static deployment - using mock data" };
     }
 

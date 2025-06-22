@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Courses - Nihongo Sekai</title>
+    <meta
+      name="description"
+      content="Track your course progress and continue learning"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../css/global.css" />
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="../css/dashboard.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎌</text></svg>"
+    />
+  </head>
+  <body>
+    <!-- Navigation Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="nav-brand">
+            <a href="index.html" class="brand-link">
+              <span class="brand-icon">日</span>
+              <span class="brand-text">
+                <span class="brand-nihongo">Nihongo</span>
+                <span class="brand-sekai">Sekai</span>
+              </span>
+            </a>
+          </div>
+
+          <div class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+              <li><a href="index.html" class="nav-link">Home</a></li>
+              <li><a href="courses.html" class="nav-link">Courses</a></li>
+              <li><a href="classrooms.html" class="nav-link">Classrooms</a></li>
+              <li><a href="partners.html" class="nav-link">Partners</a></li>
+              <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+          </div>
+
+          <div class="nav-actions">
+            <!-- Profile dropdown will be inserted here by JavaScript -->
+          </div>
+
+          <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-layout">
+      <div class="dashboard-container">
+        <!-- Dashboard Header -->
+        <div class="dashboard-header fade-in">
+          <h1 class="dashboard-title">My Courses</h1>
+          <p class="dashboard-subtitle">
+            Track your progress and continue learning
+          </p>
+        </div>
+
+        <!-- Course Progress Overview -->
+        <div class="dashboard-grid">
+          <div class="dashboard-card fade-in delay-1">
+            <div class="card-header">
+              <div class="card-icon">📊</div>
+              <h3 class="card-title">Overall Progress</h3>
+            </div>
+            <div class="card-value">67%</div>
+            <div class="progress-container">
+              <div class="progress-bar" data-width="67%"></div>
+            </div>
+            <div class="card-change positive">+12% this month</div>
+          </div>
+
+          <div class="dashboard-card fade-in delay-2">
+            <div class="card-header">
+              <div class="card-icon">📚</div>
+              <h3 class="card-title">Enrolled Courses</h3>
+            </div>
+            <div class="card-value" id="totalCourses">3</div>
+            <div class="card-change">active courses</div>
+          </div>
+
+          <div class="dashboard-card fade-in delay-3">
+            <div class="card-header">
+              <div class="card-icon">✅</div>
+              <h3 class="card-title">Completed Lessons</h3>
+            </div>
+            <div class="card-value" id="completedLessons">42</div>
+            <div class="card-change positive">+8 this week</div>
+          </div>
+
+          <div class="dashboard-card fade-in delay-4">
+            <div class="card-header">
+              <div class="card-icon">⏱️</div>
+              <h3 class="card-title">Study Time</h3>
+            </div>
+            <div class="card-value">28h</div>
+            <div class="card-change">total time spent</div>
+          </div>
+        </div>
+
+        <!-- Search and Filter -->
+        <div class="search-filter-bar fade-in">
+          <input
+            type="text"
+            id="searchCourses"
+            class="search-input"
+            placeholder="Search your courses..."
+          />
+          <select id="filterProgress" class="filter-select">
+            <option value="">All Courses</option>
+            <option value="not-started">Not Started</option>
+            <option value="in-progress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+          <select id="sortCourses" class="filter-select">
+            <option value="recent">Recently Accessed</option>
+            <option value="progress">Progress</option>
+            <option value="title">Title A-Z</option>
+          </select>
+        </div>
+
+        <!-- Courses List -->
+        <div class="dashboard-card fade-in">
+          <div class="card-header">
+            <div class="card-icon">📖</div>
+            <h3 class="card-title">Your Learning Journey</h3>
+          </div>
+
+          <div id="coursesList" class="courses-grid">
+            <!-- Courses will be loaded here by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Global JavaScript -->
+    <script src="../js/global.js"></script>
+    <!-- Dashboard JavaScript -->
+    <script src="../js/dashboard.js"></script>
+
+    <script>
+      let allCourses = [];
+      let filteredCourses = [];
+
+      document.addEventListener("DOMContentLoaded", () => {
+        loadCourses();
+        initializeFilters();
+      });
+
+      function loadCourses() {
+        // Extended course data with more details
+        allCourses = [
+          {
+            id: 1,
+            title: "Japanese for Beginners",
+            level: "Beginner",
+            progress: 75,
+            totalLessons: 24,
+            completedLessons: 18,
+            totalTime: "12h 30m",
+            lastAccessed: "2024-01-15",
+            nextLesson: "Hiragana Practice 3",
+            instructor: "Tanaka-sensei",
+            status: "in-progress",
+            thumbnail: "🌸",
+            difficulty: "Easy",
+            estimatedCompletion: "2 weeks",
+          },
+          {
+            id: 2,
+            title: "Conversational Japanese",
+            level: "Intermediate",
+            progress: 45,
+            totalLessons: 32,
+            completedLessons: 14,
+            totalTime: "8h 45m",
+            lastAccessed: "2024-01-14",
+            nextLesson: "Daily Conversations",
+            instructor: "Yamamoto-sensei",
+            status: "in-progress",
+            thumbnail: "💬",
+            difficulty: "Medium",
+            estimatedCompletion: "4 weeks",
+          },
+          {
+            id: 3,
+            title: "Business Japanese Mastery",
+            level: "Advanced",
+            progress: 20,
+            totalLessons: 40,
+            completedLessons: 8,
+            totalTime: "6h 15m",
+            lastAccessed: "2024-01-12",
+            nextLesson: "Formal Greetings",
+            instructor: "Sato-sensei",
+            status: "in-progress",
+            thumbnail: "💼",
+            difficulty: "Hard",
+            estimatedCompletion: "8 weeks",
+          },
+        ];
+
+        filteredCourses = [...allCourses];
+        displayCourses(filteredCourses);
+        updateStats();
+      }
+
+      function displayCourses(courses) {
+        const container = document.getElementById("coursesList");
+
+        if (courses.length === 0) {
+          container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">📚</div>
+                        <h3>No courses found</h3>
+                        <p>Try adjusting your search or filter criteria.</p>
+                    </div>
+                `;
+          return;
+        }
+
+        container.innerHTML = courses
+          .map(
+            (course) => `
+                <div class="course-card" data-course-id="${course.id}">
+                    <div class="course-header">
+                        <div class="course-thumbnail">${course.thumbnail}</div>
+                        <div class="course-meta">
+                            <h4 class="course-title">${course.title}</h4>
+                            <p class="course-instructor">by ${course.instructor}</p>
+                            <div class="course-badges">
+                                <span class="badge badge-${course.level.toLowerCase()}">${course.level}</span>
+                                <span class="badge badge-difficulty">${course.difficulty}</span>
+                            </div>
+                        </div>
+                        <div class="course-progress-circle">
+                            <svg viewBox="0 0 36 36" class="circular-chart">
+                                <path class="circle-bg"
+                                    d="M18 2.0845
+                                    a 15.9155 15.9155 0 0 1 0 31.831
+                                    a 15.9155 15.9155 0 0 1 0 -31.831"
+                                />
+                                <path class="circle"
+                                    stroke-dasharray="${course.progress}, 100"
+                                    d="M18 2.0845
+                                    a 15.9155 15.9155 0 0 1 0 31.831
+                                    a 15.9155 15.9155 0 0 1 0 -31.831"
+                                />
+                                <text x="18" y="20.35" class="percentage">${course.progress}%</text>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="course-body">
+                        <div class="course-stats">
+                            <div class="stat">
+                                <span class="stat-label">Lessons</span>
+                                <span class="stat-value">${course.completedLessons}/${course.totalLessons}</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Time Spent</span>
+                                <span class="stat-value">${course.totalTime}</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Last Access</span>
+                                <span class="stat-value">${formatDate(course.lastAccessed)}</span>
+                            </div>
+                        </div>
+
+                        <div class="course-progress">
+                            <div class="progress-container">
+                                <div class="progress-bar" data-width="${course.progress}%"></div>
+                            </div>
+                            <p class="next-lesson">Next: ${course.nextLesson}</p>
+                        </div>
+                    </div>
+
+                    <div class="course-actions">
+                        <button class="btn btn-primary" onclick="continueCourse(${course.id})">
+                            Continue Learning
+                        </button>
+                        <button class="btn btn-outline" onclick="viewCourseDetails(${course.id})">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            `,
+          )
+          .join("");
+
+        // Animate progress bars
+        setTimeout(() => {
+          document.querySelectorAll(".progress-bar").forEach((bar) => {
+            const width = bar.getAttribute("data-width");
+            bar.style.width = width;
+          });
+        }, 300);
+      }
+
+      function initializeFilters() {
+        const searchInput = document.getElementById("searchCourses");
+        const progressFilter = document.getElementById("filterProgress");
+        const sortSelect = document.getElementById("sortCourses");
+
+        searchInput.addEventListener("input", filterCourses);
+        progressFilter.addEventListener("change", filterCourses);
+        sortSelect.addEventListener("change", filterCourses);
+      }
+
+      function filterCourses() {
+        const searchTerm = document
+          .getElementById("searchCourses")
+          .value.toLowerCase();
+        const progressFilter = document.getElementById("filterProgress").value;
+        const sortBy = document.getElementById("sortCourses").value;
+
+        // Filter courses
+        filteredCourses = allCourses.filter((course) => {
+          const matchesSearch =
+            course.title.toLowerCase().includes(searchTerm) ||
+            course.instructor.toLowerCase().includes(searchTerm);
+
+          let matchesProgress = true;
+          if (progressFilter) {
+            switch (progressFilter) {
+              case "not-started":
+                matchesProgress = course.progress === 0;
+                break;
+              case "in-progress":
+                matchesProgress = course.progress > 0 && course.progress < 100;
+                break;
+              case "completed":
+                matchesProgress = course.progress === 100;
+                break;
+            }
+          }
+
+          return matchesSearch && matchesProgress;
+        });
+
+        // Sort courses
+        switch (sortBy) {
+          case "recent":
+            filteredCourses.sort(
+              (a, b) => new Date(b.lastAccessed) - new Date(a.lastAccessed),
+            );
+            break;
+          case "progress":
+            filteredCourses.sort((a, b) => b.progress - a.progress);
+            break;
+          case "title":
+            filteredCourses.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+        }
+
+        displayCourses(filteredCourses);
+      }
+
+      function updateStats() {
+        const totalCourses = allCourses.length;
+        const totalLessons = allCourses.reduce(
+          (sum, course) => sum + course.completedLessons,
+          0,
+        );
+        const avgProgress = Math.round(
+          allCourses.reduce((sum, course) => sum + course.progress, 0) /
+            totalCourses,
+        );
+
+        document.getElementById("totalCourses").textContent = totalCourses;
+        document.getElementById("completedLessons").textContent = totalLessons;
+
+        // Update overall progress bar
+        document
+          .querySelector(".dashboard-card .progress-bar")
+          .setAttribute("data-width", `${avgProgress}%`);
+      }
+
+      function formatDate(dateString) {
+        const date = new Date(dateString);
+        const now = new Date();
+        const diffDays = Math.floor((now - date) / (1000 * 60 * 60 * 24));
+
+        if (diffDays === 0) return "Today";
+        if (diffDays === 1) return "Yesterday";
+        if (diffDays < 7) return `${diffDays} days ago`;
+        return date.toLocaleDateString();
+      }
+
+      function continueCourse(courseId) {
+        // In a real app, this would navigate to the specific lesson
+        window.location.href = `course-detail.html?id=${courseId}&continue=true`;
+      }
+
+      function viewCourseDetails(courseId) {
+        window.location.href = `course-detail.html?id=${courseId}`;
+      }
+    </script>
+
+    <style>
+      /* Course-specific styles */
+      .courses-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 24px;
+      }
+
+      .course-card {
+        background: white;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+        transition: all 0.3s ease;
+        border: 1px solid #f1f3f4;
+      }
+
+      .course-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+
+      .course-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+
+      .course-thumbnail {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        flex-shrink: 0;
+      }
+
+      .course-meta {
+        flex: 1;
+      }
+
+      .course-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin: 0 0 4px 0;
+        color: var(--text-color);
+      }
+
+      .course-instructor {
+        color: var(--text-muted);
+        margin: 0 0 8px 0;
+        font-size: 0.9rem;
+      }
+
+      .course-badges {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .badge {
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .badge-beginner {
+        background: #e8f5e8;
+        color: #2d7d32;
+      }
+
+      .badge-intermediate {
+        background: #fff3e0;
+        color: #f57c00;
+      }
+
+      .badge-advanced {
+        background: #fce4ec;
+        color: #c2185b;
+      }
+
+      .badge-difficulty {
+        background: #e3f2fd;
+        color: #1976d2;
+      }
+
+      .course-progress-circle {
+        width: 80px;
+        height: 80px;
+        flex-shrink: 0;
+      }
+
+      .circular-chart {
+        display: block;
+        margin: 0 auto;
+        max-width: 80%;
+        max-height: 80%;
+      }
+
+      .circle-bg {
+        fill: none;
+        stroke: #eee;
+        stroke-width: 3.8;
+      }
+
+      .circle {
+        fill: none;
+        stroke-width: 2.8;
+        stroke-linecap: round;
+        animation: progress 1s ease-out forwards;
+        stroke: url(#gradient);
+      }
+
+      .circular-chart .circle {
+        stroke: var(--primary-color);
+      }
+
+      .percentage {
+        fill: var(--text-color);
+        font-family: "Inter", sans-serif;
+        font-size: 0.5em;
+        font-weight: 700;
+        text-anchor: middle;
+      }
+
+      .course-body {
+        margin-bottom: 20px;
+      }
+
+      .course-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .stat {
+        text-align: center;
+        padding: 12px 8px;
+        background: #f8f9fa;
+        border-radius: 8px;
+      }
+
+      .stat-label {
+        display: block;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        font-weight: 500;
+        margin-bottom: 4px;
+      }
+
+      .stat-value {
+        display: block;
+        font-weight: 700;
+        color: var(--text-color);
+        font-size: 0.9rem;
+      }
+
+      .course-progress {
+        margin-top: 16px;
+      }
+
+      .next-lesson {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin: 8px 0 0 0;
+        font-style: italic;
+      }
+
+      .course-actions {
+        display: flex;
+        gap: 12px;
+      }
+
+      .course-actions .btn {
+        flex: 1;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: var(--text-muted);
+      }
+
+      .empty-icon {
+        font-size: 4rem;
+        margin-bottom: 16px;
+      }
+
+      .empty-state h3 {
+        margin: 0 0 8px 0;
+        color: var(--text-color);
+      }
+
+      @media (max-width: 768px) {
+        .courses-grid {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+
+        .course-card {
+          padding: 20px;
+        }
+
+        .course-header {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 12px;
+        }
+
+        .course-stats {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .course-actions {
+          flex-direction: column;
+        }
+      }
+
+      @keyframes progress {
+        0% {
+          stroke-dasharray: 0 100;
+        }
+      }
+    </style>
+  </body>
+</html>
